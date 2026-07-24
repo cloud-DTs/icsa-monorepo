@@ -17,6 +17,32 @@ source .venv/bin/activate   # Linux/macOS
 .venv\Scripts\activate      # Windows
 ```
 
+Install the dependencies:
+
+```bash
+python -m pip install -r requirements.txt
+```
+
+### Docker
+
+Build the image and generate `output/main.tf`:
+
+```bash
+docker compose build
+docker compose run --rm fed-sysml
+```
+
+Terraform commands run inside the same image and use the mounted `output`
+directory:
+
+```bash
+docker compose run --rm fed-sysml terraform init
+docker compose run --rm fed-sysml terraform apply
+```
+
+AWS credentials are read from the corresponding host environment variables,
+including `AWS_SESSION_TOKEN` when temporary credentials are used.
+
 ## How it works
 
 The tool packages three internal phases into one Lambda deployment:

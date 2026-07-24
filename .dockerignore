@@ -1,0 +1,11 @@
+**
+!Dockerfile
+!requirements.txt
+!docker/
+!docker/**
+!src/
+!src/**
+
+src/**/__pycache__/
+src/**/*.py[cod]
+src/paho_layer/
