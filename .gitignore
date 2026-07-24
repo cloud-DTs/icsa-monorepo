@@ -7,6 +7,7 @@ output/*.tfvars.json
 output/*_payload.zip
 output/paho_layer.zip
 output/paho_layer/
+output/.build/
 src/paho_layer.zip
 src/paho_layer/
 

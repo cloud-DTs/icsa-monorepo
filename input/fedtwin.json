@@ -5,7 +5,7 @@
       "newStrategies": [
         {
           "name": "ConsumptionStrategy",
-          "pathToCode": "/home/marcocotrotzo/PycharmProjects/SymlCOnv/input/sysml/testLambdaFunctions/fedTwinCombinedStrategy",
+          "pathToCode": "sysml/testLambdaFunctions/fedTwinCombinedStrategy",
           "feedback": {
             "type": "INTERNAL",
             "topic": "Battery/iot-data"

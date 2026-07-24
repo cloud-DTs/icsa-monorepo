@@ -1,6 +1,7 @@
 from pydantic import BaseModel
 from typing import List, Optional
 import json
+import os
 
 
 class InputParameter(BaseModel):
@@ -85,6 +86,14 @@ class FederationConfig(BaseModel):
 
         with open(fedtwin_path) as f:
             fed_config = FedTwinConfig.model_validate(json.load(f))
+
+        fedtwin_dir = os.path.dirname(os.path.abspath(fedtwin_path))
+        for fed_twin in fed_config.fedTwins:
+            for new_strategy in fed_twin.newStrategies:
+                strategy_path = os.path.expanduser(new_strategy.pathToCode)
+                if not os.path.isabs(strategy_path):
+                    strategy_path = os.path.join(fedtwin_dir, strategy_path)
+                new_strategy.pathToCode = os.path.abspath(strategy_path)
 
         broker_configs = {}
         if broker_config_path:

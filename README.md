@@ -1,6 +1,6 @@
 # Federated Twin Strategy Tool
 
-This tool lets you combine ("federate") strategies from multiple deployed digital twins into a single new strategy. It generates an AWS Step Functions workflow that collects the current values of the input strategies, runs your custom Lambda logic on them, and pushes the result back out as feedback (either internally or to an external MQTT broker).
+This tool lets you combine ("federate") strategies from multiple deployed digital twins into a single new strategy. It generates one AWS Lambda pipeline per new strategy. The pipeline collects current input values, runs your custom strategy code, and publishes the result as feedback, either internally or to an external MQTT broker.
 
 ## Prerequisites
 
@@ -19,17 +19,21 @@ source .venv/bin/activate   # Linux/macOS
 
 ## How it works
 
-The tool builds a three-step AWS Step Functions workflow:
+The tool packages three internal phases into one Lambda deployment:
 
 ```
-Collector -> Your combined strategy (Lambda) -> Feedback
+Event checker -> Pipeline Lambda: collect -> strategy -> feedback
 ```
 
-- **Collector**: gathers the current values of every twin/strategy you reference in `fedtwin.json`.
+- **Collector phase**: gathers the current values of every twin/strategy you reference in `fedtwin.json`.
 - **Your combined strategy**: your `lambda_function.py`, which receives all collected values as input and computes a new result.
-- **Feedback**: takes the return value of your Lambda and publishes it over MQTT — either to the internal broker or to an external one, depending on `feedback.type`.
+- **Feedback phase**: takes the return value of your strategy and publishes it over MQTT, either to the internal broker or to an external one, depending on `feedback.type`.
 
-To set this up, you need to provide four things, described below.
+The generated SSM registry entry contains the pipeline Lambda ARN with `type = "lambda"`. The `digital-twin-manager` event checker invokes it asynchronously.
+
+If you already have a deployment based on the previous three-Lambda Step Functions workflow, follow the [migration guide](MIGRATION.md) before applying the newly generated Terraform.
+
+To set up the tool, you need to provide four things, described below.
 
 ## 1. Federation input file
 
@@ -55,15 +59,12 @@ This file describes which strategies from which twins get combined into a new on
       "newStrategies": [
         {
           "name": "ConsumptionStrategy",
-          "pathToCode": "/home/marcocotrotzo/PycharmProjects/SymlCOnv/input/sysml/testLambdaFunctions/fedTwinCombinedStrategy",
+          "pathToCode": "sysml/testLambdaFunctions/fedTwinCombinedStrategy",
           "feedback": {
             "type": "INTERNAL",
             "topic": "Battery/iot-data"
           },
-          "strategies": [
-            "PV.production",
-            "Battery.status"
-          ]
+          "strategies": ["PV.production", "Battery.status"]
         }
       ]
     }
@@ -75,12 +76,12 @@ Field by field:
 
 - **`fedTwins[].name`** — the name of the (virtual) federated twin this new strategy belongs to, e.g. `MicroGrid`.
 - **`newStrategies[].name`** — the name of the new, combined strategy you're creating, e.g. `ConsumptionStrategy`.
-- **`pathToCode`** — local path to the folder containing your combined `lambda_function.py` (see section 4).
+- **`pathToCode`** — path to the folder containing your combined `lambda_function.py` (see section 4). Relative paths are resolved from the directory containing `fedtwin.json`.
 - **`feedback.type`** — `INTERNAL` or `EXTERNAL`:
   - `INTERNAL`: the result is published over MQTT to the aws internal broker.
   - `EXTERNAL`: the result is published over MQTT to an outside broker. In this case you also need a `"brokerKey": "<a key in brokerConfig.json>"` here, pointing at one of the broker entries described in section 3.
 - **`feedback.topic`** — the MQTT topic the result gets published to, e.g. `Battery/iot-data`.
-- **`strategies`** — the list of input strategies being combined, written as `Twin.strategyName`, e.g. `PV.production` and `Battery.status`. These are the strategies the Collector step will fetch and pass into your Lambda.
+- **`strategies`** — the list of input strategies being combined, written as `Twin.strategyName`, e.g. `PV.production` and `Battery.status`. These are the strategy inputs the collector phase will fetch and pass into your strategy code.
 
 ## 3. `brokerConfig.json` — only needed for external feedback
 
@@ -140,7 +141,7 @@ def lambda_handler(event, context):
 
 ### Accessing input values
 
-The Collector step puts every input strategy's current values into `event`, keyed by your **new strategy's name** (not the source twin's name). From there, drill down by strategy name and attribute:
+The collector phase puts every input strategy's current values into `event`, keyed by your **new strategy's name** (not the source twin's name). From there, drill down by strategy name and attribute:
 
 ```
 event["YourStrategyName"]["theSingleStrategyName"]["theAttribute"]
@@ -151,13 +152,13 @@ In the example above, the new strategy is called `ConsumptionStrategy`, so:
 - `event["ConsumptionStrategy"]["production"]["generatedPower"]` — comes from `PV.production`
 - `event["ConsumptionStrategy"]["status"]["chargeValue"]` — comes from `Battery.status`
 
-Note that only the strategy name (`production`, `status`) is used as the key inside `event["ConsumptionStrategy"]`, not the twin name (`PV`, `Battery`) — the twin name in `fedtwin.json`'s `strategies` list is only there to tell the Collector *where* to fetch the value from.
+Note that only the strategy name (`production`, `status`) is used as the key inside `event["ConsumptionStrategy"]`, not the twin name (`PV`, `Battery`) — the twin name in `fedtwin.json`'s `strategies` list is only there to tell the collector phase _where_ to fetch the value from.
 
 ### Return value and feedback behavior
 
-Whatever your `lambda_handler` returns is passed to the Feedback step, which handles it in one of two ways:
+Whatever your `lambda_handler` returns is passed to the feedback phase, which handles it in one of two ways:
 
-1. **If your return value has a `body` field** (as in the example above), the Feedback step takes the contents of `body` *only* — without the surrounding `statusCode`/`body` wrapper — and publishes that to the configured topic.
+1. **If your return value has a `body` field** (as in the example above), the feedback phase takes the contents of `body` _only_ — without the surrounding `statusCode`/`body` wrapper — and publishes that to the configured topic.
 2. **Otherwise**, it publishes the entire return value as-is.
 
 So in the example, what actually gets published to `Battery/iot-data` is just:
