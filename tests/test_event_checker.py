@@ -356,7 +356,7 @@ class EventEvaluationTests(EventCheckerTestCase):
 
     def test_only_matching_conditions_fire_actions(self):
         matching = {
-            "condition": "DOUBLE(1.0) < DOUBLE(2.0)",
+            "condition": "entity.component.power > DOUBLE(2.0)",
             "action": {
                 "type": "lambda",
                 "functionName": "production",
@@ -364,7 +364,7 @@ class EventEvaluationTests(EventCheckerTestCase):
             },
         }
         not_matching = {
-            "condition": "INTEGER(5) < INTEGER(2)",
+            "condition": "entity.component.power < DOUBLE(2.0)",
             "action": {
                 "type": "lambda",
                 "functionName": "status",
@@ -383,8 +383,13 @@ class EventEvaluationTests(EventCheckerTestCase):
                 return_value=[{"type": "lambda", "address": LAMBDA_ADDRESS}],
             ) as lookup,
             patch.object(self.event_checker, "fire_action") as fire_action,
+            patch.object(
+                self.event_checker,
+                "fetch_value",
+                return_value=3.0,
+            ),
         ):
-            self.event_checker.lambda_handler({"incoming": "value"}, None)
+            self.event_checker.lambda_handler({"power": 3.0}, None)
 
         lookup.assert_called_once_with("production")
         fire_action.assert_called_once_with(
@@ -392,6 +397,28 @@ class EventEvaluationTests(EventCheckerTestCase):
             {},
             [{"type": "lambda", "address": LAMBDA_ADDRESS}],
         )
+
+    def test_irrelevant_property_update_skips_condition(self):
+        event_config = {
+            "condition": "entity.component.power > DOUBLE(2.0)",
+            "action": {
+                "type": "lambda",
+                "functionName": "production",
+                "inputParameters": [],
+            },
+        }
+        self.event_checker.DIGITAL_TWIN_INFO["config_events"] = [event_config]
+
+        with (
+            patch.object(self.event_checker, "fetch_value") as fetch_value,
+            patch.object(self.event_checker, "lookup_registry") as lookup,
+            patch.object(self.event_checker, "fire_action") as fire_action,
+        ):
+            self.event_checker.lambda_handler({"temperature": 20.0}, None)
+
+        fetch_value.assert_not_called()
+        lookup.assert_not_called()
+        fire_action.assert_not_called()
 
     def test_input_parameters_mix_constants_and_twinmaker_values(self):
         event_config = {
