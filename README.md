@@ -116,6 +116,38 @@ The following stereotypes are provided:
 The tool converts the annotated SysMl model into the target structure required by the deployment tool.  
 For consistent mapping between Enterprise Architect and AWS, the **xmi:idref** of each model element is used as the identifier.  
 Because AWS requires shorter identifiers, IDs are shortened in a backward-compatible manner.
+
+---
+
+## Container Usage
+
+The adapter is a one-shot container: it reads one XMI model, writes the generated JSON files, and exits.
+
+1. Copy `.env.example` to `.env`.
+2. Create the configured input, output, and code directories.
+3. Put the XMI file into `PIPELINE_INPUT_HOST_DIR`. Its filename must match `MODEL_FILE`.
+4. On Linux, set `DTP_UID` and `DTP_GID` in `.env` to the output of `id -u` and `id -g`. This keeps generated files writable by the host user.
+5. If the model contains host paths in `pathToCode`, mount their common directory through `PIPELINE_CODE_HOST_DIR` and configure `DTP_PATH_MAP`.
+
+Example `.env` mapping for a model exported on Windows:
+
+```dotenv
+MODEL_FILE=model.xml
+TWIN_NAME=dtwin
+PIPELINE_CODE_HOST_DIR=C:/work/strategy-code
+DTP_PATH_MAP=C:/work/strategy-code=/pipeline/code
+```
+
+Multiple path mappings are separated with `;`. Windows source paths are matched case-insensitively, and the most specific matching prefix is used.
+
+Build and run the adapter:
+
+```shell
+docker compose run --rm --build digital-twin-profile-sysml-v1
+```
+
+Generated files are written to `PIPELINE_OUTPUT_HOST_DIR/<lowercase-TWIN_NAME>/`. The input and strategy-code mounts are read-only.
+
 ---
 
 ## References

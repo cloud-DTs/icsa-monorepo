@@ -11,6 +11,7 @@ import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Locale;
 
 public class StrategyRule extends MappingRule<EAElement> {
     private static final String PATH_MAP_ENV = "DTP_PATH_MAP";
@@ -57,10 +58,17 @@ public class StrategyRule extends MappingRule<EAElement> {
     }
 
     private String mapConfiguredPath(String path) {
-        String pathMap = System.getenv(PATH_MAP_ENV);
-        if (pathMap == null || pathMap.isBlank()) {
+        return mapConfiguredPath(path, System.getenv(PATH_MAP_ENV));
+    }
+
+    static String mapConfiguredPath(String path, String pathMap) {
+        if (path == null || pathMap == null || pathMap.isBlank()) {
             return path;
         }
+
+        String normalizedPath = normalizePathPrefix(path);
+        String bestSourcePrefix = null;
+        String bestTargetPrefix = null;
 
         for (String mapping : pathMap.split(";")) {
             String[] parts = mapping.split("=", 2);
@@ -69,24 +77,77 @@ public class StrategyRule extends MappingRule<EAElement> {
             }
 
             String sourcePrefix = normalizePathPrefix(parts[0].trim());
-            String targetPrefix = parts[1].trim();
-            String normalizedPath = normalizePathPrefix(path);
-
-            if (normalizedPath.equals(sourcePrefix)) {
-                return targetPrefix;
+            String targetPrefix = normalizePathPrefix(parts[1].trim());
+            if (sourcePrefix.isEmpty() || targetPrefix.isEmpty()) {
+                continue;
             }
 
-            if (normalizedPath.startsWith(sourcePrefix + "/")) {
-                String relativePath = normalizedPath.substring(sourcePrefix.length() + 1);
-                return Paths.get(targetPrefix, relativePath.split("/")).normalize().toString();
+            boolean caseInsensitive = isWindowsPath(normalizedPath) && isWindowsPath(sourcePrefix);
+            String comparablePath = caseInsensitive ? normalizedPath.toLowerCase(Locale.ROOT) : normalizedPath;
+            String comparableSource = caseInsensitive ? sourcePrefix.toLowerCase(Locale.ROOT) : sourcePrefix;
+
+            if (matchesPrefix(comparablePath, comparableSource)
+                    && (bestSourcePrefix == null || sourcePrefix.length() > bestSourcePrefix.length())) {
+                bestSourcePrefix = sourcePrefix;
+                bestTargetPrefix = targetPrefix;
             }
         }
 
-        return path;
+        if (bestSourcePrefix == null) {
+            return path;
+        }
+
+        int relativeStart = bestSourcePrefix.length();
+        if (relativeStart < normalizedPath.length() && normalizedPath.charAt(relativeStart) == '/') {
+            relativeStart++;
+        }
+
+        String relativePath = normalizedPath.substring(relativeStart);
+        if (relativePath.isEmpty()) {
+            return bestTargetPrefix;
+        }
+
+        Path targetRoot = Paths.get(bestTargetPrefix).normalize();
+        Path mappedPath = Paths.get(bestTargetPrefix, relativePath.split("/")).normalize();
+        if (!mappedPath.startsWith(targetRoot)) {
+            return path;
+        }
+
+        return mappedPath.toString();
     }
 
-    private String normalizePathPrefix(String path) {
-        return path.replace('\\', '/').replaceAll("/+$", "");
+    private static boolean matchesPrefix(String path, String prefix) {
+        if (path.equals(prefix)) {
+            return true;
+        }
+
+        if (prefix.endsWith("/")) {
+            return path.startsWith(prefix);
+        }
+
+        return path.startsWith(prefix + "/");
+    }
+
+    private static boolean isWindowsPath(String path) {
+        return path.startsWith("//")
+                || (path.length() >= 2 && Character.isLetter(path.charAt(0)) && path.charAt(1) == ':');
+    }
+
+    private static String normalizePathPrefix(String path) {
+        String normalized = path.replace('\\', '/');
+        while (normalized.length() > 1
+                && normalized.endsWith("/")
+                && !isWindowsDriveRoot(normalized)) {
+            normalized = normalized.substring(0, normalized.length() - 1);
+        }
+        return normalized;
+    }
+
+    private static boolean isWindowsDriveRoot(String path) {
+        return path.length() == 3
+                && Character.isLetter(path.charAt(0))
+                && path.charAt(1) == ':'
+                && path.charAt(2) == '/';
     }
 
 

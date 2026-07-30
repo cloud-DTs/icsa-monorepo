@@ -24,9 +24,9 @@ public class Main {
     public static void main(String[] args) {
 
         if (args.length != 2) {
-            System.out.println("Missing 1 or 2 arguments");
-            System.out.println("Argument 1: <PathToXmiFile>");
-            System.out.println("Argument 2: <Name of the digital twin>");
+            System.err.println("Expected exactly 2 arguments, got " + args.length);
+            System.err.println("Argument 1: <PathToXmiFile>");
+            System.err.println("Argument 2: <Name of the digital twin>");
             System.exit(1);
             return;
         }
