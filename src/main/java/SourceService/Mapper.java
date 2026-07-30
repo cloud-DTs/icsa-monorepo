@@ -34,36 +34,24 @@ public class Mapper {
         TriggerRule triggerRule = new TriggerRule(xmiContext,twinRegistry);
         FeedBackRule feedBackRule = new FeedBackRule(xmiContext,twinRegistry);
 
-        for(EAElement eaElement:twinParser.getStereoTypeElementMap().get(Stereotypes.TWIN)){
-            twinRule.apply(eaElement);
-        }
-        for(EAElement eaElement:twinParser.getStereoTypeElementMap().get(Stereotypes.COMPONENT_INSTANCE)){
-            componentRule.apply(eaElement);
-        }
+        for(EAElement e : twinParser.getStereoTypeElementMap().getOrDefault(Stereotypes.TWIN, List.of()))
+            twinRule.apply(e);
+        for(EAElement e : twinParser.getStereoTypeElementMap().getOrDefault(Stereotypes.COMPONENT_INSTANCE, List.of()))
+            componentRule.apply(e);
+        for(EAElement e : twinParser.getStereoTypeElementMap().getOrDefault(Stereotypes.DEVICE_INSTANCE, List.of()))
+            deviceRule.apply(e);
+        for(EAElement e : twinParser.getStereoTypeElementMap().getOrDefault(Stereotypes.STRATEGY_INSTANCE, List.of()))
+            strategyRule.apply(e);
 
-        for(EAElement eaElement:twinParser.getStereoTypeElementMap().get(Stereotypes.DEVICE_INSTANCE)){
-            deviceRule.apply(eaElement);
-        }
+        for(Attribute a : twinParser.getStereoTypeAttributeMap().getOrDefault(Stereotypes.CONST_INSTANCE, List.of()))
+            constPropRule.apply(a);
 
-        for(EAElement eaElement:twinParser.getStereoTypeElementMap().get(Stereotypes.STRATEGY_INSTANCE)){
-            strategyRule.apply(eaElement);
-        }
-
-        for(Attribute attribute:twinParser.getStereoTypeAttributeMap().get(Stereotypes.CONST_INSTANCE)){
-            constPropRule.apply(attribute);
-        }
-
-        for(Connector connector:twinParser.getStereoTypeConnectorMap().get(Stereotypes.MEASURES)){
-            meaPropRule.apply(connector);
-
-        }
-        for(Connector connector:twinParser.getStereoTypeConnectorMap().get(Stereotypes.TRIGGERS)){
-            triggerRule.apply(connector);
-        }
-
-        for(Connector connector:twinParser.getStereoTypeConnectorMap().get(Stereotypes.FEEDBACK_TOPIC)){
-            feedBackRule.apply(connector);
-        }
+        for(Connector c : twinParser.getStereoTypeConnectorMap().getOrDefault(Stereotypes.MEASURES, List.of()))
+            meaPropRule.apply(c);
+        for(Connector c : twinParser.getStereoTypeConnectorMap().getOrDefault(Stereotypes.TRIGGERS, List.of()))
+            triggerRule.apply(c);
+        for(Connector c : twinParser.getStereoTypeConnectorMap().getOrDefault(Stereotypes.FEEDBACK_TOPIC, List.of()))
+            feedBackRule.apply(c);
 
         return twinRegistry.getTwins().stream().filter(x->x.getDefinitionId().equals(x.getId())).toList();
     }
