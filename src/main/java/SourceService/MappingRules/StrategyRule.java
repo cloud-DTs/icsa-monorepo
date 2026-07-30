@@ -13,6 +13,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class StrategyRule extends MappingRule<EAElement> {
+    private static final String PATH_MAP_ENV = "DTP_PATH_MAP";
+
     public StrategyRule(XMIContext xmiContext, TwinRegistry twinRegistry) {
         super(xmiContext, twinRegistry);
     }
@@ -41,13 +43,60 @@ public class StrategyRule extends MappingRule<EAElement> {
         }
     }
 
+    private String resolvePathToCode(String path) {
+        if (path == null || path.isEmpty() || isValidAndExists(path)) {
+            return path;
+        }
+
+        String mappedPath = mapConfiguredPath(path);
+        if (!mappedPath.equals(path) && isValidAndExists(mappedPath)) {
+            return mappedPath;
+        }
+
+        return path;
+    }
+
+    private String mapConfiguredPath(String path) {
+        String pathMap = System.getenv(PATH_MAP_ENV);
+        if (pathMap == null || pathMap.isBlank()) {
+            return path;
+        }
+
+        for (String mapping : pathMap.split(";")) {
+            String[] parts = mapping.split("=", 2);
+            if (parts.length != 2) {
+                continue;
+            }
+
+            String sourcePrefix = normalizePathPrefix(parts[0].trim());
+            String targetPrefix = parts[1].trim();
+            String normalizedPath = normalizePathPrefix(path);
+
+            if (normalizedPath.equals(sourcePrefix)) {
+                return targetPrefix;
+            }
+
+            if (normalizedPath.startsWith(sourcePrefix + "/")) {
+                String relativePath = normalizedPath.substring(sourcePrefix.length() + 1);
+                return Paths.get(targetPrefix, relativePath.split("/")).normalize().toString();
+            }
+        }
+
+        return path;
+    }
+
+    private String normalizePathPrefix(String path) {
+        return path.replace('\\', '/').replaceAll("/+$", "");
+    }
+
 
     private void addStrategy(EAElement element, EAElement strategyDefinition) {
         TwinStrategy twinStrategy = new TwinStrategy();
-        String pathToCode = getXmiContext().getTaggedValue(strategyDefinition, "pathToCode");
+        String pathToCode = resolvePathToCode(getXmiContext().getTaggedValue(strategyDefinition, "pathToCode"));
         if(!pathToCode.isEmpty()){
             if(!isValidAndExists(pathToCode)){
-                throw new IllegalStateException("Strategy " + strategyDefinition.getName() + "code not found: " + pathToCode);
+                throw new IllegalStateException("Strategy " + strategyDefinition.getName() + " code not found: " + pathToCode
+                        + ". Configure " + PATH_MAP_ENV + " to rewrite host paths to container paths.");
             }
         }
         twinStrategy.setPathToCode(pathToCode);

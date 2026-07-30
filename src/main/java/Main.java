@@ -27,6 +27,7 @@ public class Main {
             System.out.println("Missing 1 or 2 arguments");
             System.out.println("Argument 1: <PathToXmiFile>");
             System.out.println("Argument 2: <Name of the digital twin>");
+            System.exit(1);
             return;
         }
 
@@ -41,6 +42,7 @@ public class Main {
             File xmiFile = new File(fileName);
             if (!xmiFile.exists()) {
                 System.err.println("File not found: " + xmiFile.getAbsolutePath());
+                System.exit(1);
                 return;
             }
 
@@ -77,6 +79,7 @@ public class Main {
 
         } catch (Exception e) {
             e.printStackTrace();
+            System.exit(1);
         }
     }
 
