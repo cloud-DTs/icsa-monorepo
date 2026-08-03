@@ -33,9 +33,6 @@ class ParameterInfo():
         return param
 
     def fetch_value(self):
-        if self.has_configured_value:
-            return
-
         if self.hot_reader_arn:
             lambda_client = boto3.client("lambda", region_name=self.region)
         
@@ -69,6 +66,10 @@ class ParameterInfo():
                 value_dict = prop["propertyValue"]["value"]
                 self.value = list(value_dict.values())[0]
                 return
+
+        if self.has_configured_value:
+            return
+
         print(f"Warning: No value fetched for parameter '{self.name}'")
         self.value = None
 

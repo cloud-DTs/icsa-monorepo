@@ -24,14 +24,48 @@ def parameter_data(**overrides):
 
 
 class ParameterInfoTests(unittest.TestCase):
-    def test_configured_zero_is_used_without_invoking_hot_reader(self):
+    def test_hot_reader_value_overrides_configured_default(self):
+        lambda_client = Mock()
+        lambda_client.invoke.return_value = {
+            "Payload": io.BytesIO(
+                json.dumps(
+                    {
+                        "propertyValues": {
+                            "power": {
+                                "propertyValue": {
+                                    "value": {"doubleValue": 75.0}
+                                }
+                            }
+                        }
+                    }
+                ).encode("utf-8")
+            )
+        }
+        parameter = collector.ParameterInfo.parseInfo(parameter_data(value=50.0))
+
+        with patch.object(collector.boto3, "client", return_value=lambda_client):
+            parameter.fetch_value()
+
+        self.assertEqual(75.0, parameter.value)
+
+    def test_configured_value_is_used_when_hot_reader_has_no_value(self):
+        lambda_client = Mock()
+        lambda_client.invoke.return_value = {
+            "Payload": io.BytesIO(
+                json.dumps({"propertyValues": {}}).encode("utf-8")
+            )
+        }
         parameter = collector.ParameterInfo.parseInfo(parameter_data(value=0))
 
-        with patch.object(collector.boto3, "client") as boto_client:
+        with patch.object(
+            collector.boto3,
+            "client",
+            return_value=lambda_client,
+        ) as boto_client:
             parameter.fetch_value()
 
         self.assertEqual(0, parameter.value)
-        boto_client.assert_not_called()
+        boto_client.assert_called_once_with("lambda", region_name="eu-central-1")
 
     def test_hot_reader_response_sets_parameter_value_and_payload(self):
         lambda_client = Mock()
@@ -103,6 +137,39 @@ class CollectorTests(unittest.TestCase):
         self.addCleanup(print_patcher.stop)
 
     def test_collect_values_selects_triggered_pipeline_and_fetches_all_its_inputs(self):
+        lambda_client = Mock()
+        lambda_client.invoke.side_effect = [
+            {
+                "Payload": io.BytesIO(
+                    json.dumps(
+                        {
+                            "propertyValues": {
+                                "power": {
+                                    "propertyValue": {
+                                        "value": {"doubleValue": 13.5}
+                                    }
+                                }
+                            }
+                        }
+                    ).encode("utf-8")
+                )
+            },
+            {
+                "Payload": io.BytesIO(
+                    json.dumps(
+                        {
+                            "propertyValues": {
+                                "charge": {
+                                    "propertyValue": {
+                                        "value": {"integerValue": 81}
+                                    }
+                                }
+                            }
+                        }
+                    ).encode("utf-8")
+                )
+            },
+        ]
         parameter_info = {
             "CombinedStrategy": [
                 parameter_data(value=12.5),
@@ -120,18 +187,22 @@ class CollectorTests(unittest.TestCase):
         }
         event = {"e": {"action": {"functionName": "production"}}}
 
-        with patch.object(collector, "PARAMETER_INFO", parameter_info):
+        with (
+            patch.object(collector, "PARAMETER_INFO", parameter_info),
+            patch.object(collector.boto3, "client", return_value=lambda_client),
+        ):
             result = collector.collect_values(event)
 
         self.assertEqual(
             {
                 "CombinedStrategy": {
-                    "production": {"power": 12.5},
-                    "status": {"charge": 80},
+                    "production": {"power": 13.5},
+                    "status": {"charge": 81},
                 }
             },
             result,
         )
+        self.assertEqual(2, lambda_client.invoke.call_count)
 
     def test_lambda_handler_keeps_legacy_status_code_body_contract(self):
         values = {"CombinedStrategy": {"production": {"power": 12.5}}}
