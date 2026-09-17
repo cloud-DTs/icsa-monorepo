@@ -216,9 +216,10 @@ def _pull(label, hot_reader_arn, workspace_id, entity_id, component_name, proper
 
     Uses the hot-reader's TIME-RANGE branch on purpose. Without startTime/endTime
     the hot-reader returns only the single most recent DynamoDB record, and a
-    property that arrived in an earlier message would be missing. With a range it
-    returns every record containing the property, and the last entry is the newest
-    (the DynamoDB query is ascending by timestamp).
+    property that arrived in an earlier message would be missing. Read the range
+    newest-first: the hot-reader caps its scan, so ascending order can return only
+    old records once telemetry accumulates. Request one value per property to keep
+    the response small while still reading properties sent in separate messages.
 
     Note the two branches return DIFFERENT shapes: the time-range branch returns
     propertyValues as a LIST of {entityPropertyReference, values[]}, while the
@@ -236,6 +237,8 @@ def _pull(label, hot_reader_arn, workspace_id, entity_id, component_name, proper
         "componentName": component_name,
         "startTime": start_time.strftime("%Y-%m-%dT%H:%M:%S.000Z"),
         "endTime": end_time.strftime("%Y-%m-%dT%H:%M:%S.999Z"),
+        "orderByTime": "DESCENDING",
+        "maxResults": 1,
         "selectedProperties": list(properties.keys()),
         "properties": {
             name: {"definition": {"dataType": {"type": data_type}}}
@@ -267,8 +270,8 @@ def _pull(label, hot_reader_arn, workspace_id, entity_id, component_name, proper
         history = entry.get("values") or []
         if not name or not history:
             continue
-        # Last entry is the newest - the DynamoDB query is ascending by time.
-        newest = history[-1]
+        # The hot-reader preserves the requested descending timestamp order.
+        newest = history[0]
         raw_value = newest.get("value", {})
         if raw_value:
             values[name] = list(raw_value.values())[0]

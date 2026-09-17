@@ -54,6 +54,7 @@ pipeline/fed-sysml/input/brokerConfig.json
 pipeline/fed-sysml/input/fedtwin.json
 pipeline/fed-sysml/input/strategyInputs/
 pipeline/fed-sysml/output/
+pipeline/fed-sysml/microgrid-output/
 
 # Local service state
 pipeline/grafana/grafana.json
@@ -63,3 +64,6 @@ pipeline/grafana/grafana.json
 *.tfstate
 *.tfstate.*
 *.tfplan
+
+pipeline/fed-sysml/mepso-output.zip
+pipeline/fed-sysml/microgrid-output.zip

@@ -104,6 +104,11 @@ The MEPSO five-twin demo has a separate tracked federation template and
 deployment guide. See [docs/meps-demo.md](docs/meps-demo.md); do not replace the
 legacy `fedtwin.example.json` when running the existing MicroGrid example.
 
+For StefiGroz's five-twin Microgrid (Battery, PV, Grid, Charger, Weather), use
+`fedtwin.microgrid.example.json` and [docs/microgrid-demo.md](docs/microgrid-demo.md).
+The guide includes device-ID resolution, separate Terraform state, and the two
+required post-apply enablement scripts.
+
 The `DTP_PATH_MAP` value in `.env.example` maps a legacy absolute path embedded
 in the bundled Enterprise Architect model to
 `/pipeline/code/microgrid/stopCharging`. It is a model-path translation, not a
