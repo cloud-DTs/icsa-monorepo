@@ -23,16 +23,16 @@ The fed-sysml Lambda + role names are deterministic
 (<strategyName>_pipeline / <strategyName>_pipeline-role), so no discovery is
 needed.
 
-Standalone helper, not part of the orchestrator's command dispatch. Run it
-manually after EVERY `fed terraform apply` that touches this federation -
-Terraform declares the Lambda's environment with only PARAMETERS /
-FEEDBACK_TYPE / FEEDBACK_TOPIC, so each apply resets the variables injected
-here.
+The orchestrator runs this helper after successful federation applies when
+dtc-BatteryChargerDecisionStrategy is selected. `fed configure` retries it without
+another apply. Direct execution remains available; --check validates the local
+deployment inputs without contacting AWS.
 
     python3 scripts/federate_battery_charger_decision.py
 """
 from __future__ import annotations
 
+import argparse
 import json
 from pathlib import Path
 
@@ -177,7 +177,13 @@ def inject_env(lambda_client, strategy_name: str, new_env: dict) -> None:
             "'fed terraform apply' first, then this step."
         )
 
+    if current.get("LastUpdateStatus") == "InProgress":
+        lambda_client.get_waiter("function_updated").wait(FunctionName=function_name)
+        current = lambda_client.get_function_configuration(FunctionName=function_name)
     variables = dict(current.get("Environment", {}).get("Variables", {}))
+    if current.get("LastUpdateStatus") != "Failed" and all(variables.get(key) == value for key, value in new_env.items()):
+        print(f"Environment already configured for {function_name}")
+        return
     variables.update(new_env)
     lambda_client.update_function_configuration(
         FunctionName=function_name,
@@ -199,6 +205,13 @@ def grant_invoke(iam, strategy_name: str, hot_reader_arns: list) -> None:
         }],
     }
     try:
+        current = iam.get_role_policy(RoleName=role_name, PolicyName=INVOKE_POLICY_NAME)
+    except iam.exceptions.NoSuchEntityException:
+        current = {}
+    if current.get("PolicyDocument") == policy:
+        print(f"Invoke policy already configured for {role_name}")
+        return
+    try:
         iam.put_role_policy(
             RoleName=role_name,
             PolicyName=INVOKE_POLICY_NAME,
@@ -215,7 +228,10 @@ def grant_invoke(iam, strategy_name: str, hot_reader_arns: list) -> None:
 # --------------------------------------------------------------------------- #
 # Entry point
 # --------------------------------------------------------------------------- #
-def main() -> None:
+def main(argv: list[str] | None = None) -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--check", action="store_true", help="Validate deployment inputs without AWS calls.")
+    args = parser.parse_args(argv)
     print("Running Battery charging-decision federation enablement step...")
 
     grid = discover_twin_components(GRID_TWIN_NAME, {"sensor": GRID_PRICE_PROPERTY})
@@ -232,6 +248,10 @@ def main() -> None:
     )
     battery_consts = discover_consts(BATTERY_TWIN_NAME, BATTERY_CONSTS)
     charger_consts = discover_consts(CHARGER_TWIN_NAME, CHARGER_CONSTS)
+
+    if args.check:
+        print("Grid/Battery/Charger deployment inputs are ready.")
+        return
 
     try:
         import boto3

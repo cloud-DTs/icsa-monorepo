@@ -34,7 +34,7 @@ def run_command(
             env=command_env,
         )
     except FileNotFoundError:
-        fail("Docker CLI was not found. Install Docker Desktop or add docker to PATH.")
+        fail(f"Command was not found: {command[0]}. Install it or add it to PATH.")
 
     if completed.returncode == 0:
         return

@@ -8,6 +8,41 @@ from scripts.orchestrator import app
 
 
 class OrchestratorAppCommandTests(unittest.TestCase):
+    def test_fed_prepare_only_runs_local_preparation(self) -> None:
+        with (
+            patch.object(app, "prepare_federation_hooks") as prepare,
+            patch.object(app, "configure_federation_hooks") as configure,
+            patch.object(app, "_prompt_yes_no") as prompt,
+        ):
+            app._handle_command(object(), "fed prepare", object())
+        prepare.assert_called_once_with()
+        configure.assert_not_called()
+        prompt.assert_not_called()
+
+    def test_fed_configure_retries_without_terraform(self) -> None:
+        with (
+            patch.object(app, "configure_federation_hooks") as configure,
+            patch.object(app, "_run_fed_sysml_terraform_safely") as terraform,
+        ):
+            app._handle_command(object(), "fed configure", object())
+        configure.assert_called_once_with()
+        terraform.assert_not_called()
+
+    def test_hook_failure_does_not_stop_the_watcher(self) -> None:
+        with patch.object(app, "configure_federation_hooks", side_effect=SystemExit(1)):
+            app._handle_command(object(), "fed configure", object())
+
+    def test_cancelled_federation_apply_never_configures(self) -> None:
+        with (
+            patch.object(app, "_run_fed_sysml_terraform_plan_safely", return_value=True),
+            patch.object(app, "_prompt_yes_no", return_value=False),
+            patch.object(app, "_run_fed_sysml_terraform_apply_saved_plan_safely") as apply,
+            patch.object(app, "configure_federation_hooks") as configure,
+        ):
+            app._handle_command(object(), "fed terraform apply", object())
+        apply.assert_not_called()
+        configure.assert_not_called()
+
     def test_continue_digital_twin_manager_target_preserves_case(self) -> None:
         matched, target = app._digital_twin_manager_command_target(
             "continue digital-twin-manager PV",

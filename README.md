@@ -230,6 +230,8 @@ Type commands in the terminal running `python run_pipeline.py`.
 | `apply digital-twin-manager [name]`    | Confirm and apply its saved plan.                   |
 | `destroy digital-twin-manager [name]`  | Destroy a saved twin deployment.                    |
 | `continue fed-sysml`                   | Build federation output from saved manager outputs. |
+| `fed prepare`                         | Run selected local federation resolvers before generation. |
+| `fed configure`                       | Retry selected configuration helpers after a successful apply. |
 | `fed terraform plan`                   | Initialize and plan generated Terraform.            |
 | `fed terraform apply`                  | Plan, confirm, and apply generated Terraform.       |
 | `fed terraform destroy`                | Confirm and destroy federation resources.           |
@@ -280,6 +282,20 @@ continue fed-sysml
 
 Terraform output is generated under `pipeline/fed-sysml/output`. Use the
 interactive Terraform commands instead of committing that directory.
+
+For registered strategies, the orchestrator runs local preparation before
+generation and AWS configuration after a successful `fed terraform apply`.
+The registry is in `scripts/orchestrator/federation_hooks.py`; selection uses
+`newStrategies[].name`. Helpers use the project Python and root `.env` (process
+environment values take precedence). Run `uv sync --locked` before the demo.
+
+`fed prepare` can resolve Microgrid Battery targets before Charger is deployed.
+`continue fed-sysml` repeats preparation and checks all required twins. The
+generated `federation-hooks.json` binds configuration steps to that output and
+its deployment inputs. Changed inputs or old Microgrid output without a manifest
+require regeneration before plan/apply. If apply succeeds but configuration fails,
+fix the error and run `fed configure` to retry without another Terraform apply.
+See [the Microgrid presentation workflow](docs/microgrid-demo.md#presentation-four-twins-beforehand-charger-live).
 
 ## Simulator and Grafana
 

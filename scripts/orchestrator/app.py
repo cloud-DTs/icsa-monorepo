@@ -8,6 +8,7 @@ from .cli import LaunchOptions
 from .config import PipelineConfig, load_pipeline_config, print_run_config
 from .docker_compose import remove_infrastructure, start_infrastructure
 from .file_watcher import FileChange, OutputFileWatcher
+from .federation_hooks import configure_federation_hooks, prepare_federation_hooks
 from .pipeline import (
     remove_all_cloud_deployer_test_simulators_stage,
     remove_cloud_deployer_test_simulator_stage,
@@ -173,6 +174,8 @@ def run_app(options: LaunchOptions) -> None:
         print("Type 'apply digital-twin-manager [name]' to apply its saved digital twin plan.")
         print("Type 'destroy digital-twin-manager [name]' to destroy a saved digital twin deployment.")
         print("Type 'continue fed-sysml' to resume from the fed-sysml step.")
+        print("Type 'fed prepare' to resolve federation targets before deploying the last twin.")
+        print("Type 'fed configure' to retry configuration after a successful federation apply.")
         print("Type 'fed terraform plan' to plan the generated fed-sysml Terraform output.")
         print("Type 'fed terraform apply' to apply the generated fed-sysml Terraform output.")
         print("Type 'fed terraform destroy' to destroy the fed-sysml Terraform resources.")
@@ -321,7 +324,7 @@ def _run_fed_sysml_terraform_safely(config: PipelineConfig, action: str, *, auto
         return True
     except SystemExit as error:
         code = error.code if isinstance(error.code, int) else 1
-        print(f"\nfed-sysml Terraform {action} failed with exit code {code}. Watching will continue.")
+        print(f"\nfed-sysml {action} workflow failed with exit code {code}. Watching will continue.")
         return False
 
 
@@ -341,7 +344,7 @@ def _run_fed_sysml_terraform_apply_saved_plan_safely(config: PipelineConfig) -> 
         return True
     except SystemExit as error:
         code = error.code if isinstance(error.code, int) else 1
-        print(f"\nfed-sysml Terraform apply failed with exit code {code}. Watching will continue.")
+        print(f"\nfed-sysml apply/configuration failed with exit code {code}. Watching will continue.")
         return False
 
 
@@ -691,6 +694,15 @@ def _handle_command(config: PipelineConfig, command: str, user_input: UserInput)
         return
     if _is_exit(value):
         raise StopRequested
+    if value in ("fed prepare", "fed configure"):
+        try:
+            if value == "fed prepare":
+                prepare_federation_hooks()
+            else:
+                configure_federation_hooks()
+        except SystemExit:
+            print(f"\n{value} did not complete. Watching will continue.")
+        return
     fed_terraform_action = _fed_sysml_terraform_action(value)
     if fed_terraform_action:
         if fed_terraform_action == "plan":
@@ -999,6 +1011,8 @@ def _print_commands() -> None:
     print("- apply digital-twin-manager [name]     Apply its saved digital-twin-manager plan.")
     print("- destroy digital-twin-manager [name]   Destroy a saved digital-twin-manager deployment.")
     print("- continue fed-sysml  Resume from the fed-sysml step using staged manager output.")
+    print("- fed prepare        Resolve federation targets locally; may run before the last twin is deployed.")
+    print("- fed configure      Retry configuration after a successful federation Terraform apply.")
     print("- fed terraform plan  Run Terraform init and plan for generated fed-sysml output.")
     print("- fed terraform apply  Run Terraform init, plan, and apply for generated fed-sysml output.")
     print("- fed terraform destroy  Destroy fed-sysml Terraform resources.")

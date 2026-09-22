@@ -25,16 +25,16 @@ The fed-sysml Lambda + role names are deterministic
 needed. This is not the main mechanism, only the Weather-side remainder that
 fed-sysml cannot express.
 
-Standalone helper, not part of the orchestrator's command dispatch. Run it
-manually after EVERY `fed terraform apply` that touches this federation -
-Terraform declares the Lambda's environment with only PARAMETERS /
-FEEDBACK_TYPE / FEEDBACK_TOPIC, so each apply resets the variables injected
-here.
+The orchestrator runs this helper after successful federation applies when
+dtc-PVWeatherStrategy is selected. `fed configure` retries configuration without
+another apply. Direct execution remains available; --check validates the local
+deployment inputs without contacting AWS.
 
     python3 scripts/federate_pv_weather.py
 """
 from __future__ import annotations
 
+import argparse
 import json
 from pathlib import Path
 
@@ -184,7 +184,13 @@ def inject_env(lambda_client, new_env: dict) -> None:
             "creates it, then run this enablement step."
         )
 
+    if current.get("LastUpdateStatus") == "InProgress":
+        lambda_client.get_waiter("function_updated").wait(FunctionName=STRATEGY_FUNCTION_NAME)
+        current = lambda_client.get_function_configuration(FunctionName=STRATEGY_FUNCTION_NAME)
     variables = dict(current.get("Environment", {}).get("Variables", {}))
+    if current.get("LastUpdateStatus") != "Failed" and all(variables.get(key) == value for key, value in new_env.items()):
+        print(f"Environment already configured for {STRATEGY_FUNCTION_NAME}")
+        return
     variables.update(new_env)
     lambda_client.update_function_configuration(
         FunctionName=STRATEGY_FUNCTION_NAME,
@@ -204,6 +210,13 @@ def grant_invoke(iam, weather_hot_reader_arn: str) -> None:
         }],
     }
     try:
+        current = iam.get_role_policy(RoleName=STRATEGY_ROLE_NAME, PolicyName=INVOKE_POLICY_NAME)
+    except iam.exceptions.NoSuchEntityException:
+        current = {}
+    if current.get("PolicyDocument") == policy:
+        print(f"Invoke policy already configured for {STRATEGY_ROLE_NAME}")
+        return
+    try:
         iam.put_role_policy(
             RoleName=STRATEGY_ROLE_NAME,
             PolicyName=INVOKE_POLICY_NAME,
@@ -220,12 +233,19 @@ def grant_invoke(iam, weather_hot_reader_arn: str) -> None:
 # --------------------------------------------------------------------------- #
 # Entry point
 # --------------------------------------------------------------------------- #
-def main() -> None:
+def main(argv: list[str] | None = None) -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--check", action="store_true", help="Validate deployment inputs without AWS calls.")
+    args = parser.parse_args(argv)
     print("Running PV<->Weather federation enablement step (Weather side)...")
 
     weather = discover_weather()
     pv_production_device_id = discover_pv_production_device_id()
     pv_max_power = discover_pv_max_power()
+
+    if args.check:
+        print("PV/Weather deployment inputs are ready.")
+        return
 
     try:
         import boto3

@@ -3,6 +3,14 @@ from __future__ import annotations
 from pathlib import Path
 
 from .config import PipelineConfig
+from .federation_hooks import (
+    configure_federation_hooks,
+    invalidate_federation_hooks,
+    mark_federation_applied,
+    prepare_federation_hooks,
+    save_federation_hooks,
+    validate_federation_hooks,
+)
 from .docker_compose import (
     remove_cloud_deployer_test_simulator,
     remove_local_grafana,
@@ -382,7 +390,10 @@ def run_federation_stage(config: PipelineConfig) -> None:
     if not compose_file.is_file():
         fail(f"Docker Compose file does not exist: {relative_to_repo(compose_file)}")
 
+    hook_manifest = prepare_federation_hooks(for_generation=True)
     prepare_federation_stage(clean_stage=config.clean_stage)
+    invalidate_federation_hooks()
+    _remove_stale_fed_sysml_plan()
     federation_inputs = stage_federation_inputs_from_deployments()
     print_file_listing("fed-sysml strategy input(s)", federation_inputs)
 
@@ -392,6 +403,7 @@ def run_federation_stage(config: PipelineConfig) -> None:
         build_images=config.build_images,
         show_container_logs=config.show_container_logs,
     )
+    save_federation_hooks(hook_manifest, federation_inputs)
 
     if config.fed_sysml_terraform_action != "none":
         run_fed_sysml_terraform_stage(config)
@@ -429,6 +441,7 @@ def run_fed_sysml_terraform_stage(
 
     compose_file = _require_fed_sysml_terraform_ready(config)
     print("\nRunning fed-sysml Terraform destroy")
+    invalidate_federation_hooks()
     run_fed_sysml_terraform_destroy(
         compose_file=compose_file,
         profiles=config.compose_profiles,
@@ -440,6 +453,7 @@ def run_fed_sysml_terraform_stage(
 
 def run_fed_sysml_terraform_plan_stage(config: PipelineConfig, *, save_plan: bool) -> None:
     compose_file = _require_fed_sysml_terraform_ready(config)
+    validate_federation_hooks()
     print("\nRunning fed-sysml Terraform plan")
     run_fed_sysml_terraform_init(
         compose_file=compose_file,
@@ -465,6 +479,8 @@ def run_fed_sysml_terraform_apply_saved_plan_stage(config: PipelineConfig) -> No
             f"Expected {relative_to_repo(FEDERATION_TERRAFORM_PLAN_PATH)}."
         )
 
+    hook_manifest = validate_federation_hooks()
+    mark_federation_applied(hook_manifest, applied=False)
     print("\nApplying saved fed-sysml Terraform plan")
     run_fed_sysml_terraform_apply_plan(
         compose_file=compose_file,
@@ -473,13 +489,8 @@ def run_fed_sysml_terraform_apply_saved_plan_stage(config: PipelineConfig) -> No
         show_container_logs=True,
     )
 
-    # PV<->Weather and Battery->Charger decision each need one further,
-    # manual enablement step after this apply (dtcWeather/dtcGrid hot-reader
-    # access that fed-sysml cannot express) - run
-    # scripts/federate_pv_weather.py and
-    # scripts/federate_battery_charger_decision.py by hand. Not run
-    # automatically here: a failure in either must not be swallowed and
-    # reported as if this apply stage fully succeeded.
+    mark_federation_applied(hook_manifest, applied=True)
+    configure_federation_hooks()
 
 
 def _require_fed_sysml_terraform_ready(config: PipelineConfig) -> Path:

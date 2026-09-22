@@ -3,10 +3,9 @@
 (re)generate the federation-owned PV -> Battery generatedPower push Lambda
 from its template, before running `continue fed-sysml`.
 
-Standalone helper, not part of the orchestrator's command dispatch. Mirrors
-scripts/resolve_grid_battery_push_target.py / resolve_grid_battery_maxpower_target.py
-for the independent PV -> Battery generatedPower federation. Run it manually
-after both dtcPV and dtcBattery have been deployed:
+The orchestrator runs this for dtc-PVBatteryGeneratedPowerStrategy during
+`fed prepare` and before generation. Only Battery's deployed device config is
+required. Direct execution is also supported:
 
     python3 scripts/resolve_pv_battery_generatedpower_target.py
 """

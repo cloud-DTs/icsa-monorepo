@@ -3,10 +3,9 @@
 output and (re)generate the federation-owned Grid -> Battery push Lambda
 from its template, before running `continue fed-sysml`.
 
-This is a standalone helper, not part of the orchestrator's command
-dispatch, mirroring scripts/resolve_federation_push_target.py for the
-dtcGrid/dtcBattery pair. Run it manually after both dtcGrid and dtcBattery
-have been deployed:
+The orchestrator runs this for dtc-GridBatteryPushStrategy during `fed prepare`
+and before generation. Only Battery's deployed device config is required.
+Direct execution is also supported:
 
     python3 scripts/resolve_grid_battery_push_target.py
 """

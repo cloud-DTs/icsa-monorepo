@@ -3,10 +3,9 @@
 (re)generate the federation-owned Grid -> Battery maxPower push Lambda from
 its template, before running `continue fed-sysml`.
 
-Standalone helper, not part of the orchestrator's command dispatch. Mirrors
-scripts/resolve_grid_battery_push_target.py (the greenEnergy federation) for
-the independent maxPower federation. Run it manually after both dtcGrid and
-dtcBattery have been deployed:
+The orchestrator runs this for dtc-GridBatteryMaxPowerStrategy during `fed prepare`
+and before generation. Only Battery's deployed device config is required.
+Direct execution is also supported:
 
     python3 scripts/resolve_grid_battery_maxpower_target.py
 """

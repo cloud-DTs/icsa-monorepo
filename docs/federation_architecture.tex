@@ -349,16 +349,16 @@ federations.
 \texttt{fed-sysml} can only wire a federation using twin-owned
 \texttt{strategyAction}s declared in the \texttt{strategies} array; it cannot
 express a hard-coded target device ID, a constant value, or a dependency on
-a twin not listed there. These gaps are closed by standalone Python scripts
-under \texttt{scripts/}, which fall into two groups with different execution
-requirements.
+a twin not listed there. These gaps are closed by Python helpers under
+\texttt{scripts/}, selected by \texttt{newStrategies[].name} through the
+orchestrator's \texttt{federation\_hooks.py} registry. They fall into two groups.
 
-\paragraph{Run manually, once per deployment (\texttt{resolve\_*.py}).}
+\paragraph{Run before generation (\texttt{resolve\_*.py}).}
 These edit a target device ID directly into a Strategy Lambda's source
-\emph{before} \texttt{continue fed-sysml} packages it, so they must run
-\emph{before} \texttt{fed terraform apply}, and are \textbf{not} invoked by
-the orchestrator -- they have to be run by hand every time their target
-twin is redeployed and its device IDs change:
+before packaging. The orchestrator automatically runs the four Microgrid
+resolvers during \texttt{continue fed-sysml}. The optional \texttt{fed prepare}
+command can run them earlier: only Battery's saved device configuration is
+needed, so Charger may be deployed later. The legacy resolver remains manual:
 \begin{itemize}[nosep]
   \item \texttt{resolve\_federation\_push\_target.py} -- \texttt{dtc2bat}'s
         virtual-sensor device ID, into
@@ -379,11 +379,9 @@ twin is redeployed and its device IDs change:
 \end{itemize}
 
 \paragraph{Run automatically by the orchestrator (\texttt{federate\_*.py}).}
-\texttt{scripts/orchestrator/pipeline.py} calls
-\texttt{federate\_pv\_weather.main()} and
-\texttt{federate\_battery\_charger\_decision.main()} itself, \emph{after}
-\texttt{fed terraform apply} completes, so these two do not need to be run
-by hand as part of the normal pipeline flow:
+\texttt{scripts/orchestrator/pipeline.py} runs the registered helpers in
+subprocesses using the project Python, \emph{after} Terraform apply succeeds.
+Only helpers selected for the generated federation are run:
 \begin{itemize}[nosep]
   \item \texttt{federate\_pv\_weather.py} -- injects
         \texttt{dtcWeather}'s hot-reader coordinates and \texttt{dtcPV}'s
@@ -403,12 +401,14 @@ federation, since \texttt{fed-sysml} only declares
 \texttt{main.tf} and overwrites the Lambda's environment on each apply --
 the injected values do not survive an apply on their own.
 
-\paragraph{Practical implication.} Only the two \texttt{federate\_*.py}
-federations self-heal after a Terraform apply. The four push federations
-into \texttt{dtcBattery} plus the legacy \texttt{dtc2pv}$\to$\texttt{dtc2bat}
-push (five \texttt{resolve\_*.py} scripts in total) require a manual step
-every time; skipping it leaves the Strategy Lambda publishing to a stale or
-placeholder device ID.
+\paragraph{Practical implication.} Microgrid preparation and configuration
+are automatic in the orchestrator. A manifest beside the generated Terraform
+records input fingerprints and apply status; changed deployment files require
+regeneration. If configuration fails after Terraform succeeds, the workflow
+reports incomplete configuration and \texttt{fed configure} retries the helpers
+without another apply. Matching environment values and IAM policies are left
+unchanged. These AWS updates remain outside Terraform, so subsequent applies
+must also run the configuration stage. The legacy resolver remains manual.
 
 \subsection{Ingestion and Storage}
 
