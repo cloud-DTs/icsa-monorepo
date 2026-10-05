@@ -105,6 +105,7 @@ services:
       AWS_SECRET_ACCESS_KEY: "${AWS_SECRET_ACCESS_KEY:-}"
       AWS_REGION: "${AWS_REGION:-}"
       AWS_DEFAULT_REGION: "${AWS_DEFAULT_REGION:-}"
+      DEPLOY_MANAGED_GRAFANA: "${DEPLOY_MANAGED_GRAFANA:-}"
     volumes:
       - ./pipeline/digital-twin-manager/input:/pipeline/input
       - ./pipeline/digital-twin-manager/output:/pipeline/output
