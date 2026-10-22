@@ -20,7 +20,7 @@ services:
     profiles:
       - pipeline
     platform: ${DOCKER_DEFAULT_PLATFORM:-linux/amd64}
-    image: evbodanov/sysml.jupyter:latest
+    image: csba184/sysml.jupyter:latest
     container_name: sysml-kernel-container
     tty: true
     stdin_open: true
@@ -106,6 +106,7 @@ services:
       AWS_REGION: "${AWS_REGION:-}"
       AWS_DEFAULT_REGION: "${AWS_DEFAULT_REGION:-}"
       DEPLOY_MANAGED_GRAFANA: "${DEPLOY_MANAGED_GRAFANA:-}"
+      DEBUG: "${DT_DEBUG_MODE:-False}"
     volumes:
       - ./pipeline/digital-twin-manager/input:/pipeline/input
       - ./pipeline/digital-twin-manager/output:/pipeline/output
