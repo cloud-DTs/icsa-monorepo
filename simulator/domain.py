@@ -2,6 +2,8 @@ import json
 import uuid
 from enum import Enum
 
+from .configuration import DeviceRegistry
+
 
 class DataType(Enum):
     INTEGER = "INTEGER"
@@ -26,14 +28,18 @@ class Attribute:
 
 class Component:
     def __init__(self):
-        self.iotDeviceId: str = ""
+        self.iotDeviceId: str | None = None
+        self.componentTypeId: str = ""
         self.name: str = ""
         self.attributes: list[Attribute] = []
 
-    def read_from_json(self, component: dict, components_by_id: dict):
-        self.iotDeviceId = component["iotDeviceId"]
+    def read_from_json(self, component: dict, devices: DeviceRegistry):
+        self.iotDeviceId, self.componentTypeId = devices.resolve(component)
         self.name = component["name"]
-        comp_data = components_by_id.get(self.iotDeviceId, {})
+        self.attributes = []
+        if self.iotDeviceId is None:
+            return
+        comp_data = devices.devices[self.iotDeviceId]
         for attribute in comp_data.get("properties", []):
             attr = Attribute()
             attr.read_from_json(attribute)
@@ -47,17 +53,19 @@ class Entity:
         self.entities: list["Entity"] = []
         self.components: list[Component] = []
 
-    def read_from_json(self, entity: dict, components_by_id: dict):
+    def read_from_json(self, entity: dict, devices: DeviceRegistry):
         self.id = entity["id"]
         self.name = entity["name"]
+        self.entities = []
+        self.components = []
         for child in entity.get("children", []):
             if child["type"] == "entity":
                 ent = Entity()
-                ent.read_from_json(child, components_by_id)
+                ent.read_from_json(child, devices)
                 self.entities.append(ent)
             else:
                 component = Component()
-                component.read_from_json(child, components_by_id)
+                component.read_from_json(child, devices)
                 self.components.append(component)
 
 
@@ -67,28 +75,35 @@ class Twin:
         self.entities: list[Entity] = []
 
     def read_from_json(self, config_json_path: str, config_iotdevices_path: str, config_hier_path: str):
-        with open(config_json_path) as f:
+        with open(config_json_path, encoding="utf-8-sig") as f:
             config_json = json.load(f)
-        with open(config_iotdevices_path) as f:
+        with open(config_iotdevices_path, encoding="utf-8-sig") as f:
             config_iotdevices = json.load(f)
-        with open(config_hier_path) as f:
+        with open(config_hier_path, encoding="utf-8-sig") as f:
             config_hier = json.load(f)
 
-        self.name = config_json["digital_twin_name"]
-        components_by_id = {c["id"]: c for c in config_iotdevices}
+        twin_name = config_json["digital_twin_name"]
+        devices = DeviceRegistry(twin_name, config_iotdevices, config_hier)
+        entities = []
         for entity in config_hier:
             ent = Entity()
-            ent.read_from_json(entity, components_by_id)
-            self.entities.append(ent)
+            ent.read_from_json(entity, devices)
+            entities.append(ent)
+        self.name = twin_name
+        self.entities = entities
 
-    def flatten(self, entities: list = None):
+    def components(self, entities: list = None):
         if entities is None:
             entities = self.entities
 
         rows = []
         for entity in entities:
             for component in entity.components:
-                for attribute in component.attributes:
-                    rows.append((entity, component, attribute))
-            rows.extend(self.flatten(entity.entities))
+                rows.append((entity, component))
+            rows.extend(self.components(entity.entities))
         return rows
+
+    def flatten(self, entities: list = None):
+        return [(entity, component, attribute)
+                for entity, component in self.components(entities)
+                for attribute in component.attributes]

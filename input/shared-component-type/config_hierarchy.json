@@ -1,0 +1,21 @@
+[
+    {
+        "id": "root",
+        "type": "entity",
+        "name": "Two temperature sensors",
+        "children": [
+            {
+                "type": "component",
+                "name": "Sensor A",
+                "iotDeviceId": "sensor-a",
+                "componentTypeId": "temperature-sensor"
+            },
+            {
+                "type": "component",
+                "name": "Sensor B",
+                "iotDeviceId": "sensor-b",
+                "componentTypeId": "temperature-sensor"
+            }
+        ]
+    }
+]

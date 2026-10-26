@@ -17,7 +17,10 @@ def build_row(entity: dm.Entity, component: dm.Component, attribute: dm.Attribut
             'grid grid-cols-[1.5fr_1.5fr_1.5fr_1.2fr_120px_4fr_120px] items-center gap-4 border-b py-2 w-full font-sans'):
 
         ui.label(entity.name).classes('text-lg font-bold truncate')
-        ui.label(component.name).classes('truncate text-slate-700')
+        with ui.column().classes('min-w-0 gap-0'):
+            ui.label(component.name).classes('truncate text-slate-700')
+            ui.label(f'Device: {component.iotDeviceId}').classes('text-xs text-slate-600 break-all')
+            ui.label(f'Type: {component.componentTypeId}').classes('text-xs text-slate-600 break-all')
         ui.label(attribute.name).classes('truncate text-slate-700')
         ui.label(attribute.dataType.value).classes('font-mono text-xs bg-slate-100 p-1 rounded text-center truncate')
 
@@ -176,18 +179,27 @@ def index_page():
             ui.number(value=sim.sim_time, min=0.1, step=0.5,
                       on_change=lambda e: setattr(sim, 'sim_time', e.value)).props('dense outlined').classes('w-32')
 
-    with ui.row().classes(
-            'grid grid-cols-[1.5fr_1.5fr_1.5fr_1.2fr_120px_4fr_120px] gap-4 font-bold border-b-2 pb-2 mb-2 w-full px-1 text-slate-600 font-sans'):
-        ui.label('Entity')
-        ui.label('Component')
-        ui.label('Attribute')
-        ui.label('Datatype')
-        ui.label('Status').classes('text-center')
-        ui.label('Configuration Parameters')
-        ui.label('Action').classes('text-center')
+    for entity, component in twin.components():
+        if component.iotDeviceId is None:
+            ui.label(
+                f'{entity.name} / {component.name}: External type {component.componentTypeId}. '
+                'No configured device for simulation.'
+            ).classes('text-slate-700 break-all').props('role=status')
 
-    for entity, component, attribute in twin.flatten():
-        build_row(entity, component, attribute, sim)
+    with ui.element('div').classes('w-full overflow-x-auto'):
+        with ui.column().classes('w-full min-w-[1100px] gap-0'):
+            with ui.row().classes(
+                    'grid grid-cols-[1.5fr_1.5fr_1.5fr_1.2fr_120px_4fr_120px] gap-4 font-bold border-b-2 pb-2 mb-2 w-full px-1 text-slate-600 font-sans'):
+                ui.label('Entity')
+                ui.label('Component')
+                ui.label('Attribute')
+                ui.label('Datatype')
+                ui.label('Status').classes('text-center')
+                ui.label('Configuration Parameters')
+                ui.label('Action').classes('text-center')
+
+            for entity, component, attribute in twin.flatten():
+                build_row(entity, component, attribute, sim)
 
 
 def main():
