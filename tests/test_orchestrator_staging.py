@@ -146,6 +146,117 @@ class OrchestratorStagingTests(unittest.TestCase):
         with self.assertRaises(SystemExit):
             staging.required_twins_from_fedtwin(fedtwin)
 
+    def test_new_v2_export_preserves_models_and_replaces_only_run_input(self) -> None:
+        model = self.profile_v2_input / "MGridICSA.sysml"
+        other_model = self.profile_v2_input / "dtcWeather.sysml"
+        model.write_bytes(b"package MGridICSA {} // local edits\r\n")
+        other_model.write_bytes(b"package Weather {}\r\n")
+        source = self.pipeline_root / "MGridICSA.sysml"
+        source.write_bytes(b"package NewExport {}\n")
+        run_input = self.profile_v2_input.parent / "run-input"
+        run_input.mkdir()
+
+        for clean_stage in (True, False):
+            with self.subTest(clean_stage=clean_stage):
+                (run_input / "previous.sysml").write_text("package Previous {}", encoding="utf-8")
+                stale_output = self.profile_v2_output / "stale.txt"
+                stale_output.write_text("previous output", encoding="utf-8")
+
+                result = staging.stage_converter_input("v2", source, clean_stage=clean_stage)
+
+                self.assertEqual(model.read_bytes(), b"package MGridICSA {} // local edits\r\n")
+                self.assertEqual(other_model.read_bytes(), b"package Weather {}\r\n")
+                container_input, used_files, input_host_dir = result
+                self.assertIsNone(container_input)
+                self.assertEqual(used_files, [source])
+                self.assertEqual(input_host_dir, run_input)
+                self.assertEqual(sorted(path.name for path in run_input.iterdir()), [source.name])
+                self.assertEqual((run_input / source.name).read_bytes(), source.read_bytes())
+                self.assertEqual(stale_output.exists(), not clean_stage)
+
+    def test_new_v2_export_can_use_a_model_from_input(self) -> None:
+        source = self.profile_v2_input / "MGridICSA.sysml"
+        source.write_text("package MGridICSA {}", encoding="utf-8")
+
+        _, used_files, input_host_dir = staging.stage_converter_input("v2", source, clean_stage=True)
+
+        self.assertEqual(source.read_text(encoding="utf-8"), "package MGridICSA {}")
+        self.assertEqual(used_files, [source])
+        self.assertEqual((input_host_dir / source.name).read_bytes(), source.read_bytes())
+
+    def test_new_v2_export_directory_stages_all_its_models(self) -> None:
+        source = self.pipeline_root / "exports"
+        source.mkdir()
+        first = source / "first.sysml"
+        second = source / "second.sysml"
+        first.write_text("package First {}", encoding="utf-8")
+        second.write_text("package Second {}", encoding="utf-8")
+        existing = self.profile_v2_input / "existing.sysml"
+        existing.write_text("package Existing {}", encoding="utf-8")
+
+        _, used_files, input_host_dir = staging.stage_converter_input("v2", source, clean_stage=True)
+
+        self.assertEqual(used_files, [first, second])
+        self.assertEqual(sorted(path.name for path in input_host_dir.iterdir()), [first.name, second.name])
+        self.assertEqual(existing.read_text(encoding="utf-8"), "package Existing {}")
+
+    def test_invalid_new_v2_export_preserves_existing_files(self) -> None:
+        model = self.profile_v2_input / "MGridICSA.sysml"
+        model.write_text("package MGridICSA {}", encoding="utf-8")
+        previous_output = self.profile_v2_output / "previous.txt"
+        previous_output.write_text("previous output", encoding="utf-8")
+        source = self.pipeline_root / "export.xml"
+        self.write_sysml_v1_export(source)
+
+        with self.assertRaises(SystemExit):
+            staging.stage_converter_input("v2", source, clean_stage=True)
+
+        self.assertEqual(model.read_text(encoding="utf-8"), "package MGridICSA {}")
+        self.assertEqual(previous_output.read_text(encoding="utf-8"), "previous output")
+
+    def test_new_v1_export_keeps_its_converter_input_contract(self) -> None:
+        source = self.pipeline_root / "export.xml"
+        self.write_sysml_v1_export(source)
+
+        container_input, used_files, input_host_dir = staging.stage_converter_input("v1", source, clean_stage=True)
+
+        self.assertEqual(container_input, "/pipeline/input/export.xml")
+        self.assertEqual(used_files, [source])
+        self.assertIsNone(input_host_dir)
+        self.assertEqual((self.profile_v1_input / source.name).read_bytes(), source.read_bytes())
+
+    def test_new_v2_export_rejects_run_input_as_its_source_without_deleting_it(self) -> None:
+        run_input = self.profile_v2_input.parent / "run-input"
+        run_input.mkdir()
+        source = run_input / "export.sysml"
+        source.write_text("package Export {}", encoding="utf-8")
+
+        with self.assertRaises(SystemExit):
+            staging.stage_converter_input("v2", source, clean_stage=True)
+
+        self.assertEqual(source.read_text(encoding="utf-8"), "package Export {}")
+
+    def test_new_v2_export_mounts_run_input_for_the_converter(self) -> None:
+        source = self.pipeline_root / "export.sysml"
+        source.write_text("package Export {}", encoding="utf-8")
+        compose_file = self.pipeline_root / "docker-compose.yaml"
+        compose_file.write_text("services: {}", encoding="utf-8")
+        config = SimpleNamespace(
+            compose_file=compose_file, compose_profiles=("pipeline",),
+            run_federation_workflow=False, deploy_to_aws=False, clean_stage=True,
+            digital_twin_name="dtwin", path_maps=(), build_images=False, show_container_logs=False,
+        )
+
+        with (
+            patch.object(orchestrator_pipeline, "run_converter", side_effect=SystemExit(0)) as run,
+            self.assertRaises(SystemExit),
+        ):
+            orchestrator_pipeline.run_pipeline(config, source=source, converter="v2")
+
+        run_input = self.profile_v2_input.parent / "run-input"
+        self.assertEqual(run.call_args.kwargs.get("input_host_dir"), run_input)
+        self.assertEqual((run_input / source.name).read_bytes(), source.read_bytes())
+
     def test_select_staged_converter_input_v1_accepts_one_xml(self) -> None:
         source = self.profile_v1_input / "model.xml"
         self.write_sysml_v1_export(source)

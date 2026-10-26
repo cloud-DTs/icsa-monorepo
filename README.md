@@ -191,6 +191,9 @@ model forwards that action result to the target actuator through MQTT feedback.
 
 The orchestrator copies the selected file to the ignored `run-input` directory,
 runs the v2 converter, and stages the generated manager configs.
+Watched SysML v2 exports use the same isolated directory. It is rebuilt with only
+the current run's source files. Original models in `input` are preserved for
+both values of `clean_stage`.
 
 `dtc-s-pv.sysml` references
 `demo-code/microgrid/pv/pv-to-battery-push`. Its Lambda file is a source
@@ -237,6 +240,8 @@ Type commands in the terminal running `python run_pipeline.py`.
 | `fed terraform destroy`                | Confirm and destroy federation resources.           |
 | `start simulator [name]`               | Start a local simulator for a saved twin input.     |
 | `stop simulator [name]`                | Stop a simulator.                                   |
+| `plan evaluation <type> <twin> [config]` | Inspect an evaluation without AWS calls.            |
+| `evaluate <type> <twin> [config]`        | Run an evaluation against a saved deployment.       |
 | `start grafana`                        | Start local Grafana.                                |
 | `stop grafana`                         | Stop local Grafana.                                 |
 | `exit`                                 | Stop the watcher.                                   |
@@ -296,6 +301,23 @@ its deployment inputs. Changed inputs or old Microgrid output without a manifest
 require regeneration before plan/apply. If apply succeeds but configuration fails,
 fix the error and run `fed configure` to retry without another Terraform apply.
 See [the Microgrid presentation workflow](docs/microgrid-demo.md#presentation-four-twins-beforehand-charger-live).
+
+## Digital Twin Evaluation
+
+The sibling `../digital-twin-evaluation` project provides a Docker CLI service
+for evaluations of already deployed twins. The first type is `roundtrip`, with
+`storage` and `ingestion` modes. Storage is the default. Evaluations run only
+when requested:
+
+```text
+plan evaluation roundtrip MGridICSA
+evaluate roundtrip MGridICSA
+```
+
+The service reads the applied manager state and separate experiment settings.
+Reports are written under `pipeline/digital-twin-evaluation/output/<Twin>/<run-id>`.
+See [the evaluation guide](docs/digital-twin-evaluation.md) for configuration,
+measurement boundaries, credentials, and adding evaluation types.
 
 ## Simulator and Grafana
 

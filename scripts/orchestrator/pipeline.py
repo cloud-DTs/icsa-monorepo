@@ -89,7 +89,7 @@ def run_pipeline(config: PipelineConfig, *, source: Path, converter: str) -> Non
     print(f"Docker Compose file: {relative_to_repo(compose_file)}")
     print(f"Enterprise Architect export: {relative_to_repo(source)}")
 
-    container_input_file, used_model_files = stage_converter_input(
+    container_input_file, used_model_files, input_host_dir = stage_converter_input(
         converter,
         source,
         clean_stage=config.clean_stage,
@@ -107,6 +107,7 @@ def run_pipeline(config: PipelineConfig, *, source: Path, converter: str) -> Non
         path_maps=config.path_maps,
         build_images=config.build_images,
         show_container_logs=config.show_container_logs,
+        input_host_dir=input_host_dir,
     )
 
     generated_twin_dir = config.generated_twin_dir

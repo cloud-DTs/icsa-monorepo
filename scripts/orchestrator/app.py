@@ -8,6 +8,7 @@ from .cli import LaunchOptions
 from .config import PipelineConfig, load_pipeline_config, print_run_config
 from .docker_compose import remove_infrastructure, start_infrastructure
 from .file_watcher import FileChange, OutputFileWatcher
+from .evaluation import handle_evaluation_command
 from .federation_hooks import configure_federation_hooks, prepare_federation_hooks
 from .pipeline import (
     remove_all_cloud_deployer_test_simulators_stage,
@@ -183,6 +184,8 @@ def run_app(options: LaunchOptions) -> None:
         print("Type 'stop simulator [name]' to stop and remove a running cloud-deployer-test-simulator.")
         print("Type 'start grafana' to start local Grafana.")
         print("Type 'stop grafana' to stop and remove local Grafana.")
+        print("Type 'plan evaluation <type> <twin> [config]' to inspect an evaluation without AWS calls.")
+        print("Type 'evaluate <type> <twin> [config]' to run an evaluation after deploy.")
         print("Type 'exit' and press Enter to stop.")
         if config.auto_run:
             print("Auto-run is enabled.")
@@ -694,6 +697,8 @@ def _handle_command(config: PipelineConfig, command: str, user_input: UserInput)
         return
     if _is_exit(value):
         raise StopRequested
+    if handle_evaluation_command(config, command_text):
+        return
     if value in ("fed prepare", "fed configure"):
         try:
             if value == "fed prepare":
@@ -1020,6 +1025,8 @@ def _print_commands() -> None:
     print("- stop simulator [name]   Stop and remove a running cloud-deployer-test-simulator.")
     print("- start grafana           Start local Grafana with generated provisioning.")
     print("- stop grafana            Stop and remove local Grafana.")
+    print("- plan evaluation <type> <twin> [config]  Inspect an evaluation without AWS calls.")
+    print("- evaluate <type> <twin> [config]         Run an evaluation against a saved deployment.")
     print("- exit                Stop the watcher.")
 
 

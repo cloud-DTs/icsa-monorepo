@@ -62,22 +62,29 @@ def ensure_dir(path: Path) -> None:
     path.mkdir(parents=True, exist_ok=True)
 
 
-def stage_converter_input(converter: str, source: Path, *, clean_stage: bool) -> tuple[str | None, list[Path]]:
+def stage_converter_input(
+    converter: str, source: Path, *, clean_stage: bool
+) -> tuple[str | None, list[Path], Path | None]:
     input_dir = PROFILE_INPUT_DIRS[converter]
     output_dir = PROFILE_OUTPUT_DIRS[converter]
 
+    if converter == "v1":
+        if clean_stage:
+            clean_pipeline_dir(input_dir)
+        else:
+            ensure_dir(input_dir)
+        container_input_file, staged_files = _stage_sysml_v1_input(source, input_dir)
+        input_host_dir = None
+    else:
+        staged_files = _select_sysml_v2_inputs(source)
+        input_host_dir = _prepare_sysml_v2_run_input(input_dir, staged_files)
+        container_input_file = None
+
     if clean_stage:
-        clean_pipeline_dir(input_dir)
         clean_pipeline_dir(output_dir)
     else:
-        ensure_dir(input_dir)
         ensure_dir(output_dir)
-
-    if converter == "v1":
-        return _stage_sysml_v1_input(source, input_dir)
-
-    staged_files = _stage_sysml_v2_input(source, input_dir)
-    return None, staged_files
+    return container_input_file, staged_files, input_host_dir
 
 
 def list_staged_converter_inputs(converter: str) -> list[Path]:
@@ -113,7 +120,7 @@ def select_staged_converter_input(
         return None, sources, None
 
     source = _resolve_staged_sysml_v2_input(input_dir, selected_input, sources)
-    run_input_dir = _prepare_staged_sysml_v2_run_input(input_dir, source)
+    run_input_dir = _prepare_sysml_v2_run_input(input_dir, [source])
     return None, [source], run_input_dir
 
 
@@ -851,15 +858,6 @@ def _stage_sysml_v1_input(source: Path, input_dir: Path) -> tuple[str, list[Path
     return f"/pipeline/input/{target.name}", [source]
 
 
-def _stage_sysml_v2_input(source: Path, input_dir: Path) -> list[Path]:
-    sources = _select_sysml_v2_inputs(source)
-    for source_file in sources:
-        target = input_dir / source_file.name
-        shutil.copy2(source_file, target)
-        print(f"Copied SysML v2 source to {relative_to_repo(target)}")
-    return sources
-
-
 def _select_sysml_v1_input(source: Path) -> Path:
     if source.is_dir():
         candidates = sorted(source.glob("*.xmi")) + sorted(source.glob("*.xml"))
@@ -949,12 +947,15 @@ def _resolve_staged_sysml_v2_input(input_dir: Path, selected_input: Path, source
     fail(f"Selected SysML v2 staged input is not available: {relative_to_repo(selected)}. Available: {names}")
 
 
-def _prepare_staged_sysml_v2_run_input(input_dir: Path, source: Path) -> Path:
-    run_input_dir = input_dir.parent / "run-input"
+def _prepare_sysml_v2_run_input(input_dir: Path, sources: list[Path]) -> Path:
+    run_input_dir = _safe_pipeline_child(input_dir.parent / "run-input")
+    if any(source.resolve().is_relative_to(run_input_dir) for source in sources):
+        fail("SysML v2 source models must be outside the temporary run-input directory.")
     clean_pipeline_dir(run_input_dir)
-    target = run_input_dir / source.name
-    shutil.copy2(source, target)
-    print(f"Prepared SysML v2 run input: {relative_to_repo(target)}")
+    for source in sources:
+        target = run_input_dir / source.name
+        shutil.copy2(source, target)
+        print(f"Prepared SysML v2 run input: {relative_to_repo(target)}")
     return run_input_dir
 
 

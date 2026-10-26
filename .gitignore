@@ -58,6 +58,7 @@ pipeline/fed-sysml/microgrid-output/
 
 # Local service state
 pipeline/grafana/grafana.json
+pipeline/digital-twin-evaluation/output/
 
 # Terraform runtime files, including generated directories outside pipeline/
 **/.terraform/
@@ -67,3 +68,4 @@ pipeline/grafana/grafana.json
 
 pipeline/fed-sysml/mepso-output.zip
 pipeline/fed-sysml/microgrid-output.zip
+.codex-validation/

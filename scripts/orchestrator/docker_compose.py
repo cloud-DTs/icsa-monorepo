@@ -30,6 +30,31 @@ def with_profiles(profiles: tuple[str, ...], *extra_profiles: str) -> tuple[str,
     return tuple(dict.fromkeys((*profiles, *extra_profiles)))
 
 
+def run_digital_twin_evaluation(
+    *,
+    compose_file: Path,
+    profiles: tuple[str, ...],
+    action: str,
+    evaluation_type: str,
+    deployment_dir: Path,
+    evaluation_config: Path,
+    output_dir: Path,
+    show_container_logs: bool,
+) -> None:
+    command = compose_command(compose_file, with_profiles(profiles, "evaluation")) + [
+        "run", "--rm", "--build", "--no-deps", "-T", "digital-twin-evaluation",
+        action, evaluation_type,
+        "--deployment", "/evaluation/deployment", "--config", "/evaluation/config.json",
+    ]
+    if action == "run":
+        command.extend(["--output", "/evaluation/results"])
+    run_command(command, show_output=show_container_logs, env={
+        "EVALUATION_DEPLOYMENT_HOST_DIR": deployment_dir.resolve().as_posix(),
+        "EVALUATION_CONFIG_HOST_FILE": evaluation_config.resolve().as_posix(),
+        "EVALUATION_OUTPUT_HOST_DIR": output_dir.resolve().as_posix(),
+    })
+
+
 def start_infrastructure(
     *,
     compose_file: Path,
