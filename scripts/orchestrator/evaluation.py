@@ -78,11 +78,13 @@ def run_evaluation_stage(config: PipelineConfig, request: EvaluationRequest) -> 
         fail(f"Evaluation config is missing: {relative_to_repo(config_file)}. Supply a config file explicitly.")
     EVALUATION_OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     print(f"\nEvaluation {request.action}: {request.evaluation_type} / {twin}")
-    run_digital_twin_evaluation(
-        compose_file=resolve_repo_path(config.compose_file), profiles=config.compose_profiles,
-        action=request.action, evaluation_type=request.evaluation_type,
-        deployment_dir=deployment_dir, evaluation_config=config_file,
-        output_dir=EVALUATION_OUTPUT_DIR, show_container_logs=config.show_container_logs,
-    )
-    if request.action == "run":
-        print(f"Evaluation reports: {relative_to_repo(EVALUATION_OUTPUT_DIR / twin)}")
+    try:
+        run_digital_twin_evaluation(
+            compose_file=resolve_repo_path(config.compose_file), profiles=config.compose_profiles,
+            action=request.action, evaluation_type=request.evaluation_type,
+            deployment_dir=deployment_dir, evaluation_config=config_file,
+            output_dir=EVALUATION_OUTPUT_DIR, show_container_logs=config.show_container_logs,
+        )
+    finally:
+        if request.action == "run":
+            print(f"Evaluation reports (host): {(EVALUATION_OUTPUT_DIR / twin).resolve()}")

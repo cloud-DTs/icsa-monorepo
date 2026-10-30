@@ -44,6 +44,7 @@
         "property": "consumption",
         "value": 12.5
       }
-    ]
+    ],
+    "concurrency": 20
   }
 }

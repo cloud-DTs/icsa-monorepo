@@ -8,15 +8,17 @@ import pytest
 from scripts.orchestrator import app, docker_compose, evaluation
 
 
-@pytest.mark.parametrize("command,action,twin,config_path", [
-    ("evaluate roundtrip MGridICSA", "run", "MGridICSA", None),
-    ('plan evaluation roundtrip MGridICSA "settings with spaces.json"', "plan", "MGridICSA", "settings with spaces.json"),
-    ('evaluate roundtrip MGridICSA "D:\\custom folder\\roundtrip.json"', "run", "MGridICSA", "D:\\custom folder\\roundtrip.json"),
+@pytest.mark.parametrize("command,action,evaluation_type,twin,config_path", [
+    ("evaluate roundtrip MGridICSA", "run", "roundtrip", "MGridICSA", None),
+    ('plan evaluation roundtrip MGridICSA "settings with spaces.json"', "plan", "roundtrip", "MGridICSA", "settings with spaces.json"),
+    ('evaluate roundtrip MGridICSA "D:\\custom folder\\roundtrip.json"', "run", "roundtrip", "MGridICSA", "D:\\custom folder\\roundtrip.json"),
+    ("evaluate mqtt-twinmaker CheckWatt", "run", "mqtt-twinmaker", "CheckWatt", None),
+    ("plan evaluation mqtt-twinmaker MGridICSA", "plan", "mqtt-twinmaker", "MGridICSA", None),
 ])
-def test_evaluation_command_preserves_target_case_and_quoted_paths(command, action, twin, config_path):
+def test_evaluation_command_preserves_target_case_and_quoted_paths(command, action, evaluation_type, twin, config_path):
     request = evaluation.parse_evaluation_command(command)
     assert request.action == action
-    assert request.evaluation_type == "roundtrip"
+    assert request.evaluation_type == evaluation_type
     assert request.twin_name == twin
     assert request.config_file == (Path(config_path) if config_path else None)
 
@@ -103,3 +105,38 @@ def test_a_plan_saved_under_a_new_twin_does_not_evaluate_the_old_twin(tmp_path, 
         evaluation.run_evaluation_stage(SimpleNamespace(), request)
     assert "belongs to" in capsys.readouterr().err
     run.assert_not_called()
+
+
+@pytest.mark.parametrize("exit_code", [0, 1])
+def test_run_reports_the_absolute_host_directory_even_when_measurements_fail(tmp_path, capsys, exit_code):
+    deployments = tmp_path / "deployments"
+    state = deployments / "MGridICSA/output/.digital-twin-manager-state"
+    (state / "configs").mkdir(parents=True)
+    (state / "metadata.json").write_text(json.dumps({"digitalTwinName": "MGridICSA"}))
+    for name in ("config.json", "config_hierarchy.json", "config_iot_devices.json"):
+        (state / "configs" / name).write_text("{}")
+    settings = tmp_path / "MGridICSA.mqtt.json"
+    settings.write_text("{}")
+    output = tmp_path / "reports"
+    run_id = "0fd9f839629b4b55b1c3f754309c0816"
+
+    def run_with_report(**kwargs):
+        directory = kwargs["output_dir"] / "MGridICSA" / run_id
+        directory.mkdir(parents=True)
+        (directory / "summary.json").write_text(json.dumps({"successful": exit_code == 0}))
+        (directory / "measurements.csv").write_text("status\n")
+        if exit_code:
+            raise SystemExit(exit_code)
+
+    config = SimpleNamespace(compose_file="docker-compose.yaml", compose_profiles=(), show_container_logs=True)
+    command = f'evaluate mqtt MGridICSA "{settings}"'
+    with (
+        patch.object(evaluation, "MANAGER_DEPLOYMENTS_DIR", deployments),
+        patch.object(evaluation, "EVALUATION_OUTPUT_DIR", output),
+        patch.object(evaluation, "run_digital_twin_evaluation", side_effect=run_with_report),
+    ):
+        assert evaluation.handle_evaluation_command(config, command)
+
+    assert f"Evaluation reports (host): {(output / 'MGridICSA').resolve()}" in capsys.readouterr().out
+    assert (output / "MGridICSA" / run_id / "summary.json").is_file()
+    assert (output / "MGridICSA" / run_id / "measurements.csv").is_file()

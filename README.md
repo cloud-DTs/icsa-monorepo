@@ -191,6 +191,12 @@ model forwards that action result to the target actuator through MQTT feedback.
 
 The orchestrator copies the selected file to the ignored `run-input` directory,
 runs the v2 converter, and stages the generated manager configs.
+
+Generate the CheckWatt model with 1000 households using
+`python scripts/generate_checkwatt_microgrid.py --households 1000`.
+Each household has a Sensor and BESS. See
+[the CheckWatt model guide](docs/checkwatt-microgrid.md) for the source template,
+converter multiplicity limits, and expected resource counts.
 Watched SysML v2 exports use the same isolated directory. It is rebuilt with only
 the current run's source files. Original models in `input` are preserved for
 both values of `clean_stage`.
