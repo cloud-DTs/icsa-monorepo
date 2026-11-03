@@ -123,8 +123,10 @@ python run_pipeline.py
 The orchestrator starts:
 
 - `enterprise-architect`;
-- `sysml-kernel`;
 - a watcher for `pipeline/enterprise-architect/output`.
+
+The SysML v2 converter includes its parser and model libraries. Run it with
+`continue sysml-v2`.
 
 Open Enterprise Architect at:
 

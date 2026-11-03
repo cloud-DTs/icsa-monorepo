@@ -35,7 +35,7 @@ def parse_args() -> LaunchOptions:
         "--remove-infrastructure-on-exit",
         action="store_true",
         default=False,
-        help="Stop and remove enterprise-architect and sysml-kernel when the watcher exits.",
+        help="Stop and remove enterprise-architect when the watcher exits.",
     )
 
     args = parser.parse_args()

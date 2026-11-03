@@ -1033,4 +1033,3 @@ def _print_commands() -> None:
 def _print_infrastructure_ready() -> None:
     print("\nInfrastructure is up:")
     print("- enterprise-architect: http://127.0.0.1:6080")
-    print("- sysml-kernel: service sysml-kernel / container sysml-kernel-container")

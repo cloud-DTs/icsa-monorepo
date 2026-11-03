@@ -8,6 +8,32 @@ from scripts.orchestrator import docker_compose
 
 
 class OrchestratorDockerComposeTests(unittest.TestCase):
+    def test_infrastructure_lifecycle_only_manages_required_services(self) -> None:
+        actions = (
+            (docker_compose.start_infrastructure, {"build_images": False}, ["up", "-d"]),
+            (docker_compose.start_infrastructure, {"build_images": True}, ["up", "-d", "--build"]),
+            (docker_compose.remove_infrastructure, {}, ["rm", "--force", "--stop"]),
+        )
+
+        for runner, options, arguments in actions:
+            with self.subTest(action=runner.__name__, options=options), patch.object(
+                docker_compose, "run_command"
+            ) as run_command:
+                runner(
+                    compose_file=Path("docker-compose.yaml"),
+                    profiles=("pipeline",),
+                    show_container_logs=True,
+                    **options,
+                )
+
+                run_command.assert_called_once_with(
+                    [
+                        "docker", "compose", "-f", "docker-compose.yaml",
+                        "--profile", "pipeline", *arguments, "enterprise-architect",
+                    ],
+                    show_output=True,
+                )
+
     def test_manager_actions_are_sent_to_the_interactive_cli(self) -> None:
         runners = {
             "deploy": docker_compose.run_manager_deploy,

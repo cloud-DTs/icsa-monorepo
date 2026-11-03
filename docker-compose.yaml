@@ -16,23 +16,6 @@ services:
     environment:
       SCREEN_RESOLUTION: "1600x900x24"
 
-  sysml-kernel:
-    profiles:
-      - pipeline
-    platform: ${DOCKER_DEFAULT_PLATFORM:-linux/amd64}
-    image: csba184/sysml.jupyter:latest
-    container_name: sysml-kernel-container
-    tty: true
-    stdin_open: true
-    entrypoint: []
-    command: >
-      conda run --no-capture-output -n sysml
-      jupyter kernel --kernel=sysml --ip=0.0.0.0
-    ports:
-      - "127.0.0.1:8888:8888"
-    environment:
-      SYSML_API_SERVER: "http://sysmlapiserver:9000"
-
   fed-sysml:
     profiles:
       - pipeline
@@ -75,17 +58,13 @@ services:
     platform: ${DOCKER_DEFAULT_PLATFORM:-linux/amd64}
     image: evbodanov/digital-twin-profile-sysml-v2:latest
     container_name: digital-twin-profile-sysml-v2
-    depends_on:
-      - sysml-kernel
     environment:
-      SYSML_KERNEL_CONTAINER: "sysml-kernel-container"
       DTP_PATH_MAP: "${DTP_PATH_MAP:-}"
     volumes:
       - type: bind
         source: ${DTP_V2_INPUT_HOST_DIR:-./pipeline/digital-twin-profile-sysml-v2/input}
         target: /pipeline/input
       - ./pipeline/digital-twin-profile-sysml-v2/output:/pipeline/output
-      - /var/run/docker.sock:/var/run/docker.sock
       - type: bind
         source: ${PIPELINE_CODE_HOST_DIR:-./demo-code}
         target: /pipeline/code
@@ -122,7 +101,9 @@ services:
       SIMULATOR_MOCK_AWS: "${SIMULATOR_MOCK_AWS:-true}"
       AWS_ACCESS_KEY_ID: "${AWS_ACCESS_KEY_ID:-}"
       AWS_SECRET_ACCESS_KEY: "${AWS_SECRET_ACCESS_KEY:-}"
-      AWS_REGION: "${AWS_REGION:-eu-central-1}"
+      AWS_SESSION_TOKEN: "${AWS_SESSION_TOKEN:-}"
+      AWS_REGION: "${AWS_REGION:-}"
+      AWS_DEFAULT_REGION: "${AWS_DEFAULT_REGION:-}"
     volumes:
       - type: bind
         source: ${SIMULATOR_INPUT_HOST_DIR:-./pipeline/digital-twin-manager/input}/config.json

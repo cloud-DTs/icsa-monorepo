@@ -6,7 +6,7 @@ from .command_runner import run_command
 from .errors import fail
 from .pipeline_paths import FEDERATION_TERRAFORM_PLAN_FILE, PROFILE_SERVICES, relative_to_repo
 
-INFRASTRUCTURE_SERVICES = ("enterprise-architect", "sysml-kernel")
+INFRASTRUCTURE_SERVICES = ("enterprise-architect",)
 SIMULATOR_SERVICE = "cloud-deployer-test-simulator"
 LOCAL_GRAFANA_SERVICE = "local-grafana"
 
