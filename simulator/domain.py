@@ -6,7 +6,9 @@ from .configuration import DeviceRegistry
 
 
 class DataType(Enum):
+    BOOLEAN = "BOOLEAN"
     INTEGER = "INTEGER"
+    LONG = "LONG"
     DOUBLE = "DOUBLE"
     STRING = "STRING"
     VECTOR_DOUBLE = "VECTOR_DOUBLE"
@@ -55,7 +57,7 @@ class Entity:
 
     def read_from_json(self, entity: dict, devices: DeviceRegistry):
         self.id = entity["id"]
-        self.name = entity["name"]
+        self.name = entity.get("name", self.id)
         self.entities = []
         self.components = []
         for child in entity.get("children", []):
@@ -89,6 +91,11 @@ class Twin:
             ent = Entity()
             ent.read_from_json(entity, devices)
             entities.append(ent)
+        # Hierarchy aliases refer to the same physical device and controls.
+        attributes_by_device = {}
+        for _, component in self.components(entities):
+            if component.iotDeviceId is not None:
+                component.attributes = attributes_by_device.setdefault(component.iotDeviceId, component.attributes)
         self.name = twin_name
         self.entities = entities
 

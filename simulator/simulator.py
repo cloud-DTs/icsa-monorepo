@@ -1,6 +1,5 @@
 import os
-import dotenv
-from nicegui import ui
+from nicegui import app, ui
 
 from . import domain as dm
 from .SimulationLoop import SimulationLoop
@@ -25,10 +24,12 @@ def build_row(entity: dm.Entity, component: dm.Component, attribute: dm.Attribut
         ui.label(attribute.dataType.value).classes('font-mono text-xs bg-slate-100 p-1 rounded text-center truncate')
 
         is_running = sim.is_running(attribute.id)
-        status_label = ui.label('runs' if is_running else 'stopped').classes(
-            'w-full text-center text-sm font-medium py-1 px-2 rounded text-white '
-            + ('bg-green-500' if is_running else 'bg-red-500')
-        )
+        with ui.column().classes('w-full gap-1'):
+            status_label = ui.label('runs' if is_running else 'stopped').classes(
+                'w-full text-center text-sm font-medium py-1 px-2 rounded text-white '
+                + ('bg-green-500' if is_running else 'bg-red-500')
+            ).props('role=status aria-live=polite')
+            error_label = ui.label('').classes('text-red-700 text-xs break-all')
 
         config_inputs = {}
         field_box = ui.row().classes('grid grid-cols-4 gap-2 items-center w-full')
@@ -39,7 +40,23 @@ def build_row(entity: dm.Entity, component: dm.Component, attribute: dm.Attribut
             dtype = attribute.dataType.value
 
             with field_box:
-                if "VECTOR" in dtype:
+                if dtype == "BOOLEAN":
+                    input_container = ui.row().classes('col-span-3 gap-1')
+
+                    def update_boolean_fields(e):
+                        input_container.clear()
+                        config_inputs.pop('value', None)
+                        if e.value == 'fixed':
+                            with input_container:
+                                config_inputs['value'] = ui.switch('Value', value=False)
+
+                    config_inputs['mode'] = ui.select(
+                        ['fixed', 'random_boolean'], value='fixed', on_change=update_boolean_fields,
+                    ).props('dense outlined')
+                    with input_container:
+                        config_inputs['value'] = ui.switch('Value', value=False)
+
+                elif "VECTOR" in dtype:
                     input_container = ui.row().classes('col-span-3 grid grid-cols-3 gap-1')
 
                     def update_vector_fields(e):
@@ -58,7 +75,7 @@ def build_row(entity: dm.Entity, component: dm.Component, attribute: dm.Attribut
                                 config_inputs['vec_max'] = ui.input('vec_max').props('dense outlined')
 
                     mode_select = ui.select(
-                        ['vector_custom', 'vector_uniform'],
+                        ['vector_custom'] if dtype == 'VECTOR_STRING' else ['vector_custom', 'vector_uniform'],
                         value='vector_custom',
                         on_change=update_vector_fields,
                     ).props('dense outlined')
@@ -144,11 +161,27 @@ def build_row(entity: dm.Entity, component: dm.Component, attribute: dm.Attribut
         render_fields()
         update_field_state()
 
+        previous_status = None
+
+        def refresh_status():
+            nonlocal previous_status
+            running = sim.is_running(attribute.id)
+            error = sim.error_for(attribute.id)
+            state = (running, error)
+            if state == previous_status:
+                return
+            previous_status = state
+            status_label.text = 'runs' if running else ('error' if error else 'stopped')
+            status_label.classes(replace=(
+                'w-full text-center text-sm font-medium py-1 px-2 rounded text-white '
+                + ('bg-green-500' if running else 'bg-red-500')
+            ))
+            error_label.text = error
+            update_field_state()
+
         def toggle():
             if sim.is_running(attribute.id):
                 sim.stop_one(attribute)
-                status_label.text = 'stopped'
-                status_label.classes(replace='w-full text-center text-sm font-medium py-1 px-2 rounded bg-red-500 text-white')
             else:
                 config = {name: field.value for name, field in config_inputs.items() if
                           name != 'mode' and field in field_box.descendants()}
@@ -158,26 +191,35 @@ def build_row(entity: dm.Entity, component: dm.Component, attribute: dm.Attribut
                 if config.get('start') in (None, ''):
                     config.pop('start', None)
                 sim.start_one(attribute, component.iotDeviceId, config)
-                status_label.text = 'runs'
-                status_label.classes(replace='w-full text-center text-sm font-medium py-1 px-2 rounded bg-green-500 text-white')
-            update_field_state()
+            refresh_status()
         ui.button('Start/Stop', on_click=toggle).props('color=primary dense outlined').classes('w-full')
+        refresh_status()
+        return refresh_status
 
 
 twin = dm.Twin()
 twin.read_from_json(CONFIG_JSON_PATH, IOT_DEVICE_JSON_PATH, HIERARCHY_JSON_PATH)
 sim = SimulationLoop(topic=twin.name+"/iot-data", region=AWS_REGION)
+app.on_shutdown(sim.stop_all)
 
 
 @ui.page('/')
 def index_page():
+    refreshers = []
     with ui.card().classes('w-full p-4 bg-slate-50 mb-4'):
         ui.label(f"Digital Twin Simulation: {twin.name}").classes('text-2xl font-extrabold text-slate-800')
 
         with ui.row().classes('items-center gap-2'):
             ui.label('SimTime(in sec)')
+            def update_interval(e):
+                try:
+                    sim.sim_time = e.value
+                except ValueError as error:
+                    e.sender.value = sim.sim_time
+                    ui.notify(str(error), type='negative')
+
             ui.number(value=sim.sim_time, min=0.1, step=0.5,
-                      on_change=lambda e: setattr(sim, 'sim_time', e.value)).props('dense outlined').classes('w-32')
+                      on_change=update_interval).props('dense outlined').classes('w-32')
 
     for entity, component in twin.components():
         if component.iotDeviceId is None:
@@ -199,7 +241,12 @@ def index_page():
                 ui.label('Action').classes('text-center')
 
             for entity, component, attribute in twin.flatten():
-                build_row(entity, component, attribute, sim)
+                refreshers.append(build_row(entity, component, attribute, sim))
+    def refresh_rows():
+        for refresh in refreshers:
+            refresh()
+
+    ui.timer(0.5, refresh_rows)
 
 
 def main():

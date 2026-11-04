@@ -25,7 +25,6 @@ def test_shared_type_publishes_each_device_id_and_keeps_stop_state_separate(monk
 
     loop.mock_aws = False
     loop.client = RecordingClient()
-    monkeypatch.setattr(module.time, "sleep", lambda _: None)
     for _, _, attribute in rows:
         loop.active_runs[attribute.id] = {"run": True, "generation": 1}
 

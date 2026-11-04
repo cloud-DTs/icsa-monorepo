@@ -43,7 +43,14 @@ class DeviceRegistry:
         for device_id, device in self.devices.items():
             type_id = f"{twin_name}-{device.get('componentTypeId') or device_id}"
             self.device_ids_by_type.setdefault(type_id, set()).add(device_id)
-            schema = {prop["name"]: prop["dataType"] for prop in device.get("properties", [])}
+            schema = {}
+            for prop in device.get("properties", []):
+                name = prop["name"]
+                if name in ("iotDeviceId", "time"):
+                    raise ValueError(f"Property {name} is reserved for telemetry routing")
+                if name in schema:
+                    raise ValueError(f"Duplicate property {name} on device {device_id}")
+                schema[name] = prop["dataType"]
             reference_id, reference_schema = schemas.setdefault(type_id, (device_id, schema))
             if schema != reference_schema:
                 raise ValueError(

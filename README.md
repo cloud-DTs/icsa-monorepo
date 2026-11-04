@@ -22,16 +22,23 @@ python main.py
 Open http://localhost:5000. On Linux or macOS, activate the environment with
 `source .venv/bin/activate` and set the same variables with `export`.
 
-In mock mode, generated messages go to the process log. To publish to AWS, set
+Mock mode is the default. Generated messages go to the process log. To publish to AWS, set
 `SIMULATOR_MOCK_AWS=false` and supply AWS credentials with `iot:Publish` access to
 the twin's topic. Set `AWS_REGION` to the deployment region. The simulator uses
 one `boto3 iot-data` client and AWS credentials. It does not use device certificates.
+This is HTTPS Publish to AWS IoT Core, not a device MQTT connection.
+Environment credentials and an explicit AWS profile take precedence over a
+legacy `CONFIG_CREDENTIALS_JSON` file. Temporary credentials use
+`AWS_SESSION_TOKEN`; a legacy file can supply `aws_session_token`.
 
 ## Configuration and shared types
 
 The simulator reads `config.json`, `config_iot_devices.json`, and
 `config_hierarchy.json`. Device configuration can be a flat device list or an
 entity tree with device properties on component nodes.
+An entity without `name` is displayed using its `id`, as in the manager.
+Supported types match the manager: `BOOLEAN`, `INTEGER`, `LONG`, `DOUBLE`,
+`STRING`, `VECTOR_INTEGER`, `VECTOR_DOUBLE`, and `VECTOR_STRING`.
 
 For twin `dt`, hierarchy references follow these rules:
 
@@ -62,6 +69,25 @@ All devices publish to `<digital_twin_name>/iot-data`. Each message contains
 device IDs and controls. Cloud Deployer manages one shared IoT policy per twin;
 each device retains its own Thing and certificate. Debug ingestion timing fields
 are added by the cloud pipeline.
+
+Aliases of the same device share the same attribute controls and running state.
+BOOLEAN supports fixed and random values. LONG and INTEGER uniform/range values
+retain integer precision. VECTOR_STRING accepts comma-separated strings; numeric
+vectors also support equal-length minimum/maximum bounds. Invalid values and
+non-finite numbers stop the affected generator and appear as an error in the UI.
+API integer values must be finite whole numbers; API doubles retain their source
+precision. A forecast-only series has no current sample and is skipped.
+
+The publish interval must be finite and at least 0.1 seconds. Stop wakes sleeping
+workers immediately. A stopped or failed worker cannot keep its row marked as
+running. Repeated starts cannot revive an earlier worker. Synthetic timestamps
+are unique per device, including across independently generated properties.
+
+API sample timestamps are preserved. The current manager persister replaces a
+whole DynamoDB item for each `(iotDeviceId, time)` key. Do not run several API
+properties on the same device at the same source timestamp: later writes can
+replace earlier properties. Those source records require a single combined
+device message or an atomic merge in the persister.
 
 ## Docker and the shared-type example
 
