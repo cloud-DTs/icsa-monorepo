@@ -1,0 +1,39 @@
+import json
+from datetime import datetime, timezone
+
+# Regenerated into lambda_function.py by scripts/resolve_pv_battery_generatedpower_target.py
+# from dtcBattery's deployed config_iot_devices.json. Do not edit lambda_function.py
+# directly - it is gitignored and rebuilt from this template on every run.
+BATTERY_GENERATED_POWER_DEVICE_ID = "__BATTERY_GENERATED_POWER_DEVICE_ID__"
+
+
+def lambda_handler(event, context):
+    print("Event: " + json.dumps(event))
+
+    strategy_data = _collector_payload(event).get("dtc-PVBatteryGeneratedPowerStrategy", {})
+    pv_data = strategy_data.get("productionUpdate", {})
+    production = float(pv_data.get("production", 0.0))
+
+    # Forward the raw PV production value into Battery's external-input attribute
+    # (dtcBattery.externalInputs.generatedPower). Pure passthrough - no calculation
+    # and no battery decision.
+    return {
+        "statusCode": 200,
+        "body": json.dumps({
+            "iotDeviceId": BATTERY_GENERATED_POWER_DEVICE_ID,
+            "time": datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%S.%f')[:-3] + 'Z',
+            "generatedPower": production,
+        }),
+    }
+
+
+def _collector_payload(event):
+    body = event.get("body")
+    if isinstance(body, str):
+        try:
+            return json.loads(body)
+        except json.JSONDecodeError:
+            return {}
+    if isinstance(body, dict):
+        return body
+    return event

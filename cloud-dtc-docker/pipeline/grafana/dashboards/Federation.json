@@ -1,0 +1,221 @@
+{
+  "annotations": {
+    "list": []
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": null,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "type": "text",
+      "title": "Federation overview",
+      "gridPos": {
+        "h": 4,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "options": {
+        "mode": "markdown",
+        "content": "# Federation\n\nStrategies: ConsumptionStrategy2\n\nDigital twins: Battery2, PV2\n\nCloudWatch datasource UID: cloudwatch-default"
+      }
+    },
+    {
+      "type": "timeseries",
+      "title": "ConsumptionStrategy2-workflow Step Functions",
+      "datasource": {
+        "type": "cloudwatch",
+        "uid": "cloudwatch-default"
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 4
+      },
+      "targets": [
+        {
+          "expression": "SEARCH('{AWS/States,StateMachineArn} MetricName=\"ExecutionsStarted\" \"ConsumptionStrategy2-workflow\"', 'Sum', 60)",
+          "id": "executionsStarted",
+          "label": "ExecutionsStarted",
+          "refId": "A",
+          "region": "default"
+        },
+        {
+          "expression": "SEARCH('{AWS/States,StateMachineArn} MetricName=\"ExecutionsFailed\" \"ConsumptionStrategy2-workflow\"', 'Sum', 60)",
+          "id": "executionsFailed",
+          "label": "ExecutionsFailed",
+          "refId": "B",
+          "region": "default"
+        },
+        {
+          "expression": "SEARCH('{AWS/States,StateMachineArn} MetricName=\"ExecutionsSucceeded\" \"ConsumptionStrategy2-workflow\"', 'Sum', 60)",
+          "id": "executionsSucceeded",
+          "label": "ExecutionsSucceeded",
+          "refId": "C",
+          "region": "default"
+        }
+      ]
+    },
+    {
+      "type": "timeseries",
+      "title": "ConsumptionStrategy2_collector",
+      "datasource": {
+        "type": "cloudwatch",
+        "uid": "cloudwatch-default"
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 0,
+        "y": 12
+      },
+      "targets": [
+        {
+          "dimensions": {
+            "FunctionName": "ConsumptionStrategy2_collector"
+          },
+          "metricName": "Invocations",
+          "namespace": "AWS/Lambda",
+          "period": "60",
+          "refId": "A",
+          "region": "default",
+          "statistic": "Sum"
+        },
+        {
+          "dimensions": {
+            "FunctionName": "ConsumptionStrategy2_collector"
+          },
+          "metricName": "Errors",
+          "namespace": "AWS/Lambda",
+          "period": "60",
+          "refId": "B",
+          "region": "default",
+          "statistic": "Sum"
+        }
+      ]
+    },
+    {
+      "type": "timeseries",
+      "title": "ConsumptionStrategy2_strategy",
+      "datasource": {
+        "type": "cloudwatch",
+        "uid": "cloudwatch-default"
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 8,
+        "y": 12
+      },
+      "targets": [
+        {
+          "dimensions": {
+            "FunctionName": "ConsumptionStrategy2_strategy"
+          },
+          "metricName": "Invocations",
+          "namespace": "AWS/Lambda",
+          "period": "60",
+          "refId": "A",
+          "region": "default",
+          "statistic": "Sum"
+        },
+        {
+          "dimensions": {
+            "FunctionName": "ConsumptionStrategy2_strategy"
+          },
+          "metricName": "Errors",
+          "namespace": "AWS/Lambda",
+          "period": "60",
+          "refId": "B",
+          "region": "default",
+          "statistic": "Sum"
+        }
+      ]
+    },
+    {
+      "type": "timeseries",
+      "title": "ConsumptionStrategy2_feedback",
+      "datasource": {
+        "type": "cloudwatch",
+        "uid": "cloudwatch-default"
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 16,
+        "y": 12
+      },
+      "targets": [
+        {
+          "dimensions": {
+            "FunctionName": "ConsumptionStrategy2_feedback"
+          },
+          "metricName": "Invocations",
+          "namespace": "AWS/Lambda",
+          "period": "60",
+          "refId": "A",
+          "region": "default",
+          "statistic": "Sum"
+        },
+        {
+          "dimensions": {
+            "FunctionName": "ConsumptionStrategy2_feedback"
+          },
+          "metricName": "Errors",
+          "namespace": "AWS/Lambda",
+          "period": "60",
+          "refId": "B",
+          "region": "default",
+          "statistic": "Sum"
+        }
+      ]
+    },
+    {
+      "type": "logs",
+      "title": "FunctionRegistry redirects",
+      "datasource": {
+        "type": "cloudwatch",
+        "uid": "cloudwatch-default"
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 24,
+        "x": 0,
+        "y": 20
+      },
+      "targets": [
+        {
+          "queryMode": "Logs",
+          "region": "default",
+          "logGroups": [
+            "/aws/lambda/*event-checker*"
+          ],
+          "expression": "fields @timestamp, @message | filter @message like /FunctionRegistry: redirecting to Step Function/ | sort @timestamp desc | limit 50",
+          "refId": "A"
+        }
+      ]
+    }
+  ],
+  "refresh": "10s",
+  "schemaVersion": 39,
+  "tags": [
+    "cloud-dtc",
+    "federation"
+  ],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-1h",
+    "to": "now"
+  },
+  "timezone": "browser",
+  "title": "Federation",
+  "uid": "cloud-dtc-federation",
+  "version": 1,
+  "weekStart": ""
+}

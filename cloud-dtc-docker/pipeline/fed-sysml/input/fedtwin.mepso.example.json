@@ -1,0 +1,121 @@
+{
+  "fedTwins": [
+    {
+      "name": "MEPSOInputs",
+      "newStrategies": [
+        {
+          "name": "MEPSOTSOToAggregator",
+          "pathToCode": "/pipeline/code/meps-demo/push-to-aggregator",
+          "feedback": { "type": "INTERNAL", "topic": "dtcAggreg/iot-data" },
+          "strategies": ["dtcTSO.tsoServiceRequestUpdate"]
+        },
+        {
+          "name": "MEPSODSOTS1ToAggregator",
+          "pathToCode": "/pipeline/code/meps-demo/push-to-aggregator",
+          "feedback": { "type": "INTERNAL", "topic": "dtcAggreg/iot-data" },
+          "strategies": ["dtcDSO.dsoTS1Update"]
+        },
+        {
+          "name": "MEPSODSOTS2ToAggregator",
+          "pathToCode": "/pipeline/code/meps-demo/push-to-aggregator",
+          "feedback": { "type": "INTERNAL", "topic": "dtcAggreg/iot-data" },
+          "strategies": ["dtcDSO.dsoTS2Update"]
+        },
+        {
+          "name": "MEPSOEC1BatteryToAggregator",
+          "pathToCode": "/pipeline/code/meps-demo/push-to-aggregator",
+          "feedback": { "type": "INTERNAL", "topic": "dtcAggreg/iot-data" },
+          "strategies": ["dtcEC1.batteryUpdate"]
+        },
+        {
+          "name": "MEPSOEC1PVToAggregator",
+          "pathToCode": "/pipeline/code/meps-demo/push-to-aggregator",
+          "feedback": { "type": "INTERNAL", "topic": "dtcAggreg/iot-data" },
+          "strategies": ["dtcEC1.pvUpdate"]
+        },
+        {
+          "name": "MEPSOEC1DSRToAggregator",
+          "pathToCode": "/pipeline/code/meps-demo/push-to-aggregator",
+          "feedback": { "type": "INTERNAL", "topic": "dtcAggreg/iot-data" },
+          "strategies": ["dtcEC1.dsrUpdate"]
+        },
+        {
+          "name": "MEPSOEC2BatteryToAggregator",
+          "pathToCode": "/pipeline/code/meps-demo/push-to-aggregator",
+          "feedback": { "type": "INTERNAL", "topic": "dtcAggreg/iot-data" },
+          "strategies": ["dtcEC2.ec2BatteryUpdate"]
+        },
+        {
+          "name": "MEPSOEC2PVToAggregator",
+          "pathToCode": "/pipeline/code/meps-demo/push-to-aggregator",
+          "feedback": { "type": "INTERNAL", "topic": "dtcAggreg/iot-data" },
+          "strategies": ["dtcEC2.ec2PVUpdate"]
+        },
+        {
+          "name": "MEPSOEC2DSRToAggregator",
+          "pathToCode": "/pipeline/code/meps-demo/push-to-aggregator",
+          "feedback": { "type": "INTERNAL", "topic": "dtcAggreg/iot-data" },
+          "strategies": ["dtcEC2.ec2DSRUpdate"]
+        }
+      ]
+    },
+    {
+      "name": "MEPSODecision",
+      "newStrategies": [
+        {
+          "name": "MEPSOPortfolioDecision",
+          "pathToCode": "/pipeline/code/meps-demo/aggregator-decision",
+          "feedback": { "type": "INTERNAL", "topic": "dtcAggreg/iot-data" },
+          "strategies": [
+            "dtcAggreg.aggregatorTSOUpdate",
+            "dtcAggreg.aggregatorDSOTS1Update",
+            "dtcAggreg.aggregatorDSOTS2Update",
+            "dtcAggreg.aggregatorEC1PVUpdate",
+            "dtcAggreg.aggregatorEC2PVUpdate"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "MEPSODispatch",
+      "newStrategies": [
+        {
+          "name": "MEPSOEC1BatteryDispatch",
+          "pathToCode": "/pipeline/code/meps-demo/dispatch-to-community",
+          "feedback": { "type": "INTERNAL", "topic": "dtcEC1/iot-data" },
+          "strategies": ["dtcAggreg.decisionEC1BatteryUpdate"]
+        },
+        {
+          "name": "MEPSOEC1DSRDispatch",
+          "pathToCode": "/pipeline/code/meps-demo/dispatch-to-community",
+          "feedback": { "type": "INTERNAL", "topic": "dtcEC1/iot-data" },
+          "strategies": ["dtcAggreg.decisionEC1DSRUpdate"]
+        },
+        {
+          "name": "MEPSOEC2BatteryDispatch",
+          "pathToCode": "/pipeline/code/meps-demo/dispatch-to-community",
+          "feedback": { "type": "INTERNAL", "topic": "dtcEC2/iot-data" },
+          "strategies": ["dtcAggreg.decisionEC2BatteryUpdate"]
+        },
+        {
+          "name": "MEPSOEC2DSRDispatch",
+          "pathToCode": "/pipeline/code/meps-demo/dispatch-to-community",
+          "feedback": { "type": "INTERNAL", "topic": "dtcEC2/iot-data" },
+          "strategies": ["dtcAggreg.decisionEC2DSRUpdate"]
+        },
+        {
+          "name": "MEPSOTS1ExchangeDispatch",
+          "pathToCode": "/pipeline/code/meps-demo/dispatch-to-community",
+          "feedback": { "type": "INTERNAL", "topic": "dtcDSO/iot-data" },
+          "strategies": ["dtcAggreg.decisionTS1ExchangeUpdate"]
+        },
+        {
+          "name": "MEPSOTS2ExchangeDispatch",
+          "pathToCode": "/pipeline/code/meps-demo/dispatch-to-community",
+          "feedback": { "type": "INTERNAL", "topic": "dtcDSO/iot-data" },
+          "strategies": ["dtcAggreg.decisionTS2ExchangeUpdate"]
+        }
+      ]
+    }
+  ]
+}

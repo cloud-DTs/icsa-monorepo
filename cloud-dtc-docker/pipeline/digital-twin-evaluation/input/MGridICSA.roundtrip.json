@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "evaluation": "roundtrip",
+  "parameters": {
+    "mode": "storage",
+    "samples": 100,
+    "warmup": 10,
+    "timeout_seconds": 10,
+    "poll_interval_seconds": 0.05,
+    "request_timeout_seconds": 10,
+    "targets": [
+      {
+        "target": "MicroGrid.battery.p16",
+        "property": "totalCapacity",
+        "value": 100
+      },
+      {
+        "target": "MicroGrid.pv.pV1",
+        "property": "output",
+        "value": 12.5
+      },
+      {
+        "target": "MicroGrid.charger1.p13",
+        "property": "consumption",
+        "value": 12.5
+      },
+      {
+        "target": "MicroGrid.charger2.p14",
+        "property": "consumption",
+        "value": 12.5
+      },
+      {
+        "target": "MicroGrid.charger3.p12",
+        "property": "consumption",
+        "value": 12.5
+      },
+      {
+        "target": "MicroGrid.charger4.p17",
+        "property": "consumption",
+        "value": 12.5
+      },
+      {
+        "target": "MicroGrid.charger5.p11",
+        "property": "consumption",
+        "value": 12.5
+      }
+    ],
+    "concurrency": 20
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "compose_file": "docker-compose.yaml",
+  "compose_profiles": ["pipeline"],
+  "digital_twin_name": "dtc-y-03",
+  "generated_twin_dir": null,
+  "aws_credentials_file": null,
+  "path_maps": [
+    "C:/Users/marco/Git-projects/anyFile/digital-twin-manager/lambda_functions/event_actions/stopCharging=/pipeline/code/microgrid/stopCharging"
+  ],
+  "build_images": false,
+  "clean_stage": true,
+  "show_container_logs": true,
+  "show_configs": true,
+  "show_output_configs": false,
+  "deploy_to_aws": null,
+  "run_federation_workflow": false,
+  "fed_sysml_terraform_action": "none",
+  "fed_sysml_terraform_auto_approve": false,
+  "auto_run": false,
+  "remove_infrastructure_on_exit": true,
+  "watch": {
+    "directory": "pipeline/enterprise-architect/output",
+    "poll_interval_seconds": 2.0,
+    "settle_seconds": 1.0
+  }
+}

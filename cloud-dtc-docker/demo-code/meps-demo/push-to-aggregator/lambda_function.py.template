@@ -1,0 +1,60 @@
+import json
+from datetime import datetime, timezone
+
+TARGETS = {
+    "tsoServiceRequestUpdate": "__AGGREGATOR_TSO_INPUT_DEVICE_ID__",
+    "dsoTS1Update": "__AGGREGATOR_DSO_INPUT_DEVICE_ID__",
+    "dsoTS2Update": "__AGGREGATOR_DSO_INPUT_DEVICE_ID__",
+    "batteryUpdate": "__AGGREGATOR_EC1_INPUT_DEVICE_ID__",
+    "pvUpdate": "__AGGREGATOR_EC1_INPUT_DEVICE_ID__",
+    "dsrUpdate": "__AGGREGATOR_EC1_INPUT_DEVICE_ID__",
+    "ec2BatteryUpdate": "__AGGREGATOR_EC2_INPUT_DEVICE_ID__",
+    "ec2PVUpdate": "__AGGREGATOR_EC2_INPUT_DEVICE_ID__",
+    "ec2DSRUpdate": "__AGGREGATOR_EC2_INPUT_DEVICE_ID__",
+}
+
+RENAMES = {
+    "dsoTS1Update": {"voltageStatus": "ts1VoltageStatus", "exchangePower": "ts1ExchangePower", "exchangeLimit": "ts1ExchangeLimit"},
+    "dsoTS2Update": {"voltageStatus": "ts2VoltageStatus", "exchangePower": "ts2ExchangePower", "exchangeLimit": "ts2ExchangeLimit"},
+    "batteryUpdate": {"stateOfCharge": "ec1BatteryStateOfCharge", "batteryPower": "ec1BatteryPower"},
+    "pvUpdate": {"pvPower": "ec1PVPower"},
+    "dsrUpdate": {"dsrPower": "ec1DSRPower"},
+    "ec2BatteryUpdate": {"stateOfCharge": "ec2BatteryStateOfCharge", "batteryPower": "ec2BatteryPower"},
+    "ec2PVUpdate": {"pvPower": "ec2PVPower"},
+    "ec2DSRUpdate": {"dsrPower": "ec2DSRPower"},
+}
+
+
+def lambda_handler(event, context):
+    action_name, values = _find_action(_collector_payload(event))
+    if action_name is None:
+        raise ValueError("No supported MEPSO source action in collector payload")
+    renames = RENAMES.get(action_name, {})
+    payload = {renames.get(key, key): value for key, value in values.items()}
+    payload.update({
+        "iotDeviceId": TARGETS[action_name],
+        "time": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.%f")[:-3] + "Z",
+    })
+    return {"statusCode": 200, "body": json.dumps(payload)}
+
+
+def _collector_payload(event):
+    body = event.get("body") if isinstance(event, dict) else None
+    if isinstance(body, str):
+        try:
+            return json.loads(body)
+        except json.JSONDecodeError:
+            return {}
+    return body if isinstance(body, dict) else event
+
+
+def _find_action(value):
+    if not isinstance(value, dict):
+        return None, None
+    for name, nested in value.items():
+        if name in TARGETS and isinstance(nested, dict):
+            return name, nested
+        found_name, found_values = _find_action(nested)
+        if found_name is not None:
+            return found_name, found_values
+    return None, None

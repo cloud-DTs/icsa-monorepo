@@ -1,0 +1,79 @@
+import json
+from datetime import datetime, timezone
+
+# Regenerated into lambda_function.py by scripts/resolve_charger_battery_plug_target.py
+# from dtcBattery's deployed config_iot_devices.json. Do not edit lambda_function.py
+# directly - it is gitignored and rebuilt from this template on every run.
+BATTERY_IS_PLUGGED_DEVICE_ID = "__BATTERY_IS_PLUGGED_DEVICE_ID__"
+
+TRUE_VALUES = ("true", "1", "yes")
+FALSE_VALUES = ("false", "0", "no")
+
+
+def lambda_handler(event, context):
+    print("Event: " + json.dumps(event))
+
+    strategy_data = _collector_payload(event).get("dtc-ChargerBatteryPlugStrategy", {})
+    charger_data = strategy_data.get("plugUpdate", {})
+    is_plugged = _require_plug_state(charger_data)
+
+    # Forward the Charger plug state into dtcBattery.storage.isPlugged. Pure
+    # passthrough - no calculation, no charging decision.
+    return {
+        "statusCode": 200,
+        "body": json.dumps({
+            "iotDeviceId": BATTERY_IS_PLUGGED_DEVICE_ID,
+            "time": datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%S.%f')[:-3] + 'Z',
+            "isPlugged": is_plugged,
+        }),
+    }
+
+
+def _require_plug_state(charger_data):
+    """Return "true"/"false", or abort the whole federation run.
+
+    dtcCharger.chargerState.isPlugged deploys with initValue = None, so until the
+    Charger actually reports, the Collector hands us the key PRESENT with value
+    None. Two traps this guards against:
+
+      * dict.get(key, default) does NOT apply the default when the key exists
+        with value None - it returns None, and str(None) is the literal string
+        "None", which would be pushed to Battery as a real value.
+      * Defaulting to "false" would be just as wrong - a fabricated value is
+        still a fake event on the Battery side.
+
+    Raising is what actually stops the push: the generated Step Function has no
+    Catch/Retry on the Strategy state, so an exception ends the execution and the
+    Feedback Lambda is never invoked - nothing is published. Returning None would
+    instead leave $.strategyResult = null and crash Feedback on None.get("body"),
+    and returning an empty body would still make Feedback publish "{}".
+    """
+    raw = charger_data.get("isPlugged")
+
+    if raw is None:
+        raise RuntimeError(
+            "dtcCharger.chargerState.isPlugged has no value yet - nothing to push."
+        )
+
+    value = str(raw).strip().lower()
+    if value in TRUE_VALUES:
+        return "true"
+    if value in FALSE_VALUES:
+        return "false"
+
+    raise RuntimeError(
+        f"dtcCharger.chargerState.isPlugged has a non-boolean value {raw!r} - "
+        "refusing to push it to Battery."
+    )
+
+
+def _collector_payload(event):
+    body = event.get("body")
+    if isinstance(body, str):
+        try:
+            return json.loads(body)
+        except json.JSONDecodeError:
+            return {}
+    if isinstance(body, dict):
+        return body
+    return event

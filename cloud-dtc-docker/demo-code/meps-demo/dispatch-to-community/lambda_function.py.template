@@ -1,0 +1,50 @@
+import json
+from datetime import datetime, timezone
+
+TARGETS = {
+    "ec1BatteryPower": ("__EC1_BATTERY_DEVICE_ID__", "batteryPower"),
+    "ec1DSRPower": ("__EC1_DSR_DEVICE_ID__", "dsrPower"),
+    "ec2BatteryPower": ("__EC2_BATTERY_DEVICE_ID__", "batteryPower"),
+    "ec2DSRPower": ("__EC2_DSR_DEVICE_ID__", "dsrPower"),
+    "ts1ExchangePower": ("__DSO_TS1_DEVICE_ID__", "exchangePower"),
+    "ts2ExchangePower": ("__DSO_TS2_DEVICE_ID__", "exchangePower"),
+}
+
+
+def lambda_handler(event, context):
+    collector = _collector_payload(event)
+    source_name, value = _find_power(collector)
+    device_id, target_name = TARGETS[source_name]
+    return {
+        "statusCode": 200,
+        "body": json.dumps({
+            "iotDeviceId": device_id,
+            "time": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.%f")[:-3] + "Z",
+            target_name: value,
+        }),
+    }
+
+
+def _collector_payload(event):
+    body = event.get("body") if isinstance(event, dict) else None
+    if isinstance(body, str):
+        try:
+            return json.loads(body)
+        except json.JSONDecodeError:
+            return {}
+    return body if isinstance(body, dict) else event
+
+
+def _find_power(value):
+    if not isinstance(value, dict):
+        raise ValueError("Federation event does not contain a dispatch power value")
+    for name in TARGETS:
+        if name in value:
+            return name, value[name]
+    for nested in value.values():
+        if isinstance(nested, dict):
+            try:
+                return _find_power(nested)
+            except ValueError:
+                pass
+    raise ValueError("Federation event does not contain a dispatch power value")

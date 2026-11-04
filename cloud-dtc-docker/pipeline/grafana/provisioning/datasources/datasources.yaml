@@ -1,0 +1,10 @@
+apiVersion: 1
+prune: true
+datasources:
+  - name: "CloudWatch"
+    type: "cloudwatch"
+    uid: "cloudwatch-default"
+    access: "proxy"
+    jsonData:
+      authType: "default"
+      defaultRegion: "eu-west-1"

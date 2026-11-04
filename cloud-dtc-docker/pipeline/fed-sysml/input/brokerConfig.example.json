@@ -1,0 +1,10 @@
+{
+  "brokers": {
+    "default": {
+      "broker_url": "broker.hivemq.com",
+      "broker_port": 1883,
+      "broker_username": "",
+      "broker_password": ""
+    }
+  }
+}

@@ -1,0 +1,55 @@
+import json
+from datetime import datetime, timezone
+
+from decision_logic import calculate_dispatch
+
+AGGREGATOR_DECISION_DEVICE_ID = "__AGGREGATOR_DECISION_DEVICE_ID__"
+
+
+def lambda_handler(event, context):
+    collector = _collector_payload(event)
+    state = {}
+    for action in _walk_actions(collector):
+        state.update(action)
+
+    decision = calculate_dispatch({
+        "requestedPower": state.get("requestedPower"),
+        "serviceDirection": state.get("serviceDirection"),
+        "ts1VoltageStatus": state.get("ts1VoltageStatus"),
+        "ts1ExchangeLimit": state.get("ts1ExchangeLimit"),
+        "ts2ExchangeLimit": state.get("ts2ExchangeLimit"),
+        "ec1PVPower": state.get("ec1PVPower"),
+        "ec2PVPower": state.get("ec2PVPower"),
+    })
+    decision.update({
+        "iotDeviceId": AGGREGATOR_DECISION_DEVICE_ID,
+        "time": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.%f")[:-3] + "Z",
+        "decisionVersion": int(datetime.now(timezone.utc).timestamp() * 1000),
+    })
+    return {"statusCode": 200, "body": json.dumps(decision)}
+
+
+def _collector_payload(event):
+    body = event.get("body") if isinstance(event, dict) else None
+    if isinstance(body, str):
+        try:
+            return json.loads(body)
+        except json.JSONDecodeError:
+            return {}
+    return body if isinstance(body, dict) else event
+
+
+def _walk_actions(value):
+    if not isinstance(value, dict):
+        return
+    state_keys = {
+        "requestedPower", "serviceDirection", "serviceType",
+        "ts1VoltageStatus", "ts1ExchangePower", "ts1ExchangeLimit",
+        "ts2VoltageStatus", "ts2ExchangePower", "ts2ExchangeLimit",
+        "ec1BatteryStateOfCharge", "ec1BatteryPower", "ec1PVPower", "ec1DSRPower",
+        "ec2BatteryStateOfCharge", "ec2BatteryPower", "ec2PVPower", "ec2DSRPower",
+    }
+    if state_keys.intersection(value):
+        yield value
+    for nested in value.values():
+        yield from _walk_actions(nested)

@@ -1,0 +1,39 @@
+import json
+from datetime import datetime, timezone
+
+# Regenerated into lambda_function.py by scripts/resolve_grid_battery_push_target.py
+# from dtcBattery's deployed config_iot_devices.json. Do not edit lambda_function.py
+# directly - it is gitignored and rebuilt from this template on every run.
+BATTERY_GREEN_ENERGY_DEVICE_ID = "__BATTERY_GREEN_ENERGY_DEVICE_ID__"
+
+
+def lambda_handler(event, context):
+    print("Event: " + json.dumps(event))
+
+    strategy_data = _collector_payload(event).get("dtc-GridBatteryPushStrategy", {})
+    grid_data = strategy_data.get("greenEnergyUpdate", {})
+    green_energy_percentage = float(grid_data.get("greenEnergyPercentage", 0.0))
+
+    # Deliver the raw grid value into Battery's external-input attribute
+    # (dtcBattery.externalInputs.greenEnergyPercentage). The federation does NOT
+    # decide charge/discharge - the battery decides internally later, if needed.
+    return {
+        "statusCode": 200,
+        "body": json.dumps({
+            "iotDeviceId": BATTERY_GREEN_ENERGY_DEVICE_ID,
+            "time": datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%S.%f')[:-3] + 'Z',
+            "greenEnergyPercentage": green_energy_percentage,
+        }),
+    }
+
+
+def _collector_payload(event):
+    body = event.get("body")
+    if isinstance(body, str):
+        try:
+            return json.loads(body)
+        except json.JSONDecodeError:
+            return {}
+    if isinstance(body, dict):
+        return body
+    return event

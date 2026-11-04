@@ -1,0 +1,39 @@
+import json
+from datetime import datetime, timezone
+
+# Regenerated into lambda_function.py by scripts/resolve_grid_battery_maxpower_target.py
+# from dtcBattery's deployed config_iot_devices.json. Do not edit lambda_function.py
+# directly - it is gitignored and rebuilt from this template on every run.
+BATTERY_MAX_POWER_DEVICE_ID = "__BATTERY_MAX_POWER_DEVICE_ID__"
+
+
+def lambda_handler(event, context):
+    print("Event: " + json.dumps(event))
+
+    strategy_data = _collector_payload(event).get("dtc-GridBatteryMaxPowerStrategy", {})
+    grid_data = strategy_data.get("maxPowerUpdate", {})
+    max_power = float(grid_data.get("maxPower", 0.0))
+
+    # Deliver the raw grid maxPower value into Battery's external-input attribute
+    # (dtcBattery.externalInputs.maxPower). Pure passthrough - no calculation and
+    # no battery decision.
+    return {
+        "statusCode": 200,
+        "body": json.dumps({
+            "iotDeviceId": BATTERY_MAX_POWER_DEVICE_ID,
+            "time": datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%S.%f')[:-3] + 'Z',
+            "maxPower": max_power,
+        }),
+    }
+
+
+def _collector_payload(event):
+    body = event.get("body")
+    if isinstance(body, str):
+        try:
+            return json.loads(body)
+        except json.JSONDecodeError:
+            return {}
+    if isinstance(body, dict):
+        return body
+    return event
