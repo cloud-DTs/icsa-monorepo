@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simulator</title>
+</head>
+<body>
+
+{% if session.payloads %}
+<h3>Available IotDevices for {{ TWIN_NAME }}:</h3>
+<input type="number" id="sim-time" value="{{ session.SIM_TIME or 2 }}" placeholder="Interval (sec)">
+<table border="1" cellpadding="5" style="border-collapse: collapse; margin-top: 10px;">
+    <thead>
+    <tr>
+        <th>Device ID</th>
+        <th>Data Name</th>
+        <th>Data Type</th>
+        <th>Generation Configuration</th>
+        <th>Run</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for unique_key, payload in session.payloads.items() %}
+    <tr data-unique-key="{{ unique_key }}" data-device-id="{{ payload.id }}">
+        <td>{{ payload.id }}</td>
+        <td>{{ payload.dataName }}</td>
+        <td>{{ payload.dataType }}</td>
+        <td>
+            <select name="mode_{{ unique_key }}" class="mode-select" style="display: block; margin-bottom: 5px; width: 100%;">
+                {% if "VECTOR" in payload.dataType %}
+                <option value="vector_custom">Fixed Vector</option>
+                <option value="vector_uniform" selected>Vector Uniform (Min/Max)</option>
+                {% elif "INTEGER" in payload.dataType or "DOUBLE" in payload.dataType %}
+                <option value="range" selected>Range (Min/Max/Step)</option>
+                <option value="uniform">Uniform Distribution</option>
+                <option value="normal">Normal Distribution</option>
+                {% elif "STRING" in payload.dataType %}
+                <option value="fixed_list" selected>Custom Word List</option>
+                <option value="random_string">Random Characters</option>
+                {% endif %}
+            </select>
+
+            {% if ("INTEGER" in payload.dataType or "DOUBLE" in payload.dataType) and "VECTOR" not in payload.dataType %}
+            <div class="field-group range-fields" style="margin-bottom: 3px;">
+                <input type="number" step="any" name="min_{{ unique_key }}" placeholder="Min value" style="width: 80px;">
+                <input type="number" step="any" name="max_{{ unique_key }}" placeholder="Max value" style="width: 80px;">
+            </div>
+            <div class="field-group step-field" style="display: none; margin-bottom: 3px;">
+                <input type="number" step="any" name="step_{{ unique_key }}" placeholder="Step size" value="1" style="width: 80px;">
+            </div>
+            <div class="field-group normal-fields" style="display: none;">
+                <input type="number" step="any" name="mean_{{ unique_key }}" placeholder="Mean (μ)" style="width: 80px;">
+                <input type="number" step="any" name="stddev_{{ unique_key }}" placeholder="StdDev (σ)" style="width: 80px;">
+            </div>
+            {% endif %}
+
+            {% if "VECTOR" in payload.dataType %}
+            <div class="field-group vector-uniform-fields" style="margin-top: 5px;">
+                <input type="text" name="vec_min_{{ unique_key }}" placeholder="Min Vector: 10,20,30"
+                       style="width: 180px; margin-bottom: 3px; display: block;">
+                <input type="text" name="vec_max_{{ unique_key }}" placeholder="Max Vector: 15,25,35"
+                       style="width: 180px; display: block;">
+            </div>
+            <div class="field-group vector-custom-fields" style="margin-top: 5px; display: none;">
+                <input type="text" name="vector_{{ unique_key }}" placeholder="Fixed Vector: 12,22,32"
+                       style="width: 180px; display: block;">
+            </div>
+            {% endif %}
+
+            {% if "STRING" in payload.dataType and "VECTOR" not in payload.dataType %}
+            <div class="field-group string-list-fields" style="margin-top: 5px;">
+                <input type="text" name="list_{{ unique_key }}" placeholder="low,medium,high" style="width: 180px;">
+            </div>
+            <div class="field-group string-random-fields" style="margin-top: 5px; display: none;">
+                <span style="font-size: 12px; color: #666;">Random string will be generated.</span>
+            </div>
+            {% endif %}
+        </td>
+        <td>
+            <input type="checkbox" class="run-checkbox" name="run_{{ unique_key }}" {% if payload.run %}checked{% endif %}>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>No IotDevices found.</p>
+{% endif %}
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        function toggleFields(selectElement) {
+            const row = selectElement.closest("tr");
+            const selectedValue = selectElement.value;
+
+            row.querySelectorAll(".field-group").forEach(group => {
+                group.style.display = "none";
+            });
+
+            if (selectedValue === "range") {
+                const rangeFields = row.querySelector(".range-fields");
+                if (rangeFields) rangeFields.style.display = "block";
+                const stepField = row.querySelector(".step-field");
+                if (stepField) stepField.style.display = "block";
+            } else if (selectedValue === "uniform") {
+                const rangeFields = row.querySelector(".range-fields");
+                if (rangeFields) rangeFields.style.display = "block";
+            } else if (selectedValue === "normal") {
+                const normalFields = row.querySelector(".normal-fields");
+                if (normalFields) normalFields.style.display = "block";
+            } else if (selectedValue === "vector_uniform") {
+                const vecUniformFields = row.querySelector(".vector-uniform-fields");
+                if (vecUniformFields) vecUniformFields.style.display = "block";
+            } else if (selectedValue === "vector_custom") {
+                const vecCustomFields = row.querySelector(".vector-custom-fields");
+                if (vecCustomFields) vecCustomFields.style.display = "block";
+            } else if (selectedValue === "fixed_list") {
+                const stringListFields = row.querySelector(".string-list-fields");
+                if (stringListFields) stringListFields.style.display = "block";
+            } else if (selectedValue === "random_string") {
+                const stringRandomFields = row.querySelector(".string-random-fields");
+                if (stringRandomFields) stringRandomFields.style.display = "block";
+            }
+        }
+
+        document.querySelectorAll(".mode-select").forEach(select => {
+            toggleFields(select);
+            select.addEventListener("change", function() {
+                toggleFields(this);
+            });
+        });
+
+        document.querySelectorAll(".run-checkbox").forEach(checkbox => {
+            checkbox.addEventListener("change", function() {
+                const row = this.closest("tr");
+                const uniqueKey = row.getAttribute("data-unique-key");
+                const deviceId = row.getAttribute("data-device-id");
+                const isChecked = this.checked;
+
+                const payloadData = {
+                    unique_key: uniqueKey,
+                    id: deviceId,
+                    run: isChecked,
+                    mode: row.querySelector(`[name="mode_${uniqueKey}"]`)?.value || "",
+                    min: row.querySelector(`[name="min_${uniqueKey}"]`)?.value || "",
+                    max: row.querySelector(`[name="max_${uniqueKey}"]`)?.value || "",
+                    step: row.querySelector(`[name="step_${uniqueKey}"]`)?.value || "",
+                    mean: row.querySelector(`[name="mean_${uniqueKey}"]`)?.value || "",
+                    stddev: row.querySelector(`[name="stddev_${uniqueKey}"]`)?.value || "",
+                    vec_min: row.querySelector(`[name="vec_min_${uniqueKey}"]`)?.value || "",
+                    vec_max: row.querySelector(`[name="vec_max_${uniqueKey}"]`)?.value || "",
+                    vector: row.querySelector(`[name="vector_${uniqueKey}"]`)?.value || "",
+                    list: row.querySelector(`[name="list_${uniqueKey}"]`)?.value || ""
+                };
+
+                fetch("/toggle-device", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(payloadData)
+                })
+                .then(response => response.json())
+                .then(data => console.log("Server response:", data))
+                .catch(error => console.error("Error:", error));
+            });
+        });
+    });
+
+        const simTimeInput = document.getElementById("sim-time");
+        if (simTimeInput) {
+            simTimeInput.addEventListener("change", function() {
+                fetch("/update-sim-time", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ sim_time: this.value })
+                })
+                .then(response => response.json())
+                .then(data => console.log("Sim time updated:", data))
+                .catch(error => console.error("Error updating sim time:", error));
+            });
+        }
+
+</script>
+
+</body>
+</html>
