@@ -1,0 +1,303 @@
+[
+    {
+        "id": "mtY3PwHPp9YgcPtTaj9bkN",
+        "properties": [
+            {
+                "name": "totalCapacity",
+                "dataType": "INTEGER"
+            },
+            {
+                "name": "power",
+                "dataType": "DOUBLE"
+            }
+        ]
+    },
+    {
+        "id": "WzZcxBhFyh4U289VjegzqG",
+        "properties": [ ]
+    },
+    {
+        "id": "Zd53CSzP3ruFbDCCHor5jo",
+        "properties": [
+            {
+                "name": "output",
+                "dataType": "DOUBLE"
+            }
+        ]
+    },
+    {
+        "id": "FFF5pFdk7cE9JKVbWBUHeu",
+        "properties": [
+            {
+                "name": "power",
+                "dataType": "DOUBLE"
+            },
+            {
+                "name": "consumption",
+                "dataType": "DOUBLE"
+            }
+        ]
+    },
+    {
+        "id": "UuAtSjUEpfUmY7d6R4ojQ8const_component",
+        "properties": [
+            {
+                "name": "maxConsumption",
+                "dataType": "DOUBLE",
+                "initValue": 15.0
+            }
+        ]
+    },
+    {
+        "id": "fPhKaQ2W79e6z7k8fSjJFW",
+        "properties": [
+            {
+                "name": "power",
+                "dataType": "DOUBLE"
+            },
+            {
+                "name": "consumption",
+                "dataType": "DOUBLE"
+            }
+        ]
+    },
+    {
+        "id": "X3R77BD8uwbJ8x9gshXKcrconst_component",
+        "properties": [
+            {
+                "name": "maxConsumption",
+                "dataType": "DOUBLE",
+                "initValue": 50.0
+            }
+        ]
+    },
+    {
+        "id": "FCXfMrYS7AwG8pvFKpyrPr",
+        "properties": [
+            {
+                "name": "power",
+                "dataType": "DOUBLE"
+            },
+            {
+                "name": "consumption",
+                "dataType": "DOUBLE"
+            }
+        ]
+    },
+    {
+        "id": "aT5AoMFeEV7qcVjVcfJcmhconst_component",
+        "properties": [
+            {
+                "name": "maxConsumption",
+                "dataType": "DOUBLE",
+                "initValue": 50.0
+            }
+        ]
+    },
+    {
+        "id": "c2X5ia3uU28uaxhjE775By",
+        "properties": [
+            {
+                "name": "power",
+                "dataType": "DOUBLE"
+            },
+            {
+                "name": "consumption",
+                "dataType": "DOUBLE"
+            }
+        ]
+    },
+    {
+        "id": "aXmuA763rgKwXHfVi4Ccbpconst_component",
+        "properties": [
+            {
+                "name": "maxConsumption",
+                "dataType": "DOUBLE",
+                "initValue": 50.0
+            }
+        ]
+    },
+    {
+        "id": "2ECtXAXjiSGsbQhCnaczUq",
+        "properties": [
+            {
+                "name": "temperature",
+                "dataType": "DOUBLE"
+            },
+            {
+                "name": "power",
+                "dataType": "DOUBLE"
+            },
+            {
+                "name": "consumption",
+                "dataType": "DOUBLE"
+            }
+        ]
+    },
+    {
+        "id": "Jt64nWrcDgDFmbBFJAtvpPconst_component",
+        "properties": [
+            {
+                "name": "maxConsumption",
+                "dataType": "DOUBLE",
+                "initValue": 50.0
+            }
+        ]
+    },
+    {
+        "id": "UfeQR2QhJeAmDDH5TxSLQ2",
+        "properties": [
+            {
+                "name": "voltage",
+                "dataType": "DOUBLE"
+            },
+            {
+                "name": "energy",
+                "dataType": "DOUBLE"
+            },
+            {
+                "name": "power",
+                "dataType": "DOUBLE"
+            }
+        ]
+    },
+    {
+        "id": "hZziMe2x7z3oUXUdnqm6Sf",
+        "properties": [
+            {
+                "name": "voltage",
+                "dataType": "DOUBLE"
+            },
+            {
+                "name": "energy",
+                "dataType": "DOUBLE"
+            },
+            {
+                "name": "power",
+                "dataType": "DOUBLE"
+            }
+        ]
+    },
+    {
+        "id": "Psohd4u6h7ir9w4tfvLciF",
+        "properties": [
+            {
+                "name": "frequency",
+                "dataType": "DOUBLE"
+            },
+            {
+                "name": "voltage",
+                "dataType": "DOUBLE"
+            },
+            {
+                "name": "energy",
+                "dataType": "DOUBLE"
+            },
+            {
+                "name": "power",
+                "dataType": "DOUBLE"
+            }
+        ]
+    },
+    {
+        "id": "T6xPhTDLa7GSpqxP79U946",
+        "properties": [
+            {
+                "name": "power",
+                "dataType": "INTEGER"
+            },
+            {
+                "name": "voltage",
+                "dataType": "DOUBLE"
+            },
+            {
+                "name": "energy",
+                "dataType": "DOUBLE"
+            }
+        ]
+    },
+    {
+        "id": "53tVoBMZQLaJu6ZuH2Z4Mj",
+        "properties": [
+            {
+                "name": "energy",
+                "dataType": "DOUBLE"
+            },
+            {
+                "name": "power",
+                "dataType": "DOUBLE"
+            }
+        ]
+    },
+    {
+        "id": "DoKdq6HgmF7ZNzZprBkamy",
+        "properties": [
+            {
+                "name": "energy",
+                "dataType": "DOUBLE"
+            },
+            {
+                "name": "power",
+                "dataType": "DOUBLE"
+            }
+        ]
+    },
+    {
+        "id": "btpmwfxdk78yTXTpBcZgMa",
+        "properties": [
+            {
+                "name": "power",
+                "dataType": "DOUBLE"
+            }
+        ]
+    },
+    {
+        "id": "VQ8TyrUTWHsheKfDykhano",
+        "properties": [
+            {
+                "name": "temperature",
+                "dataType": "DOUBLE"
+            }
+        ]
+    },
+    {
+        "id": "GB3wpA9rz7xp6G94xWfKh8",
+        "properties": [
+            {
+                "name": "temperature",
+                "dataType": "DOUBLE"
+            }
+        ]
+    },
+    {
+        "id": "jzA2YT5Xn7fRRt8FRhrBbo",
+        "properties": [ ]
+    },
+    {
+        "id": "975Fhrk2qJrAv3psYsw96x",
+        "properties": [ ]
+    },
+    {
+        "id": "nmMBRhx3Wxan5ULLG83vTS",
+        "properties": [
+            {
+                "name": "speed",
+                "dataType": "DOUBLE"
+            },
+            {
+                "name": "direction",
+                "dataType": "STRING"
+            }
+        ]
+    },
+    {
+        "id": "YhvsPmwLnQapWThsv2vtxsconst_component",
+        "properties": [
+            {
+                "name": "chargingThreshold",
+                "dataType": "DOUBLE",
+                "initValue": 0.0
+            }
+        ]
+    }
+]

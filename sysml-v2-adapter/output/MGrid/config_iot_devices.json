@@ -1,0 +1,160 @@
+[
+    {
+        "id": "j735vaWV8mvR4oFoC5WxfR",
+        "properties": [
+            {
+                "name": "totalCapacity",
+                "dataType": "INTEGER"
+            }
+        ]
+    },
+    {
+        "id": "cAavAgvv8QeySYnykC6SnE",
+        "properties": [
+            {
+                "name": "power",
+                "dataType": "DOUBLE"
+            }
+        ]
+    },
+    {
+        "id": "drE7zaVFBTfy9m3oqA9zGeconst_component",
+        "properties": [
+            {
+                "name": "maxConsumption",
+                "dataType": "DOUBLE",
+                "initValue": 15.0
+            },
+            {
+                "name": "maxConsumptionVec",
+                "dataType": "VECTOR_DOUBLE",
+                "initValue": [
+                    50.0,
+                    50.0,
+                    50.0
+                ]
+            }
+        ]
+    },
+    {
+        "id": "LEMj6Gipozfb9QXQsXicGX",
+        "properties": [
+            {
+                "name": "consumption",
+                "dataType": "DOUBLE"
+            }
+        ]
+    },
+    {
+        "id": "WazANWVBgTYDTL4eTM9uejconst_component",
+        "properties": [
+            {
+                "name": "maxConsumption",
+                "dataType": "DOUBLE",
+                "initValue": 50.0
+            },
+            {
+                "name": "maxConsumptionVec",
+                "dataType": "VECTOR_DOUBLE",
+                "initValue": [
+                    50.0,
+                    50.0,
+                    50.0
+                ]
+            }
+        ]
+    },
+    {
+        "id": "EDEMLzjQfnewptAue5gzcB",
+        "properties": [
+            {
+                "name": "consumption",
+                "dataType": "DOUBLE"
+            }
+        ]
+    },
+    {
+        "id": "QC7hJA2nfuq3y8oXYFW8dEconst_component",
+        "properties": [
+            {
+                "name": "maxConsumption",
+                "dataType": "DOUBLE",
+                "initValue": 50.0
+            },
+            {
+                "name": "maxConsumptionVec",
+                "dataType": "VECTOR_DOUBLE",
+                "initValue": [
+                    50.0,
+                    50.0,
+                    50.0
+                ]
+            }
+        ]
+    },
+    {
+        "id": "jcLnb8oJcbK7q3ACfqupeH",
+        "properties": [
+            {
+                "name": "output",
+                "dataType": "DOUBLE"
+            }
+        ]
+    },
+    {
+        "id": "EYt2SyY5KEkYZSRmF9M59u",
+        "properties": [
+            {
+                "name": "consumption",
+                "dataType": "DOUBLE"
+            }
+        ]
+    },
+    {
+        "id": "bXmW8uK8fUj2PpBQF6wDNSconst_component",
+        "properties": [
+            {
+                "name": "maxConsumption",
+                "dataType": "DOUBLE",
+                "initValue": 50.0
+            },
+            {
+                "name": "maxConsumptionVec",
+                "dataType": "VECTOR_DOUBLE",
+                "initValue": [
+                    50.0,
+                    50.0,
+                    50.0
+                ]
+            }
+        ]
+    },
+    {
+        "id": "bb27YHzwCVYu5dtq9EnZC8",
+        "properties": [
+            {
+                "name": "consumption",
+                "dataType": "DOUBLE"
+            }
+        ]
+    },
+    {
+        "id": "Uisu2P59tfTo8Bz2SEY94Econst_component",
+        "properties": [
+            {
+                "name": "maxConsumption",
+                "dataType": "DOUBLE",
+                "initValue": 50.0
+            },
+            {
+                "name": "maxConsumptionVec",
+                "dataType": "VECTOR_DOUBLE",
+                "initValue": [
+                    50.0,
+                    50.0,
+                    50.0
+                ]
+            }
+        ]
+    }
+]

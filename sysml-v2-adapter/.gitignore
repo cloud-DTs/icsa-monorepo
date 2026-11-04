@@ -1,0 +1,5 @@
+venv/
+
+src/export.json
+__pycache__/
+*.pyc

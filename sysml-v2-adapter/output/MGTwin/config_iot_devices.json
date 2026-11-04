@@ -1,0 +1,87 @@
+[
+    {
+        "id": "mdpAqdD7fMGNUMkK3QWAU2",
+        "properties": [
+            {
+                "name": "consumption",
+                "dataType": "DOUBLE"
+            }
+        ]
+    },
+    {
+        "id": "GaNW7B2mByyNdMXN7BfzKn",
+        "properties": [
+            {
+                "name": "consumption",
+                "dataType": "DOUBLE"
+            }
+        ]
+    },
+    {
+        "id": "dZbP84rWQjLX6jSpAyxLdJconst_component",
+        "properties": [
+            {
+                "name": "mComp",
+                "dataType": "DOUBLE",
+                "initValue": 3.0
+            }
+        ]
+    },
+    {
+        "id": "LcE4QQRx8bR5ZVBgghXbC6",
+        "properties": [
+            {
+                "name": "consumption",
+                "dataType": "DOUBLE"
+            }
+        ]
+    },
+    {
+        "id": "mzd2dGWWdntbBdeCzpUZ8vconst_component",
+        "properties": [
+            {
+                "name": "maxConsumption",
+                "dataType": "DOUBLE",
+                "initValue": 23.0
+            }
+        ]
+    },
+    {
+        "id": "GCqPxSwMJcQFp9BHV4FDtZ",
+        "properties": [
+            {
+                "name": "consumption",
+                "dataType": "DOUBLE"
+            }
+        ]
+    },
+    {
+        "id": "Bas34LaGXRk4CgFNDw8YWeconst_component",
+        "properties": [
+            {
+                "name": "maxConsumption",
+                "dataType": "DOUBLE",
+                "initValue": 23.0
+            }
+        ]
+    },
+    {
+        "id": "PvK3LFTavuQtvtspuib3uq",
+        "properties": [
+            {
+                "name": "consumption",
+                "dataType": "DOUBLE"
+            }
+        ]
+    },
+    {
+        "id": "NEG4C2iV7VoNpFRCsaw4Auconst_component",
+        "properties": [
+            {
+                "name": "maxConsumption",
+                "dataType": "DOUBLE",
+                "initValue": 23.0
+            }
+        ]
+    }
+]

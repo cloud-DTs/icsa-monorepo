@@ -1,0 +1,36 @@
+[
+    {
+        "condition": "drE7zaVFBTfy9m3oqA9zGe.p13.power == drE7zaVFBTfy9m3oqA9zGe.KebaP30const_component.maxConsumption",
+        "action": {
+            "type": "lambda",
+            "pathToCode": "/home/marco/HackathonSysmlv2DemoRepository/digital-twin-manager/lambda_functions/event_actions/high-temperature-callback",
+            "functionName": "stopCharging",
+            "external": false,
+            "feedback": {
+                "type": "mqtt",
+                "iotDeviceId": "cAavAgvv8QeySYnykC6SnE",
+                "payload": "action-result"
+            },
+            "inputParameters": [
+                {
+                    "name": "test2",
+                    "dataType": "DOUBLE",
+                    "id": "drE7zaVFBTfy9m3oqA9zGe.p13.power"
+                },
+                {
+                    "name": "test3",
+                    "dataType": "DOUBLE",
+                    "value": 15.0,
+                    "id": "drE7zaVFBTfy9m3oqA9zGe.KebaP30const_component.maxConsumption"
+                }
+            ],
+            "outputParameters": [
+                {
+                    "name": "test4",
+                    "dataType": "DOUBLE",
+                    "id": "drE7zaVFBTfy9m3oqA9zGe.p13.power"
+                }
+            ]
+        }
+    }
+]

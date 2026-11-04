@@ -1,0 +1,290 @@
+[
+    {
+        "id": "YhvsPmwLnQapWThsv2vtxs",
+        "type": "entity",
+        "name": "MicroGrid",
+        "children": [
+            {
+                "id": "QNbt84knZYLf64MgQME4L9",
+                "type": "entity",
+                "name": "battery",
+                "children": [
+                    {
+                        "type": "component",
+                        "name": "p16",
+                        "iotDeviceId": "mtY3PwHPp9YgcPtTaj9bkN",
+                        "componentTypeId": "mtY3PwHPp9YgcPtTaj9bkN",
+                        "componentTypeName": "p16"
+                    },
+                    {
+                        "type": "component",
+                        "name": "controller",
+                        "iotDeviceId": "WzZcxBhFyh4U289VjegzqG",
+                        "componentTypeId": "4n8KM8JBB2y9bPUvZJtsew",
+                        "componentTypeName": "BatteryController"
+                    }
+                ]
+            },
+            {
+                "id": "QFoJ7ypaCkWBypqL3xMzMY",
+                "type": "entity",
+                "name": "pv",
+                "children": [
+                    {
+                        "type": "component",
+                        "name": "pV1",
+                        "iotDeviceId": "Zd53CSzP3ruFbDCCHor5jo",
+                        "componentTypeId": "Zd53CSzP3ruFbDCCHor5jo",
+                        "componentTypeName": "pV1"
+                    }
+                ]
+            },
+            {
+                "id": "UuAtSjUEpfUmY7d6R4ojQ8",
+                "type": "entity",
+                "name": "charger1",
+                "children": [
+                    {
+                        "type": "component",
+                        "name": "p13",
+                        "iotDeviceId": "FFF5pFdk7cE9JKVbWBUHeu",
+                        "componentTypeId": "igBAafGdALwzuSj44mqzXJ",
+                        "componentTypeName": "ChargerSensor"
+                    },
+                    {
+                        "iotDeviceId": "UuAtSjUEpfUmY7d6R4ojQ8const_component",
+                        "type": "component",
+                        "name": "charger1const_component",
+                        "componentTypeId": "37qGWocU7By8MfpoHwr96S"
+                    }
+                ]
+            },
+            {
+                "id": "X3R77BD8uwbJ8x9gshXKcr",
+                "type": "entity",
+                "name": "charger2",
+                "children": [
+                    {
+                        "type": "component",
+                        "name": "p14",
+                        "iotDeviceId": "fPhKaQ2W79e6z7k8fSjJFW",
+                        "componentTypeId": "igBAafGdALwzuSj44mqzXJ",
+                        "componentTypeName": "ChargerSensor"
+                    },
+                    {
+                        "iotDeviceId": "X3R77BD8uwbJ8x9gshXKcrconst_component",
+                        "type": "component",
+                        "name": "charger2const_component",
+                        "componentTypeId": "37qGWocU7By8MfpoHwr96S"
+                    }
+                ]
+            },
+            {
+                "id": "aT5AoMFeEV7qcVjVcfJcmh",
+                "type": "entity",
+                "name": "charger3",
+                "children": [
+                    {
+                        "type": "component",
+                        "name": "p12",
+                        "iotDeviceId": "FCXfMrYS7AwG8pvFKpyrPr",
+                        "componentTypeId": "igBAafGdALwzuSj44mqzXJ",
+                        "componentTypeName": "ChargerSensor"
+                    },
+                    {
+                        "iotDeviceId": "aT5AoMFeEV7qcVjVcfJcmhconst_component",
+                        "type": "component",
+                        "name": "charger3const_component",
+                        "componentTypeId": "37qGWocU7By8MfpoHwr96S"
+                    }
+                ]
+            },
+            {
+                "id": "aXmuA763rgKwXHfVi4Ccbp",
+                "type": "entity",
+                "name": "charger4",
+                "children": [
+                    {
+                        "type": "component",
+                        "name": "p17",
+                        "iotDeviceId": "c2X5ia3uU28uaxhjE775By",
+                        "componentTypeId": "igBAafGdALwzuSj44mqzXJ",
+                        "componentTypeName": "ChargerSensor"
+                    },
+                    {
+                        "iotDeviceId": "aXmuA763rgKwXHfVi4Ccbpconst_component",
+                        "type": "component",
+                        "name": "charger4const_component",
+                        "componentTypeId": "37qGWocU7By8MfpoHwr96S"
+                    }
+                ]
+            },
+            {
+                "id": "Jt64nWrcDgDFmbBFJAtvpP",
+                "type": "entity",
+                "name": "charger5",
+                "children": [
+                    {
+                        "type": "component",
+                        "name": "p11",
+                        "iotDeviceId": "2ECtXAXjiSGsbQhCnaczUq",
+                        "componentTypeId": "2ECtXAXjiSGsbQhCnaczUq",
+                        "componentTypeName": "p11"
+                    },
+                    {
+                        "iotDeviceId": "Jt64nWrcDgDFmbBFJAtvpPconst_component",
+                        "type": "component",
+                        "name": "charger5const_component",
+                        "componentTypeId": "37qGWocU7By8MfpoHwr96S"
+                    }
+                ]
+            },
+            {
+                "id": "KunVJxKBbZJRJ77cDrGqZc",
+                "type": "entity",
+                "name": "district",
+                "children": [
+                    {
+                        "id": "5LUnEWEQvaDRM8YqAtCCbY",
+                        "type": "entity",
+                        "name": "house1",
+                        "children": [
+                            {
+                                "type": "component",
+                                "name": "meter",
+                                "iotDeviceId": "UfeQR2QhJeAmDDH5TxSLQ2",
+                                "componentTypeId": "b6RB6pTVkpMuVRUpGdwmtK",
+                                "componentTypeName": "SmartMeter"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "Wnw22Gc3CptcTLiLjMsiFH",
+                        "type": "entity",
+                        "name": "house2",
+                        "children": [
+                            {
+                                "type": "component",
+                                "name": "meter",
+                                "iotDeviceId": "hZziMe2x7z3oUXUdnqm6Sf",
+                                "componentTypeId": "b6RB6pTVkpMuVRUpGdwmtK",
+                                "componentTypeName": "SmartMeter"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "SMk3UpPc8ZwUgNawsFfCRs",
+                        "type": "entity",
+                        "name": "house3",
+                        "children": [
+                            {
+                                "type": "component",
+                                "name": "meter",
+                                "iotDeviceId": "Psohd4u6h7ir9w4tfvLciF",
+                                "componentTypeId": "Psohd4u6h7ir9w4tfvLciF",
+                                "componentTypeName": "meter"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "3sYUyJaPe8YgLf8fGgEDNr",
+                        "type": "entity",
+                        "name": "house4",
+                        "children": [
+                            {
+                                "type": "component",
+                                "name": "meter",
+                                "iotDeviceId": "T6xPhTDLa7GSpqxP79U946",
+                                "componentTypeId": "T6xPhTDLa7GSpqxP79U946",
+                                "componentTypeName": "meter"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "jGeZmW44gn5tULSUA7ZKkm",
+                        "type": "entity",
+                        "name": "street",
+                        "children": [
+                            {
+                                "type": "component",
+                                "name": "em1",
+                                "iotDeviceId": "53tVoBMZQLaJu6ZuH2Z4Mj",
+                                "componentTypeId": "mRnz4hcRi2hSLKX2MAVHUy",
+                                "componentTypeName": "EnergyMeter"
+                            },
+                            {
+                                "type": "component",
+                                "name": "em2",
+                                "iotDeviceId": "DoKdq6HgmF7ZNzZprBkamy",
+                                "componentTypeId": "mRnz4hcRi2hSLKX2MAVHUy",
+                                "componentTypeName": "EnergyMeter"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "bvkC6ghWNWwiQVFqQLNsxc",
+                        "type": "entity",
+                        "name": "garage",
+                        "children": [
+                            {
+                                "type": "component",
+                                "name": "bm1",
+                                "iotDeviceId": "btpmwfxdk78yTXTpBcZgMa",
+                                "componentTypeId": "eR8qrMfcVodGtXrnyJmgtK",
+                                "componentTypeName": "BaseMeter"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": "fd2vJZpet7L2zvzmfpi6Zw",
+                "type": "entity",
+                "name": "weatherStation",
+                "children": [
+                    {
+                        "type": "component",
+                        "name": "tempSensor",
+                        "iotDeviceId": "VQ8TyrUTWHsheKfDykhano",
+                        "componentTypeId": "VQ8TyrUTWHsheKfDykhano",
+                        "componentTypeName": "tempSensor"
+                    },
+                    {
+                        "type": "component",
+                        "name": "tempSensor2",
+                        "iotDeviceId": "GB3wpA9rz7xp6G94xWfKh8",
+                        "componentTypeId": "GB3wpA9rz7xp6G94xWfKh8",
+                        "componentTypeName": "tempSensor2"
+                    },
+                    {
+                        "type": "component",
+                        "name": "tempSensor3",
+                        "iotDeviceId": "jzA2YT5Xn7fRRt8FRhrBbo",
+                        "componentTypeId": "YRWSYcjr6Ke4SoHKrno3ZT",
+                        "componentTypeName": "LibTwinComponent"
+                    },
+                    {
+                        "type": "component",
+                        "name": "tempSensor4",
+                        "iotDeviceId": "975Fhrk2qJrAv3psYsw96x",
+                        "componentTypeId": "YRWSYcjr6Ke4SoHKrno3ZT",
+                        "componentTypeName": "LibTwinComponent"
+                    },
+                    {
+                        "type": "component",
+                        "name": "windSensor",
+                        "iotDeviceId": "nmMBRhx3Wxan5ULLG83vTS",
+                        "componentTypeId": "nmMBRhx3Wxan5ULLG83vTS",
+                        "componentTypeName": "windSensor"
+                    }
+                ]
+            },
+            {
+                "iotDeviceId": "YhvsPmwLnQapWThsv2vtxsconst_component",
+                "type": "component",
+                "name": "MicroGridconst_component",
+                "componentTypeId": "QoxRfKHyvydtjdcFNRVxWQ"
+            }
+        ]
+    }
+]
