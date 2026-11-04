@@ -3,7 +3,9 @@ services:
     profiles:
       - pipeline
     platform: ${DOCKER_DEFAULT_PLATFORM:-linux/amd64}
-    image: evbodanov/enterprise-architect-wine:latest
+    build:
+      context: ../enterprise-architect
+      dockerfile: Dockerfile
     container_name: enterprise-architect
     shm_size: "1gb"
     ports:
@@ -20,7 +22,9 @@ services:
     profiles:
       - pipeline
     platform: ${DOCKER_DEFAULT_PLATFORM:-linux/amd64}
-    image: evbodanov/fed-sysml:latest
+    build:
+      context: ../fed-sysml
+      dockerfile: Dockerfile
     container_name: fed-sysml
     environment:
       AWS_ACCESS_KEY_ID: "${AWS_ACCESS_KEY_ID:-}"
@@ -40,7 +44,9 @@ services:
     profiles:
       - pipeline
     platform: ${DOCKER_DEFAULT_PLATFORM:-linux/amd64}
-    image: evbodanov/digital-twin-profile-sysml-v1:latest
+    build:
+      context: ../sysml-v1-adapter
+      dockerfile: Dockerfile
     container_name: digital-twin-profile-sysml-v1
     environment:
       DTP_PATH_MAP: "${DTP_PATH_MAP:-}"
@@ -56,7 +62,11 @@ services:
     profiles:
       - pipeline
     platform: ${DOCKER_DEFAULT_PLATFORM:-linux/amd64}
-    image: evbodanov/digital-twin-profile-sysml-v2:latest
+    build:
+      context: ../sysml-v2-adapter
+      dockerfile: Dockerfile
+      secrets:
+        - gh_token
     container_name: digital-twin-profile-sysml-v2
     environment:
       DTP_PATH_MAP: "${DTP_PATH_MAP:-}"
@@ -74,7 +84,9 @@ services:
     profiles:
       - pipeline
     platform: ${DOCKER_DEFAULT_PLATFORM:-linux/amd64}
-    image: evbodanov/digital-twin-manager:latest
+    build:
+      context: ../digital-twin-manager
+      dockerfile: Dockerfile
     container_name: digital-twin-manager
     stdin_open: true
     tty: true
@@ -94,7 +106,9 @@ services:
         target: /pipeline/code
   cloud-deployer-test-simulator:
     platform: ${DOCKER_DEFAULT_PLATFORM:-linux/amd64}
-    image: evbodanov/cloud-deployer-test-simulator:latest
+    build:
+      context: ../digital-twin-simulator
+      dockerfile: Dockerfile
     profiles:
       - simulator
     environment:
@@ -124,7 +138,9 @@ services:
     profiles:
       - evaluation
     platform: ${DOCKER_DEFAULT_PLATFORM:-linux/amd64}
-    image: evbodanov/digital-twin-evaluation:latest
+    build:
+      context: ../digital-twin-evaluator
+      dockerfile: Dockerfile
     environment:
       AWS_ACCESS_KEY_ID: "${AWS_ACCESS_KEY_ID:-}"
       AWS_SECRET_ACCESS_KEY: "${AWS_SECRET_ACCESS_KEY:-}"
@@ -164,6 +180,10 @@ services:
       - grafana:/var/lib/grafana
       - ./pipeline/grafana/provisioning:/etc/grafana/provisioning:ro
       - ./pipeline/grafana/dashboards:/etc/grafana/dashboards:ro
+
+secrets:
+  gh_token:
+    environment: GH_TOKEN
 
 volumes:
   enterprise-architect-wine:
