@@ -1,0 +1,15 @@
+[
+  {
+    "condition": "root-1.temperatureSensor.temperature > INTEGER(90)",
+    "action": {
+      "type": "lambda",
+      "functionName": "alertAction",
+      "external": true,
+      "feedback": {
+        "type": "mqtt",
+        "iotDeviceId": "sensor-1",
+        "payload": "action-result"
+      }
+    }
+  }
+]

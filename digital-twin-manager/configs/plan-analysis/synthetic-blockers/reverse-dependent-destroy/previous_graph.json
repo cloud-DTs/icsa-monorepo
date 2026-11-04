@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "nodes": [
+    {
+      "id": "demo:database:table:main",
+      "template_id": "demo:database:table",
+      "owner_deployer": "DatabaseDeployer",
+      "logical_name": "main",
+      "physical_name": "demo-main",
+      "lifecycle_artifact": false,
+      "depends_on": []
+    },
+    {
+      "id": "demo:app:lambda:app",
+      "template_id": "demo:app:lambda",
+      "owner_deployer": "AppDeployer",
+      "logical_name": "app",
+      "physical_name": "demo-app",
+      "lifecycle_artifact": false,
+      "depends_on": [
+        {
+          "id": "demo:database:table:main",
+          "template_id": "demo:database:table",
+          "type": "runtime_uses"
+        }
+      ]
+    }
+  ]
+}

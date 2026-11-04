@@ -1,0 +1,23 @@
+[
+    {
+        "condition": "mzd2dGWWdntbBdeCzpUZ8vrenamed.p13.consumption > mzd2dGWWdntbBdeCzpUZ8vrenamed.sieVerchargeconst_component.maxConsumption",
+        "action": {
+            "type": "lambda",
+            "functionName": "alertAction",
+            "external": true,
+            "feedback": {
+                "type": "mqtt",
+                "iotDeviceId": "GaNW7B2mByyNdMXN7BfzKn",
+                "payload": "action-result"
+            }
+        }
+    },
+    {
+        "condition": "mzd2dGWWdntbBdeCzpUZ8vrenamed.p13.consumption > mzd2dGWWdntbBdeCzpUZ8vrenamed.sieVerchargeconst_component.maxConsumption",
+        "action": {
+            "type": "lambda",
+            "functionName": "alertAction",
+            "external": true
+        }
+    }
+]

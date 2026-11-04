@@ -1,0 +1,60 @@
+[
+    {
+        "id": "JftZFPj77VLDDaUnMCpsvn",
+        "type": "entity",
+        "name": "MicroGrid",
+        "children": [
+            {
+                "id": "mzd2dGWWdntbBdeCzpUZ8vrenamed",
+                "type": "entity",
+                "name": "sieVercharge",
+                "children": [
+                    {
+                        "iotDeviceId": "LcE4QQRx8bR5ZVBgghXbC6",
+                        "type": "component",
+                        "name": "p13"
+                    },
+                    {
+                        "iotDeviceId": "mzd2dGWWdntbBdeCzpUZ8vconst_componentrenamed",
+                        "type": "component",
+                        "name": "sieVerchargeconst_component"
+                    }
+                ]
+            },
+            {
+                "id": "Bas34LaGXRk4CgFNDw8YWe",
+                "type": "entity",
+                "name": "kebaP30",
+                "children": [
+                    {
+                        "iotDeviceId": "GCqPxSwMJcQFp9BHV4FDtZ",
+                        "type": "component",
+                        "name": "p14"
+                    },
+                    {
+                        "iotDeviceId": "Bas34LaGXRk4CgFNDw8YWeconst_component",
+                        "type": "component",
+                        "name": "kebaP30const_component"
+                    }
+                ]
+            },
+            {
+                "id": "NEG4C2iV7VoNpFRCsaw4Au",
+                "type": "entity",
+                "name": "edgeCaseNode",
+                "children": [
+                    {
+                        "iotDeviceId": "PvK3LFTavuQtvtspuib3uq",
+                        "type": "component",
+                        "name": "sensor"
+                    },
+                    {
+                        "iotDeviceId": "NEG4C2iV7VoNpFRCsaw4Auconst_component",
+                        "type": "component",
+                        "name": "edgeCaseNodeconst_component"
+                    }
+                ]
+            }
+        ]
+    }
+]

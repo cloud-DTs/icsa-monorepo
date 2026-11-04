@@ -1,0 +1,34 @@
+[
+  {
+    "group": "demo",
+    "layers": [
+      {
+        "layer": "demo",
+        "actions": [
+          {
+            "resource": "demo-main",
+            "resource_type": "dynamodb_table",
+            "graph_id": "demo:database:table:main",
+            "action": "DESTROY",
+            "blocked": false,
+            "required_flags": [],
+            "blockers": [],
+            "state_sync_required": false,
+            "processed": false
+          },
+          {
+            "resource": "demo-app",
+            "resource_type": "lambda_function",
+            "graph_id": "demo:app:lambda:app",
+            "action": "NO_CHANGE",
+            "blocked": false,
+            "required_flags": [],
+            "blockers": [],
+            "state_sync_required": false,
+            "processed": false
+          }
+        ]
+      }
+    ]
+  }
+]

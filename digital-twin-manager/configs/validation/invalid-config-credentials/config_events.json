@@ -1,0 +1,15 @@
+[
+  {
+    "condition": "room-1.temperatureSensor.temperature > INTEGER(80)",
+    "action": {
+      "type": "lambda",
+      "functionName": "alertAction",
+      "external": true,
+      "feedback": {
+        "type": "mqtt",
+        "iotDeviceId": "sensor-2",
+        "payload": "action-result"
+      }
+    }
+  }
+]

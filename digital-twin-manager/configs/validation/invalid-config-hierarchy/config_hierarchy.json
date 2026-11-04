@@ -1,0 +1,25 @@
+[
+  {
+    "id": "room-1",
+    "type": "component",
+    "name": "Room 1",
+    "children": [
+      {
+        "iotDeviceId": "sensor-1",
+        "type": "component",
+        "name": "temperatureSensor"
+      },
+      {
+        "id": "room-1-child",
+        "type": "entity",
+        "children": [
+          {
+            "iotDeviceId": "sensor-2",
+            "type": "component",
+            "name": "humiditySensor"
+          }
+        ]
+      }
+    ]
+  }
+]

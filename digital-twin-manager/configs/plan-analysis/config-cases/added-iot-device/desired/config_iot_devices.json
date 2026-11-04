@@ -1,0 +1,30 @@
+[
+  {
+    "id": "sensor-1",
+    "properties": [
+      {
+        "name": "temperature",
+        "dataType": "DOUBLE"
+      },
+      {
+        "name": "threshold",
+        "dataType": "INTEGER",
+        "initValue": 80
+      }
+    ]
+  },
+  {
+    "id": "sensor-2",
+    "properties": [
+      {
+        "name": "humidity",
+        "dataType": "DOUBLE"
+      },
+      {
+        "name": "humidityThreshold",
+        "dataType": "INTEGER",
+        "initValue": 60
+      }
+    ]
+  }
+]

@@ -1,0 +1,21 @@
+{
+  "name": "PV",
+  "region": "eu-central-1",
+  "ssm_registry_prefix": "/PV/event-registry",
+  "hot_reader_arn": "arn:aws:lambda:eu-central-1:717556240325:function:PV-hot-reader",
+  "strategies": [
+    {
+      "eventName": "production",
+      "inputParameters": [
+        {
+          "name": "generatedPower",
+          "dataType": "DOUBLE",
+          "value": 50.0,
+          "id": "QWB3zi3nv8UNdtvw8Fbkk8.PVconst_component.generatedPower"
+        }
+      ],
+      "outputParameters": []
+    }
+  ],
+  "twinmaker_workspace_id": "PV-twinmaker"
+}

@@ -1,0 +1,26 @@
+[
+  {
+    "id": "root-1",
+    "type": "entity",
+    "name": "Root 1",
+    "children": [
+      {
+        "iotDeviceId": "sensor-1",
+        "type": "component",
+        "name": "temperatureSensor"
+      },
+      {
+        "id": "root-1-child",
+        "type": "entity",
+        "name": "Root 1 Child",
+        "children": [
+          {
+            "iotDeviceId": "sensor-2",
+            "type": "component",
+            "name": "humiditySensor"
+          }
+        ]
+      }
+    ]
+  }
+]

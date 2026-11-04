@@ -1,0 +1,34 @@
+[
+    {
+        "id": "SwiB9jTPm8kzDXz6chmo5T",
+        "properties": [
+            {
+                "name": "isPlugged",
+                "dataType": "STRING"
+            },
+            {
+                "name": "charges",
+                "dataType": "INTEGER"
+            },
+            {
+                "name": "consumption",
+                "dataType": "DOUBLE"
+            }
+        ]
+    },
+    {
+        "id": "4udMBA6jAnnRf33MNHHP9Pconst_component",
+        "properties": [
+            {
+                "name": "trueValue",
+                "dataType": "STRING",
+                "initValue": "true"
+            },
+            {
+                "name": "maxTemp",
+                "dataType": "DOUBLE",
+                "initValue": 50.0
+            }
+        ]
+    }
+]

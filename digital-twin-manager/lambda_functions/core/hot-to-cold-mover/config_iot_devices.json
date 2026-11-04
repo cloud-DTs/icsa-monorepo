@@ -1,0 +1,12 @@
+[
+    {
+        "id": "QWB3zi3nv8UNdtvw8Fbkk8const_component",
+        "properties": [
+            {
+                "name": "generatedPower",
+                "dataType": "DOUBLE",
+                "initValue": 50.0
+            }
+        ]
+    }
+]

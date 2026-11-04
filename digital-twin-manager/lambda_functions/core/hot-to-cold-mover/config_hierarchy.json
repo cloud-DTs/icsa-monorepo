@@ -1,0 +1,14 @@
+[
+    {
+        "id": "QWB3zi3nv8UNdtvw8Fbkk8",
+        "type": "entity",
+        "name": "PV",
+        "children": [
+            {
+                "iotDeviceId": "QWB3zi3nv8UNdtvw8Fbkk8const_component",
+                "type": "component",
+                "name": "PVconst_component"
+            }
+        ]
+    }
+]

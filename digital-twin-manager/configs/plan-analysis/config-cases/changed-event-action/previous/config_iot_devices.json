@@ -1,0 +1,16 @@
+[
+  {
+    "id": "sensor-1",
+    "properties": [
+      {
+        "name": "temperature",
+        "dataType": "DOUBLE"
+      },
+      {
+        "name": "threshold",
+        "dataType": "INTEGER",
+        "initValue": 80
+      }
+    ]
+  }
+]

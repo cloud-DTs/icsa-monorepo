@@ -1,0 +1,21 @@
+[
+  {
+    "id": "root-1",
+    "type": "entity",
+    "name": "Root 1",
+    "children": [
+      {
+        "iotDeviceId": "sensor-a",
+        "componentTypeId": "pac-sensor",
+        "type": "component",
+        "name": "temperatureSensorA"
+      },
+      {
+        "iotDeviceId": "sensor-b",
+        "componentTypeId": "pac-sensor",
+        "type": "component",
+        "name": "temperatureSensorB"
+      }
+    ]
+  }
+]

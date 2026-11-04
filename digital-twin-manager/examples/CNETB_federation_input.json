@@ -1,0 +1,38 @@
+{
+  "name": "CNETB",
+  "region": "eu-central-1",
+  "ssm_registry_prefix": "/CNETB/event-registry",
+  "hot_reader_arn": "arn:aws:lambda:eu-central-1:717556240325:function:CNETB-hot-reader",
+  "strategies": [
+    {
+      "eventName": "rainFlowCounting",
+      "inputParameters": [
+        {
+          "name": "rainflowCounting",
+          "dataType": "VECTOR_DOUBLE",
+          "id": "VT22xyP8jbfw6kFmbtiCg7.node.rainflowCounting"
+        },
+        {
+          "name": "initialDamage",
+          "dataType": "DOUBLE",
+          "value": 0.0,
+          "id": "MghsU4QqcbzT6qu5JE4Ri2.Beam1const_component.initialDamage"
+        }
+      ],
+      "outputParameters": []
+    },
+    {
+      "eventName": "rainFlowForecast",
+      "inputParameters": [
+        {
+          "name": "initialDamage",
+          "dataType": "DOUBLE",
+          "value": 0.0,
+          "id": "MghsU4QqcbzT6qu5JE4Ri2.Beam1const_component.initialDamage"
+        }
+      ],
+      "outputParameters": []
+    }
+  ],
+  "twinmaker_workspace_id": "CNETB-twinmaker"
+}

@@ -1,0 +1,21 @@
+services:
+  digital-twin-manager:
+    platform: ${DOCKER_DEFAULT_PLATFORM:-linux/amd64}
+    build: .
+    image: digital-twin-manager:local
+    container_name: digital-twin-manager
+    stdin_open: true
+    tty: true
+    environment:
+      DIGITAL_TWIN_MANAGER_CONFIG_DIR: "/pipeline/input"
+      DIGITAL_TWIN_MANAGER_STATE_DIR: "/pipeline/output/.digital-twin-manager-state"
+      AWS_ACCESS_KEY_ID: "${AWS_ACCESS_KEY_ID:-}"
+      AWS_SECRET_ACCESS_KEY: "${AWS_SECRET_ACCESS_KEY:-}"
+      AWS_REGION: "${AWS_REGION:-}"
+      AWS_DEFAULT_REGION: "${AWS_DEFAULT_REGION:-}"
+    volumes:
+      - ./pipeline/digital-twin-manager/input:/pipeline/input:ro
+      - ./pipeline/digital-twin-manager/output:/pipeline/output
+      - type: bind
+        source: ${PIPELINE_CODE_HOST_DIR:-./demo-code}
+        target: /pipeline/code

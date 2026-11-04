@@ -1,0 +1,5 @@
+{
+    "digital_twin_name": "PV",
+    "hot_storage_size_in_days": 30,
+    "cold_storage_size_in_days": 30
+}

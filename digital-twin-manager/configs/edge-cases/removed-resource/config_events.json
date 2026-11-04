@@ -1,0 +1,15 @@
+[
+    {
+        "condition": "mzd2dGWWdntbBdeCzpUZ8v.p13.consumption > mzd2dGWWdntbBdeCzpUZ8v.sieVerchargeconst_component.maxConsumption",
+        "action": {
+            "type": "lambda",
+            "functionName": "alertAction",
+            "external": true,
+            "feedback": {
+                "type": "mqtt",
+                "iotDeviceId": "GaNW7B2mByyNdMXN7BfzKn",
+                "payload": "action-result"
+            }
+        }
+    }
+]

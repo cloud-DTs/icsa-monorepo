@@ -1,0 +1,23 @@
+[
+  {
+    "group": "demo",
+    "layers": [
+      {
+        "layer": "demo",
+        "actions": [
+          {
+            "resource": "demo-app",
+            "resource_type": "lambda_function",
+            "graph_id": "demo:app:lambda:app",
+            "action": "DEPLOY",
+            "blocked": false,
+            "required_flags": [],
+            "blockers": [],
+            "state_sync_required": false,
+            "processed": false
+          }
+        ]
+      }
+    ]
+  }
+]

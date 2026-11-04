@@ -1,0 +1,7 @@
+{
+  "endpoint": "a2a1jk25t7be3s-ats.iot.eu-central-1.amazonaws.com",
+  "topic": "dt/iot-data",
+  "payload_file_path": "payloads.json",
+  "auth_files_path": "../iot_devices_auth",
+  "root_ca_cert_path": "AmazonRootCA1.pem"
+}

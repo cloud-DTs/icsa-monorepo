@@ -1,0 +1,20 @@
+[project]
+name = "digital-twin-manager"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "awsiotpythonsdk==1.6.0",
+    "boto3==1.43.2",
+    "python-dotenv==1.2.3",
+    "botocore==1.43.2",
+]
+
+[dependency-groups]
+dev = [
+    "pytest==9.1.1",
+]
+
+[tool.uv]
+package = false

@@ -1,0 +1,847 @@
+{
+  "version": 1,
+  "templates": [
+    {
+      "id": "core:l1:dispatcher_iam:iam",
+      "owner_deployer": "DispatcherIamRoleDeployer",
+      "depends_on": []
+    },
+    {
+      "id": "core:l1:dispatcher_iam_managed_policy_attachment:iam_managed_policy_attachment",
+      "owner_deployer": "DispatcherIamRoleDeployer",
+      "depends_on": [
+        {
+          "id": "core:l1:dispatcher_iam:iam",
+          "type": "create_after"
+        }
+      ]
+    },
+    {
+      "id": "core:l1:dispatcher_lambda:lambda_function",
+      "owner_deployer": "DispatcherLambdaFunctionDeployer",
+      "depends_on": [
+        {
+          "id": "core:l1:dispatcher_iam:iam",
+          "type": "create_after"
+        },
+        {
+          "id": "core:l1:dispatcher_iam_managed_policy_attachment:iam_managed_policy_attachment",
+          "type": "create_after"
+        }
+      ]
+    },
+    {
+      "id": "core:l1:dispatcher_iot_rule:iot_rule",
+      "owner_deployer": "DispatcherIotRuleDeployer",
+      "depends_on": [
+        {
+          "id": "core:l1:dispatcher_lambda:lambda_function",
+          "type": "create_after"
+        }
+      ]
+    },
+    {
+      "id": "core:l1:dispatcher_iot_rule_lambda_permission:lambda_permission",
+      "owner_deployer": "DispatcherIotRuleDeployer",
+      "lifecycle_artifact": true,
+      "depends_on": [
+        {
+          "id": "core:l1:dispatcher_lambda:lambda_function",
+          "type": "create_after"
+        },
+        {
+          "id": "core:l1:dispatcher_iot_rule:iot_rule",
+          "type": "create_after"
+        }
+      ]
+    },
+    {
+      "id": "core:l2:persister_iam:iam",
+      "owner_deployer": "PersisterIamRoleDeployer",
+      "depends_on": []
+    },
+    {
+      "id": "core:l2:persister_iam_managed_policy_attachment:iam_managed_policy_attachment",
+      "owner_deployer": "PersisterIamRoleDeployer",
+      "depends_on": [
+        {
+          "id": "core:l2:persister_iam:iam",
+          "type": "create_after"
+        }
+      ]
+    },
+    {
+      "id": "core:l2:persister_lambda:lambda_function",
+      "owner_deployer": "PersisterLambdaFunctionDeployer",
+      "depends_on": [
+        {
+          "id": "core:l2:persister_iam:iam",
+          "type": "create_after"
+        },
+        {
+          "id": "core:l2:persister_iam_managed_policy_attachment:iam_managed_policy_attachment",
+          "type": "create_after"
+        },
+        {
+          "id": "core:l3_hot:hot_dynamodb_table:dynamodb_table",
+          "type": "runtime_uses"
+        },
+        {
+          "id": "core:l2:event_checker_lambda:lambda_function",
+          "type": "runtime_uses"
+        }
+      ]
+    },
+    {
+      "id": "core:l2:event_feedback_iam:iam",
+      "owner_deployer": "EventFeedbackIamRoleDeployer",
+      "depends_on": []
+    },
+    {
+      "id": "core:l2:event_feedback_iam_managed_policy_attachment:iam_managed_policy_attachment",
+      "owner_deployer": "EventFeedbackIamRoleDeployer",
+      "depends_on": [
+        {
+          "id": "core:l2:event_feedback_iam:iam",
+          "type": "create_after"
+        }
+      ]
+    },
+    {
+      "id": "core:l2:event_feedback_lambda:lambda_function",
+      "owner_deployer": "EventFeedbackLambdaFunctionDeployer",
+      "depends_on": [
+        {
+          "id": "core:l2:event_feedback_iam:iam",
+          "type": "create_after"
+        },
+        {
+          "id": "core:l2:event_feedback_iam_managed_policy_attachment:iam_managed_policy_attachment",
+          "type": "create_after"
+        }
+      ]
+    },
+    {
+      "id": "core:l2:event_checker_iam:iam",
+      "owner_deployer": "EventCheckerIamRoleDeployer",
+      "depends_on": []
+    },
+    {
+      "id": "core:l2:event_checker_iam_managed_policy_attachment:iam_managed_policy_attachment",
+      "owner_deployer": "EventCheckerIamRoleDeployer",
+      "depends_on": [
+        {
+          "id": "core:l2:event_checker_iam:iam",
+          "type": "create_after"
+        }
+      ]
+    },
+    {
+      "id": "core:l2:event_checker_iam_inline_policy:iam_inline_policy",
+      "owner_deployer": "EventCheckerIamRoleDeployer",
+      "depends_on": [
+        {
+          "id": "core:l2:event_checker_iam:iam",
+          "type": "create_after"
+        }
+      ]
+    },
+    {
+      "id": "core:l2:event_checker_lambda:lambda_function",
+      "owner_deployer": "EventCheckerLambdaFunctionDeployer",
+      "depends_on": [
+        {
+          "id": "core:l2:event_checker_iam:iam",
+          "type": "create_after"
+        },
+        {
+          "id": "core:l2:event_checker_iam_managed_policy_attachment:iam_managed_policy_attachment",
+          "type": "create_after"
+        },
+        {
+          "id": "core:l2:event_checker_iam_inline_policy:iam_inline_policy",
+          "type": "create_after"
+        },
+        {
+          "id": "core:l2:event_feedback_lambda:lambda_function",
+          "type": "create_after"
+        },
+        {
+          "id": "core:l2:lambda_chain_step_function:step_function",
+          "type": "runtime_uses"
+        },
+        {
+          "id": "core:l4:twinmaker_workspace:twinmaker_workspace",
+          "type": "runtime_uses"
+        }
+      ]
+    },
+    {
+      "id": "core:l2:lambda_chain_iam:iam",
+      "owner_deployer": "LambdaChainIamRoleDeployer",
+      "depends_on": []
+    },
+    {
+      "id": "core:l2:lambda_chain_iam_managed_policy_attachment:iam_managed_policy_attachment",
+      "owner_deployer": "LambdaChainIamRoleDeployer",
+      "depends_on": [
+        {
+          "id": "core:l2:lambda_chain_iam:iam",
+          "type": "create_after"
+        }
+      ]
+    },
+    {
+      "id": "core:l2:lambda_chain_step_function:step_function",
+      "owner_deployer": "LambdaChainStepFunctionDeployer",
+      "depends_on": [
+        {
+          "id": "core:l2:lambda_chain_iam:iam",
+          "type": "create_after"
+        },
+        {
+          "id": "core:l2:lambda_chain_iam_managed_policy_attachment:iam_managed_policy_attachment",
+          "type": "create_after"
+        }
+      ]
+    },
+    {
+      "id": "core:l3_hot:hot_dynamodb_table:dynamodb_table",
+      "owner_deployer": "HotDynamodbTableDeployer",
+      "depends_on": []
+    },
+    {
+      "id": "core:l3_hot:hot_dynamodb_backup:dynamodb_backup",
+      "owner_deployer": "HotDynamodbTableDeployer",
+      "lifecycle_artifact": true,
+      "depends_on": [
+        {
+          "id": "core:l3_hot:hot_dynamodb_table:dynamodb_table",
+          "type": "create_after"
+        }
+      ]
+    },
+    {
+      "id": "core:l3_hot:hot_cold_mover_iam:iam",
+      "owner_deployer": "HotColdMoverIamRoleDeployer",
+      "depends_on": []
+    },
+    {
+      "id": "core:l3_hot:hot_cold_mover_iam_managed_policy_attachment:iam_managed_policy_attachment",
+      "owner_deployer": "HotColdMoverIamRoleDeployer",
+      "depends_on": [
+        {
+          "id": "core:l3_hot:hot_cold_mover_iam:iam",
+          "type": "create_after"
+        }
+      ]
+    },
+    {
+      "id": "core:l3_hot:hot_cold_mover_lambda:lambda_function",
+      "owner_deployer": "HotColdMoverLambdaFunctionDeployer",
+      "depends_on": [
+        {
+          "id": "core:l3_hot:hot_cold_mover_iam:iam",
+          "type": "create_after"
+        },
+        {
+          "id": "core:l3_hot:hot_cold_mover_iam_managed_policy_attachment:iam_managed_policy_attachment",
+          "type": "create_after"
+        },
+        {
+          "id": "core:l3_hot:hot_dynamodb_table:dynamodb_table",
+          "type": "runtime_uses"
+        },
+        {
+          "id": "core:l3_cold:cold_s3_bucket:s3_bucket",
+          "type": "runtime_uses"
+        }
+      ]
+    },
+    {
+      "id": "core:l3_hot:hot_cold_mover_event_rule:eventbridge_rule",
+      "owner_deployer": "HotColdMoverEventRuleDeployer",
+      "depends_on": [
+        {
+          "id": "core:l3_hot:hot_cold_mover_lambda:lambda_function",
+          "type": "create_after"
+        }
+      ]
+    },
+    {
+      "id": "core:l3_hot:hot_cold_mover_event_target:eventbridge_target",
+      "owner_deployer": "HotColdMoverEventRuleDeployer",
+      "depends_on": [
+        {
+          "id": "core:l3_hot:hot_cold_mover_event_rule:eventbridge_rule",
+          "type": "create_after"
+        },
+        {
+          "id": "core:l3_hot:hot_cold_mover_lambda:lambda_function",
+          "type": "create_after"
+        }
+      ]
+    },
+    {
+      "id": "core:l3_hot:hot_cold_mover_lambda_permission:lambda_permission",
+      "owner_deployer": "HotColdMoverEventRuleDeployer",
+      "lifecycle_artifact": true,
+      "depends_on": [
+        {
+          "id": "core:l3_hot:hot_cold_mover_lambda:lambda_function",
+          "type": "create_after"
+        },
+        {
+          "id": "core:l3_hot:hot_cold_mover_event_rule:eventbridge_rule",
+          "type": "create_after"
+        }
+      ]
+    },
+    {
+      "id": "core:l3_hot:hot_reader_iam:iam",
+      "owner_deployer": "HotReaderIamRoleDeployer",
+      "depends_on": []
+    },
+    {
+      "id": "core:l3_hot:hot_reader_iam_managed_policy_attachment:iam_managed_policy_attachment",
+      "owner_deployer": "HotReaderIamRoleDeployer",
+      "depends_on": [
+        {
+          "id": "core:l3_hot:hot_reader_iam:iam",
+          "type": "create_after"
+        }
+      ]
+    },
+    {
+      "id": "core:l3_hot:hot_reader_iam_inline_policy:iam_inline_policy",
+      "owner_deployer": "HotReaderIamRoleDeployer",
+      "depends_on": [
+        {
+          "id": "core:l3_hot:hot_reader_iam:iam",
+          "type": "create_after"
+        }
+      ]
+    },
+    {
+      "id": "core:l3_hot:hot_reader_lambda:lambda_function",
+      "owner_deployer": "HotReaderLambdaFunctionDeployer",
+      "depends_on": [
+        {
+          "id": "core:l3_hot:hot_reader_iam:iam",
+          "type": "create_after"
+        },
+        {
+          "id": "core:l3_hot:hot_reader_iam_managed_policy_attachment:iam_managed_policy_attachment",
+          "type": "create_after"
+        },
+        {
+          "id": "core:l3_hot:hot_reader_iam_inline_policy:iam_inline_policy",
+          "type": "create_after"
+        },
+        {
+          "id": "core:l3_hot:hot_dynamodb_table:dynamodb_table",
+          "type": "runtime_uses"
+        }
+      ]
+    },
+    {
+      "id": "core:l3_hot:hot_reader_twinmaker_lambda_permission:lambda_permission",
+      "owner_deployer": "HotReaderLambdaFunctionDeployer",
+      "lifecycle_artifact": true,
+      "depends_on": [
+        {
+          "id": "core:l3_hot:hot_reader_lambda:lambda_function",
+          "type": "create_after"
+        }
+      ]
+    },
+    {
+      "id": "core:l3_cold:cold_s3_bucket:s3_bucket",
+      "owner_deployer": "ColdS3BucketDeployer",
+      "depends_on": []
+    },
+    {
+      "id": "core:l3_cold:cold_archive_mover_iam:iam",
+      "owner_deployer": "ColdArchiveMoverIamRoleDeployer",
+      "depends_on": []
+    },
+    {
+      "id": "core:l3_cold:cold_archive_mover_iam_managed_policy_attachment:iam_managed_policy_attachment",
+      "owner_deployer": "ColdArchiveMoverIamRoleDeployer",
+      "depends_on": [
+        {
+          "id": "core:l3_cold:cold_archive_mover_iam:iam",
+          "type": "create_after"
+        }
+      ]
+    },
+    {
+      "id": "core:l3_cold:cold_archive_mover_lambda:lambda_function",
+      "owner_deployer": "ColdArchiveMoverLambdaFunctionDeployer",
+      "depends_on": [
+        {
+          "id": "core:l3_cold:cold_archive_mover_iam:iam",
+          "type": "create_after"
+        },
+        {
+          "id": "core:l3_cold:cold_archive_mover_iam_managed_policy_attachment:iam_managed_policy_attachment",
+          "type": "create_after"
+        },
+        {
+          "id": "core:l3_cold:cold_s3_bucket:s3_bucket",
+          "type": "runtime_uses"
+        },
+        {
+          "id": "core:l3_archive:archive_s3_bucket:s3_bucket",
+          "type": "runtime_uses"
+        }
+      ]
+    },
+    {
+      "id": "core:l3_cold:cold_archive_mover_event_rule:eventbridge_rule",
+      "owner_deployer": "ColdArchiveMoverEventRuleDeployer",
+      "depends_on": [
+        {
+          "id": "core:l3_cold:cold_archive_mover_lambda:lambda_function",
+          "type": "create_after"
+        }
+      ]
+    },
+    {
+      "id": "core:l3_cold:cold_archive_mover_event_target:eventbridge_target",
+      "owner_deployer": "ColdArchiveMoverEventRuleDeployer",
+      "depends_on": [
+        {
+          "id": "core:l3_cold:cold_archive_mover_event_rule:eventbridge_rule",
+          "type": "create_after"
+        },
+        {
+          "id": "core:l3_cold:cold_archive_mover_lambda:lambda_function",
+          "type": "create_after"
+        }
+      ]
+    },
+    {
+      "id": "core:l3_cold:cold_archive_mover_lambda_permission:lambda_permission",
+      "owner_deployer": "ColdArchiveMoverEventRuleDeployer",
+      "lifecycle_artifact": true,
+      "depends_on": [
+        {
+          "id": "core:l3_cold:cold_archive_mover_lambda:lambda_function",
+          "type": "create_after"
+        },
+        {
+          "id": "core:l3_cold:cold_archive_mover_event_rule:eventbridge_rule",
+          "type": "create_after"
+        }
+      ]
+    },
+    {
+      "id": "core:l3_archive:archive_s3_bucket:s3_bucket",
+      "owner_deployer": "ArchiveS3BucketDeployer",
+      "depends_on": []
+    },
+    {
+      "id": "core:l4:twinmaker_s3_bucket:s3_bucket",
+      "owner_deployer": "TwinmakerS3BucketDeployer",
+      "depends_on": []
+    },
+    {
+      "id": "core:l4:twinmaker_s3_bucket_cors:s3_bucket_cors",
+      "owner_deployer": "TwinmakerS3BucketDeployer",
+      "depends_on": [
+        {
+          "id": "core:l4:twinmaker_s3_bucket:s3_bucket",
+          "type": "create_after"
+        }
+      ]
+    },
+    {
+      "id": "core:l4:twinmaker_iam:iam",
+      "owner_deployer": "TwinmakerIamRoleDeployer",
+      "depends_on": []
+    },
+    {
+      "id": "core:l4:twinmaker_iam_inline_policy:iam_inline_policy",
+      "owner_deployer": "TwinmakerIamRoleDeployer",
+      "depends_on": [
+        {
+          "id": "core:l4:twinmaker_iam:iam",
+          "type": "create_after"
+        }
+      ]
+    },
+    {
+      "id": "core:l4:twinmaker_workspace:twinmaker_workspace",
+      "owner_deployer": "TwinmakerWorkspaceDeployer",
+      "depends_on": [
+        {
+          "id": "core:l4:twinmaker_s3_bucket:s3_bucket",
+          "type": "create_after"
+        },
+        {
+          "id": "core:l4:twinmaker_s3_bucket_cors:s3_bucket_cors",
+          "type": "create_after"
+        },
+        {
+          "id": "core:l4:twinmaker_iam:iam",
+          "type": "create_after"
+        },
+        {
+          "id": "core:l4:twinmaker_iam_inline_policy:iam_inline_policy",
+          "type": "create_after"
+        }
+      ]
+    },
+    {
+      "id": "core:l4:twinmaker_workspace_scene_cleanup:twinmaker_scene",
+      "owner_deployer": "TwinmakerWorkspaceDeployer",
+      "lifecycle_artifact": true,
+      "depends_on": [
+        {
+          "id": "core:l4:twinmaker_workspace:twinmaker_workspace",
+          "type": "blocks_delete"
+        }
+      ]
+    },
+    {
+      "id": "core:l4:twinmaker_workspace_entity_cleanup:twinmaker_entity",
+      "owner_deployer": "TwinmakerWorkspaceDeployer",
+      "lifecycle_artifact": true,
+      "depends_on": [
+        {
+          "id": "core:l4:twinmaker_workspace:twinmaker_workspace",
+          "type": "blocks_delete"
+        }
+      ]
+    },
+    {
+      "id": "core:l4:twinmaker_workspace_component_type_cleanup:twinmaker_component_type",
+      "owner_deployer": "TwinmakerWorkspaceDeployer",
+      "lifecycle_artifact": true,
+      "depends_on": [
+        {
+          "id": "core:l4:twinmaker_workspace:twinmaker_workspace",
+          "type": "blocks_delete"
+        }
+      ]
+    },
+    {
+      "id": "core:l5:grafana_iam:iam",
+      "owner_deployer": "GrafanaIamRoleDeployer",
+      "depends_on": []
+    },
+    {
+      "id": "core:l5:grafana_iam_trust_policy:iam_trust_policy",
+      "owner_deployer": "GrafanaIamRoleDeployer",
+      "depends_on": [
+        {
+          "id": "core:l5:grafana_iam:iam",
+          "type": "create_after"
+        }
+      ]
+    },
+    {
+      "id": "core:l5:grafana_iam_inline_policy:iam_inline_policy",
+      "owner_deployer": "GrafanaIamRoleDeployer",
+      "depends_on": [
+        {
+          "id": "core:l5:grafana_iam:iam",
+          "type": "create_after"
+        },
+        {
+          "id": "core:l5:grafana_iam_trust_policy:iam_trust_policy",
+          "type": "create_after"
+        }
+      ]
+    },
+    {
+      "id": "core:l5:grafana_workspace:grafana_workspace",
+      "owner_deployer": "GrafanaWorkspaceDeployer",
+      "depends_on": [
+        {
+          "id": "core:l5:grafana_iam:iam",
+          "type": "create_after"
+        },
+        {
+          "id": "core:l5:grafana_iam_trust_policy:iam_trust_policy",
+          "type": "create_after"
+        },
+        {
+          "id": "core:l5:grafana_iam_inline_policy:iam_inline_policy",
+          "type": "create_after"
+        },
+        {
+          "id": "core:l4:twinmaker_workspace:twinmaker_workspace",
+          "type": "runtime_uses"
+        }
+      ]
+    },
+    {
+      "id": "iot:l1:iot_thing:iot_thing",
+      "owner_deployer": "IotThingDeployer",
+      "depends_on": [
+        {
+          "id": "iot:l1:iot_policy:iot_policy",
+          "type": "create_after"
+        }
+      ]
+    },
+    {
+      "id": "iot:l1:iot_certificate:iot_certificate",
+      "owner_deployer": "IotThingDeployer",
+      "depends_on": [
+        {
+          "id": "iot:l1:iot_thing:iot_thing",
+          "type": "create_after"
+        }
+      ]
+    },
+    {
+      "id": "iot:l1:iot_policy:iot_policy",
+      "owner_deployer": "IotPolicyDeployer",
+      "depends_on": []
+    },
+    {
+      "id": "iot:l1:iot_policy_version:iot_policy_version",
+      "owner_deployer": "IotPolicyDeployer",
+      "depends_on": [
+        {
+          "id": "iot:l1:iot_policy:iot_policy",
+          "type": "create_after"
+        }
+      ]
+    },
+    {
+      "id": "iot:l1:iot_certificate_thing_attachment:iot_certificate_attachment",
+      "owner_deployer": "IotThingDeployer",
+      "depends_on": [
+        {
+          "id": "iot:l1:iot_thing:iot_thing",
+          "type": "create_after"
+        },
+        {
+          "id": "iot:l1:iot_certificate:iot_certificate",
+          "type": "create_after"
+        }
+      ]
+    },
+    {
+      "id": "iot:l1:iot_policy_certificate_attachment:iot_policy_attachment",
+      "owner_deployer": "IotThingDeployer",
+      "depends_on": [
+        {
+          "id": "iot:l1:iot_policy:iot_policy",
+          "type": "create_after"
+        },
+        {
+          "id": "iot:l1:iot_certificate:iot_certificate",
+          "type": "create_after"
+        }
+      ]
+    },
+    {
+      "id": "iot:l1:iot_auth_files:local_auth_files",
+      "owner_deployer": "IotThingDeployer",
+      "depends_on": [
+        {
+          "id": "iot:l1:iot_certificate:iot_certificate",
+          "type": "create_after"
+        }
+      ]
+    },
+    {
+      "id": "iot:l2:processor_iam:iam",
+      "owner_deployer": "ProcessorIamRoleDeployer",
+      "depends_on": []
+    },
+    {
+      "id": "iot:l2:processor_iam_managed_policy_attachment:iam_managed_policy_attachment",
+      "owner_deployer": "ProcessorIamRoleDeployer",
+      "depends_on": [
+        {
+          "id": "iot:l2:processor_iam:iam",
+          "type": "create_after"
+        }
+      ]
+    },
+    {
+      "id": "iot:l2:processor_lambda:lambda_function",
+      "owner_deployer": "ProcessorLambdaFunctionDeployer",
+      "depends_on": [
+        {
+          "id": "iot:l2:processor_iam:iam",
+          "type": "create_after"
+        },
+        {
+          "id": "iot:l2:processor_iam_managed_policy_attachment:iam_managed_policy_attachment",
+          "type": "create_after"
+        },
+        {
+          "id": "core:l2:persister_lambda:lambda_function",
+          "type": "runtime_uses"
+        }
+      ]
+    },
+    {
+      "id": "iot:l4:device_component_type:twinmaker_component_type",
+      "owner_deployer": "TwinmakerComponentTypeDeployer",
+      "depends_on": [
+        {
+          "id": "core:l4:twinmaker_workspace:twinmaker_workspace",
+          "type": "create_after"
+        },
+        {
+          "id": "core:l3_hot:hot_reader_lambda:lambda_function",
+          "type": "create_after"
+        },
+        {
+          "id": "core:l3_hot:hot_reader_twinmaker_lambda_permission:lambda_permission",
+          "type": "create_after"
+        }
+      ]
+    },
+    {
+      "id": "iot:l4:device_component_type_component_cleanup:twinmaker_component",
+      "owner_deployer": "TwinmakerComponentTypeDeployer",
+      "lifecycle_artifact": true,
+      "depends_on": [
+        {
+          "id": "core:l4:twinmaker_workspace:twinmaker_workspace",
+          "type": "create_after"
+        },
+        {
+          "id": "iot:l4:device_component_type:twinmaker_component_type",
+          "type": "blocks_delete"
+        }
+      ]
+    },
+    {
+      "id": "hierarchy:hierarchy:twinmaker_hierarchy:twinmaker_hierarchy",
+      "owner_deployer": "TwinmakerHierarchyDeployer",
+      "depends_on": [
+        {
+          "id": "core:l4:twinmaker_workspace:twinmaker_workspace",
+          "type": "create_after"
+        },
+        {
+          "id": "iot:l4:device_component_type:twinmaker_component_type",
+          "type": "runtime_uses"
+        }
+      ]
+    },
+    {
+      "id": "hierarchy:hierarchy:twinmaker_entity:twinmaker_entity",
+      "owner_deployer": "TwinmakerHierarchyDeployer",
+      "depends_on": [
+        {
+          "id": "hierarchy:hierarchy:twinmaker_hierarchy:twinmaker_hierarchy",
+          "type": "create_after"
+        },
+        {
+          "id": "core:l4:twinmaker_workspace:twinmaker_workspace",
+          "type": "create_after"
+        }
+      ]
+    },
+    {
+      "id": "hierarchy:hierarchy:twinmaker_component:twinmaker_component",
+      "owner_deployer": "TwinmakerHierarchyDeployer",
+      "depends_on": [
+        {
+          "id": "hierarchy:hierarchy:twinmaker_entity:twinmaker_entity",
+          "type": "create_after"
+        },
+        {
+          "id": "iot:l4:device_component_type:twinmaker_component_type",
+          "type": "create_after"
+        }
+      ]
+    },
+    {
+      "id": "event_actions:event_actions:event_action:event_action",
+      "owner_deployer": "LambdaActionsDeployer",
+      "lifecycle_artifact": true,
+      "depends_on": [
+        {
+          "id": "core:l2:event_checker_lambda:lambda_function",
+          "type": "runtime_uses"
+        }
+      ]
+    },
+    {
+      "id": "event_actions:event_actions:event_action_iam:iam",
+      "owner_deployer": "LambdaActionsDeployer",
+      "depends_on": [
+        {
+          "id": "event_actions:event_actions:event_action:event_action",
+          "type": "create_after"
+        }
+      ]
+    },
+    {
+      "id": "event_actions:event_actions:event_action_iam_managed_policy_attachment:iam_managed_policy_attachment",
+      "owner_deployer": "LambdaActionsDeployer",
+      "depends_on": [
+        {
+          "id": "event_actions:event_actions:event_action_iam:iam",
+          "type": "create_after"
+        }
+      ]
+    },
+    {
+      "id": "event_actions:event_actions:event_action_lambda:lambda_function",
+      "owner_deployer": "LambdaActionsDeployer",
+      "depends_on": [
+        {
+          "id": "event_actions:event_actions:event_action_iam:iam",
+          "type": "create_after"
+        },
+        {
+          "id": "event_actions:event_actions:event_action_iam_managed_policy_attachment:iam_managed_policy_attachment",
+          "type": "create_after"
+        }
+      ]
+    },
+    {
+      "id": "init_values:init_values:init_value:init_value",
+      "owner_deployer": "InitValuesDeployer",
+      "depends_on": []
+    },
+    {
+      "id": "init_values:init_values:init_value_mqtt_publish:iot_message",
+      "owner_deployer": "InitValuesDeployer",
+      "lifecycle_artifact": true,
+      "depends_on": [
+        {
+          "id": "init_values:init_values:init_value:init_value",
+          "type": "create_after"
+        },
+        {
+          "id": "core:l1:dispatcher_iot_rule:iot_rule",
+          "type": "runtime_uses"
+        },
+        {
+          "id": "core:l1:dispatcher_lambda:lambda_function",
+          "type": "runtime_uses"
+        },
+        {
+          "id": "iot:l2:processor_lambda:lambda_function",
+          "type": "runtime_uses"
+        },
+        {
+          "id": "core:l2:persister_lambda:lambda_function",
+          "type": "runtime_uses"
+        },
+        {
+          "id": "core:l2:event_checker_lambda:lambda_function",
+          "type": "runtime_uses"
+        },
+        {
+          "id": "core:l3_hot:hot_dynamodb_table:dynamodb_table",
+          "type": "runtime_uses"
+        }
+      ]
+    }
+  ]
+}

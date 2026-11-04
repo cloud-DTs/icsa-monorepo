@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "skills": {
+    "pytest": {
+      "source": "C:/Users/User/AppData/Local/Temp/prowler-pytest-553eea23858540ce9447fcfd06c70f00/skills/pytest",
+      "sourceType": "local",
+      "computedHash": "62599ea317ba7b4dce88f48e988e2d10a263fea6bd331919e2e108726b0732d2"
+    }
+  }
+}

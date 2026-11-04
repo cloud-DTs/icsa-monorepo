@@ -1,0 +1,20 @@
+[
+  {
+    "id": "sensor-a",
+    "properties": [
+      {
+        "name": "temperature",
+        "dataType": "DOUBLE"
+      }
+    ]
+  },
+  {
+    "id": "sensor-b",
+    "properties": [
+      {
+        "name": "temperature",
+        "dataType": "DOUBLE"
+      }
+    ]
+  }
+]

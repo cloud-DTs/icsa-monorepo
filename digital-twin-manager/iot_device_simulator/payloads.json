@@ -1,0 +1,26 @@
+[
+  {
+    "iotDeviceId": "temperature-sensor-2",
+    "time": "",
+    "temperature": 28
+  },
+  {
+    "iotDeviceId": "temperature-sensor-1",
+    "time": "",
+    "temperature": 29
+  },
+  {
+    "iotDeviceId": "pressure-sensor-1",
+    "time": "",
+    "pressure": 11,
+    "density": 22,
+    "hardness": 33
+  },
+  {
+    "iotDeviceId": "pressure-sensor-1",
+    "time": "",
+    "pressure": 15,
+    "density": 18,
+    "hardness": 66
+  }
+]

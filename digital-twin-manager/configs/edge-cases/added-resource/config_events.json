@@ -1,0 +1,39 @@
+[
+    {
+        "condition": "mzd2dGWWdntbBdeCzpUZ8v.p13.consumption > dZbP84rWQjLX6jSpAyxLdJ.batteryconst_component.mComp",
+        "action": {
+            "type": "lambda",
+            "pathToCode": "./lambda_functions/event_actions/high-temperature-callback",
+            "functionName": "alertAction",
+            "external": false,
+            "feedback": {
+                "type": "mqtt",
+                "topic": "EXTERN_TPIC",
+                "payload": {
+                    "message": "High Consumption Alert"
+                }
+            }
+        }
+    },
+    {
+        "condition": "mzd2dGWWdntbBdeCzpUZ8v.p13.consumption > mzd2dGWWdntbBdeCzpUZ8v.sieVerchargeconst_component.maxConsumption",
+        "action": {
+            "type": "lambda",
+            "functionName": "alertAction",
+            "external": true,
+            "feedback": {
+                "type": "mqtt",
+                "iotDeviceId": "GaNW7B2mByyNdMXN7BfzKn",
+                "payload": "action-result"
+            }
+        }
+    },
+    {
+        "condition": "mzd2dGWWdntbBdeCzpUZ8v.p13.consumption > mzd2dGWWdntbBdeCzpUZ8v.sieVerchargeconst_component.maxConsumption",
+        "action": {
+            "type": "lambda",
+            "functionName": "alertAction",
+            "external": true
+        }
+    }
+]
