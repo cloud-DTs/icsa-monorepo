@@ -1,0 +1,3441 @@
+{
+  "twin": "MGridICSA",
+  "account": "717556240325",
+  "region": "eu-west-1",
+  "created": "2026-10-27T12:54:14.227028+00:00",
+  "prowler_report": "security-audit-output\\prowler-output-717556240325-20261027142759.ocsf.json",
+  "findings": [
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "Lambda function environment variables are encrypted with a customer-managed KMS key",
+      "resource": "MGridICSA-balance5"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "Lambda function environment variables are encrypted with a customer-managed KMS key",
+      "resource": "MGridICSA-balance4"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "Lambda function environment variables are encrypted with a customer-managed KMS key",
+      "resource": "MGridICSA-balance3"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "Lambda function environment variables are encrypted with a customer-managed KMS key",
+      "resource": "MGridICSA-balance2"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "Lambda function environment variables are encrypted with a customer-managed KMS key",
+      "resource": "MGridICSA-balance1"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "Lambda function environment variables are encrypted with a customer-managed KMS key",
+      "resource": "MGridICSA-2cZCzRjVzixfbj9ZT3sixHconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "Lambda function environment variables are encrypted with a customer-managed KMS key",
+      "resource": "MGridICSA-6q2xcvucupQVkyPF9XHgvcconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "Lambda function environment variables are encrypted with a customer-managed KMS key",
+      "resource": "MGridICSA-UiqfxUR8X7ahuCmAexdMkw-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "Lambda function environment variables are encrypted with a customer-managed KMS key",
+      "resource": "MGridICSA-KQXpk2bdLTkmPLEibF5j5Bconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "Lambda function environment variables are encrypted with a customer-managed KMS key",
+      "resource": "MGridICSA-a63ct3yLYTEGVNPBpQPKQW-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "Lambda function environment variables are encrypted with a customer-managed KMS key",
+      "resource": "MGridICSA-BUEHEPstgU2rUTw5HAzYWAconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "Lambda function environment variables are encrypted with a customer-managed KMS key",
+      "resource": "MGridICSA-kmfTGKjPPXVV4bVDjZ2sQr-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "Lambda function environment variables are encrypted with a customer-managed KMS key",
+      "resource": "MGridICSA-eiUgZSyHRkWiEbiTEDUETDconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "Lambda function environment variables are encrypted with a customer-managed KMS key",
+      "resource": "MGridICSA-For2VxU4uN8wqyVfEfQe7M-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "Lambda function environment variables are encrypted with a customer-managed KMS key",
+      "resource": "MGridICSA-2xSATRJmJH4SMXncFxQcPeconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "Lambda function environment variables are encrypted with a customer-managed KMS key",
+      "resource": "MGridICSA-Ww3oLXJRsZvoyjUtn6YQ4B-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "Lambda function environment variables are encrypted with a customer-managed KMS key",
+      "resource": "MGridICSA-Aro6AUFm4ST5eoHfQvZXRH-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "Lambda function environment variables are encrypted with a customer-managed KMS key",
+      "resource": "MGridICSA-2QdTahXxpwZgdjwSQBTxFu-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "Lambda function environment variables are encrypted with a customer-managed KMS key",
+      "resource": "MGridICSA-mEFwZkHwdDEMdGMGwe3bkG-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "Lambda function environment variables are encrypted with a customer-managed KMS key",
+      "resource": "MGridICSA-cold-to-archive-mover"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "Lambda function environment variables are encrypted with a customer-managed KMS key",
+      "resource": "MGridICSA-hot-reader"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "Lambda function environment variables are encrypted with a customer-managed KMS key",
+      "resource": "MGridICSA-hot-to-cold-mover"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "Lambda function environment variables are encrypted with a customer-managed KMS key",
+      "resource": "MGridICSA-event-checker"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "Lambda function environment variables are encrypted with a customer-managed KMS key",
+      "resource": "MGridICSA-event-feedback"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "Lambda function environment variables are encrypted with a customer-managed KMS key",
+      "resource": "MGridICSA-persister"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "Lambda function environment variables are encrypted with a customer-managed KMS key",
+      "resource": "MGridICSA-dispatcher"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Low",
+      "status": "FAIL",
+      "title": "Lambda function is deployed inside a VPC",
+      "resource": "MGridICSA-balance5"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Low",
+      "status": "FAIL",
+      "title": "Lambda function is deployed inside a VPC",
+      "resource": "MGridICSA-balance4"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Low",
+      "status": "FAIL",
+      "title": "Lambda function is deployed inside a VPC",
+      "resource": "MGridICSA-balance3"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Low",
+      "status": "FAIL",
+      "title": "Lambda function is deployed inside a VPC",
+      "resource": "MGridICSA-balance2"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Low",
+      "status": "FAIL",
+      "title": "Lambda function is deployed inside a VPC",
+      "resource": "MGridICSA-balance1"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Low",
+      "status": "FAIL",
+      "title": "Lambda function is deployed inside a VPC",
+      "resource": "MGridICSA-2cZCzRjVzixfbj9ZT3sixHconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Low",
+      "status": "FAIL",
+      "title": "Lambda function is deployed inside a VPC",
+      "resource": "MGridICSA-6q2xcvucupQVkyPF9XHgvcconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Low",
+      "status": "FAIL",
+      "title": "Lambda function is deployed inside a VPC",
+      "resource": "MGridICSA-UiqfxUR8X7ahuCmAexdMkw-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Low",
+      "status": "FAIL",
+      "title": "Lambda function is deployed inside a VPC",
+      "resource": "MGridICSA-KQXpk2bdLTkmPLEibF5j5Bconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Low",
+      "status": "FAIL",
+      "title": "Lambda function is deployed inside a VPC",
+      "resource": "MGridICSA-a63ct3yLYTEGVNPBpQPKQW-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Low",
+      "status": "FAIL",
+      "title": "Lambda function is deployed inside a VPC",
+      "resource": "MGridICSA-BUEHEPstgU2rUTw5HAzYWAconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Low",
+      "status": "FAIL",
+      "title": "Lambda function is deployed inside a VPC",
+      "resource": "MGridICSA-kmfTGKjPPXVV4bVDjZ2sQr-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Low",
+      "status": "FAIL",
+      "title": "Lambda function is deployed inside a VPC",
+      "resource": "MGridICSA-eiUgZSyHRkWiEbiTEDUETDconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Low",
+      "status": "FAIL",
+      "title": "Lambda function is deployed inside a VPC",
+      "resource": "MGridICSA-For2VxU4uN8wqyVfEfQe7M-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Low",
+      "status": "FAIL",
+      "title": "Lambda function is deployed inside a VPC",
+      "resource": "MGridICSA-2xSATRJmJH4SMXncFxQcPeconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Low",
+      "status": "FAIL",
+      "title": "Lambda function is deployed inside a VPC",
+      "resource": "MGridICSA-Ww3oLXJRsZvoyjUtn6YQ4B-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Low",
+      "status": "FAIL",
+      "title": "Lambda function is deployed inside a VPC",
+      "resource": "MGridICSA-Aro6AUFm4ST5eoHfQvZXRH-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Low",
+      "status": "FAIL",
+      "title": "Lambda function is deployed inside a VPC",
+      "resource": "MGridICSA-2QdTahXxpwZgdjwSQBTxFu-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Low",
+      "status": "FAIL",
+      "title": "Lambda function is deployed inside a VPC",
+      "resource": "MGridICSA-mEFwZkHwdDEMdGMGwe3bkG-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Low",
+      "status": "FAIL",
+      "title": "Lambda function is deployed inside a VPC",
+      "resource": "MGridICSA-cold-to-archive-mover"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Low",
+      "status": "FAIL",
+      "title": "Lambda function is deployed inside a VPC",
+      "resource": "MGridICSA-hot-reader"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Low",
+      "status": "FAIL",
+      "title": "Lambda function is deployed inside a VPC",
+      "resource": "MGridICSA-hot-to-cold-mover"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Low",
+      "status": "FAIL",
+      "title": "Lambda function is deployed inside a VPC",
+      "resource": "MGridICSA-event-checker"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Low",
+      "status": "FAIL",
+      "title": "Lambda function is deployed inside a VPC",
+      "resource": "MGridICSA-event-feedback"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Low",
+      "status": "FAIL",
+      "title": "Lambda function is deployed inside a VPC",
+      "resource": "MGridICSA-persister"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Low",
+      "status": "FAIL",
+      "title": "Lambda function is deployed inside a VPC",
+      "resource": "MGridICSA-dispatcher"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Low",
+      "status": "FAIL",
+      "title": "Lambda function Invoke API calls are recorded by CloudTrail",
+      "resource": "MGridICSA-balance5"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Low",
+      "status": "FAIL",
+      "title": "Lambda function Invoke API calls are recorded by CloudTrail",
+      "resource": "MGridICSA-balance4"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Low",
+      "status": "FAIL",
+      "title": "Lambda function Invoke API calls are recorded by CloudTrail",
+      "resource": "MGridICSA-balance3"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Low",
+      "status": "FAIL",
+      "title": "Lambda function Invoke API calls are recorded by CloudTrail",
+      "resource": "MGridICSA-balance2"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Low",
+      "status": "FAIL",
+      "title": "Lambda function Invoke API calls are recorded by CloudTrail",
+      "resource": "MGridICSA-balance1"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Low",
+      "status": "FAIL",
+      "title": "Lambda function Invoke API calls are recorded by CloudTrail",
+      "resource": "MGridICSA-2cZCzRjVzixfbj9ZT3sixHconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Low",
+      "status": "FAIL",
+      "title": "Lambda function Invoke API calls are recorded by CloudTrail",
+      "resource": "MGridICSA-6q2xcvucupQVkyPF9XHgvcconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Low",
+      "status": "FAIL",
+      "title": "Lambda function Invoke API calls are recorded by CloudTrail",
+      "resource": "MGridICSA-UiqfxUR8X7ahuCmAexdMkw-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Low",
+      "status": "FAIL",
+      "title": "Lambda function Invoke API calls are recorded by CloudTrail",
+      "resource": "MGridICSA-KQXpk2bdLTkmPLEibF5j5Bconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Low",
+      "status": "FAIL",
+      "title": "Lambda function Invoke API calls are recorded by CloudTrail",
+      "resource": "MGridICSA-a63ct3yLYTEGVNPBpQPKQW-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Low",
+      "status": "FAIL",
+      "title": "Lambda function Invoke API calls are recorded by CloudTrail",
+      "resource": "MGridICSA-BUEHEPstgU2rUTw5HAzYWAconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Low",
+      "status": "FAIL",
+      "title": "Lambda function Invoke API calls are recorded by CloudTrail",
+      "resource": "MGridICSA-kmfTGKjPPXVV4bVDjZ2sQr-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Low",
+      "status": "FAIL",
+      "title": "Lambda function Invoke API calls are recorded by CloudTrail",
+      "resource": "MGridICSA-eiUgZSyHRkWiEbiTEDUETDconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Low",
+      "status": "FAIL",
+      "title": "Lambda function Invoke API calls are recorded by CloudTrail",
+      "resource": "MGridICSA-For2VxU4uN8wqyVfEfQe7M-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Low",
+      "status": "FAIL",
+      "title": "Lambda function Invoke API calls are recorded by CloudTrail",
+      "resource": "MGridICSA-2xSATRJmJH4SMXncFxQcPeconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Low",
+      "status": "FAIL",
+      "title": "Lambda function Invoke API calls are recorded by CloudTrail",
+      "resource": "MGridICSA-Ww3oLXJRsZvoyjUtn6YQ4B-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Low",
+      "status": "FAIL",
+      "title": "Lambda function Invoke API calls are recorded by CloudTrail",
+      "resource": "MGridICSA-Aro6AUFm4ST5eoHfQvZXRH-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Low",
+      "status": "FAIL",
+      "title": "Lambda function Invoke API calls are recorded by CloudTrail",
+      "resource": "MGridICSA-2QdTahXxpwZgdjwSQBTxFu-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Low",
+      "status": "FAIL",
+      "title": "Lambda function Invoke API calls are recorded by CloudTrail",
+      "resource": "MGridICSA-mEFwZkHwdDEMdGMGwe3bkG-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Low",
+      "status": "FAIL",
+      "title": "Lambda function Invoke API calls are recorded by CloudTrail",
+      "resource": "MGridICSA-cold-to-archive-mover"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Low",
+      "status": "FAIL",
+      "title": "Lambda function Invoke API calls are recorded by CloudTrail",
+      "resource": "MGridICSA-hot-reader"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Low",
+      "status": "FAIL",
+      "title": "Lambda function Invoke API calls are recorded by CloudTrail",
+      "resource": "MGridICSA-hot-to-cold-mover"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Low",
+      "status": "FAIL",
+      "title": "Lambda function Invoke API calls are recorded by CloudTrail",
+      "resource": "MGridICSA-event-checker"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Low",
+      "status": "FAIL",
+      "title": "Lambda function Invoke API calls are recorded by CloudTrail",
+      "resource": "MGridICSA-event-feedback"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Low",
+      "status": "FAIL",
+      "title": "Lambda function Invoke API calls are recorded by CloudTrail",
+      "resource": "MGridICSA-persister"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Low",
+      "status": "FAIL",
+      "title": "Lambda function Invoke API calls are recorded by CloudTrail",
+      "resource": "MGridICSA-dispatcher"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "Lambda function has a Dead Letter Queue configured",
+      "resource": "MGridICSA-balance5"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "Lambda function has a Dead Letter Queue configured",
+      "resource": "MGridICSA-balance4"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "Lambda function has a Dead Letter Queue configured",
+      "resource": "MGridICSA-balance3"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "Lambda function has a Dead Letter Queue configured",
+      "resource": "MGridICSA-balance2"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "Lambda function has a Dead Letter Queue configured",
+      "resource": "MGridICSA-balance1"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "Lambda function has a Dead Letter Queue configured",
+      "resource": "MGridICSA-2cZCzRjVzixfbj9ZT3sixHconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "Lambda function has a Dead Letter Queue configured",
+      "resource": "MGridICSA-6q2xcvucupQVkyPF9XHgvcconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "Lambda function has a Dead Letter Queue configured",
+      "resource": "MGridICSA-UiqfxUR8X7ahuCmAexdMkw-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "Lambda function has a Dead Letter Queue configured",
+      "resource": "MGridICSA-KQXpk2bdLTkmPLEibF5j5Bconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "Lambda function has a Dead Letter Queue configured",
+      "resource": "MGridICSA-a63ct3yLYTEGVNPBpQPKQW-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "Lambda function has a Dead Letter Queue configured",
+      "resource": "MGridICSA-BUEHEPstgU2rUTw5HAzYWAconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "Lambda function has a Dead Letter Queue configured",
+      "resource": "MGridICSA-kmfTGKjPPXVV4bVDjZ2sQr-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "Lambda function has a Dead Letter Queue configured",
+      "resource": "MGridICSA-eiUgZSyHRkWiEbiTEDUETDconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "Lambda function has a Dead Letter Queue configured",
+      "resource": "MGridICSA-For2VxU4uN8wqyVfEfQe7M-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "Lambda function has a Dead Letter Queue configured",
+      "resource": "MGridICSA-2xSATRJmJH4SMXncFxQcPeconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "Lambda function has a Dead Letter Queue configured",
+      "resource": "MGridICSA-Ww3oLXJRsZvoyjUtn6YQ4B-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "Lambda function has a Dead Letter Queue configured",
+      "resource": "MGridICSA-Aro6AUFm4ST5eoHfQvZXRH-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "Lambda function has a Dead Letter Queue configured",
+      "resource": "MGridICSA-2QdTahXxpwZgdjwSQBTxFu-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "Lambda function has a Dead Letter Queue configured",
+      "resource": "MGridICSA-mEFwZkHwdDEMdGMGwe3bkG-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "Lambda function has a Dead Letter Queue configured",
+      "resource": "MGridICSA-cold-to-archive-mover"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "Lambda function has a Dead Letter Queue configured",
+      "resource": "MGridICSA-hot-reader"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "Lambda function has a Dead Letter Queue configured",
+      "resource": "MGridICSA-hot-to-cold-mover"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "Lambda function has a Dead Letter Queue configured",
+      "resource": "MGridICSA-event-checker"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "Lambda function has a Dead Letter Queue configured",
+      "resource": "MGridICSA-event-feedback"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "Lambda function has a Dead Letter Queue configured",
+      "resource": "MGridICSA-persister"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "Lambda function has a Dead Letter Queue configured",
+      "resource": "MGridICSA-dispatcher"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "Lambda function environment variables do not contain secrets",
+      "resource": "MGridICSA-balance5"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "Lambda function environment variables do not contain secrets",
+      "resource": "MGridICSA-balance4"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "Lambda function environment variables do not contain secrets",
+      "resource": "MGridICSA-balance3"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "Lambda function environment variables do not contain secrets",
+      "resource": "MGridICSA-balance2"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "Lambda function environment variables do not contain secrets",
+      "resource": "MGridICSA-balance1"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "Lambda function environment variables do not contain secrets",
+      "resource": "MGridICSA-2cZCzRjVzixfbj9ZT3sixHconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "Lambda function environment variables do not contain secrets",
+      "resource": "MGridICSA-6q2xcvucupQVkyPF9XHgvcconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "Lambda function environment variables do not contain secrets",
+      "resource": "MGridICSA-UiqfxUR8X7ahuCmAexdMkw-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "Lambda function environment variables do not contain secrets",
+      "resource": "MGridICSA-KQXpk2bdLTkmPLEibF5j5Bconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "Lambda function environment variables do not contain secrets",
+      "resource": "MGridICSA-a63ct3yLYTEGVNPBpQPKQW-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "Lambda function environment variables do not contain secrets",
+      "resource": "MGridICSA-BUEHEPstgU2rUTw5HAzYWAconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "Lambda function environment variables do not contain secrets",
+      "resource": "MGridICSA-kmfTGKjPPXVV4bVDjZ2sQr-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "Lambda function environment variables do not contain secrets",
+      "resource": "MGridICSA-eiUgZSyHRkWiEbiTEDUETDconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "Lambda function environment variables do not contain secrets",
+      "resource": "MGridICSA-For2VxU4uN8wqyVfEfQe7M-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "Lambda function environment variables do not contain secrets",
+      "resource": "MGridICSA-2xSATRJmJH4SMXncFxQcPeconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "Lambda function environment variables do not contain secrets",
+      "resource": "MGridICSA-Ww3oLXJRsZvoyjUtn6YQ4B-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "Lambda function environment variables do not contain secrets",
+      "resource": "MGridICSA-Aro6AUFm4ST5eoHfQvZXRH-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "Lambda function environment variables do not contain secrets",
+      "resource": "MGridICSA-2QdTahXxpwZgdjwSQBTxFu-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "Lambda function environment variables do not contain secrets",
+      "resource": "MGridICSA-mEFwZkHwdDEMdGMGwe3bkG-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "Lambda function environment variables do not contain secrets",
+      "resource": "MGridICSA-cold-to-archive-mover"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "Lambda function environment variables do not contain secrets",
+      "resource": "MGridICSA-hot-reader"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "Lambda function environment variables do not contain secrets",
+      "resource": "MGridICSA-hot-to-cold-mover"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "Lambda function environment variables do not contain secrets",
+      "resource": "MGridICSA-event-checker"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "Lambda function environment variables do not contain secrets",
+      "resource": "MGridICSA-event-feedback"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "Lambda function environment variables do not contain secrets",
+      "resource": "MGridICSA-persister"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "Lambda function environment variables do not contain secrets",
+      "resource": "MGridICSA-dispatcher"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "Lambda function resource-based policy does not allow public access",
+      "resource": "MGridICSA-balance5"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "Lambda function resource-based policy does not allow public access",
+      "resource": "MGridICSA-balance4"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "Lambda function resource-based policy does not allow public access",
+      "resource": "MGridICSA-balance3"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "Lambda function resource-based policy does not allow public access",
+      "resource": "MGridICSA-balance2"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "Lambda function resource-based policy does not allow public access",
+      "resource": "MGridICSA-balance1"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "Lambda function resource-based policy does not allow public access",
+      "resource": "MGridICSA-2cZCzRjVzixfbj9ZT3sixHconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "Lambda function resource-based policy does not allow public access",
+      "resource": "MGridICSA-6q2xcvucupQVkyPF9XHgvcconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "Lambda function resource-based policy does not allow public access",
+      "resource": "MGridICSA-UiqfxUR8X7ahuCmAexdMkw-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "Lambda function resource-based policy does not allow public access",
+      "resource": "MGridICSA-KQXpk2bdLTkmPLEibF5j5Bconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "Lambda function resource-based policy does not allow public access",
+      "resource": "MGridICSA-a63ct3yLYTEGVNPBpQPKQW-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "Lambda function resource-based policy does not allow public access",
+      "resource": "MGridICSA-BUEHEPstgU2rUTw5HAzYWAconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "Lambda function resource-based policy does not allow public access",
+      "resource": "MGridICSA-kmfTGKjPPXVV4bVDjZ2sQr-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "Lambda function resource-based policy does not allow public access",
+      "resource": "MGridICSA-eiUgZSyHRkWiEbiTEDUETDconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "Lambda function resource-based policy does not allow public access",
+      "resource": "MGridICSA-For2VxU4uN8wqyVfEfQe7M-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "Lambda function resource-based policy does not allow public access",
+      "resource": "MGridICSA-2xSATRJmJH4SMXncFxQcPeconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "Lambda function resource-based policy does not allow public access",
+      "resource": "MGridICSA-Ww3oLXJRsZvoyjUtn6YQ4B-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "Lambda function resource-based policy does not allow public access",
+      "resource": "MGridICSA-Aro6AUFm4ST5eoHfQvZXRH-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "Lambda function resource-based policy does not allow public access",
+      "resource": "MGridICSA-2QdTahXxpwZgdjwSQBTxFu-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "Lambda function resource-based policy does not allow public access",
+      "resource": "MGridICSA-mEFwZkHwdDEMdGMGwe3bkG-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "Lambda function resource-based policy does not allow public access",
+      "resource": "MGridICSA-cold-to-archive-mover"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "Lambda function resource-based policy does not allow public access",
+      "resource": "MGridICSA-hot-reader"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "Lambda function resource-based policy does not allow public access",
+      "resource": "MGridICSA-hot-to-cold-mover"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "Lambda function resource-based policy does not allow public access",
+      "resource": "MGridICSA-event-checker"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "Lambda function resource-based policy does not allow public access",
+      "resource": "MGridICSA-event-feedback"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "Lambda function resource-based policy does not allow public access",
+      "resource": "MGridICSA-persister"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "Lambda function resource-based policy does not allow public access",
+      "resource": "MGridICSA-dispatcher"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "High",
+      "status": "PASS",
+      "title": "Lambda function does not use cross-account layers",
+      "resource": "MGridICSA-balance5"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "High",
+      "status": "PASS",
+      "title": "Lambda function does not use cross-account layers",
+      "resource": "MGridICSA-balance4"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "High",
+      "status": "PASS",
+      "title": "Lambda function does not use cross-account layers",
+      "resource": "MGridICSA-balance3"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "High",
+      "status": "PASS",
+      "title": "Lambda function does not use cross-account layers",
+      "resource": "MGridICSA-balance2"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "High",
+      "status": "PASS",
+      "title": "Lambda function does not use cross-account layers",
+      "resource": "MGridICSA-balance1"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "High",
+      "status": "PASS",
+      "title": "Lambda function does not use cross-account layers",
+      "resource": "MGridICSA-2cZCzRjVzixfbj9ZT3sixHconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "High",
+      "status": "PASS",
+      "title": "Lambda function does not use cross-account layers",
+      "resource": "MGridICSA-6q2xcvucupQVkyPF9XHgvcconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "High",
+      "status": "PASS",
+      "title": "Lambda function does not use cross-account layers",
+      "resource": "MGridICSA-UiqfxUR8X7ahuCmAexdMkw-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "High",
+      "status": "PASS",
+      "title": "Lambda function does not use cross-account layers",
+      "resource": "MGridICSA-KQXpk2bdLTkmPLEibF5j5Bconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "High",
+      "status": "PASS",
+      "title": "Lambda function does not use cross-account layers",
+      "resource": "MGridICSA-a63ct3yLYTEGVNPBpQPKQW-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "High",
+      "status": "PASS",
+      "title": "Lambda function does not use cross-account layers",
+      "resource": "MGridICSA-BUEHEPstgU2rUTw5HAzYWAconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "High",
+      "status": "PASS",
+      "title": "Lambda function does not use cross-account layers",
+      "resource": "MGridICSA-kmfTGKjPPXVV4bVDjZ2sQr-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "High",
+      "status": "PASS",
+      "title": "Lambda function does not use cross-account layers",
+      "resource": "MGridICSA-eiUgZSyHRkWiEbiTEDUETDconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "High",
+      "status": "PASS",
+      "title": "Lambda function does not use cross-account layers",
+      "resource": "MGridICSA-For2VxU4uN8wqyVfEfQe7M-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "High",
+      "status": "PASS",
+      "title": "Lambda function does not use cross-account layers",
+      "resource": "MGridICSA-2xSATRJmJH4SMXncFxQcPeconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "High",
+      "status": "PASS",
+      "title": "Lambda function does not use cross-account layers",
+      "resource": "MGridICSA-Ww3oLXJRsZvoyjUtn6YQ4B-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "High",
+      "status": "PASS",
+      "title": "Lambda function does not use cross-account layers",
+      "resource": "MGridICSA-Aro6AUFm4ST5eoHfQvZXRH-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "High",
+      "status": "PASS",
+      "title": "Lambda function does not use cross-account layers",
+      "resource": "MGridICSA-2QdTahXxpwZgdjwSQBTxFu-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "High",
+      "status": "PASS",
+      "title": "Lambda function does not use cross-account layers",
+      "resource": "MGridICSA-mEFwZkHwdDEMdGMGwe3bkG-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "High",
+      "status": "PASS",
+      "title": "Lambda function does not use cross-account layers",
+      "resource": "MGridICSA-cold-to-archive-mover"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "High",
+      "status": "PASS",
+      "title": "Lambda function does not use cross-account layers",
+      "resource": "MGridICSA-hot-reader"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "High",
+      "status": "PASS",
+      "title": "Lambda function does not use cross-account layers",
+      "resource": "MGridICSA-hot-to-cold-mover"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "High",
+      "status": "PASS",
+      "title": "Lambda function does not use cross-account layers",
+      "resource": "MGridICSA-event-checker"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "High",
+      "status": "PASS",
+      "title": "Lambda function does not use cross-account layers",
+      "resource": "MGridICSA-event-feedback"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "High",
+      "status": "PASS",
+      "title": "Lambda function does not use cross-account layers",
+      "resource": "MGridICSA-persister"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "High",
+      "status": "PASS",
+      "title": "Lambda function does not use cross-account layers",
+      "resource": "MGridICSA-dispatcher"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "Lambda function uses a supported runtime",
+      "resource": "MGridICSA-balance5"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "Lambda function uses a supported runtime",
+      "resource": "MGridICSA-balance4"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "Lambda function uses a supported runtime",
+      "resource": "MGridICSA-balance3"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "Lambda function uses a supported runtime",
+      "resource": "MGridICSA-balance2"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "Lambda function uses a supported runtime",
+      "resource": "MGridICSA-balance1"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "Lambda function uses a supported runtime",
+      "resource": "MGridICSA-2cZCzRjVzixfbj9ZT3sixHconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "Lambda function uses a supported runtime",
+      "resource": "MGridICSA-6q2xcvucupQVkyPF9XHgvcconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "Lambda function uses a supported runtime",
+      "resource": "MGridICSA-UiqfxUR8X7ahuCmAexdMkw-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "Lambda function uses a supported runtime",
+      "resource": "MGridICSA-KQXpk2bdLTkmPLEibF5j5Bconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "Lambda function uses a supported runtime",
+      "resource": "MGridICSA-a63ct3yLYTEGVNPBpQPKQW-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "Lambda function uses a supported runtime",
+      "resource": "MGridICSA-BUEHEPstgU2rUTw5HAzYWAconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "Lambda function uses a supported runtime",
+      "resource": "MGridICSA-kmfTGKjPPXVV4bVDjZ2sQr-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "Lambda function uses a supported runtime",
+      "resource": "MGridICSA-eiUgZSyHRkWiEbiTEDUETDconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "Lambda function uses a supported runtime",
+      "resource": "MGridICSA-For2VxU4uN8wqyVfEfQe7M-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "Lambda function uses a supported runtime",
+      "resource": "MGridICSA-2xSATRJmJH4SMXncFxQcPeconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "Lambda function uses a supported runtime",
+      "resource": "MGridICSA-Ww3oLXJRsZvoyjUtn6YQ4B-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "Lambda function uses a supported runtime",
+      "resource": "MGridICSA-Aro6AUFm4ST5eoHfQvZXRH-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "Lambda function uses a supported runtime",
+      "resource": "MGridICSA-2QdTahXxpwZgdjwSQBTxFu-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "Lambda function uses a supported runtime",
+      "resource": "MGridICSA-mEFwZkHwdDEMdGMGwe3bkG-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "Lambda function uses a supported runtime",
+      "resource": "MGridICSA-cold-to-archive-mover"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "Lambda function uses a supported runtime",
+      "resource": "MGridICSA-hot-reader"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "Lambda function uses a supported runtime",
+      "resource": "MGridICSA-hot-to-cold-mover"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "Lambda function uses a supported runtime",
+      "resource": "MGridICSA-event-checker"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "Lambda function uses a supported runtime",
+      "resource": "MGridICSA-event-feedback"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "Lambda function uses a supported runtime",
+      "resource": "MGridICSA-persister"
+    },
+    {
+      "source": "prowler",
+      "service": "awslambda",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "Lambda function uses a supported runtime",
+      "resource": "MGridICSA-dispatcher"
+    },
+    {
+      "source": "prowler",
+      "service": "cloudwatch",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "CloudWatch log group is encrypted with an AWS KMS key",
+      "resource": "/aws/lambda/MGridICSA-hot-reader"
+    },
+    {
+      "source": "prowler",
+      "service": "cloudwatch",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "CloudWatch log group is encrypted with an AWS KMS key",
+      "resource": "/aws/lambda/MGridICSA-hot-to-cold-mover"
+    },
+    {
+      "source": "prowler",
+      "service": "cloudwatch",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "CloudWatch log group is encrypted with an AWS KMS key",
+      "resource": "/aws/lambda/MGridICSA-cold-to-archive-mover"
+    },
+    {
+      "source": "prowler",
+      "service": "cloudwatch",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "CloudWatch log group is encrypted with an AWS KMS key",
+      "resource": "/aws/lambda/MGridICSA-eiUgZSyHRkWiEbiTEDUETDconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "cloudwatch",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "CloudWatch log group is encrypted with an AWS KMS key",
+      "resource": "/aws/lambda/MGridICSA-BUEHEPstgU2rUTw5HAzYWAconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "cloudwatch",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "CloudWatch log group is encrypted with an AWS KMS key",
+      "resource": "/aws/lambda/MGridICSA-KQXpk2bdLTkmPLEibF5j5Bconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "cloudwatch",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "CloudWatch log group is encrypted with an AWS KMS key",
+      "resource": "/aws/lambda/MGridICSA-event-checker"
+    },
+    {
+      "source": "prowler",
+      "service": "cloudwatch",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "CloudWatch log group is encrypted with an AWS KMS key",
+      "resource": "/aws/lambda/MGridICSA-persister"
+    },
+    {
+      "source": "prowler",
+      "service": "cloudwatch",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "CloudWatch log group is encrypted with an AWS KMS key",
+      "resource": "/aws/lambda/MGridICSA-6q2xcvucupQVkyPF9XHgvcconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "cloudwatch",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "CloudWatch log group is encrypted with an AWS KMS key",
+      "resource": "/aws/lambda/MGridICSA-2xSATRJmJH4SMXncFxQcPeconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "cloudwatch",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "CloudWatch log group is encrypted with an AWS KMS key",
+      "resource": "/aws/lambda/MGridICSA-2cZCzRjVzixfbj9ZT3sixHconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "cloudwatch",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "CloudWatch log group is encrypted with an AWS KMS key",
+      "resource": "/aws/lambda/MGridICSA-dispatcher"
+    },
+    {
+      "source": "prowler",
+      "service": "cloudwatch",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "CloudWatch log group contains no secrets in its log events",
+      "resource": "/aws/lambda/MGridICSA-hot-reader"
+    },
+    {
+      "source": "prowler",
+      "service": "cloudwatch",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "CloudWatch log group contains no secrets in its log events",
+      "resource": "/aws/lambda/MGridICSA-hot-to-cold-mover"
+    },
+    {
+      "source": "prowler",
+      "service": "cloudwatch",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "CloudWatch log group contains no secrets in its log events",
+      "resource": "/aws/lambda/MGridICSA-cold-to-archive-mover"
+    },
+    {
+      "source": "prowler",
+      "service": "cloudwatch",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "CloudWatch log group contains no secrets in its log events",
+      "resource": "/aws/lambda/MGridICSA-eiUgZSyHRkWiEbiTEDUETDconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "cloudwatch",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "CloudWatch log group contains no secrets in its log events",
+      "resource": "/aws/lambda/MGridICSA-BUEHEPstgU2rUTw5HAzYWAconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "cloudwatch",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "CloudWatch log group contains no secrets in its log events",
+      "resource": "/aws/lambda/MGridICSA-KQXpk2bdLTkmPLEibF5j5Bconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "cloudwatch",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "CloudWatch log group contains no secrets in its log events",
+      "resource": "/aws/lambda/MGridICSA-event-checker"
+    },
+    {
+      "source": "prowler",
+      "service": "cloudwatch",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "CloudWatch log group contains no secrets in its log events",
+      "resource": "/aws/lambda/MGridICSA-persister"
+    },
+    {
+      "source": "prowler",
+      "service": "cloudwatch",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "CloudWatch log group contains no secrets in its log events",
+      "resource": "/aws/lambda/MGridICSA-6q2xcvucupQVkyPF9XHgvcconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "cloudwatch",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "CloudWatch log group contains no secrets in its log events",
+      "resource": "/aws/lambda/MGridICSA-2xSATRJmJH4SMXncFxQcPeconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "cloudwatch",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "CloudWatch log group contains no secrets in its log events",
+      "resource": "/aws/lambda/MGridICSA-2cZCzRjVzixfbj9ZT3sixHconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "cloudwatch",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "CloudWatch log group contains no secrets in its log events",
+      "resource": "/aws/lambda/MGridICSA-dispatcher"
+    },
+    {
+      "source": "prowler",
+      "service": "cloudwatch",
+      "severity": "High",
+      "status": "PASS",
+      "title": "CloudWatch Log Group is not publicly accessible",
+      "resource": "/aws/lambda/MGridICSA-hot-reader"
+    },
+    {
+      "source": "prowler",
+      "service": "cloudwatch",
+      "severity": "High",
+      "status": "PASS",
+      "title": "CloudWatch Log Group is not publicly accessible",
+      "resource": "/aws/lambda/MGridICSA-hot-to-cold-mover"
+    },
+    {
+      "source": "prowler",
+      "service": "cloudwatch",
+      "severity": "High",
+      "status": "PASS",
+      "title": "CloudWatch Log Group is not publicly accessible",
+      "resource": "/aws/lambda/MGridICSA-cold-to-archive-mover"
+    },
+    {
+      "source": "prowler",
+      "service": "cloudwatch",
+      "severity": "High",
+      "status": "PASS",
+      "title": "CloudWatch Log Group is not publicly accessible",
+      "resource": "/aws/lambda/MGridICSA-eiUgZSyHRkWiEbiTEDUETDconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "cloudwatch",
+      "severity": "High",
+      "status": "PASS",
+      "title": "CloudWatch Log Group is not publicly accessible",
+      "resource": "/aws/lambda/MGridICSA-BUEHEPstgU2rUTw5HAzYWAconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "cloudwatch",
+      "severity": "High",
+      "status": "PASS",
+      "title": "CloudWatch Log Group is not publicly accessible",
+      "resource": "/aws/lambda/MGridICSA-KQXpk2bdLTkmPLEibF5j5Bconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "cloudwatch",
+      "severity": "High",
+      "status": "PASS",
+      "title": "CloudWatch Log Group is not publicly accessible",
+      "resource": "/aws/lambda/MGridICSA-event-checker"
+    },
+    {
+      "source": "prowler",
+      "service": "cloudwatch",
+      "severity": "High",
+      "status": "PASS",
+      "title": "CloudWatch Log Group is not publicly accessible",
+      "resource": "/aws/lambda/MGridICSA-persister"
+    },
+    {
+      "source": "prowler",
+      "service": "cloudwatch",
+      "severity": "High",
+      "status": "PASS",
+      "title": "CloudWatch Log Group is not publicly accessible",
+      "resource": "/aws/lambda/MGridICSA-6q2xcvucupQVkyPF9XHgvcconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "cloudwatch",
+      "severity": "High",
+      "status": "PASS",
+      "title": "CloudWatch Log Group is not publicly accessible",
+      "resource": "/aws/lambda/MGridICSA-2xSATRJmJH4SMXncFxQcPeconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "cloudwatch",
+      "severity": "High",
+      "status": "PASS",
+      "title": "CloudWatch Log Group is not publicly accessible",
+      "resource": "/aws/lambda/MGridICSA-2cZCzRjVzixfbj9ZT3sixHconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "cloudwatch",
+      "severity": "High",
+      "status": "PASS",
+      "title": "CloudWatch Log Group is not publicly accessible",
+      "resource": "/aws/lambda/MGridICSA-dispatcher"
+    },
+    {
+      "source": "prowler",
+      "service": "cloudwatch",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "CloudWatch log group has a retention policy of at least the configured minimum days or never expires",
+      "resource": "/aws/lambda/MGridICSA-hot-reader"
+    },
+    {
+      "source": "prowler",
+      "service": "cloudwatch",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "CloudWatch log group has a retention policy of at least the configured minimum days or never expires",
+      "resource": "/aws/lambda/MGridICSA-hot-to-cold-mover"
+    },
+    {
+      "source": "prowler",
+      "service": "cloudwatch",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "CloudWatch log group has a retention policy of at least the configured minimum days or never expires",
+      "resource": "/aws/lambda/MGridICSA-cold-to-archive-mover"
+    },
+    {
+      "source": "prowler",
+      "service": "cloudwatch",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "CloudWatch log group has a retention policy of at least the configured minimum days or never expires",
+      "resource": "/aws/lambda/MGridICSA-eiUgZSyHRkWiEbiTEDUETDconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "cloudwatch",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "CloudWatch log group has a retention policy of at least the configured minimum days or never expires",
+      "resource": "/aws/lambda/MGridICSA-BUEHEPstgU2rUTw5HAzYWAconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "cloudwatch",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "CloudWatch log group has a retention policy of at least the configured minimum days or never expires",
+      "resource": "/aws/lambda/MGridICSA-KQXpk2bdLTkmPLEibF5j5Bconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "cloudwatch",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "CloudWatch log group has a retention policy of at least the configured minimum days or never expires",
+      "resource": "/aws/lambda/MGridICSA-event-checker"
+    },
+    {
+      "source": "prowler",
+      "service": "cloudwatch",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "CloudWatch log group has a retention policy of at least the configured minimum days or never expires",
+      "resource": "/aws/lambda/MGridICSA-persister"
+    },
+    {
+      "source": "prowler",
+      "service": "cloudwatch",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "CloudWatch log group has a retention policy of at least the configured minimum days or never expires",
+      "resource": "/aws/lambda/MGridICSA-6q2xcvucupQVkyPF9XHgvcconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "cloudwatch",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "CloudWatch log group has a retention policy of at least the configured minimum days or never expires",
+      "resource": "/aws/lambda/MGridICSA-2xSATRJmJH4SMXncFxQcPeconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "cloudwatch",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "CloudWatch log group has a retention policy of at least the configured minimum days or never expires",
+      "resource": "/aws/lambda/MGridICSA-2cZCzRjVzixfbj9ZT3sixHconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "cloudwatch",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "CloudWatch log group has a retention policy of at least the configured minimum days or never expires",
+      "resource": "/aws/lambda/MGridICSA-dispatcher"
+    },
+    {
+      "source": "prowler",
+      "service": "dynamodb",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "DynamoDB table uses on-demand capacity or has auto scaling enabled for read and write capacity units",
+      "resource": "MGridICSA-hot-iot-data"
+    },
+    {
+      "source": "prowler",
+      "service": "dynamodb",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "DynamoDB table has deletion protection enabled",
+      "resource": "MGridICSA-hot-iot-data"
+    },
+    {
+      "source": "prowler",
+      "service": "dynamodb",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "DynamoDB table is protected by a backup plan",
+      "resource": "MGridICSA-hot-iot-data"
+    },
+    {
+      "source": "prowler",
+      "service": "dynamodb",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "DynamoDB table is encrypted at rest with AWS KMS",
+      "resource": "MGridICSA-hot-iot-data"
+    },
+    {
+      "source": "prowler",
+      "service": "dynamodb",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "DynamoDB table has point-in-time recovery (PITR) enabled",
+      "resource": "MGridICSA-hot-iot-data"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "High",
+      "status": "PASS",
+      "title": "IAM inline policy does not allow privilege escalation",
+      "resource": "MGridICSA-cold-to-archive-mover/ColdArchiveMoverScopedAccess"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "High",
+      "status": "PASS",
+      "title": "IAM inline policy does not allow privilege escalation",
+      "resource": "MGridICSA-event-checker/EventCheckerScopedAccess"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "High",
+      "status": "PASS",
+      "title": "IAM inline policy does not allow privilege escalation",
+      "resource": "MGridICSA-event-feedback/EventFeedbackScopedAccess"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "High",
+      "status": "PASS",
+      "title": "IAM inline policy does not allow privilege escalation",
+      "resource": "MGridICSA-grafana/GrafanaExecutionPolicy"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "High",
+      "status": "PASS",
+      "title": "IAM inline policy does not allow privilege escalation",
+      "resource": "MGridICSA-hot-reader/HotReaderScopedAccess"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "High",
+      "status": "PASS",
+      "title": "IAM inline policy does not allow privilege escalation",
+      "resource": "MGridICSA-hot-to-cold-mover/HotColdMoverScopedAccess"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "High",
+      "status": "PASS",
+      "title": "IAM inline policy does not allow privilege escalation",
+      "resource": "MGridICSA-persister/PersisterScopedAccess"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "High",
+      "status": "PASS",
+      "title": "IAM inline policy does not allow privilege escalation",
+      "resource": "MGridICSA-twinmaker/TwinMakerExecutionPolicy"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "Inline IAM policy does not allow '*:*' administrative privileges",
+      "resource": "MGridICSA-cold-to-archive-mover/ColdArchiveMoverScopedAccess"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "Inline IAM policy does not allow '*:*' administrative privileges",
+      "resource": "MGridICSA-event-checker/EventCheckerScopedAccess"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "Inline IAM policy does not allow '*:*' administrative privileges",
+      "resource": "MGridICSA-event-feedback/EventFeedbackScopedAccess"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "Inline IAM policy does not allow '*:*' administrative privileges",
+      "resource": "MGridICSA-grafana/GrafanaExecutionPolicy"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "Inline IAM policy does not allow '*:*' administrative privileges",
+      "resource": "MGridICSA-hot-reader/HotReaderScopedAccess"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "Inline IAM policy does not allow '*:*' administrative privileges",
+      "resource": "MGridICSA-hot-to-cold-mover/HotColdMoverScopedAccess"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "Inline IAM policy does not allow '*:*' administrative privileges",
+      "resource": "MGridICSA-persister/PersisterScopedAccess"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "Inline IAM policy does not allow '*:*' administrative privileges",
+      "resource": "MGridICSA-twinmaker/TwinMakerExecutionPolicy"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "High",
+      "status": "PASS",
+      "title": "Inline IAM policy does not allow 'cloudtrail:*' privileges",
+      "resource": "MGridICSA-cold-to-archive-mover/ColdArchiveMoverScopedAccess"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "High",
+      "status": "PASS",
+      "title": "Inline IAM policy does not allow 'cloudtrail:*' privileges",
+      "resource": "MGridICSA-event-checker/EventCheckerScopedAccess"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "High",
+      "status": "PASS",
+      "title": "Inline IAM policy does not allow 'cloudtrail:*' privileges",
+      "resource": "MGridICSA-event-feedback/EventFeedbackScopedAccess"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "High",
+      "status": "PASS",
+      "title": "Inline IAM policy does not allow 'cloudtrail:*' privileges",
+      "resource": "MGridICSA-grafana/GrafanaExecutionPolicy"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "High",
+      "status": "PASS",
+      "title": "Inline IAM policy does not allow 'cloudtrail:*' privileges",
+      "resource": "MGridICSA-hot-reader/HotReaderScopedAccess"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "High",
+      "status": "PASS",
+      "title": "Inline IAM policy does not allow 'cloudtrail:*' privileges",
+      "resource": "MGridICSA-hot-to-cold-mover/HotColdMoverScopedAccess"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "High",
+      "status": "PASS",
+      "title": "Inline IAM policy does not allow 'cloudtrail:*' privileges",
+      "resource": "MGridICSA-persister/PersisterScopedAccess"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "High",
+      "status": "PASS",
+      "title": "Inline IAM policy does not allow 'cloudtrail:*' privileges",
+      "resource": "MGridICSA-twinmaker/TwinMakerExecutionPolicy"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "Inline IAM policy does not allow kms:* privileges",
+      "resource": "MGridICSA-cold-to-archive-mover/ColdArchiveMoverScopedAccess"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "Inline IAM policy does not allow kms:* privileges",
+      "resource": "MGridICSA-event-checker/EventCheckerScopedAccess"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "Inline IAM policy does not allow kms:* privileges",
+      "resource": "MGridICSA-event-feedback/EventFeedbackScopedAccess"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "Inline IAM policy does not allow kms:* privileges",
+      "resource": "MGridICSA-grafana/GrafanaExecutionPolicy"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "Inline IAM policy does not allow kms:* privileges",
+      "resource": "MGridICSA-hot-reader/HotReaderScopedAccess"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "Inline IAM policy does not allow kms:* privileges",
+      "resource": "MGridICSA-hot-to-cold-mover/HotColdMoverScopedAccess"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "Inline IAM policy does not allow kms:* privileges",
+      "resource": "MGridICSA-persister/PersisterScopedAccess"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "Inline IAM policy does not allow kms:* privileges",
+      "resource": "MGridICSA-twinmaker/TwinMakerExecutionPolicy"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "Inline IAM policy does not allow 'aws-marketplace:Subscribe' on all resources",
+      "resource": "MGridICSA-cold-to-archive-mover/ColdArchiveMoverScopedAccess"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "Inline IAM policy does not allow 'aws-marketplace:Subscribe' on all resources",
+      "resource": "MGridICSA-event-checker/EventCheckerScopedAccess"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "Inline IAM policy does not allow 'aws-marketplace:Subscribe' on all resources",
+      "resource": "MGridICSA-event-feedback/EventFeedbackScopedAccess"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "Inline IAM policy does not allow 'aws-marketplace:Subscribe' on all resources",
+      "resource": "MGridICSA-grafana/GrafanaExecutionPolicy"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "Inline IAM policy does not allow 'aws-marketplace:Subscribe' on all resources",
+      "resource": "MGridICSA-hot-reader/HotReaderScopedAccess"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "Inline IAM policy does not allow 'aws-marketplace:Subscribe' on all resources",
+      "resource": "MGridICSA-hot-to-cold-mover/HotColdMoverScopedAccess"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "Inline IAM policy does not allow 'aws-marketplace:Subscribe' on all resources",
+      "resource": "MGridICSA-persister/PersisterScopedAccess"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "Inline IAM policy does not allow 'aws-marketplace:Subscribe' on all resources",
+      "resource": "MGridICSA-twinmaker/TwinMakerExecutionPolicy"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "High",
+      "status": "PASS",
+      "title": "IAM role does not have AdministratorAccess policy attached",
+      "resource": "MGridICSA-grafana"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "High",
+      "status": "PASS",
+      "title": "IAM role does not grant ReadOnlyAccess to external AWS accounts",
+      "resource": "MGridICSA-grafana"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "High",
+      "status": "PASS",
+      "title": "IAM service role prevents cross-service confused deputy attack",
+      "resource": "MGridICSA-2cZCzRjVzixfbj9ZT3sixHconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "High",
+      "status": "PASS",
+      "title": "IAM service role prevents cross-service confused deputy attack",
+      "resource": "MGridICSA-2QdTahXxpwZgdjwSQBTxFu-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "High",
+      "status": "PASS",
+      "title": "IAM service role prevents cross-service confused deputy attack",
+      "resource": "MGridICSA-2xSATRJmJH4SMXncFxQcPeconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "High",
+      "status": "PASS",
+      "title": "IAM service role prevents cross-service confused deputy attack",
+      "resource": "MGridICSA-6q2xcvucupQVkyPF9XHgvcconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "High",
+      "status": "PASS",
+      "title": "IAM service role prevents cross-service confused deputy attack",
+      "resource": "MGridICSA-a63ct3yLYTEGVNPBpQPKQW-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "High",
+      "status": "PASS",
+      "title": "IAM service role prevents cross-service confused deputy attack",
+      "resource": "MGridICSA-Aro6AUFm4ST5eoHfQvZXRH-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "High",
+      "status": "PASS",
+      "title": "IAM service role prevents cross-service confused deputy attack",
+      "resource": "MGridICSA-balance1"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "High",
+      "status": "PASS",
+      "title": "IAM service role prevents cross-service confused deputy attack",
+      "resource": "MGridICSA-balance2"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "High",
+      "status": "PASS",
+      "title": "IAM service role prevents cross-service confused deputy attack",
+      "resource": "MGridICSA-balance3"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "High",
+      "status": "PASS",
+      "title": "IAM service role prevents cross-service confused deputy attack",
+      "resource": "MGridICSA-balance4"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "High",
+      "status": "PASS",
+      "title": "IAM service role prevents cross-service confused deputy attack",
+      "resource": "MGridICSA-balance5"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "High",
+      "status": "PASS",
+      "title": "IAM service role prevents cross-service confused deputy attack",
+      "resource": "MGridICSA-BUEHEPstgU2rUTw5HAzYWAconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "High",
+      "status": "PASS",
+      "title": "IAM service role prevents cross-service confused deputy attack",
+      "resource": "MGridICSA-cold-to-archive-mover"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "High",
+      "status": "PASS",
+      "title": "IAM service role prevents cross-service confused deputy attack",
+      "resource": "MGridICSA-dispatcher"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "High",
+      "status": "PASS",
+      "title": "IAM service role prevents cross-service confused deputy attack",
+      "resource": "MGridICSA-eiUgZSyHRkWiEbiTEDUETDconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "High",
+      "status": "PASS",
+      "title": "IAM service role prevents cross-service confused deputy attack",
+      "resource": "MGridICSA-event-checker"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "High",
+      "status": "PASS",
+      "title": "IAM service role prevents cross-service confused deputy attack",
+      "resource": "MGridICSA-event-feedback"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "High",
+      "status": "PASS",
+      "title": "IAM service role prevents cross-service confused deputy attack",
+      "resource": "MGridICSA-For2VxU4uN8wqyVfEfQe7M-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "High",
+      "status": "PASS",
+      "title": "IAM service role prevents cross-service confused deputy attack",
+      "resource": "MGridICSA-hot-reader"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "High",
+      "status": "PASS",
+      "title": "IAM service role prevents cross-service confused deputy attack",
+      "resource": "MGridICSA-hot-to-cold-mover"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "High",
+      "status": "PASS",
+      "title": "IAM service role prevents cross-service confused deputy attack",
+      "resource": "MGridICSA-kmfTGKjPPXVV4bVDjZ2sQr-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "High",
+      "status": "PASS",
+      "title": "IAM service role prevents cross-service confused deputy attack",
+      "resource": "MGridICSA-KQXpk2bdLTkmPLEibF5j5Bconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "High",
+      "status": "PASS",
+      "title": "IAM service role prevents cross-service confused deputy attack",
+      "resource": "MGridICSA-lambda-chain"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "High",
+      "status": "PASS",
+      "title": "IAM service role prevents cross-service confused deputy attack",
+      "resource": "MGridICSA-mEFwZkHwdDEMdGMGwe3bkG-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "High",
+      "status": "PASS",
+      "title": "IAM service role prevents cross-service confused deputy attack",
+      "resource": "MGridICSA-persister"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "High",
+      "status": "PASS",
+      "title": "IAM service role prevents cross-service confused deputy attack",
+      "resource": "MGridICSA-twinmaker"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "High",
+      "status": "PASS",
+      "title": "IAM service role prevents cross-service confused deputy attack",
+      "resource": "MGridICSA-UiqfxUR8X7ahuCmAexdMkw-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "High",
+      "status": "PASS",
+      "title": "IAM service role prevents cross-service confused deputy attack",
+      "resource": "MGridICSA-Ww3oLXJRsZvoyjUtn6YQ4B-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "IAM role trust policy confines AWS service principals to a specific source account",
+      "resource": "MGridICSA-2cZCzRjVzixfbj9ZT3sixHconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "IAM role trust policy confines AWS service principals to a specific source account",
+      "resource": "MGridICSA-2QdTahXxpwZgdjwSQBTxFu-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "IAM role trust policy confines AWS service principals to a specific source account",
+      "resource": "MGridICSA-2xSATRJmJH4SMXncFxQcPeconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "IAM role trust policy confines AWS service principals to a specific source account",
+      "resource": "MGridICSA-6q2xcvucupQVkyPF9XHgvcconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "IAM role trust policy confines AWS service principals to a specific source account",
+      "resource": "MGridICSA-a63ct3yLYTEGVNPBpQPKQW-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "IAM role trust policy confines AWS service principals to a specific source account",
+      "resource": "MGridICSA-Aro6AUFm4ST5eoHfQvZXRH-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "IAM role trust policy confines AWS service principals to a specific source account",
+      "resource": "MGridICSA-balance1"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "IAM role trust policy confines AWS service principals to a specific source account",
+      "resource": "MGridICSA-balance2"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "IAM role trust policy confines AWS service principals to a specific source account",
+      "resource": "MGridICSA-balance3"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "IAM role trust policy confines AWS service principals to a specific source account",
+      "resource": "MGridICSA-balance4"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "IAM role trust policy confines AWS service principals to a specific source account",
+      "resource": "MGridICSA-balance5"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "IAM role trust policy confines AWS service principals to a specific source account",
+      "resource": "MGridICSA-BUEHEPstgU2rUTw5HAzYWAconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "IAM role trust policy confines AWS service principals to a specific source account",
+      "resource": "MGridICSA-cold-to-archive-mover"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "IAM role trust policy confines AWS service principals to a specific source account",
+      "resource": "MGridICSA-dispatcher"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "IAM role trust policy confines AWS service principals to a specific source account",
+      "resource": "MGridICSA-eiUgZSyHRkWiEbiTEDUETDconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "IAM role trust policy confines AWS service principals to a specific source account",
+      "resource": "MGridICSA-event-checker"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "IAM role trust policy confines AWS service principals to a specific source account",
+      "resource": "MGridICSA-event-feedback"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "IAM role trust policy confines AWS service principals to a specific source account",
+      "resource": "MGridICSA-For2VxU4uN8wqyVfEfQe7M-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "IAM role trust policy confines AWS service principals to a specific source account",
+      "resource": "MGridICSA-grafana"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "IAM role trust policy confines AWS service principals to a specific source account",
+      "resource": "MGridICSA-hot-reader"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "IAM role trust policy confines AWS service principals to a specific source account",
+      "resource": "MGridICSA-hot-to-cold-mover"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "IAM role trust policy confines AWS service principals to a specific source account",
+      "resource": "MGridICSA-kmfTGKjPPXVV4bVDjZ2sQr-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "IAM role trust policy confines AWS service principals to a specific source account",
+      "resource": "MGridICSA-KQXpk2bdLTkmPLEibF5j5Bconst_component-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "IAM role trust policy confines AWS service principals to a specific source account",
+      "resource": "MGridICSA-lambda-chain"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "IAM role trust policy confines AWS service principals to a specific source account",
+      "resource": "MGridICSA-mEFwZkHwdDEMdGMGwe3bkG-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "IAM role trust policy confines AWS service principals to a specific source account",
+      "resource": "MGridICSA-persister"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "IAM role trust policy confines AWS service principals to a specific source account",
+      "resource": "MGridICSA-twinmaker"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "IAM role trust policy confines AWS service principals to a specific source account",
+      "resource": "MGridICSA-UiqfxUR8X7ahuCmAexdMkw-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "iam",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "IAM role trust policy confines AWS service principals to a specific source account",
+      "resource": "MGridICSA-Ww3oLXJRsZvoyjUtn6YQ4B-processor"
+    },
+    {
+      "source": "prowler",
+      "service": "s3",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "S3 bucket has bucket ACLs disabled",
+      "resource": "mgridicsa-archive-iot-data"
+    },
+    {
+      "source": "prowler",
+      "service": "s3",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "S3 bucket has bucket ACLs disabled",
+      "resource": "mgridicsa-cold-iot-data"
+    },
+    {
+      "source": "prowler",
+      "service": "s3",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "S3 bucket has bucket ACLs disabled",
+      "resource": "mgridicsa-twinmaker"
+    },
+    {
+      "source": "prowler",
+      "service": "s3",
+      "severity": "High",
+      "status": "PASS",
+      "title": "S3 bucket policy does not allow cross-account access",
+      "resource": "mgridicsa-archive-iot-data"
+    },
+    {
+      "source": "prowler",
+      "service": "s3",
+      "severity": "High",
+      "status": "PASS",
+      "title": "S3 bucket policy does not allow cross-account access",
+      "resource": "mgridicsa-cold-iot-data"
+    },
+    {
+      "source": "prowler",
+      "service": "s3",
+      "severity": "High",
+      "status": "PASS",
+      "title": "S3 bucket policy does not allow cross-account access",
+      "resource": "mgridicsa-twinmaker"
+    },
+    {
+      "source": "prowler",
+      "service": "s3",
+      "severity": "Low",
+      "status": "FAIL",
+      "title": "S3 bucket has cross-region replication configured to a bucket in a different region",
+      "resource": "mgridicsa-archive-iot-data"
+    },
+    {
+      "source": "prowler",
+      "service": "s3",
+      "severity": "Low",
+      "status": "FAIL",
+      "title": "S3 bucket has cross-region replication configured to a bucket in a different region",
+      "resource": "mgridicsa-cold-iot-data"
+    },
+    {
+      "source": "prowler",
+      "service": "s3",
+      "severity": "Low",
+      "status": "FAIL",
+      "title": "S3 bucket has cross-region replication configured to a bucket in a different region",
+      "resource": "mgridicsa-twinmaker"
+    },
+    {
+      "source": "prowler",
+      "service": "s3",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "[DEPRECATED] S3 bucket has default server-side encryption (SSE) enabled",
+      "resource": "mgridicsa-archive-iot-data"
+    },
+    {
+      "source": "prowler",
+      "service": "s3",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "[DEPRECATED] S3 bucket has default server-side encryption (SSE) enabled",
+      "resource": "mgridicsa-cold-iot-data"
+    },
+    {
+      "source": "prowler",
+      "service": "s3",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "[DEPRECATED] S3 bucket has default server-side encryption (SSE) enabled",
+      "resource": "mgridicsa-twinmaker"
+    },
+    {
+      "source": "prowler",
+      "service": "s3",
+      "severity": "Low",
+      "status": "FAIL",
+      "title": "S3 bucket has event notifications enabled",
+      "resource": "mgridicsa-archive-iot-data"
+    },
+    {
+      "source": "prowler",
+      "service": "s3",
+      "severity": "Low",
+      "status": "FAIL",
+      "title": "S3 bucket has event notifications enabled",
+      "resource": "mgridicsa-cold-iot-data"
+    },
+    {
+      "source": "prowler",
+      "service": "s3",
+      "severity": "Low",
+      "status": "FAIL",
+      "title": "S3 bucket has event notifications enabled",
+      "resource": "mgridicsa-twinmaker"
+    },
+    {
+      "source": "prowler",
+      "service": "s3",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "S3 bucket has server-side encryption with AWS KMS",
+      "resource": "mgridicsa-archive-iot-data"
+    },
+    {
+      "source": "prowler",
+      "service": "s3",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "S3 bucket has server-side encryption with AWS KMS",
+      "resource": "mgridicsa-cold-iot-data"
+    },
+    {
+      "source": "prowler",
+      "service": "s3",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "S3 bucket has server-side encryption with AWS KMS",
+      "resource": "mgridicsa-twinmaker"
+    },
+    {
+      "source": "prowler",
+      "service": "s3",
+      "severity": "High",
+      "status": "PASS",
+      "title": "S3 bucket has Block Public Access with IgnorePublicAcls and RestrictPublicBuckets enabled at bucket or account level",
+      "resource": "mgridicsa-archive-iot-data"
+    },
+    {
+      "source": "prowler",
+      "service": "s3",
+      "severity": "High",
+      "status": "PASS",
+      "title": "S3 bucket has Block Public Access with IgnorePublicAcls and RestrictPublicBuckets enabled at bucket or account level",
+      "resource": "mgridicsa-cold-iot-data"
+    },
+    {
+      "source": "prowler",
+      "service": "s3",
+      "severity": "High",
+      "status": "PASS",
+      "title": "S3 bucket has Block Public Access with IgnorePublicAcls and RestrictPublicBuckets enabled at bucket or account level",
+      "resource": "mgridicsa-twinmaker"
+    },
+    {
+      "source": "prowler",
+      "service": "s3",
+      "severity": "Low",
+      "status": "FAIL",
+      "title": "S3 bucket has a lifecycle configuration enabled",
+      "resource": "mgridicsa-archive-iot-data"
+    },
+    {
+      "source": "prowler",
+      "service": "s3",
+      "severity": "Low",
+      "status": "FAIL",
+      "title": "S3 bucket has a lifecycle configuration enabled",
+      "resource": "mgridicsa-cold-iot-data"
+    },
+    {
+      "source": "prowler",
+      "service": "s3",
+      "severity": "Low",
+      "status": "FAIL",
+      "title": "S3 bucket has a lifecycle configuration enabled",
+      "resource": "mgridicsa-twinmaker"
+    },
+    {
+      "source": "prowler",
+      "service": "s3",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "S3 bucket has MFA Delete enabled",
+      "resource": "mgridicsa-archive-iot-data"
+    },
+    {
+      "source": "prowler",
+      "service": "s3",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "S3 bucket has MFA Delete enabled",
+      "resource": "mgridicsa-cold-iot-data"
+    },
+    {
+      "source": "prowler",
+      "service": "s3",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "S3 bucket has MFA Delete enabled",
+      "resource": "mgridicsa-twinmaker"
+    },
+    {
+      "source": "prowler",
+      "service": "s3",
+      "severity": "Low",
+      "status": "FAIL",
+      "title": "S3 bucket has Object Lock enabled",
+      "resource": "mgridicsa-archive-iot-data"
+    },
+    {
+      "source": "prowler",
+      "service": "s3",
+      "severity": "Low",
+      "status": "FAIL",
+      "title": "S3 bucket has Object Lock enabled",
+      "resource": "mgridicsa-cold-iot-data"
+    },
+    {
+      "source": "prowler",
+      "service": "s3",
+      "severity": "Low",
+      "status": "FAIL",
+      "title": "S3 bucket has Object Lock enabled",
+      "resource": "mgridicsa-twinmaker"
+    },
+    {
+      "source": "prowler",
+      "service": "s3",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "S3 bucket has object versioning enabled",
+      "resource": "mgridicsa-archive-iot-data"
+    },
+    {
+      "source": "prowler",
+      "service": "s3",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "S3 bucket has object versioning enabled",
+      "resource": "mgridicsa-cold-iot-data"
+    },
+    {
+      "source": "prowler",
+      "service": "s3",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "S3 bucket has object versioning enabled",
+      "resource": "mgridicsa-twinmaker"
+    },
+    {
+      "source": "prowler",
+      "service": "s3",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "S3 bucket policy does not allow public write access",
+      "resource": "mgridicsa-archive-iot-data"
+    },
+    {
+      "source": "prowler",
+      "service": "s3",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "S3 bucket policy does not allow public write access",
+      "resource": "mgridicsa-cold-iot-data"
+    },
+    {
+      "source": "prowler",
+      "service": "s3",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "S3 bucket policy does not allow public write access",
+      "resource": "mgridicsa-twinmaker"
+    },
+    {
+      "source": "prowler",
+      "service": "s3",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "S3 bucket is not publicly accessible to Everyone or Authenticated Users",
+      "resource": "mgridicsa-archive-iot-data"
+    },
+    {
+      "source": "prowler",
+      "service": "s3",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "S3 bucket is not publicly accessible to Everyone or Authenticated Users",
+      "resource": "mgridicsa-cold-iot-data"
+    },
+    {
+      "source": "prowler",
+      "service": "s3",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "S3 bucket is not publicly accessible to Everyone or Authenticated Users",
+      "resource": "mgridicsa-twinmaker"
+    },
+    {
+      "source": "prowler",
+      "service": "s3",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "S3 bucket is not publicly listable by Everyone or any authenticated AWS user",
+      "resource": "mgridicsa-archive-iot-data"
+    },
+    {
+      "source": "prowler",
+      "service": "s3",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "S3 bucket is not publicly listable by Everyone or any authenticated AWS user",
+      "resource": "mgridicsa-cold-iot-data"
+    },
+    {
+      "source": "prowler",
+      "service": "s3",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "S3 bucket is not publicly listable by Everyone or any authenticated AWS user",
+      "resource": "mgridicsa-twinmaker"
+    },
+    {
+      "source": "prowler",
+      "service": "s3",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "S3 bucket ACL does not grant write access to Everyone or any AWS customer",
+      "resource": "mgridicsa-archive-iot-data"
+    },
+    {
+      "source": "prowler",
+      "service": "s3",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "S3 bucket ACL does not grant write access to Everyone or any AWS customer",
+      "resource": "mgridicsa-cold-iot-data"
+    },
+    {
+      "source": "prowler",
+      "service": "s3",
+      "severity": "Critical",
+      "status": "PASS",
+      "title": "S3 bucket ACL does not grant write access to Everyone or any AWS customer",
+      "resource": "mgridicsa-twinmaker"
+    },
+    {
+      "source": "prowler",
+      "service": "s3",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "S3 bucket policy denies requests over insecure transport",
+      "resource": "mgridicsa-archive-iot-data"
+    },
+    {
+      "source": "prowler",
+      "service": "s3",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "S3 bucket policy denies requests over insecure transport",
+      "resource": "mgridicsa-cold-iot-data"
+    },
+    {
+      "source": "prowler",
+      "service": "s3",
+      "severity": "Medium",
+      "status": "PASS",
+      "title": "S3 bucket policy denies requests over insecure transport",
+      "resource": "mgridicsa-twinmaker"
+    },
+    {
+      "source": "prowler",
+      "service": "s3",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "S3 bucket has server access logging enabled",
+      "resource": "mgridicsa-archive-iot-data"
+    },
+    {
+      "source": "prowler",
+      "service": "s3",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "S3 bucket has server access logging enabled",
+      "resource": "mgridicsa-cold-iot-data"
+    },
+    {
+      "source": "prowler",
+      "service": "s3",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "S3 bucket has server access logging enabled",
+      "resource": "mgridicsa-twinmaker"
+    },
+    {
+      "source": "iot",
+      "service": "iot",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "IoT certificate is valid for 23 years",
+      "resource": "MGridICSA-2cZCzRjVzixfbj9ZT3sixHconst_component"
+    },
+    {
+      "source": "iot",
+      "service": "iot",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "IoT certificate is valid for 23 years",
+      "resource": "MGridICSA-6q2xcvucupQVkyPF9XHgvcconst_component"
+    },
+    {
+      "source": "iot",
+      "service": "iot",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "IoT certificate is valid for 23 years",
+      "resource": "MGridICSA-UiqfxUR8X7ahuCmAexdMkw"
+    },
+    {
+      "source": "iot",
+      "service": "iot",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "IoT certificate is valid for 23 years",
+      "resource": "MGridICSA-KQXpk2bdLTkmPLEibF5j5Bconst_component"
+    },
+    {
+      "source": "iot",
+      "service": "iot",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "IoT certificate is valid for 23 years",
+      "resource": "MGridICSA-a63ct3yLYTEGVNPBpQPKQW"
+    },
+    {
+      "source": "iot",
+      "service": "iot",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "IoT certificate is valid for 23 years",
+      "resource": "MGridICSA-BUEHEPstgU2rUTw5HAzYWAconst_component"
+    },
+    {
+      "source": "iot",
+      "service": "iot",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "IoT certificate is valid for 23 years",
+      "resource": "MGridICSA-kmfTGKjPPXVV4bVDjZ2sQr"
+    },
+    {
+      "source": "iot",
+      "service": "iot",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "IoT certificate is valid for 23 years",
+      "resource": "MGridICSA-eiUgZSyHRkWiEbiTEDUETDconst_component"
+    },
+    {
+      "source": "iot",
+      "service": "iot",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "IoT certificate is valid for 23 years",
+      "resource": "MGridICSA-For2VxU4uN8wqyVfEfQe7M"
+    },
+    {
+      "source": "iot",
+      "service": "iot",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "IoT certificate is valid for 23 years",
+      "resource": "MGridICSA-2xSATRJmJH4SMXncFxQcPeconst_component"
+    },
+    {
+      "source": "iot",
+      "service": "iot",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "IoT certificate is valid for 23 years",
+      "resource": "MGridICSA-Ww3oLXJRsZvoyjUtn6YQ4B"
+    },
+    {
+      "source": "iot",
+      "service": "iot",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "IoT certificate is valid for 23 years",
+      "resource": "MGridICSA-Aro6AUFm4ST5eoHfQvZXRH"
+    },
+    {
+      "source": "iot",
+      "service": "iot",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "IoT certificate is valid for 23 years",
+      "resource": "MGridICSA-2QdTahXxpwZgdjwSQBTxFu"
+    },
+    {
+      "source": "iot",
+      "service": "iot",
+      "severity": "Medium",
+      "status": "FAIL",
+      "title": "IoT certificate is valid for 23 years",
+      "resource": "MGridICSA-mEFwZkHwdDEMdGMGwe3bkG"
+    },
+    {
+      "source": "iot",
+      "service": "iot",
+      "severity": "Low",
+      "status": "FAIL",
+      "title": "IoT topic rule has no errorAction",
+      "resource": "MGridICSA_trigger_dispatcher"
+    },
+    {
+      "source": "iot",
+      "service": "iot",
+      "severity": "Low",
+      "status": "FAIL",
+      "title": "IoT topic rule uses the legacy SQL version 2015-10-08",
+      "resource": "MGridICSA_trigger_dispatcher"
+    },
+    {
+      "source": "twinmaker",
+      "service": "twinmaker",
+      "severity": "Low",
+      "status": "FAIL",
+      "title": "TwinMaker workspace has no tags",
+      "resource": "MGridICSA-twinmaker"
+    },
+    {
+      "source": "twinmaker",
+      "service": "twinmaker",
+      "severity": "Low",
+      "status": "FAIL",
+      "title": "Workspace bucket CORS allows any origin",
+      "resource": "mgridicsa-twinmaker"
+    }
+  ]
+}
