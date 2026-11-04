@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "digital-twin-evaluation"
+version = "0.1.0"
+description = "Repeatable evaluations of deployed digital twins"
+requires-python = ">=3.12"
+dependencies = ["boto3>=1.35,<2", "awsiotsdk>=1.31,<2"]
+
+[project.optional-dependencies]
+test = ["pytest>=8,<10"]
+
+[project.scripts]
+digital-twin-evaluation = "digital_twin_evaluation.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["digital_twin_evaluation*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
