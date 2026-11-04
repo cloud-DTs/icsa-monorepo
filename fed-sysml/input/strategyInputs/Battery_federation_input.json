@@ -1,0 +1,20 @@
+{
+  "name": "Battery",
+  "region": "eu-central-1",
+  "ssm_registry_prefix": "/Battery/event-registry",
+  "hot_reader_arn": "arn:aws:lambda:eu-central-1:717556240325:function:Battery-hot-reader",
+  "strategies": [
+    {
+      "eventName": "status",
+      "inputParameters": [
+        {
+          "name": "chargeValue",
+          "dataType": "INTEGER",
+          "id": "4udMBA6jAnnRf33MNHHP9P.p16.charges"
+        }
+      ],
+      "outputParameters": []
+    }
+  ],
+  "twinmaker_workspace_id": "Battery-twinmaker"
+}

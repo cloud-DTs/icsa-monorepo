@@ -1,0 +1,22 @@
+services:
+  fed-sysml:
+    platform: ${DOCKER_DEFAULT_PLATFORM:-linux/amd64}
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: fed-sysml:local
+    environment:
+      - AWS_ACCESS_KEY_ID
+      - AWS_SECRET_ACCESS_KEY
+      - AWS_SESSION_TOKEN
+      - AWS_REGION
+      - AWS_DEFAULT_REGION
+      - TF_IN_AUTOMATION=${TF_IN_AUTOMATION:-true}
+    volumes:
+      - type: bind
+        source: ./input
+        target: /pipeline/input
+        read_only: true
+      - type: bind
+        source: ./output
+        target: /pipeline/output

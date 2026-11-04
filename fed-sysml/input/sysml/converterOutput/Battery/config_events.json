@@ -1,0 +1,24 @@
+[
+    {
+        "condition": "4udMBA6jAnnRf33MNHHP9P.p16.isPlugged == 4udMBA6jAnnRf33MNHHP9P.Batteryconst_component.trueValue",
+        "action": {
+            "type": "lambda",
+            "pathToCode": "/home/marcocotrotzo/PycharmProjects/SymlCOnv/input/sysml/testLambdaFunctions/battery/status",
+            "functionName": "status",
+            "external": false,
+            "feedback": {
+                "type": "mqtt",
+                "topic": "Battery/iot-data",
+                "payload": "action-result"
+            },
+            "inputParameters": [
+                {
+                    "name": "chargeValue",
+                    "dataType": "INTEGER",
+                    "id": "4udMBA6jAnnRf33MNHHP9P.p16.charges"
+                }
+            ],
+            "outputParameters": []
+        }
+    }
+]

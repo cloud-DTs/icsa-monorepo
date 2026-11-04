@@ -1,0 +1,20 @@
+[
+    {
+        "condition": "QWB3zi3nv8UNdtvw8Fbkk8.PVconst_component.generatedPower == QWB3zi3nv8UNdtvw8Fbkk8.PVconst_component.generatedPower",
+        "action": {
+            "type": "lambda",
+            "pathToCode": "/home/marcocotrotzo/PycharmProjects/SymlCOnv/input/sysml/testLambdaFunctions/pv/production",
+            "functionName": "production",
+            "external": false,
+            "inputParameters": [
+                {
+                    "name": "generatedPower",
+                    "dataType": "DOUBLE",
+                    "value": 50.0,
+                    "id": "QWB3zi3nv8UNdtvw8Fbkk8.PVconst_component.generatedPower"
+                }
+            ],
+            "outputParameters": []
+        }
+    }
+]

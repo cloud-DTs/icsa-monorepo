@@ -1,0 +1,9 @@
+[submodule "DigitalTwinProfileSysMLv2"]
+	path = DigitalTwinProfileSysMLv2
+	url = https://github.com/cloud-DTs/DigitalTwinProfileSysMLv2.git
+[submodule "digital-twin-manager"]
+	path = digital-twin-manager
+	url = https://github.com/cloud-DTs/digital-twin-manager.git
+[submodule "CloudDeployerTestSimulator"]
+	path = CloudDeployerTestSimulator
+	url = https://github.com/cloud-DTs/CloudDeployerTestSimulator.git

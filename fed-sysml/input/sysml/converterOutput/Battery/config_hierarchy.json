@@ -1,0 +1,19 @@
+[
+    {
+        "id": "4udMBA6jAnnRf33MNHHP9P",
+        "type": "entity",
+        "name": "Battery",
+        "children": [
+            {
+                "iotDeviceId": "SwiB9jTPm8kzDXz6chmo5T",
+                "type": "component",
+                "name": "p16"
+            },
+            {
+                "iotDeviceId": "4udMBA6jAnnRf33MNHHP9Pconst_component",
+                "type": "component",
+                "name": "Batteryconst_component"
+            }
+        ]
+    }
+]
