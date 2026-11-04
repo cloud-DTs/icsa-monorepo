@@ -1,0 +1,34 @@
+services:
+  digital-twin-profile-sysml-v1:
+    platform: ${DOCKER_DEFAULT_PLATFORM:-linux/amd64}
+    build:
+      context: .
+      args:
+        APP_UID: ${DTP_UID:-1000}
+        APP_GID: ${DTP_GID:-1000}
+    image: digital-twin-profile-sysml-v1:local
+    container_name: digital-twin-profile-sysml-v1
+    user: "${DTP_UID:-1000}:${DTP_GID:-1000}"
+    environment:
+      DTP_PATH_MAP: "${DTP_PATH_MAP:-}"
+    command:
+      - "/pipeline/input/${MODEL_FILE:-model.xml}"
+      - "${TWIN_NAME:-dtwin}"
+    volumes:
+      - type: bind
+        source: ${PIPELINE_INPUT_HOST_DIR:-./pipeline/digital-twin-profile-sysml-v1/input}
+        target: /pipeline/input
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ${PIPELINE_OUTPUT_HOST_DIR:-./pipeline/digital-twin-profile-sysml-v1/output}
+        target: /pipeline/output
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ${PIPELINE_CODE_HOST_DIR:-./demo-code}
+        target: /pipeline/code
+        read_only: true
+        bind:
+          create_host_path: false

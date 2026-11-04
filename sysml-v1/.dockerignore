@@ -1,0 +1,5 @@
+# The image build only consumes the Maven descriptor and application sources.
+**
+!pom.xml
+!src/
+!src/**
