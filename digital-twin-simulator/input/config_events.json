@@ -3,7 +3,7 @@
         "condition": "4udMBA6jAnnRf33MNHHP9P.p16.isPlugged == 4udMBA6jAnnRf33MNHHP9P.Batteryconst_component.trueValue",
         "action": {
             "type": "lambda",
-            "pathToCode": "/home/marcocotrotzo/PycharmProjects/SymlCOnv/input/sysml/testLambdaFunctions/battery/status",
+            "pathToCode": "/pipeline/code/battery/status",
             "functionName": "status",
             "external": false,
             "feedback": {

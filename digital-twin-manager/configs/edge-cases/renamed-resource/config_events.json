@@ -1,6 +1,6 @@
 [
     {
-        "condition": "mzd2dGWWdntbBdeCzpUZ8vrenamed.p13.consumption > mzd2dGWWdntbBdeCzpUZ8vrenamed.sieVerchargeconst_component.maxConsumption",
+        "condition": "mzd2dGWWdntbBdeCzpUZ8vrenamed.p13.consumption > mzd2dGWWdntbBdeCzpUZ8vrenamed.chargerconst_component.maxConsumption",
         "action": {
             "type": "lambda",
             "functionName": "alertAction",
@@ -13,7 +13,7 @@
         }
     },
     {
-        "condition": "mzd2dGWWdntbBdeCzpUZ8vrenamed.p13.consumption > mzd2dGWWdntbBdeCzpUZ8vrenamed.sieVerchargeconst_component.maxConsumption",
+        "condition": "mzd2dGWWdntbBdeCzpUZ8vrenamed.p13.consumption > mzd2dGWWdntbBdeCzpUZ8vrenamed.chargerconst_component.maxConsumption",
         "action": {
             "type": "lambda",
             "functionName": "alertAction",
