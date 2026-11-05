@@ -1,0 +1,300 @@
+{
+  "group": "dt2",
+  "note": "Inline policies of this IAM group, as a reference. The account id is replaced by a placeholder.",
+  "inline_policies": [
+    {
+      "name": "dt-manager-grafana",
+      "document": {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Sid": "Layer5Grafana",
+            "Effect": "Allow",
+            "Action": [
+              "grafana:CreateWorkspace",
+              "grafana:DeleteWorkspace",
+              "grafana:DescribeWorkspace",
+              "grafana:ListWorkspaces",
+              "grafana:TagResource",
+              "grafana:UntagResource",
+              "grafana:ListTagsForResource",
+              "grafana:DescribeWorkspaceAuthentication",
+              "grafana:ListVersions"
+            ],
+            "Resource": "arn:aws:grafana:eu-west-1:123456789012:*"
+          }
+        ]
+      }
+    },
+    {
+      "name": "dt-manager-list-all-roles",
+      "document": {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": [
+              "iam:ListRoles",
+              "iot:ListPolicies",
+              "iot:ListThings",
+              "iot:DescribeEndpoint",
+              "iot:ListCertificates",
+              "backup:*"
+            ],
+            "Resource": "*"
+          }
+        ]
+      }
+    },
+    {
+      "name": "dt-manager-ssm",
+      "document": {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Sid": "Statement1",
+            "Effect": "Allow",
+            "Action": [
+              "ssm:DescribeParameters",
+              "backup:DescribeRegionSettings",
+              "s3files:*"
+            ],
+            "Resource": [
+              "arn:aws:ssm:eu-west-1:123456789012:*"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "dt-s3files",
+      "document": {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": "s3files:CreateFileSystem",
+            "Resource": "arn:aws:s3files:*:123456789012:*"
+          },
+          {
+            "Sid": "VisualEditor1",
+            "Effect": "Allow",
+            "Action": [
+              "s3files:*"
+            ],
+            "Resource": "arn:aws:s3files:*:123456789012:file-system/*"
+          },
+          {
+            "Sid": "VisualEditor2",
+            "Effect": "Allow",
+            "Action": [
+              "s3files:ListFileSystems"
+            ],
+            "Resource": "arn:aws:s3files:eu-west-1:123456789012:*"
+          }
+        ]
+      }
+    },
+    {
+      "name": "dt-statemachines",
+      "document": {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": [
+              "states:ListStateMachines",
+              "states:CreateStateMachine",
+              "states:DeleteStateMachine",
+              "states:DescribeStateMachine",
+              "states:ListExecutions"
+            ],
+            "Resource": "arn:aws:states:eu-west-1:123456789012:stateMachine:*"
+          }
+        ]
+      }
+    },
+    {
+      "name": "dt2-iot-core",
+      "document": {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Sid": "Layer1IoTCore",
+            "Effect": "Allow",
+            "Action": [
+              "iot:CreateThing",
+              "iot:DeleteThing",
+              "iot:DescribeThing",
+              "iot:CreateKeysAndCertificate",
+              "iot:CreatePolicy",
+              "iot:DeletePolicy",
+              "iot:AttachThingPrincipal",
+              "iot:DetachThingPrincipal",
+              "iot:AttachPolicy",
+              "iot:DetachPolicy",
+              "iot:UpdateCertificate",
+              "iot:DeleteCertificate",
+              "iot:ListThingPrincipals",
+              "iot:ListAttachedPolicies",
+              "iot:ListPolicyVersions",
+              "iot:DeletePolicyVersion",
+              "iot:CreateTopicRule",
+              "iot:DeleteTopicRule",
+              "iot:DescribeEndpoint",
+              "iot:GetTopicRule",
+              "iot:ListThingPrincipals",
+              "iot:ListThings",
+              "iot:ListPolicies",
+              "iot:Subscribe",
+              "iot:Receive",
+              "iot:Connect",
+              "iot:Publish"
+            ],
+            "Resource": "arn:aws:iot:eu-west-1:123456789012:*"
+          }
+        ]
+      }
+    },
+    {
+      "name": "DtcSsmParameterManagement_group",
+      "document": {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Sid": "AllowDtcSsmParameters",
+            "Effect": "Allow",
+            "Action": [
+              "ssm:PutParameter",
+              "ssm:GetParameter",
+              "ssm:GetParameters",
+              "ssm:DeleteParameter",
+              "ssm:ListTagsForResource",
+              "ssm:AddTagsToResource",
+              "ssm:RemoveTagsFromResource"
+            ],
+            "Resource": "arn:aws:ssm:eu-west-1:123456789012:parameter/dtc*/*"
+          },
+          {
+            "Sid": "AllowDescribeSsmParameters",
+            "Effect": "Allow",
+            "Action": [
+              "ssm:DescribeParameters"
+            ],
+            "Resource": "*"
+          }
+        ]
+      }
+    },
+    {
+      "name": "DtcStepFunctionsExecutionReadOnly_group",
+      "document": {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Sid": "AllowDtcStepFunctionsExecutionReadOnly",
+            "Effect": "Allow",
+            "Action": [
+              "states:DescribeStateMachineForExecution",
+              "states:GetExecutionHistory",
+              "states:DescribeExecution"
+            ],
+            "Resource": [
+              "arn:aws:states:eu-west-1:123456789012:execution:dtc*:*"
+            ]
+          },
+          {
+            "Sid": "AllowListDtcStepFunctionsExecutions",
+            "Effect": "Allow",
+            "Action": [
+              "states:ListExecutions"
+            ],
+            "Resource": [
+              "arn:aws:states:eu-west-1:123456789012:stateMachine:dtc*"
+            ]
+          },
+          {
+            "Sid": "AllowDescribeDtcStepFunctionsStateMachines",
+            "Effect": "Allow",
+            "Action": [
+              "states:DescribeStateMachine"
+            ],
+            "Resource": [
+              "arn:aws:states:eu-west-1:123456789012:stateMachine:dtc*"
+            ]
+          },
+          {
+            "Sid": "AllowValidateStateMachineDefinition",
+            "Effect": "Allow",
+            "Action": [
+              "states:ValidateStateMachineDefinition"
+            ],
+            "Resource": "*"
+          },
+          {
+            "Sid": "AllowDtcStepFunctionsStateMachines",
+            "Effect": "Allow",
+            "Action": [
+              "states:CreateStateMachine",
+              "states:UpdateStateMachine",
+              "states:DeleteStateMachine",
+              "states:DescribeStateMachine",
+              "states:ListTagsForResource",
+              "states:TagResource",
+              "states:UntagResource"
+            ],
+            "Resource": [
+              "arn:aws:states:eu-west-1:123456789012:stateMachine:dtc*"
+            ]
+          },
+          {
+            "Sid": "AllowListStepFunctionsStateMachines",
+            "Effect": "Allow",
+            "Action": [
+              "states:ListStateMachines",
+              "states:ListStateMachineVersions"
+            ],
+            "Resource": "*"
+          }
+        ]
+      }
+    },
+    {
+      "name": "dynamodb-listtables",
+      "document": {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": "dynamodb:ListTables",
+            "Resource": "*"
+          }
+        ]
+      }
+    },
+    {
+      "name": "publish-to-dt",
+      "document": {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Sid": "IoTDataPlanePublishDtc",
+            "Effect": "Allow",
+            "Action": [
+              "iot:Connect",
+              "iot:Publish"
+            ],
+            "Resource": [
+              "arn:aws:iot:eu-west-1:123456789012:client/*",
+              "arn:aws:iot:eu-west-1:123456789012:topic/dtc*"
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
