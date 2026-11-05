@@ -20,8 +20,8 @@ Balance action. It does not prove physical actuation.
 
 ```powershell
 python -m pip install -e ".[test]"
-python -m digital_twin_evaluation plan mqtt --deployment ../cloud-dtc-docker/pipeline/digital-twin-manager/deployments/MGridICSA --config examples/MGridICSA.mqtt.json
-python -m digital_twin_evaluation run mqtt --deployment ../cloud-dtc-docker/pipeline/digital-twin-manager/deployments/MGridICSA --config examples/MGridICSA.mqtt.json --output results
+python -m digital_twin_evaluation plan mqtt --deployment ../reproduce/work/MGridICSA/output --config examples/MGridICSA.mqtt.json
+python -m digital_twin_evaluation run mqtt --deployment ../reproduce/work/MGridICSA/output --config examples/MGridICSA.mqtt.json --output results
 ```
 
 Planning is offline. `feedback_action` resolves the exact reply topic from
@@ -75,23 +75,16 @@ The client reads credentials from the SDK provider chain. It does not read devic
 private keys from deployment snapshots or create AWS resources.
 
 MQTT processing evaluation requires an applied action with a working feedback
-route. The sibling pipeline supplies a VPP `mqttProbe` mock for that path.
+route. The [`reproduce`](../reproduce/README.md) folder supplies a VPP `mqttProbe` mock for that path.
 The `mqtt-twinmaker` evaluation below reads through TwinMaker and does not need
 an action or MQTT feedback topic.
 
-The sibling pipeline can pass the new type and config through its existing
-command without changes to its command handler:
+From the `reproduce` folder, the `evaluate` service runs the type with its
+example config:
 
 ```text
-plan evaluation mqtt MGridICSA ../digital-twin-evaluation/examples/MGridICSA.mqtt.json
-evaluate mqtt MGridICSA ../digital-twin-evaluation/examples/MGridICSA.mqtt.json
-```
-
-Its Compose service uses a prebuilt image. Build the updated evaluation source
-with the matching tag before using those pipeline commands:
-
-```powershell
-docker build -t evbodanov/digital-twin-evaluation:latest .
+docker compose run --rm evaluate plan mqtt --deployment /evaluation/deployment --config /evaluation/configs/MGridICSA.mqtt.json
+docker compose run --rm evaluate run mqtt --deployment /evaluation/deployment --config /evaluation/configs/MGridICSA.mqtt.json --output /evaluation/results
 ```
 
 The MQTT connection and callback APIs follow the official
@@ -124,8 +117,8 @@ Connection setup and AWS client initialization are outside sample timing.
 An interrupted MQTT connection prevents subsequent publishes in the run.
 
 ```powershell
-python -m digital_twin_evaluation plan mqtt-twinmaker --deployment ../cloud-dtc-docker/pipeline/digital-twin-manager/deployments/VPP --config examples/VPP.mqtt-twinmaker.json
-python -m digital_twin_evaluation run mqtt-twinmaker --deployment ../cloud-dtc-docker/pipeline/digital-twin-manager/deployments/VPP --config examples/VPP.mqtt-twinmaker.json --output results
+python -m digital_twin_evaluation plan mqtt-twinmaker --deployment ../reproduce/work/VPP/output --config examples/VPP.mqtt-twinmaker.json
+python -m digital_twin_evaluation run mqtt-twinmaker --deployment ../reproduce/work/VPP/output --config examples/VPP.mqtt-twinmaker.json --output results
 ```
 
 Examples are provided for `Household0001.BESS.activePowerKW` in VPP and
@@ -190,32 +183,31 @@ Requires Python 3.12 or later.
 python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -e ".[test]"
 .\.venv\Scripts\python.exe -m digital_twin_evaluation list
-.\.venv\Scripts\python.exe -m digital_twin_evaluation plan roundtrip --deployment ../cloud-dtc-docker/pipeline/digital-twin-manager/deployments/MGridICSA --config examples/MGridICSA.roundtrip.json
+.\.venv\Scripts\python.exe -m digital_twin_evaluation plan roundtrip --deployment ../reproduce/work/MGridICSA/output --config examples/MGridICSA.roundtrip.json
 ```
 
 `plan` validates input and resolves the experiment without creating AWS clients.
 `run` sends measurement telemetry to the selected deployed device:
 
 ```powershell
-.\.venv\Scripts\python.exe -m digital_twin_evaluation run roundtrip --deployment ../cloud-dtc-docker/pipeline/digital-twin-manager/deployments/MGridICSA --config examples/MGridICSA.roundtrip.json --output results
+.\.venv\Scripts\python.exe -m digital_twin_evaluation run roundtrip --deployment ../reproduce/work/MGridICSA/output --config examples/MGridICSA.roundtrip.json --output results
 ```
 
 The installed entry point is `digital-twin-evaluation` with the same arguments.
 
-## Docker and pipeline
+## Docker
 
 ```powershell
 docker build -t digital-twin-evaluation:local .
 docker run --rm digital-twin-evaluation:local list
 ```
 
-The sibling `cloud-dtc-docker` repository provides the Compose service, mounts,
-credentials environment, and these orchestrator commands:
+The [`reproduce`](../reproduce/README.md) folder provides the Compose service,
+mounts and credentials environment. From that folder:
 
 ```text
-plan evaluation roundtrip MGridICSA
-evaluate roundtrip MGridICSA
-evaluate roundtrip MGridICSA path/to/custom-roundtrip.json
+docker compose run --rm evaluate plan roundtrip --deployment /evaluation/deployment --config /evaluation/configs/MGridICSA.roundtrip.json
+docker compose run --rm evaluate run roundtrip --deployment /evaluation/deployment --config /evaluation/configs/MGridICSA.roundtrip.json --output /evaluation/results
 ```
 
 The service runs only when requested. Deploy does not start an evaluation.
@@ -254,7 +246,7 @@ storage mode, 5 measured cycles per device, no warmup cycles, and concurrency 10
 The 201 devices produce 1005 measured messages in total. Inspect its offline plan:
 
 ```powershell
-python -m digital_twin_evaluation plan roundtrip --deployment ../cloud-dtc-docker/pipeline/digital-twin-manager/deployments/VPP --config examples/VPP.roundtrip.json
+python -m digital_twin_evaluation plan roundtrip --deployment ../reproduce/work/VPP/output --config examples/VPP.roundtrip.json
 ```
 
 For multiple devices, set `parameters.targets` to a non-empty list. Each entry

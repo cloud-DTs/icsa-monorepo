@@ -52,7 +52,7 @@ that processing path, not execution by a physical actuator.
 ## Objective and first slice
 
 Implement an independent Python service in `digital-twin-evaluation`, next to
-`cloud-dtc-docker`. Run repeatable evaluations against an already deployed twin.
+the other tools of the monorepo. Run repeatable evaluations against an already deployed twin.
 The first evaluation is roundtrip. New evaluation types register a separate
 implementation without changing the CLI, deployment adapter, or report writer.
 
@@ -140,26 +140,25 @@ counts, failure counts, p50/p95/p99, polling attempts, write/read/roundtrip time
 and raw sample statuses. State the percentile method. Do not infer cold starts
 from the first request or subtract client and server wall clocks.
 
-## Pipeline integration
+## Compose integration
 
-Add a Docker Compose service under profile `evaluation`, with the sibling source
+The `reproduce` folder has a Docker Compose service `evaluate`, with this source
 as its build context, a read-only saved deployment mount, a read-only evaluation
-config mount, and a writable report mount. Add commands:
+config mount, and a writable report mount. It runs the same commands as the CLI:
 
 ```text
-plan evaluation roundtrip MGridICSA [config-file]
-evaluate roundtrip MGridICSA [config-file]
+docker compose run --rm evaluate plan roundtrip --deployment /evaluation/deployment --config /evaluation/configs/MGridICSA.roundtrip.json
+docker compose run --rm evaluate run roundtrip --deployment /evaluation/deployment --config /evaluation/configs/MGridICSA.roundtrip.json --output /evaluation/results
 ```
 
-The default config is `pipeline/digital-twin-evaluation/input/MGridICSA.roundtrip.json`.
-Results go under `pipeline/digital-twin-evaluation/output/<twin>/<run-id>/` and are
-ignored by Git. Preserve the existing deployment and command behavior.
+The example configs are in `reproduce/evaluation/`. Results go under
+`reproduce/work/results/<twin>/<run-id>/` and are ignored by Git.
 
 ## Commands
 
 ```text
 python -m digital_twin_evaluation list
-python -m digital_twin_evaluation plan roundtrip --deployment ../cloud-dtc-docker/pipeline/digital-twin-manager/deployments/MGridICSA --config examples/MGridICSA.roundtrip.json
+python -m digital_twin_evaluation plan roundtrip --deployment ../reproduce/work/MGridICSA/output --config examples/MGridICSA.roundtrip.json
 python -m digital_twin_evaluation run roundtrip --deployment <saved-deployment> --config <evaluation.json> --output results
 python -m pytest -q -p no:cacheprovider
 docker build -t digital-twin-evaluation:local .

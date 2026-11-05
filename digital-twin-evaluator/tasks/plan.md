@@ -23,7 +23,7 @@ See todo.md for implementation and verification status.
    Verify exact correlation, retries, timeouts, errors, and warmup accounting.
 3. Add the AWS adapter, CLI, and container. Verify SDK request contracts and run
    offline planning against MGridICSA without credentials or network calls.
-4. Integrate an explicit evaluation stage and commands into cloud-dtc-docker.
+4. Integrate an explicit evaluation service into the reproduce folder.
    Verify command dispatch, mounts, profile isolation, and error recovery.
 5. Run both test suites, package the sibling service, build the container, and
    document commands and the process for adding another evaluation type.
