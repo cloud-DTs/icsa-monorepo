@@ -53,7 +53,7 @@ The quick start is deliberately broad. To check or narrow it, use these files:
 | --- | --- |
 | [`deployer-policy.json`](deployer-policy.json) | The 104 actions that the deployer's code calls, on all resources. It has 3,520 characters, which is too long for an inline user policy. Create it as a managed policy: `aws iam create-policy --policy-name TwinfraDeployer --policy-document file://deployer-policy.json`, then `aws iam attach-user-policy` with the returned ARN. |
 | [`evaluator-policy.json`](evaluator-policy.json) | `iot:DescribeEndpoint`, `iot:Connect` for the client ids `dt-eval-*`, `iot:Publish` for the telemetry topic, `iot:Subscribe` and `iot:Receive` for the feedback topic (reaction path only), and the TwinMaker reads for the visualization path. |
-| [`reference/group-dt.json`](reference/group-dt.json) | The policy of the IAM group `dt` of the authors. It restricts the resources by name prefix (`dtc*`), so for other twin names the prefix must change. |
+| [`reference/group-dt.json`](reference/group-dt.json) | The policy of the IAM group `dt` of the authors. Its resources are scoped to the region `eu-west-1` where the service allows it, and not to twin names. |
 | [`reference/group-dt2.json`](reference/group-dt2.json) | The ten policies of the IAM group `dt2` of the authors. They add permissions for other tooling, for example IoT Core, SSM, Step Functions and S3 Files, which the reproduction does not need. |
 | [AWS permissions](../../digital-twin-manager/docs/aws-permissions.md) | Explains each permission of the deployer, and the policies that the deployer creates for the roles of a twin. |
 

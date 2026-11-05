@@ -160,12 +160,12 @@
       }
     },
     {
-      "name": "DtcSsmParameterManagement_group",
+      "name": "SsmParameterManagement_group",
       "document": {
         "Version": "2012-10-17",
         "Statement": [
           {
-            "Sid": "AllowDtcSsmParameters",
+            "Sid": "AllowSsmParameters",
             "Effect": "Allow",
             "Action": [
               "ssm:PutParameter",
@@ -176,7 +176,7 @@
               "ssm:AddTagsToResource",
               "ssm:RemoveTagsFromResource"
             ],
-            "Resource": "arn:aws:ssm:eu-west-1:123456789012:parameter/dtc*/*"
+            "Resource": "arn:aws:ssm:eu-west-1:123456789012:parameter/*/*"
           },
           {
             "Sid": "AllowDescribeSsmParameters",
@@ -190,12 +190,12 @@
       }
     },
     {
-      "name": "DtcStepFunctionsExecutionReadOnly_group",
+      "name": "StepFunctionsExecutionReadOnly_group",
       "document": {
         "Version": "2012-10-17",
         "Statement": [
           {
-            "Sid": "AllowDtcStepFunctionsExecutionReadOnly",
+            "Sid": "AllowStepFunctionsExecutionReadOnly",
             "Effect": "Allow",
             "Action": [
               "states:DescribeStateMachineForExecution",
@@ -203,27 +203,27 @@
               "states:DescribeExecution"
             ],
             "Resource": [
-              "arn:aws:states:eu-west-1:123456789012:execution:dtc*:*"
+              "arn:aws:states:eu-west-1:123456789012:execution:*:*"
             ]
           },
           {
-            "Sid": "AllowListDtcStepFunctionsExecutions",
+            "Sid": "AllowListStepFunctionsExecutions",
             "Effect": "Allow",
             "Action": [
               "states:ListExecutions"
             ],
             "Resource": [
-              "arn:aws:states:eu-west-1:123456789012:stateMachine:dtc*"
+              "arn:aws:states:eu-west-1:123456789012:stateMachine:*"
             ]
           },
           {
-            "Sid": "AllowDescribeDtcStepFunctionsStateMachines",
+            "Sid": "AllowDescribeStepFunctionsStateMachines",
             "Effect": "Allow",
             "Action": [
               "states:DescribeStateMachine"
             ],
             "Resource": [
-              "arn:aws:states:eu-west-1:123456789012:stateMachine:dtc*"
+              "arn:aws:states:eu-west-1:123456789012:stateMachine:*"
             ]
           },
           {
@@ -235,7 +235,7 @@
             "Resource": "*"
           },
           {
-            "Sid": "AllowDtcStepFunctionsStateMachines",
+            "Sid": "AllowStepFunctionsStateMachines",
             "Effect": "Allow",
             "Action": [
               "states:CreateStateMachine",
@@ -247,7 +247,7 @@
               "states:UntagResource"
             ],
             "Resource": [
-              "arn:aws:states:eu-west-1:123456789012:stateMachine:dtc*"
+              "arn:aws:states:eu-west-1:123456789012:stateMachine:*"
             ]
           },
           {
@@ -282,7 +282,7 @@
         "Version": "2012-10-17",
         "Statement": [
           {
-            "Sid": "IoTDataPlanePublishDtc",
+            "Sid": "IoTDataPlanePublish",
             "Effect": "Allow",
             "Action": [
               "iot:Connect",
@@ -290,7 +290,7 @@
             ],
             "Resource": [
               "arn:aws:iot:eu-west-1:123456789012:client/*",
-              "arn:aws:iot:eu-west-1:123456789012:topic/dtc*"
+              "arn:aws:iot:eu-west-1:123456789012:topic/*"
             ]
           }
         ]

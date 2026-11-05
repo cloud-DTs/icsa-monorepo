@@ -21,15 +21,15 @@
             "Resource": "*"
           },
           {
-            "Sid": "SetupLayerIAMTaggingDtc",
+            "Sid": "SetupLayerIAMTagging",
             "Effect": "Allow",
             "Action": [
               "iam:TagRole"
             ],
-            "Resource": "arn:aws:iam::*:role/dtc*"
+            "Resource": "arn:aws:iam::*:role/*"
           },
           {
-            "Sid": "Layer0GlueIAMDtcRoles",
+            "Sid": "Layer0GlueIAMRoles",
             "Effect": "Allow",
             "Action": [
               "iam:CreateRole",
@@ -44,15 +44,15 @@
               "iam:ListInstanceProfilesForRole",
               "iam:UpdateAssumeRolePolicy"
             ],
-            "Resource": "arn:aws:iam::*:role/dtc*"
+            "Resource": "arn:aws:iam::*:role/*"
           },
           {
-            "Sid": "Layer0GlueIAMDtcInstanceProfiles",
+            "Sid": "Layer0GlueIAMInstanceProfiles",
             "Effect": "Allow",
             "Action": [
               "iam:RemoveRoleFromInstanceProfile"
             ],
-            "Resource": "arn:aws:iam::*:instance-profile/dtc*"
+            "Resource": "arn:aws:iam::*:instance-profile/*"
           },
           {
             "Sid": "Layer0GlueLambda",
@@ -84,14 +84,14 @@
             "Resource": "*"
           },
           {
-            "Sid": "IoTRulesDtcEuWest1",
+            "Sid": "IoTRulesEuWest1",
             "Effect": "Allow",
             "Action": [
               "iot:CreateTopicRule",
               "iot:DeleteTopicRule",
               "iot:GetTopicRule"
             ],
-            "Resource": "arn:aws:iot:eu-west-1:123456789012:rule/dtc*"
+            "Resource": "arn:aws:iot:eu-west-1:123456789012:rule/*"
           },
           {
             "Sid": "ListIoTRules",
@@ -113,15 +113,15 @@
               "dynamodb:DescribeTable",
               "dynamodb:ListTables"
             ],
-            "Resource": "arn:aws:dynamodb:eu-west-1:123456789012:table/dtc*"
+            "Resource": "arn:aws:dynamodb:eu-west-1:123456789012:table/*"
           },
           {
-            "Sid": "S3CreateDtcBucketsEuWest1",
+            "Sid": "S3CreateBucketsEuWest1",
             "Effect": "Allow",
             "Action": [
               "s3:CreateBucket"
             ],
-            "Resource": "arn:aws:s3:::dtc*",
+            "Resource": "arn:aws:s3:::*",
             "Condition": {
               "StringEquals": {
                 "s3:locationconstraint": "eu-west-1"
@@ -129,7 +129,7 @@
             }
           },
           {
-            "Sid": "S3DtcBucketLevel",
+            "Sid": "S3BucketLevel",
             "Effect": "Allow",
             "Action": [
               "s3:DeleteBucket",
@@ -140,16 +140,16 @@
               "s3:PutEncryptionConfiguration",
               "s3:ListBucketVersions"
             ],
-            "Resource": "arn:aws:s3:::dtc*"
+            "Resource": "arn:aws:s3:::*"
           },
           {
-            "Sid": "S3DtcObjectLevel",
+            "Sid": "S3ObjectLevel",
             "Effect": "Allow",
             "Action": [
               "s3:DeleteObject",
               "s3:ListObjectVersions"
             ],
-            "Resource": "arn:aws:s3:::dtc*/*"
+            "Resource": "arn:aws:s3:::*/*"
           },
           {
             "Sid": "Layer3EventBridge",
@@ -218,12 +218,11 @@
             "Resource": "*"
           },
           {
-            "Sid": "AllowPassRoleToLambdaDtc",
+            "Sid": "AllowPassRoleToLambda",
             "Effect": "Allow",
             "Action": "iam:PassRole",
             "Resource": [
-              "arn:aws:iam::123456789012:role/dtc*",
-              "arn:aws:iam::123456789012:role/*dtc*"
+              "arn:aws:iam::123456789012:role/*"
             ],
             "Condition": {
               "ForAnyValue:StringEquals": {
