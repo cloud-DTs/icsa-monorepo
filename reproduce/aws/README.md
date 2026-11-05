@@ -8,7 +8,9 @@ twin and reads it back. Both use one access key in `reproduce/.env`.
 
 Use a **separate sandbox AWS account**. The deployer creates IAM roles and
 attaches policies to them, so it needs wide permissions, and you should not run it
-in an account that holds other workloads.
+in a production-use account.
+Also note that this is a research prototype, and the deployer may create and remove resources in your account.
+Use at your own risk.
 
 [`sandbox-policy.json`](sandbox-policy.json) allows whole services: `iam:*`,
 `lambda:*`, `s3:*`, `iot:*`, `events:*`, `dynamodb:*`, `states:*`,
@@ -30,7 +32,7 @@ console, create a user without console access, add the policy as an inline polic
 (JSON tab) and create an access key for use outside AWS.
 
 The deployer reads a long-lived key and the region from the environment. It does
-not use session tokens, so temporary credentials do not work with it.
+not work with session tokens.
 
 ## Account prerequisites
 
