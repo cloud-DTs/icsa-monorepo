@@ -2,7 +2,7 @@
 
     python stage.py <twin name>
 
-Reads /work/parse/twins.json, copies the four configuration files of the twin to
+Reads /work/parse/<twin>/twins.json, copies the four configuration files of the twin to
 /work/<twin>/input and adds the provider configuration (all layers on AWS).
 """
 import json
@@ -25,14 +25,15 @@ def main(argv):
     sys.exit("usage: stage.py <twin name>")
   twin = argv[1]
 
-  twins = json.loads((WORK / "parse" / "twins.json").read_text(encoding="utf-8"))
+  parsed = WORK / "parse" / twin
+  twins = json.loads((parsed / "twins.json").read_text(encoding="utf-8"))
   matches = [entry for entry in twins if entry["name"] == twin]
   if not matches:
     sys.exit(f"Twin '{twin}' not found in twins.json. Parsed twins: {[entry['name'] for entry in twins]}")
   if len(matches) > 1:
-    sys.exit(f"Several twins are named '{twin}'; stage them by hand from work/parse.")
+    sys.exit(f"Several twins are named '{twin}'; stage them by hand from the parser output.")
 
-  source = WORK / "parse" / matches[0]["folder"]
+  source = parsed / matches[0]["folder"]
   target = WORK / twin / "input"
   if target.exists():
     shutil.rmtree(target)

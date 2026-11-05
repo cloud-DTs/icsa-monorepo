@@ -1,2 +1,0 @@
-Build needs a GitHub token. The token needs read:packages access for cloud-dts:
-docker build --secret id=gh_token,env=GITHUB_TOKEN -t evbodanov/digital-twin-profile-sysml-v2:latest

@@ -29,7 +29,7 @@ python main.py ./Test.sysml
 python main.py ./models/MGrid.sysml ./models/shared/ -o ./deploy
 ```
 
-On the first run `main.py` builds the exporter in `exporter/` with Maven. Maven downloads the library and its dependencies once; later runs only start the exporter.
+On the first run `main.py` builds the exporter in `exporter/` with Maven. The two SysML libraries it needs (`sysml-digital-twin-profile` 1.1.1 and `sysml-library-mapper` 1.1.0) are kept in `exporter/libs/`, so no access token is required. Maven downloads the other dependencies once; later runs only start the exporter.
 
 # Output
 

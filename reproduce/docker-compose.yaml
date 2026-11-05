@@ -7,8 +7,6 @@ services:
     platform: ${DOCKER_DEFAULT_PLATFORM:-linux/amd64}
     build:
       context: ../sysml-v2-adapter
-      secrets:
-        - gh_token
     volumes:
       - ./models:/pipeline/input:ro
       - ./work/parse:/pipeline/output
@@ -56,7 +54,3 @@ services:
       - ./work/${TWIN:?Set TWIN in .env}/output:/evaluation/deployment:ro
       - ./evaluation:/evaluation/configs:ro
       - ./work/results:/evaluation/results
-
-secrets:
-  gh_token:
-    environment: GH_TOKEN

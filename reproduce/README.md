@@ -17,8 +17,6 @@ licensed software is needed.
 ## Requirements
 
 - Docker with Compose and Linux containers.
-- A GitHub token with `read:packages` access. Maven uses it to download the SysML
-  v2 library while building the parser image.
 - AWS credentials and a region. The deployer creates and removes resources in
   your account, and the evaluator publishes MQTT messages to the deployed twin.
   Permissions are listed in the [AWS permissions](../digital-twin-manager/docs/aws-permissions.md).
@@ -31,7 +29,7 @@ cd reproduce
 cp .env.example .env
 ```
 
-Fill in `GH_TOKEN` and the AWS values in `.env`. `TWIN` selects the case study for
+Fill in the AWS values in `.env`. `TWIN` selects the case study for
 the deployer and the evaluator. The file preselects CS1. Build the images:
 
 ```bash
@@ -41,8 +39,8 @@ docker compose build
 ## Run CS1
 
 ```bash
-# 1. Parse the model into configuration files (work/parse/)
-docker compose run --rm parse /pipeline/output /pipeline/input/MGridICSA.sysml
+# 1. Parse the model into configuration files (work/parse/MGridICSA/)
+docker compose run --rm parse /pipeline/output/MGridICSA /pipeline/input/MGridICSA.sysml
 
 # 2. Copy the twin's configuration to the deployer's input (work/MGridICSA/input/)
 docker compose run --rm stage MGridICSA
@@ -72,7 +70,7 @@ five steps with `VPPMicrogrid.sysml`, `VPP` and the configurations
 `VPP.mqtt.json` and `VPP.mqtt-twinmaker.json`:
 
 ```bash
-docker compose run --rm parse /pipeline/output /pipeline/input/VPPMicrogrid.sysml
+docker compose run --rm parse /pipeline/output/VPP /pipeline/input/VPPMicrogrid.sysml
 docker compose run --rm stage VPP
 ```
 
@@ -106,23 +104,6 @@ evaluate control algorithms.
   TwinMaker read permissions `GetPropertyValueHistory`, `GetWorkspace`,
   `GetEntity` and `GetComponentType`.
 - The evaluator never creates or changes AWS resources.
-
-## Without Docker
-
-Each tool runs on its own:
-
-- **Parser:** Java 21 and Maven, with the token in the Maven settings for the
-  server id `cloud-dts`:
-  `python sysml-v2-adapter/main.py models/MGridICSA.sysml -o work/parse`.
-- **Deployer:** Python 3.13 and `uv`. Copy the four configuration files and
-  `config_providers.json.example` (as `config_providers.json`) into one folder,
-  then run `uv sync --locked` and `uv run python src/main.py` in
-  `digital-twin-manager`, with `DIGITAL_TWIN_MANAGER_CONFIG_DIR` pointing at that
-  folder. The models give the action code as `/pipeline/code/...`, and the
-  deployer reads that path literally, so `/pipeline/code` must point to
-  `reproduce/code` (for example through a symbolic link).
-- **Evaluator:** `pip install ./digital-twin-evaluator` and
-  `python -m digital_twin_evaluation run mqtt --deployment <output folder> --config <json>`.
 
 ## Contents
 
