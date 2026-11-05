@@ -1,18 +1,34 @@
 # Reproduce the case studies
 
-This folder runs the three tools of TWINFRA in order: the SysML v2 **parser**
-([`sysml-v2-adapter`](../sysml-v2-adapter/README.md)) turns a model into the
-deployer's configuration files, the **deployer**
-([`digital-twin-manager`](../digital-twin-manager/README.md)) provisions the
-resources on AWS, and the **evaluator**
+This folder deploys the two SysML v2 models of the case studies and measures the
+resulting twins. The models are the input: the roles of TWINFRA are annotations
+in the model, and everything else is derived from them.
+
+| Case study | Twin | Model | What the model describes |
+| --- | --- | --- | --- |
+| CS1: charging point station | `MGridICSA` | [`models/MGridICSA.sysml`](models/MGridICSA.sysml) | 8 entities (the micro grid, a battery, a PV system and 5 chargers) with 14 components and 5 conditions that trigger the strategy action `balance` |
+| CS2: virtual power plant | `VPP` | [`models/VPPMicrogrid.sysml`](models/VPPMicrogrid.sysml) | 100 households, each with a `Sensor` and a `BESS` component, and one condition with the strategy action `mqttProbe`; see the [scale settings](docs/vpp-microgrid.md) |
+
+A model annotates its elements with roles, for example (excerpt) in
+[`MGridICSA.sysml`](models/MGridICSA.sysml):
+
+```sysml
+#Entity def Battery {
+    #component sensor : PAC_Sensor {
+        #measureAttribute power { :>> dataType default AttributeDataType::DOUBLE; }
+    }
+    #component controller : BatteryController;
+}
+```
+
+Three tools turn a model into a measured twin. The SysML v2 **parser**
+([`sysml-v2-adapter`](../sysml-v2-adapter/README.md)) reads the model and writes
+the configuration files that the **deployer**
+([`digital-twin-manager`](../digital-twin-manager/README.md)) needs. The
+deployer provisions the resources on AWS, and the **evaluator**
 ([`digital-twin-evaluator`](../digital-twin-evaluator/README.md)) measures the
 latency of the deployed twin. Every Compose service runs once and exits. No
 licensed software is needed.
-
-| Case study | Twin | Model |
-| --- | --- | --- |
-| CS1: charging point station | `MGridICSA` | [`models/MGridICSA.sysml`](models/MGridICSA.sysml) |
-| CS2: virtual power plant, 100 households | `VPP` | [`models/VPPMicrogrid.sysml`](models/VPPMicrogrid.sysml), see [scale settings](docs/vpp-microgrid.md) |
 
 ## Requirements
 
@@ -39,21 +55,21 @@ docker compose build
 ## Run CS1
 
 ```bash
-# 1. Parse the model into configuration files (work/parse/MGridICSA/)
+# 1. Convert the model for the deployer. These two steps write generated
+#    files to work/ that need no attention.
 docker compose run --rm parse /pipeline/output/MGridICSA /pipeline/input/MGridICSA.sysml
 
-# 2. Copy the twin's configuration to the deployer's input (work/MGridICSA/input/)
 docker compose run --rm stage MGridICSA
 
-# 3. Deploy. At the prompt, type: deploy   then: exit
+# 2. Deploy. At the prompt, type: deploy   then: exit
 docker compose run --rm deployer
 
-# 4. Inspect the evaluation without any AWS call, then measure both paths
+# 3. Inspect the evaluation without any AWS call, then measure both paths
 docker compose run --rm evaluate plan mqtt --deployment /evaluation/deployment --config /evaluation/configs/MGridICSA.mqtt.json
 docker compose run --rm evaluate run mqtt --deployment /evaluation/deployment --config /evaluation/configs/MGridICSA.mqtt.json --output /evaluation/results
 docker compose run --rm evaluate run mqtt-twinmaker --deployment /evaluation/deployment --config /evaluation/configs/MGridICSA.mqtt-twinmaker.json --output /evaluation/results
 
-# 5. Remove the twin. At the prompt, type: destroy   then: exit
+# 4. Remove the twin. At the prompt, type: destroy   then: exit
 docker compose run --rm deployer
 ```
 

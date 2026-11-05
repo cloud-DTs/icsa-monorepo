@@ -5,17 +5,17 @@ to the software architecture and AWS resources of a digital twin. The folder `di
 
 ## From paper concepts to code
 
-**C1: role-based twin decomposition** (Section III, Figure 2). Engineers assign roles to model elements. The [SysML v1 parser](sysml-v1-adapter/README.md) reads an Enterprise Architect XMI export. The [SysML v2 parser](sysml-v2-adapter/README.md) reads textual models. Both produce the same four JSON configuration files.
+**C1: role-based twin decomposition** (Section III, Figure 2). Engineers assign roles to the elements of a SysML model. The [SysML v2 parser](sysml-v2-adapter/README.md) reads textual models, and the [SysML v1 parser](sysml-v1-adapter/README.md) reads an Enterprise Architect XMI export. Both turn the annotated model into configuration files for the deployer. Those files are generated and are only an intermediate step: the model is the input to inspect.
 
-| Paper role       | Configuration produced by the parsers                        | AWS realization in the deployer                                                                                                               |
-| ---------------- | ------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------- |
-| Twin             | `config.json`: digital twin name and storage retention       | [Core resources](digital-twin-manager/src/deployers/aws/core/): workspace, message intake, storage, rule evaluation and feedback              |
-| Entity           | `config_hierarchy.json`: nested assets                       | [Hierarchy deployer](digital-twin-manager/src/deployers/aws/hierarchy/): TwinMaker entities and containment                                   |
-| Component        | `config_iot_devices.json` and hierarchy device bindings      | [Device deployers](digital-twin-manager/src/deployers/aws/iot/): IoT Things, certificates, processing functions and TwinMaker Component Types |
-| MeasureAttribute | Device properties and their data types                       | Processing, storage and TwinMaker property reads                                                                                              |
-| ConstAttribute   | Properties with `initValue` on generated constant components | [Initial-value deployer](digital-twin-manager/src/deployers/aws/init_values/): initial twin state                                             |
-| Condition        | `config_events.json`: comparison and operands                | Event Checker evaluates the latest values                                                                                                     |
-| StrategyAction   | `config_events.json`: code, inputs and feedback target       | [Action deployers](digital-twin-manager/src/deployers/aws/event_actions/): Lambda execution; Event Feedback delivers the result               |
+| Paper role       | Annotation in a SysML v2 model                                                       | AWS realization in the deployer                                                                                                               |
+| ---------------- | ------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| Twin             | `#Twin def`, with `hotDatabaseRetentionDays` and `coldDatabaseRetentionDays`         | [Core resources](digital-twin-manager/src/deployers/aws/core/): workspace, message intake, storage, rule evaluation and feedback              |
+| Entity           | `#Entity def` and `#entity`: nested assets                                           | [Hierarchy deployer](digital-twin-manager/src/deployers/aws/hierarchy/): TwinMaker entities and containment                                   |
+| Component        | `#Component def` and `#component`: a connected device                               | [Device deployers](digital-twin-manager/src/deployers/aws/iot/): IoT Things, certificates, processing functions and TwinMaker Component Types |
+| MeasureAttribute | `#measureAttribute`: a measured value with its data type                             | Processing, storage and TwinMaker property reads                                                                                              |
+| ConstAttribute   | `#constAttribute`: a constant value, optionally with a default                       | [Initial-value deployer](digital-twin-manager/src/deployers/aws/init_values/): initial twin state                                             |
+| Condition        | `#condition` with `leftOperand`, `operator` and `rightOperand`                       | Event Checker evaluates the latest values                                                                                                     |
+| StrategyAction   | `#strategyAction`: code, `inputParameters` and the feedback target `componentTopic`  | [Action deployers](digital-twin-manager/src/deployers/aws/event_actions/): Lambda execution; Event Feedback delivers the result               |
 
 The v1 profile uses legacy names: `Component` means the paper's Entity,
 `Device` means Component, and `Strategy` means StrategyAction. Its `triggers`
@@ -38,7 +38,7 @@ with a threshold. The [Event Checker](digital-twin-manager/lambda_functions/core
 reads the values and supplies them to `balance1`. The action's feedback targets
 `MicroGrid.battery.controller`. The
 [v2 parser](sysml-v2-adapter/exporter/src/main/java/org/example/TwinExporter.java)
-turns these references into device, hierarchy and event configuration. The
+turns these references into the configuration for the deployer. The
 deployer supplies the ingestion and feedback resources around the
 [action code](reproduce/code/microgrid/energy-management/lambda_function.py).
 
@@ -82,6 +82,7 @@ resources in your AWS account and costs money. See the
 cd reproduce
 cp .env.example .env     # add your AWS credentials
 docker compose build
+# convert the model: two steps, whose generated files stay in work/
 docker compose run --rm parse /pipeline/output/MGridICSA /pipeline/input/MGridICSA.sysml
 docker compose run --rm stage MGridICSA
 docker compose run --rm deployer      # type: deploy, then exit
