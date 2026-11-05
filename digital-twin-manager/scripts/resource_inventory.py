@@ -3,7 +3,7 @@
 Counts what actually exists in AWS, attributed to a twin by the naming scheme in
 src/resource_names.py (every resource is prefixed with the twin name; IoT topic rules
 use `<twin>_`, S3 buckets are lowercase). Resources are grouped into the five layers of
-the architecture and counted by the rules of docs/aws-resource-count-by-layer.md: IAM
+the architecture. Every resource counts once: IAM
 roles, managed-policy attachments, inline policies, Lambda functions and invoke
 permissions, S3 buckets, CORS configurations and bucket policies, DynamoDB tables,
 EventBridge rules and targets, IoT topic rules, Step Functions state machines, IoT
@@ -16,6 +16,11 @@ read from the live resources: D devices (IoT things), A internal event actions, 
 TwinMaker component types, H entities, C components, F=1 if the event-feedback role has
 an inline policy (an event action publishes MQTT feedback) and G=1 if managed Grafana
 is deployed. Twins deployed with an older implementation are expected to differ.
+
+The formula is N = 50 + 8D + 3A + T + H + C + F + 3G. By layer: L1 = 7 + 4D, L2 = 22,
+L3 = 15 + F + 4D + 3A, L4 = 6 + T + H + C, L5 = 3G. Settings of a resource (S3
+versioning and encryption, DynamoDB point-in-time recovery) and the MQTT messages
+for initial values are not resources and are not counted.
 
 The script is read-only. Credentials come from the standard AWS environment.
 
@@ -334,7 +339,12 @@ def count_twin(session, twin, region, other_twins, iam_roles):
 def predicted_totals(params):
   """Resources per layer for the implementation in this repository.
 
-  Excludes the MQTT initial-value messages (V), which are not AWS resources.
+  The constants are the resources that every twin has: L1 has 7 (dispatcher role,
+  2 managed attachments, Lambda, invoke permission, topic rule, shared IoT policy),
+  L2 has 22 and L4 has 6 besides the component types, entities and components.
+  Per device, L1 adds a thing, a certificate and 2 attachments, and L3 a role,
+  2 attachments and a processor Lambda. Per internal action, L3 adds a role, an
+  attachment and a Lambda.
   """
   D, A, T, H, C, F, G = (params[key] for key in "DATHCFG")
   return {
