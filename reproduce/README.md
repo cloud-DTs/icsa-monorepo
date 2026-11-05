@@ -108,6 +108,19 @@ evaluate control algorithms.
 - **Security.** `digital-twin-manager/docs/security-audit.md` runs the audit of the
   paper, and `evaluator-artifacts/scripts/security_pgf.py` draws its results.
 
+## If a deployment fails
+
+- **Workspace quota.** AWS IoT TwinMaker allows 15 workspaces per region by
+  default, and every twin uses one. If the region is full, the deployment stops
+  with `ServiceQuotaExceededException`. Set another region in `AWS_REGION` in `.env`,
+  or remove a twin you no longer need.
+- **Deploying a name again.** After `destroy`, S3 can take a while to release the
+  bucket names of the twin, and `CreateBucket` fails with `OperationAborted`.
+  Wait, or deploy under a different twin name (the name is set in the model,
+  at most 10 characters).
+- **Partial deployments.** A failed deployment leaves the resources it created.
+  Run `destroy` in the deployer before you try again.
+
 ## About the evaluator
 
 - It reads the deployer's saved state in `work/<twin>/output/.digital-twin-manager-state/`.
