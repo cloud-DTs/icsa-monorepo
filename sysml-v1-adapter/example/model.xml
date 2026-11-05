@@ -1,0 +1,1637 @@
+<?xml  version='1.0' encoding='windows-1252' ?>
+<xmi:XMI xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmi:version="2.1" xmlns:uml="http://schema.omg.org/spec/UML/2.1" xmlns:DigitalTwinProfile="http://www.sparxsystems.com/profiles/DigitalTwinProfile/1.0">
+	<xmi:Documentation exporter="Enterprise Architect" exporterVersion="6.5" exporterID="1704"/>
+	<uml:Model xmi:type="uml:Model" name="EA_Model" visibility="public">
+		<packagedElement xmi:type="uml:Package" xmi:id="EAPK_00B672CB_3B23_4f2a_A655_55143BCEC75B" name="Package1" visibility="public">
+			<packagedElement xmi:type="uml:Class" xmi:id="EAID_B9ACC948_168B_4a62_BC49_8A106624CD6A" name="BalancingStrategy" visibility="public">
+				<ownedAttribute xmi:type="uml:Property" xmi:id="EAID_dstD5FC81_1B19_4514_8DDC_468E5B15CF0A" visibility="public" association="EAID_FFD5FC81_1B19_4514_8DDC_468E5B15CF0A" isStatic="false" isReadOnly="false" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false" aggregation="none">
+					<type xmi:idref="EAID_AE2103EF_CA72_46f4_AB39_F0CB10FCB246"/>
+				</ownedAttribute>
+			</packagedElement>
+			<packagedElement xmi:type="uml:Association" xmi:id="EAID_FFD5FC81_1B19_4514_8DDC_468E5B15CF0A" visibility="public">
+				<memberEnd xmi:idref="EAID_dstD5FC81_1B19_4514_8DDC_468E5B15CF0A"/>
+				<memberEnd xmi:idref="EAID_srcD5FC81_1B19_4514_8DDC_468E5B15CF0A"/>
+				<ownedEnd xmi:type="uml:Property" xmi:id="EAID_srcD5FC81_1B19_4514_8DDC_468E5B15CF0A" name="balancingStrategy" visibility="public" association="EAID_FFD5FC81_1B19_4514_8DDC_468E5B15CF0A" isStatic="false" isReadOnly="false" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false" aggregation="shared">
+					<type xmi:idref="EAID_B9ACC948_168B_4a62_BC49_8A106624CD6A"/>
+				</ownedEnd>
+			</packagedElement>
+			<packagedElement xmi:type="uml:Class" xmi:id="EAID_FAA01437_2376_43d8_A916_8FB35F7DCF42" name="Charger" visibility="public">
+				<ownedAttribute xmi:type="uml:Property" xmi:id="EAID_9753E22E_1AF6_42e8_B627_3D5B574B8B68" name="consumption" visibility="private" isStatic="false" isReadOnly="false" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false">
+					<lowerValue xmi:type="uml:LiteralInteger" xmi:id="EAID_LI000001_1AF6_42e8_B627_3D5B574B8B68" value="1"/>
+					<upperValue xmi:type="uml:LiteralInteger" xmi:id="EAID_LI000002_1AF6_42e8_B627_3D5B574B8B68" value="1"/>
+					<type xmi:idref="EAJava_double"/>
+				</ownedAttribute>
+				<ownedAttribute xmi:type="uml:Property" xmi:id="EAID_9146D8D2_5006_4116_9668_3F8D482FD5A1" name="state" visibility="private" isStatic="false" isReadOnly="false" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false">
+					<lowerValue xmi:type="uml:LiteralInteger" xmi:id="EAID_LI000003_5006_4116_9668_3F8D482FD5A1" value="1"/>
+					<upperValue xmi:type="uml:LiteralInteger" xmi:id="EAID_LI000004_5006_4116_9668_3F8D482FD5A1" value="1"/>
+					<type xmi:idref="EAJava_char"/>
+				</ownedAttribute>
+				<ownedAttribute xmi:type="uml:Property" xmi:id="EAID_dst091470_72C1_4b87_9B4D_C49E60D3B098" visibility="public" association="EAID_33091470_72C1_4b87_9B4D_C49E60D3B098" isStatic="false" isReadOnly="false" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false" aggregation="none">
+					<type xmi:idref="EAID_AE2103EF_CA72_46f4_AB39_F0CB10FCB246"/>
+				</ownedAttribute>
+				<ownedAttribute xmi:type="uml:Property" xmi:id="EAID_dst228C7D_FA91_4e91_9FA5_07845967834B" visibility="public" association="EAID_3B228C7D_FA91_4e91_9FA5_07845967834B" isStatic="false" isReadOnly="false" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false" aggregation="none">
+					<type xmi:idref="EAID_AE2103EF_CA72_46f4_AB39_F0CB10FCB246"/>
+				</ownedAttribute>
+				<ownedAttribute xmi:type="uml:Property" xmi:id="EAID_dst21314F_04BA_4a8b_B337_731914C307B4" visibility="public" association="EAID_E521314F_04BA_4a8b_B337_731914C307B4" isStatic="false" isReadOnly="false" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false" aggregation="none">
+					<type xmi:idref="EAID_AE2103EF_CA72_46f4_AB39_F0CB10FCB246"/>
+				</ownedAttribute>
+				<ownedAttribute xmi:type="uml:Property" xmi:id="EAID_04F1287C_847D_4a49_A8A0_DA936FB50681" visibility="public" aggregation="composite" isStatic="false" isReadOnly="false" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false">
+					<type xmi:idref="EAID_FAA01437_2376_43d8_A916_8FB35F7DCF42"/>
+				</ownedAttribute>
+			</packagedElement>
+			<packagedElement xmi:type="uml:Association" xmi:id="EAID_33091470_72C1_4b87_9B4D_C49E60D3B098" visibility="public">
+				<memberEnd xmi:idref="EAID_dst091470_72C1_4b87_9B4D_C49E60D3B098"/>
+				<memberEnd xmi:idref="EAID_src091470_72C1_4b87_9B4D_C49E60D3B098"/>
+				<ownedEnd xmi:type="uml:Property" xmi:id="EAID_src091470_72C1_4b87_9B4D_C49E60D3B098" name="charging1" visibility="public" association="EAID_33091470_72C1_4b87_9B4D_C49E60D3B098" isStatic="false" isReadOnly="false" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false" aggregation="shared">
+					<type xmi:idref="EAID_FAA01437_2376_43d8_A916_8FB35F7DCF42"/>
+				</ownedEnd>
+			</packagedElement>
+			<packagedElement xmi:type="uml:Association" xmi:id="EAID_3B228C7D_FA91_4e91_9FA5_07845967834B" visibility="public">
+				<memberEnd xmi:idref="EAID_dst228C7D_FA91_4e91_9FA5_07845967834B"/>
+				<memberEnd xmi:idref="EAID_src228C7D_FA91_4e91_9FA5_07845967834B"/>
+				<ownedEnd xmi:type="uml:Property" xmi:id="EAID_src228C7D_FA91_4e91_9FA5_07845967834B" name="charger3" visibility="public" association="EAID_3B228C7D_FA91_4e91_9FA5_07845967834B" isStatic="false" isReadOnly="false" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false" aggregation="shared">
+					<type xmi:idref="EAID_FAA01437_2376_43d8_A916_8FB35F7DCF42"/>
+				</ownedEnd>
+			</packagedElement>
+			<packagedElement xmi:type="uml:Association" xmi:id="EAID_E521314F_04BA_4a8b_B337_731914C307B4" visibility="public">
+				<memberEnd xmi:idref="EAID_dst21314F_04BA_4a8b_B337_731914C307B4"/>
+				<memberEnd xmi:idref="EAID_src21314F_04BA_4a8b_B337_731914C307B4"/>
+				<ownedEnd xmi:type="uml:Property" xmi:id="EAID_src21314F_04BA_4a8b_B337_731914C307B4" name="charging2" visibility="public" association="EAID_E521314F_04BA_4a8b_B337_731914C307B4" isStatic="false" isReadOnly="false" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false" aggregation="shared">
+					<type xmi:idref="EAID_FAA01437_2376_43d8_A916_8FB35F7DCF42"/>
+				</ownedEnd>
+			</packagedElement>
+			<packagedElement xmi:type="uml:Class" xmi:id="EAID_9F8A8D4A_B849_4d6d_A8E0_3DCD6425AC0B" name="ChargerSensor" visibility="public">
+				<ownedAttribute xmi:type="uml:Property" xmi:id="EAID_dst02BE21_7828_43b0_956C_2D7CFEC35923" visibility="public" association="EAID_AB02BE21_7828_43b0_956C_2D7CFEC35923" isStatic="false" isReadOnly="false" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false" aggregation="none">
+					<type xmi:idref="EAID_AE2103EF_CA72_46f4_AB39_F0CB10FCB246"/>
+				</ownedAttribute>
+				<ownedAttribute xmi:type="uml:Property" xmi:id="EAID_dstF861C6_54BA_414a_8188_60B3635EF4DB" visibility="public" association="EAID_EAF861C6_54BA_414a_8188_60B3635EF4DB" isStatic="false" isReadOnly="false" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false" aggregation="none">
+					<type xmi:idref="EAID_AE2103EF_CA72_46f4_AB39_F0CB10FCB246"/>
+				</ownedAttribute>
+				<ownedAttribute xmi:type="uml:Property" xmi:id="EAID_dst95D357_4006_45b1_93E9_306DF8D7B8E2" visibility="public" association="EAID_F795D357_4006_45b1_93E9_306DF8D7B8E2" isStatic="false" isReadOnly="false" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false" aggregation="none">
+					<type xmi:idref="EAID_AE2103EF_CA72_46f4_AB39_F0CB10FCB246"/>
+				</ownedAttribute>
+			</packagedElement>
+			<packagedElement xmi:type="uml:Association" xmi:id="EAID_AB02BE21_7828_43b0_956C_2D7CFEC35923" visibility="public">
+				<memberEnd xmi:idref="EAID_dst02BE21_7828_43b0_956C_2D7CFEC35923"/>
+				<memberEnd xmi:idref="EAID_src02BE21_7828_43b0_956C_2D7CFEC35923"/>
+				<ownedEnd xmi:type="uml:Property" xmi:id="EAID_src02BE21_7828_43b0_956C_2D7CFEC35923" name="sensor3" visibility="public" association="EAID_AB02BE21_7828_43b0_956C_2D7CFEC35923" isStatic="false" isReadOnly="false" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false" aggregation="shared">
+					<type xmi:idref="EAID_9F8A8D4A_B849_4d6d_A8E0_3DCD6425AC0B"/>
+				</ownedEnd>
+			</packagedElement>
+			<packagedElement xmi:type="uml:Association" xmi:id="EAID_EAF861C6_54BA_414a_8188_60B3635EF4DB" visibility="public">
+				<memberEnd xmi:idref="EAID_dstF861C6_54BA_414a_8188_60B3635EF4DB"/>
+				<memberEnd xmi:idref="EAID_srcF861C6_54BA_414a_8188_60B3635EF4DB"/>
+				<ownedEnd xmi:type="uml:Property" xmi:id="EAID_srcF861C6_54BA_414a_8188_60B3635EF4DB" name="sensor2" visibility="public" association="EAID_EAF861C6_54BA_414a_8188_60B3635EF4DB" isStatic="false" isReadOnly="false" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false" aggregation="shared">
+					<type xmi:idref="EAID_9F8A8D4A_B849_4d6d_A8E0_3DCD6425AC0B"/>
+				</ownedEnd>
+			</packagedElement>
+			<packagedElement xmi:type="uml:Association" xmi:id="EAID_F795D357_4006_45b1_93E9_306DF8D7B8E2" visibility="public">
+				<memberEnd xmi:idref="EAID_dst95D357_4006_45b1_93E9_306DF8D7B8E2"/>
+				<memberEnd xmi:idref="EAID_src95D357_4006_45b1_93E9_306DF8D7B8E2"/>
+				<ownedEnd xmi:type="uml:Property" xmi:id="EAID_src95D357_4006_45b1_93E9_306DF8D7B8E2" name="sensor1" visibility="public" association="EAID_F795D357_4006_45b1_93E9_306DF8D7B8E2" isStatic="false" isReadOnly="false" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false" aggregation="shared">
+					<type xmi:idref="EAID_9F8A8D4A_B849_4d6d_A8E0_3DCD6425AC0B"/>
+				</ownedEnd>
+			</packagedElement>
+			<packagedElement xmi:type="uml:Class" xmi:id="EAID_AE2103EF_CA72_46f4_AB39_F0CB10FCB246" name="ChargingPointStation" visibility="public">
+				<ownedAttribute xmi:type="uml:Property" xmi:id="EAID_9FC132DF_89F7_4a30_B482_11270D360E77" name="balancingStrategy" visibility="public" aggregation="composite" isStatic="false" isReadOnly="false" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false">
+					<type xmi:idref="EAID_B9ACC948_168B_4a62_BC49_8A106624CD6A"/>
+				</ownedAttribute>
+				<ownedAttribute xmi:type="uml:Property" xmi:id="EAID_B7629CD0_1A09_4dd3_87A4_83C3A42640EF" name="charger3" visibility="public" aggregation="composite" isStatic="false" isReadOnly="false" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false">
+					<type xmi:idref="EAID_FAA01437_2376_43d8_A916_8FB35F7DCF42"/>
+				</ownedAttribute>
+				<ownedAttribute xmi:type="uml:Property" xmi:id="EAID_18DD6EF5_90B9_4ee0_A9A0_62DDEA0D3716" name="charging1" visibility="public" aggregation="composite" isStatic="false" isReadOnly="false" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false">
+					<type xmi:idref="EAID_FAA01437_2376_43d8_A916_8FB35F7DCF42"/>
+				</ownedAttribute>
+				<ownedAttribute xmi:type="uml:Property" xmi:id="EAID_A4B3FA3E_F466_42a2_9A7F_51E52CB2B0CD" name="charging2" visibility="public" aggregation="composite" isStatic="false" isReadOnly="false" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false">
+					<type xmi:idref="EAID_FAA01437_2376_43d8_A916_8FB35F7DCF42"/>
+				</ownedAttribute>
+				<ownedAttribute xmi:type="uml:Property" xmi:id="EAID_0855643B_10A2_44bd_83FD_BDA347A48876" name="db_Hot" visibility="public" aggregation="composite" isStatic="false" isReadOnly="false" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false">
+					<type xmi:idref="EAID_6D3FE69C_54EE_4491_8FE0_190179268164"/>
+				</ownedAttribute>
+				<ownedAttribute xmi:type="uml:Property" xmi:id="EAID_C678D65D_7DB6_4c81_BE1D_4F2F9558616F" name="grid" visibility="public" aggregation="composite" isStatic="false" isReadOnly="false" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false">
+					<type xmi:idref="EAID_1807061B_EEA6_4d94_99EE_4C15EDF7CFC9"/>
+				</ownedAttribute>
+				<ownedAttribute xmi:type="uml:Property" xmi:id="EAID_0D6A8A1D_B264_4bb0_A6A5_B94B77DD9A71" name="meter" visibility="public" aggregation="composite" isStatic="false" isReadOnly="false" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false">
+					<type xmi:idref="EAID_62E819FD_7296_4217_9FCC_44A268353EE4"/>
+				</ownedAttribute>
+				<ownedConnector xmi:type="uml:Connector" xmi:id="EAID_C19956F6_F02F_447f_860D_8FEFE7D62648" visibility="public">
+					<end xmi:type="uml:ConnectorEnd" xmi:id="EAID_SC000000_F02F_447f_860D_8FEFE7D62648" role="EAID_0D6A8A1D_B264_4bb0_A6A5_B94B77DD9A71"/>
+					<end xmi:type="uml:ConnectorEnd" xmi:id="EAID_DS000000_F02F_447f_860D_8FEFE7D62648" role="EAID_9FC132DF_89F7_4a30_B482_11270D360E77"/>
+				</ownedConnector>
+				<ownedConnector xmi:type="uml:Connector" xmi:id="EAID_D3E25FAE_19C4_47f3_97F5_C68D81BAA59D" visibility="public">
+					<end xmi:type="uml:ConnectorEnd" xmi:id="EAID_SC000000_19C4_47f3_97F5_C68D81BAA59D" role="EAID_0D6A8A1D_B264_4bb0_A6A5_B94B77DD9A71"/>
+					<end xmi:type="uml:ConnectorEnd" xmi:id="EAID_DS000000_19C4_47f3_97F5_C68D81BAA59D" role="EAID_6E9DAFE6_6C64_4a9c_A189_DA56C1695A35"/>
+				</ownedConnector>
+				<ownedAttribute xmi:type="uml:Property" xmi:id="EAID_6E9DAFE6_6C64_4a9c_A189_DA56C1695A35" name="pv" visibility="public" aggregation="composite" isStatic="false" isReadOnly="false" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false">
+					<type xmi:idref="EAID_050A7281_3A88_44bc_B261_1DEF4F16DF13"/>
+				</ownedAttribute>
+				<ownedAttribute xmi:type="uml:Property" xmi:id="EAID_AC74694A_0C21_4461_9681_B97D38A0A3CF" name="sensor1" visibility="public" aggregation="composite" isStatic="false" isReadOnly="false" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false">
+					<type xmi:idref="EAID_9F8A8D4A_B849_4d6d_A8E0_3DCD6425AC0B"/>
+				</ownedAttribute>
+				<ownedConnector xmi:type="uml:Connector" xmi:id="EAID_708D1124_407E_41a0_9A0E_7AA890BD0F84" visibility="public">
+					<end xmi:type="uml:ConnectorEnd" xmi:id="EAID_SC000000_407E_41a0_9A0E_7AA890BD0F84" role="EAID_AC74694A_0C21_4461_9681_B97D38A0A3CF"/>
+					<end xmi:type="uml:ConnectorEnd" xmi:id="EAID_DS000000_407E_41a0_9A0E_7AA890BD0F84" role="EAID_18DD6EF5_90B9_4ee0_A9A0_62DDEA0D3716"/>
+				</ownedConnector>
+				<ownedConnector xmi:type="uml:Connector" xmi:id="EAID_F453E34B_105B_48dc_99A7_202555737D2A" visibility="public">
+					<end xmi:type="uml:ConnectorEnd" xmi:id="EAID_SC000000_105B_48dc_99A7_202555737D2A" role="EAID_AC74694A_0C21_4461_9681_B97D38A0A3CF"/>
+					<end xmi:type="uml:ConnectorEnd" xmi:id="EAID_DS000000_105B_48dc_99A7_202555737D2A" role="EAID_18DD6EF5_90B9_4ee0_A9A0_62DDEA0D3716"/>
+				</ownedConnector>
+				<ownedAttribute xmi:type="uml:Property" xmi:id="EAID_F715EBAE_43B0_4dd7_95CF_8BB5D87C2CB0" name="sensor2" visibility="public" aggregation="composite" isStatic="false" isReadOnly="false" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false">
+					<type xmi:idref="EAID_9F8A8D4A_B849_4d6d_A8E0_3DCD6425AC0B"/>
+				</ownedAttribute>
+				<ownedConnector xmi:type="uml:Connector" xmi:id="EAID_A6724696_7EF9_4258_8873_2F4E12F5F411" visibility="public">
+					<end xmi:type="uml:ConnectorEnd" xmi:id="EAID_SC000000_7EF9_4258_8873_2F4E12F5F411" role="EAID_F715EBAE_43B0_4dd7_95CF_8BB5D87C2CB0"/>
+					<end xmi:type="uml:ConnectorEnd" xmi:id="EAID_DS000000_7EF9_4258_8873_2F4E12F5F411" role="EAID_A4B3FA3E_F466_42a2_9A7F_51E52CB2B0CD"/>
+				</ownedConnector>
+				<ownedConnector xmi:type="uml:Connector" xmi:id="EAID_AA4D3AED_DC86_40c4_9EC0_BA4C4B271433" visibility="public">
+					<end xmi:type="uml:ConnectorEnd" xmi:id="EAID_SC000000_DC86_40c4_9EC0_BA4C4B271433" role="EAID_F715EBAE_43B0_4dd7_95CF_8BB5D87C2CB0"/>
+					<end xmi:type="uml:ConnectorEnd" xmi:id="EAID_DS000000_DC86_40c4_9EC0_BA4C4B271433" role="EAID_A4B3FA3E_F466_42a2_9A7F_51E52CB2B0CD"/>
+				</ownedConnector>
+				<ownedAttribute xmi:type="uml:Property" xmi:id="EAID_DB0DC810_9D9C_4c31_80E4_0BB63419F326" name="sensor3" visibility="public" aggregation="composite" isStatic="false" isReadOnly="false" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false">
+					<type xmi:idref="EAID_9F8A8D4A_B849_4d6d_A8E0_3DCD6425AC0B"/>
+				</ownedAttribute>
+				<ownedConnector xmi:type="uml:Connector" xmi:id="EAID_C79CE8AB_2992_4845_A3D6_DA46DB6B51D3" visibility="public">
+					<end xmi:type="uml:ConnectorEnd" xmi:id="EAID_SC000000_2992_4845_A3D6_DA46DB6B51D3" role="EAID_DB0DC810_9D9C_4c31_80E4_0BB63419F326"/>
+					<end xmi:type="uml:ConnectorEnd" xmi:id="EAID_DS000000_2992_4845_A3D6_DA46DB6B51D3" role="EAID_B7629CD0_1A09_4dd3_87A4_83C3A42640EF"/>
+				</ownedConnector>
+				<ownedConnector xmi:type="uml:Connector" xmi:id="EAID_FB961E05_FB36_401d_8E25_91EB51F0439C" visibility="public">
+					<end xmi:type="uml:ConnectorEnd" xmi:id="EAID_SC000000_FB36_401d_8E25_91EB51F0439C" role="EAID_DB0DC810_9D9C_4c31_80E4_0BB63419F326"/>
+					<end xmi:type="uml:ConnectorEnd" xmi:id="EAID_DS000000_FB36_401d_8E25_91EB51F0439C" role="EAID_B7629CD0_1A09_4dd3_87A4_83C3A42640EF"/>
+				</ownedConnector>
+			</packagedElement>
+			<packagedElement xmi:type="uml:Association" xmi:id="EAID_659A15CB_7BF8_426e_994F_ED623D1249A5" visibility="public">
+				<memberEnd xmi:idref="EAID_dst9A15CB_7BF8_426e_994F_ED623D1249A5"/>
+				<memberEnd xmi:idref="EAID_src9A15CB_7BF8_426e_994F_ED623D1249A5"/>
+				<ownedEnd xmi:type="uml:Property" xmi:id="EAID_src9A15CB_7BF8_426e_994F_ED623D1249A5" name="meter" visibility="public" association="EAID_659A15CB_7BF8_426e_994F_ED623D1249A5" isStatic="false" isReadOnly="false" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false" aggregation="shared">
+					<type xmi:idref="EAID_62E819FD_7296_4217_9FCC_44A268353EE4"/>
+				</ownedEnd>
+			</packagedElement>
+			<packagedElement xmi:type="uml:Association" xmi:id="EAID_72243D57_8E71_4d7f_B033_32D604A9D469" visibility="public">
+				<memberEnd xmi:idref="EAID_dst243D57_8E71_4d7f_B033_32D604A9D469"/>
+				<memberEnd xmi:idref="EAID_src243D57_8E71_4d7f_B033_32D604A9D469"/>
+				<ownedEnd xmi:type="uml:Property" xmi:id="EAID_src243D57_8E71_4d7f_B033_32D604A9D469" name="grid" visibility="public" association="EAID_72243D57_8E71_4d7f_B033_32D604A9D469" isStatic="false" isReadOnly="false" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false" aggregation="shared">
+					<type xmi:idref="EAID_1807061B_EEA6_4d94_99EE_4C15EDF7CFC9"/>
+				</ownedEnd>
+			</packagedElement>
+			<packagedElement xmi:type="uml:Association" xmi:id="EAID_AD67FDB5_4FB8_4fb5_B185_CB9293257763" visibility="public">
+				<memberEnd xmi:idref="EAID_dst67FDB5_4FB8_4fb5_B185_CB9293257763"/>
+				<memberEnd xmi:idref="EAID_src67FDB5_4FB8_4fb5_B185_CB9293257763"/>
+				<ownedEnd xmi:type="uml:Property" xmi:id="EAID_src67FDB5_4FB8_4fb5_B185_CB9293257763" name="pv" visibility="public" association="EAID_AD67FDB5_4FB8_4fb5_B185_CB9293257763" isStatic="false" isReadOnly="false" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false" aggregation="shared">
+					<type xmi:idref="EAID_050A7281_3A88_44bc_B261_1DEF4F16DF13"/>
+				</ownedEnd>
+			</packagedElement>
+			<packagedElement xmi:type="uml:Association" xmi:id="EAID_E4303131_F2CF_467d_A9D6_976109B06F52" visibility="public">
+				<memberEnd xmi:idref="EAID_dst303131_F2CF_467d_A9D6_976109B06F52"/>
+				<memberEnd xmi:idref="EAID_src303131_F2CF_467d_A9D6_976109B06F52"/>
+				<ownedEnd xmi:type="uml:Property" xmi:id="EAID_src303131_F2CF_467d_A9D6_976109B06F52" name="db_Hot" visibility="public" association="EAID_E4303131_F2CF_467d_A9D6_976109B06F52" isStatic="false" isReadOnly="false" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false" aggregation="shared">
+					<type xmi:idref="EAID_6D3FE69C_54EE_4491_8FE0_190179268164"/>
+				</ownedEnd>
+			</packagedElement>
+			<packagedElement xmi:type="uml:Class" xmi:id="EAID_6D3FE69C_54EE_4491_8FE0_190179268164" name="DataBase" visibility="public">
+				<ownedAttribute xmi:type="uml:Property" xmi:id="EAID_dst303131_F2CF_467d_A9D6_976109B06F52" visibility="public" association="EAID_E4303131_F2CF_467d_A9D6_976109B06F52" isStatic="false" isReadOnly="false" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false" aggregation="none">
+					<type xmi:idref="EAID_AE2103EF_CA72_46f4_AB39_F0CB10FCB246"/>
+				</ownedAttribute>
+			</packagedElement>
+			<packagedElement xmi:type="uml:Class" xmi:id="EAID_1807061B_EEA6_4d94_99EE_4C15EDF7CFC9" name="Grid" visibility="public">
+				<ownedAttribute xmi:type="uml:Property" xmi:id="EAID_dst243D57_8E71_4d7f_B033_32D604A9D469" visibility="public" association="EAID_72243D57_8E71_4d7f_B033_32D604A9D469" isStatic="false" isReadOnly="false" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false" aggregation="none">
+					<type xmi:idref="EAID_AE2103EF_CA72_46f4_AB39_F0CB10FCB246"/>
+				</ownedAttribute>
+			</packagedElement>
+			<packagedElement xmi:type="uml:Class" xmi:id="EAID_62E819FD_7296_4217_9FCC_44A268353EE4" name="PV_Sensor" visibility="public">
+				<ownedAttribute xmi:type="uml:Property" xmi:id="EAID_dst9A15CB_7BF8_426e_994F_ED623D1249A5" visibility="public" association="EAID_659A15CB_7BF8_426e_994F_ED623D1249A5" isStatic="false" isReadOnly="false" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false" aggregation="none">
+					<type xmi:idref="EAID_AE2103EF_CA72_46f4_AB39_F0CB10FCB246"/>
+				</ownedAttribute>
+			</packagedElement>
+			<packagedElement xmi:type="uml:Class" xmi:id="EAID_050A7281_3A88_44bc_B261_1DEF4F16DF13" name="PV_System" visibility="public">
+				<ownedAttribute xmi:type="uml:Property" xmi:id="EAID_AF568BF4_EF51_4e16_818D_7DA96CEB54BD" name="power" visibility="private" isStatic="false" isReadOnly="false" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false">
+					<lowerValue xmi:type="uml:LiteralInteger" xmi:id="EAID_LI000005_EF51_4e16_818D_7DA96CEB54BD" value="1"/>
+					<upperValue xmi:type="uml:LiteralInteger" xmi:id="EAID_LI000006_EF51_4e16_818D_7DA96CEB54BD" value="1"/>
+					<type xmi:idref="EAJava_double"/>
+				</ownedAttribute>
+				<ownedAttribute xmi:type="uml:Property" xmi:id="EAID_dst67FDB5_4FB8_4fb5_B185_CB9293257763" visibility="public" association="EAID_AD67FDB5_4FB8_4fb5_B185_CB9293257763" isStatic="false" isReadOnly="false" isDerived="false" isOrdered="false" isUnique="true" isDerivedUnion="false" aggregation="none">
+					<type xmi:idref="EAID_AE2103EF_CA72_46f4_AB39_F0CB10FCB246"/>
+				</ownedAttribute>
+			</packagedElement>
+		</packagedElement>
+		<DigitalTwinProfile:Strategy base_Class="EAID_B9ACC948_168B_4a62_BC49_8A106624CD6A" type="LAMBDA" autoDeploy="True" pathToCode="/pipeline/code/microgrid/energy-management"/>
+		<DigitalTwinProfile:hasStrategy base_Association="EAID_FFD5FC81_1B19_4514_8DDC_468E5B15CF0A"/>
+		<DigitalTwinProfile:Component base_Class="EAID_FAA01437_2376_43d8_A916_8FB35F7DCF42"/>
+		<DigitalTwinProfile:MeasurementInstance base_Property="EAID_9753E22E_1AF6_42e8_B627_3D5B574B8B68"/>
+		<DigitalTwinProfile:MeasurementInstance base_Property="EAID_9146D8D2_5006_4116_9668_3F8D482FD5A1"/>
+		<DigitalTwinProfile:hasComponent base_Association="EAID_33091470_72C1_4b87_9B4D_C49E60D3B098"/>
+		<DigitalTwinProfile:hasComponent base_Association="EAID_3B228C7D_FA91_4e91_9FA5_07845967834B"/>
+		<DigitalTwinProfile:hasComponent base_Association="EAID_E521314F_04BA_4a8b_B337_731914C307B4"/>
+		<DigitalTwinProfile:ComponentInstance base_Property="EAID_04F1287C_847D_4a49_A8A0_DA936FB50681"/>
+		<DigitalTwinProfile:Device base_Class="EAID_9F8A8D4A_B849_4d6d_A8E0_3DCD6425AC0B"/>
+		<DigitalTwinProfile:hasDevice base_Association="EAID_AB02BE21_7828_43b0_956C_2D7CFEC35923"/>
+		<DigitalTwinProfile:hasDevice base_Association="EAID_EAF861C6_54BA_414a_8188_60B3635EF4DB"/>
+		<DigitalTwinProfile:hasDevice base_Association="EAID_F795D357_4006_45b1_93E9_306DF8D7B8E2"/>
+		<DigitalTwinProfile:Twin base_Class="EAID_AE2103EF_CA72_46f4_AB39_F0CB10FCB246"/>
+		<DigitalTwinProfile:hasDevice base_Association="EAID_659A15CB_7BF8_426e_994F_ED623D1249A5"/>
+		<DigitalTwinProfile:hasComponent base_Association="EAID_72243D57_8E71_4d7f_B033_32D604A9D469"/>
+		<DigitalTwinProfile:hasComponent base_Association="EAID_AD67FDB5_4FB8_4fb5_B185_CB9293257763"/>
+		<DigitalTwinProfile:hasDataBase base_Association="EAID_E4303131_F2CF_467d_A9D6_976109B06F52"/>
+		<DigitalTwinProfile:StrategyInstance base_Property="EAID_9FC132DF_89F7_4a30_B482_11270D360E77" feedBackTopicType="NONE" customPayload="{&quot;message&quot;:&quot;HelloWorld&quot;}" feedbackPayLoadType="custom"/>
+		<DigitalTwinProfile:ComponentInstance base_Property="EAID_B7629CD0_1A09_4dd3_87A4_83C3A42640EF"/>
+		<DigitalTwinProfile:ComponentInstance base_Property="EAID_18DD6EF5_90B9_4ee0_A9A0_62DDEA0D3716"/>
+		<DigitalTwinProfile:ComponentInstance base_Property="EAID_A4B3FA3E_F466_42a2_9A7F_51E52CB2B0CD"/>
+		<DigitalTwinProfile:DataBaseInstance base_Property="EAID_0855643B_10A2_44bd_83FD_BDA347A48876" dataBaseTier="HOT" retentionPeriod="30"/>
+		<DigitalTwinProfile:ComponentInstance base_Property="EAID_C678D65D_7DB6_4c81_BE1D_4F2F9558616F"/>
+		<DigitalTwinProfile:DeviceInstance base_Property="EAID_0D6A8A1D_B264_4bb0_A6A5_B94B77DD9A71"/>
+		<DigitalTwinProfile:triggers base_Connector="EAID_C19956F6_F02F_447f_860D_8FEFE7D62648"/>
+		<DigitalTwinProfile:measures base_Connector="EAID_D3E25FAE_19C4_47f3_97F5_C68D81BAA59D"/>
+		<DigitalTwinProfile:ComponentInstance base_Property="EAID_6E9DAFE6_6C64_4a9c_A189_DA56C1695A35"/>
+		<DigitalTwinProfile:DeviceInstance base_Property="EAID_AC74694A_0C21_4461_9681_B97D38A0A3CF"/>
+		<DigitalTwinProfile:measures base_Connector="EAID_708D1124_407E_41a0_9A0E_7AA890BD0F84"/>
+		<DigitalTwinProfile:measures base_Connector="EAID_F453E34B_105B_48dc_99A7_202555737D2A"/>
+		<DigitalTwinProfile:DeviceInstance base_Property="EAID_F715EBAE_43B0_4dd7_95CF_8BB5D87C2CB0"/>
+		<DigitalTwinProfile:measures base_Connector="EAID_A6724696_7EF9_4258_8873_2F4E12F5F411"/>
+		<DigitalTwinProfile:measures base_Connector="EAID_AA4D3AED_DC86_40c4_9EC0_BA4C4B271433"/>
+		<DigitalTwinProfile:DeviceInstance base_Property="EAID_DB0DC810_9D9C_4c31_80E4_0BB63419F326"/>
+		<DigitalTwinProfile:measures base_Connector="EAID_C79CE8AB_2992_4845_A3D6_DA46DB6B51D3"/>
+		<DigitalTwinProfile:measures base_Connector="EAID_FB961E05_FB36_401d_8E25_91EB51F0439C"/>
+		<DigitalTwinProfile:DataBase base_Class="EAID_6D3FE69C_54EE_4491_8FE0_190179268164"/>
+		<DigitalTwinProfile:Component base_Class="EAID_1807061B_EEA6_4d94_99EE_4C15EDF7CFC9"/>
+		<DigitalTwinProfile:Device base_Class="EAID_62E819FD_7296_4217_9FCC_44A268353EE4"/>
+		<DigitalTwinProfile:Component base_Class="EAID_050A7281_3A88_44bc_B261_1DEF4F16DF13"/>
+		<DigitalTwinProfile:MeasurementInstance base_Property="EAID_AF568BF4_EF51_4e16_818D_7DA96CEB54BD"/>
+	</uml:Model>
+	<xmi:Extension extender="Enterprise Architect" extenderID="6.5">
+		<elements>
+			<element xmi:idref="EAPK_00B672CB_3B23_4f2a_A655_55143BCEC75B" xmi:type="uml:Package" name="Package1" scope="public">
+				<model package2="EAID_00B672CB_3B23_4f2a_A655_55143BCEC75B" package="EAPK_D4214D49_F594_45ae_8A73_D4BF086F06AE" tpos="0" ea_localid="4" ea_eleType="package"/>
+				<properties isSpecification="false" sType="Package" nType="0" scope="public"/>
+				<project author="author" version="1.0" phase="1.0" created="2026-10-29 16:42:37" modified="2026-10-29 16:42:37" complexity="1" status="Proposed"/>
+				<code gentype="Java"/>
+				<style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;"/>
+				<tags/>
+				<xrefs/>
+				<extendedProperties tagged="0" package_name="Model"/>
+				<packageproperties version="1.0"/>
+				<paths/>
+				<times created="2026-10-29 16:42:37" modified="2026-10-29 16:42:37"/>
+				<flags iscontrolled="0" isprotected="0" usedtd="0" logxml="0" packageFlags="isModel=1;VICON=3;"/>
+			</element>
+			<element xmi:idref="EAID_B9ACC948_168B_4a62_BC49_8A106624CD6A" xmi:type="uml:Class" name="BalancingStrategy" scope="public">
+				<model package="EAPK_00B672CB_3B23_4f2a_A655_55143BCEC75B" tpos="0" ea_localid="19" ea_eleType="element"/>
+				<properties isSpecification="false" sType="Class" nType="0" scope="public" stereotype="Strategy" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"/>
+				<project author="author" version="1.0" phase="1.0" created="2026-10-29 17:01:25" modified="2026-10-29 17:01:46" complexity="1" status="Proposed"/>
+				<code product_name="Java" gentype="Java"/>
+				<style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;"/>
+				<tags>
+					<tag xmi:id="EAID_23DC3F06_EAD2_f3ea_B377_E44F9ACE5E25" name="autoDeploy" value="True#NOTES#Values: True,False&#xA;Default: False&#xA;" modelElement="EAID_B9ACC948_168B_4a62_BC49_8A106624CD6A"/>
+					<tag xmi:id="EAID_501B1315_B5D3_0eb5_AE9E_0BB23A3F3CA5" name="isEncapsulated" value="#NOTES#Values: true,false&#xA;" modelElement="EAID_B9ACC948_168B_4a62_BC49_8A106624CD6A"/>
+					<tag xmi:id="EAID_51EAAC0B_CBB7_f0cb_B369_BFAC70E97285" name="pathToCode" value="/pipeline/code/microgrid/energy-management" modelElement="EAID_B9ACC948_168B_4a62_BC49_8A106624CD6A"/>
+					<tag xmi:id="EAID_0041AD82_EC6E_17ec_8144_71D2205F08C2" name="type" value="LAMBDA#NOTES#Values: LAMBDA,CONTAINER&#xA;Default: LAMBDA&#xA;" modelElement="EAID_B9ACC948_168B_4a62_BC49_8A106624CD6A"/>
+				</tags>
+				<xrefs value="$XREFPROP=$XID={B0922A67-8CDC-4f8d-8CDB-4C3133BE27C8}$XID;$NAM=Stereotypes$NAM;$TYP=element property$TYP;$VIS=Public$VIS;$PAR=0$PAR;$DES=@STEREO;Name=Strategy;FQName=DigitalTwinProfile::Strategy;@ENDSTEREO;$DES;$CLT={B9ACC948-168B-4a62-BC49-8A106624CD6A}$CLT;$SUP=&lt;none&gt;$SUP;$ENDXREF;"/>
+				<extendedProperties tagged="0" package_name="Package1"/>
+				<links>
+					<Aggregation xmi:id="EAID_FFD5FC81_1B19_4514_8DDC_468E5B15CF0A" start="EAID_B9ACC948_168B_4a62_BC49_8A106624CD6A" end="EAID_AE2103EF_CA72_46f4_AB39_F0CB10FCB246"/>
+				</links>
+			</element>
+			<element xmi:idref="EAID_FAA01437_2376_43d8_A916_8FB35F7DCF42" xmi:type="uml:Class" name="Charger" scope="public">
+				<model package="EAPK_00B672CB_3B23_4f2a_A655_55143BCEC75B" tpos="0" ea_localid="9" ea_eleType="element"/>
+				<properties isSpecification="false" sType="Class" nType="0" scope="public" stereotype="Component" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"/>
+				<project author="author" version="1.0" phase="1.0" created="2026-10-29 16:48:54" modified="2026-10-29 16:48:58" complexity="1" status="Proposed"/>
+				<code gentype="Java"/>
+				<style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;"/>
+				<tags>
+					<tag xmi:id="EAID_501B1315_B5D3_0eb5_8BAF_7D06ECD45F9B" name="isEncapsulated" value="#NOTES#Values: true,false&#xA;" modelElement="EAID_FAA01437_2376_43d8_A916_8FB35F7DCF42"/>
+				</tags>
+				<xrefs value="$XREFPROP=$XID={0481D9D5-AFDC-4e28-8912-58D08E103780}$XID;$NAM=Stereotypes$NAM;$TYP=element property$TYP;$VIS=Public$VIS;$PAR=0$PAR;$DES=@STEREO;Name=Component;FQName=DigitalTwinProfile::Component;@ENDSTEREO;$DES;$CLT={FAA01437-2376-43d8-A916-8FB35F7DCF42}$CLT;$SUP=&lt;none&gt;$SUP;$ENDXREF;"/>
+				<extendedProperties tagged="0" package_name="Package1"/>
+				<attributes>
+					<attribute xmi:idref="EAID_9753E22E_1AF6_42e8_B627_3D5B574B8B68" name="consumption" scope="Private">
+						<initial/>
+						<documentation/>
+						<model ea_localid="1" ea_guid="{9753E22E-1AF6-42e8-B627-3D5B574B8B68}"/>
+						<properties type="double" collection="false" static="0" duplicates="0" changeability="changeable"/>
+						<coords ordered="0"/>
+						<containment containment="Not Specified" position="0"/>
+						<stereotype stereotype="MeasurementInstance"/>
+						<bounds lower="1" upper="1"/>
+						<options/>
+						<style/>
+						<styleex value="volatile=0;"/>
+						<tags>
+							<tag xmi:id="EAID_8A3B8C5C_0CD0_340c_850C_DE1F2E93D743" name="dataType" value="DOUBLE" notes="Values: INTEGER,DOUBLE,STRING&#xA;Default: INT&#xA;"/>
+						</tags>
+						<xrefs value="$XREFPROP=$XID={4C44D738-F044-497e-AF6F-3D2FC1BA9560}$XID;$NAM=Stereotypes$NAM;$TYP=attribute property$TYP;$VIS=Public$VIS;$PAR=0$PAR;$DES=@STEREO;Name=MeasurementInstance;FQName=DigitalTwinProfile::MeasurementInstance;@ENDSTEREO;$DES;$CLT={9753E22E-1AF6-42e8-B627-3D5B574B8B68}$CLT;$SUP=&lt;none&gt;$SUP;$ENDXREF;"/>
+					</attribute>
+					<attribute xmi:idref="EAID_9146D8D2_5006_4116_9668_3F8D482FD5A1" name="state" scope="Private">
+						<initial/>
+						<documentation/>
+						<model ea_localid="2" ea_guid="{9146D8D2-5006-4116-9668-3F8D482FD5A1}"/>
+						<properties type="char" collection="false" static="0" duplicates="0" changeability="changeable"/>
+						<coords ordered="0"/>
+						<containment containment="Not Specified" position="1"/>
+						<stereotype stereotype="MeasurementInstance"/>
+						<bounds lower="1" upper="1"/>
+						<options/>
+						<style/>
+						<styleex value="volatile=0;"/>
+						<tags>
+							<tag xmi:id="EAID_8A3B8C5C_0CD0_340c_9019_950097547B3C" name="dataType" value="STRING" notes="Values: INTEGER,DOUBLE,STRING&#xA;Default: INT&#xA;"/>
+						</tags>
+						<xrefs value="$XREFPROP=$XID={2BCCCC72-E871-4856-A2C2-202D235D3010}$XID;$NAM=Stereotypes$NAM;$TYP=attribute property$TYP;$VIS=Public$VIS;$PAR=0$PAR;$DES=@STEREO;Name=MeasurementInstance;FQName=DigitalTwinProfile::MeasurementInstance;@ENDSTEREO;$DES;$CLT={9146D8D2-5006-4116-9668-3F8D482FD5A1}$CLT;$SUP=&lt;none&gt;$SUP;$ENDXREF;"/>
+					</attribute>
+				</attributes>
+				<links>
+					<Aggregation xmi:id="EAID_33091470_72C1_4b87_9B4D_C49E60D3B098" start="EAID_FAA01437_2376_43d8_A916_8FB35F7DCF42" end="EAID_AE2103EF_CA72_46f4_AB39_F0CB10FCB246"/>
+					<Aggregation xmi:id="EAID_3B228C7D_FA91_4e91_9FA5_07845967834B" start="EAID_FAA01437_2376_43d8_A916_8FB35F7DCF42" end="EAID_AE2103EF_CA72_46f4_AB39_F0CB10FCB246"/>
+					<Aggregation xmi:id="EAID_E521314F_04BA_4a8b_B337_731914C307B4" start="EAID_FAA01437_2376_43d8_A916_8FB35F7DCF42" end="EAID_AE2103EF_CA72_46f4_AB39_F0CB10FCB246"/>
+				</links>
+			</element>
+			<element xmi:idref="EAID_04F1287C_847D_4a49_A8A0_DA936FB50681" xmi:type="uml:Part" scope="public">
+				<model package="EAPK_00B672CB_3B23_4f2a_A655_55143BCEC75B" owner="EAID_FAA01437_2376_43d8_A916_8FB35F7DCF42" tpos="0" ea_localid="39" ea_eleType="element"/>
+				<properties isSpecification="false" sType="Part" nType="0" scope="public" stereotype="ComponentInstance"/>
+				<project author="author" version="1.0" phase="1.0" created="2026-10-29 17:30:28" modified="2026-10-29 17:30:28" complexity="1" status="Proposed"/>
+				<code gentype="Java"/>
+				<style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;"/>
+				<tags/>
+				<xrefs value="$XREFPROP=$XID={6BD20A4C-4AEF-4994-A86A-E7F2E71BA418}$XID;$NAM=Stereotypes$NAM;$TYP=element property$TYP;$VIS=Public$VIS;$PAR=0$PAR;$DES=@STEREO;Name=ComponentInstance;FQName=DigitalTwinProfile::ComponentInstance;@ENDSTEREO;$DES;$CLT={04F1287C-847D-4a49-A8A0-DA936FB50681}$CLT;$SUP=&lt;none&gt;$SUP;$ENDXREF;$XREFPROP=$XID={6C0B3233-AD1F-47e1-89C5-A01E04922BFC}$XID;$NAM=CustomProperties$NAM;$TYP=element property$TYP;$VIS=Public$VIS;$PAR=0$PAR;$DES=@PROP=@NAME=_connectorRef@ENDNAME;@TYPE=string@ENDTYPE;@VALU=&lt;SOURCE&gt;@ENDVALU;@PRMT=@ENDPRMT;@ENDPROP;@PROP=@NAME=isReference@ENDNAME;@TYPE=boolean@ENDTYPE;@VALU=-1@ENDVALU;@PRMT=@ENDPRMT;@ENDPROP;$DES;$CLT={04F1287C-847D-4a49-A8A0-DA936FB50681}$CLT;$SUP={50CDA9D5-3C31-4821-A8A9-57340CCB7F88}$SUP;$ENDXREF;"/>
+				<extendedProperties tagged="0" package_name="Package1" propertyType="{FAA01437-2376-43d8-A916-8FB35F7DCF42}"/>
+			</element>
+			<element xmi:idref="EAID_9F8A8D4A_B849_4d6d_A8E0_3DCD6425AC0B" xmi:type="uml:Class" name="ChargerSensor" scope="public">
+				<model package="EAPK_00B672CB_3B23_4f2a_A655_55143BCEC75B" tpos="0" ea_localid="13" ea_eleType="element"/>
+				<properties isSpecification="false" sType="Class" nType="0" scope="public" stereotype="Device" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"/>
+				<project author="author" version="1.0" phase="1.0" created="2026-10-29 16:53:56" modified="2026-10-29 16:54:10" complexity="1" status="Proposed"/>
+				<code product_name="Java" gentype="Java"/>
+				<style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;"/>
+				<tags>
+					<tag xmi:id="EAID_501B1315_B5D3_0eb5_A84A_C694C3293385" name="isEncapsulated" value="#NOTES#Values: true,false&#xA;" modelElement="EAID_9F8A8D4A_B849_4d6d_A8E0_3DCD6425AC0B"/>
+				</tags>
+				<xrefs value="$XREFPROP=$XID={9A073FC6-6F9A-4cf5-BBE1-94C90A1B0C90}$XID;$NAM=Stereotypes$NAM;$TYP=element property$TYP;$VIS=Public$VIS;$PAR=0$PAR;$DES=@STEREO;Name=Device;FQName=DigitalTwinProfile::Device;@ENDSTEREO;$DES;$CLT={9F8A8D4A-B849-4d6d-A8E0-3DCD6425AC0B}$CLT;$SUP=&lt;none&gt;$SUP;$ENDXREF;"/>
+				<extendedProperties tagged="0" package_name="Package1"/>
+				<links>
+					<Aggregation xmi:id="EAID_AB02BE21_7828_43b0_956C_2D7CFEC35923" start="EAID_9F8A8D4A_B849_4d6d_A8E0_3DCD6425AC0B" end="EAID_AE2103EF_CA72_46f4_AB39_F0CB10FCB246"/>
+					<Aggregation xmi:id="EAID_EAF861C6_54BA_414a_8188_60B3635EF4DB" start="EAID_9F8A8D4A_B849_4d6d_A8E0_3DCD6425AC0B" end="EAID_AE2103EF_CA72_46f4_AB39_F0CB10FCB246"/>
+					<Aggregation xmi:id="EAID_F795D357_4006_45b1_93E9_306DF8D7B8E2" start="EAID_9F8A8D4A_B849_4d6d_A8E0_3DCD6425AC0B" end="EAID_AE2103EF_CA72_46f4_AB39_F0CB10FCB246"/>
+				</links>
+			</element>
+			<element xmi:idref="EAID_AE2103EF_CA72_46f4_AB39_F0CB10FCB246" xmi:type="uml:Class" name="ChargingPointStation" scope="public">
+				<model package="EAPK_00B672CB_3B23_4f2a_A655_55143BCEC75B" tpos="0" ea_localid="4" ea_eleType="element"/>
+				<properties isSpecification="false" sType="Class" nType="8" scope="public" stereotype="Twin" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"/>
+				<project author="author" version="1.0" phase="1.0" created="2026-10-29 16:43:04" modified="2026-10-29 17:03:35" complexity="1" status="Proposed"/>
+				<code product_name="Java" gentype="Java"/>
+				<style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;" styleex="ConstructID=0;"/>
+				<tags>
+					<tag xmi:id="EAID_9A92B2E3_525E_2d52_AF0D_8326468254A0" name="grafanaUrl" modelElement="EAID_AE2103EF_CA72_46f4_AB39_F0CB10FCB246"/>
+					<tag xmi:id="EAID_501B1315_B5D3_0eb5_93E1_1F317CC12EF7" name="isEncapsulated" value="#NOTES#Values: true,false&#xA;" modelElement="EAID_AE2103EF_CA72_46f4_AB39_F0CB10FCB246"/>
+				</tags>
+				<xrefs value="$XREFPROP=$XID={7C9227EC-7BEB-425c-9244-9792F786440B}$XID;$NAM=Stereotypes$NAM;$TYP=element property$TYP;$VIS=Public$VIS;$PAR=0$PAR;$DES=@STEREO;Name=Twin;FQName=DigitalTwinProfile::Twin;@ENDSTEREO;$DES;$CLT={AE2103EF-CA72-46f4-AB39-F0CB10FCB246}$CLT;$SUP=&lt;none&gt;$SUP;$ENDXREF;"/>
+				<extendedProperties tagged="0" package_name="Package1"/>
+				<links>
+					<Aggregation xmi:id="EAID_33091470_72C1_4b87_9B4D_C49E60D3B098" start="EAID_FAA01437_2376_43d8_A916_8FB35F7DCF42" end="EAID_AE2103EF_CA72_46f4_AB39_F0CB10FCB246"/>
+					<Aggregation xmi:id="EAID_3B228C7D_FA91_4e91_9FA5_07845967834B" start="EAID_FAA01437_2376_43d8_A916_8FB35F7DCF42" end="EAID_AE2103EF_CA72_46f4_AB39_F0CB10FCB246"/>
+					<Aggregation xmi:id="EAID_659A15CB_7BF8_426e_994F_ED623D1249A5" start="EAID_62E819FD_7296_4217_9FCC_44A268353EE4" end="EAID_AE2103EF_CA72_46f4_AB39_F0CB10FCB246"/>
+					<Aggregation xmi:id="EAID_72243D57_8E71_4d7f_B033_32D604A9D469" start="EAID_1807061B_EEA6_4d94_99EE_4C15EDF7CFC9" end="EAID_AE2103EF_CA72_46f4_AB39_F0CB10FCB246"/>
+					<Aggregation xmi:id="EAID_AB02BE21_7828_43b0_956C_2D7CFEC35923" start="EAID_9F8A8D4A_B849_4d6d_A8E0_3DCD6425AC0B" end="EAID_AE2103EF_CA72_46f4_AB39_F0CB10FCB246"/>
+					<Aggregation xmi:id="EAID_AD67FDB5_4FB8_4fb5_B185_CB9293257763" start="EAID_050A7281_3A88_44bc_B261_1DEF4F16DF13" end="EAID_AE2103EF_CA72_46f4_AB39_F0CB10FCB246"/>
+					<Aggregation xmi:id="EAID_E4303131_F2CF_467d_A9D6_976109B06F52" start="EAID_6D3FE69C_54EE_4491_8FE0_190179268164" end="EAID_AE2103EF_CA72_46f4_AB39_F0CB10FCB246"/>
+					<Aggregation xmi:id="EAID_E521314F_04BA_4a8b_B337_731914C307B4" start="EAID_FAA01437_2376_43d8_A916_8FB35F7DCF42" end="EAID_AE2103EF_CA72_46f4_AB39_F0CB10FCB246"/>
+					<Aggregation xmi:id="EAID_EAF861C6_54BA_414a_8188_60B3635EF4DB" start="EAID_9F8A8D4A_B849_4d6d_A8E0_3DCD6425AC0B" end="EAID_AE2103EF_CA72_46f4_AB39_F0CB10FCB246"/>
+					<Aggregation xmi:id="EAID_F795D357_4006_45b1_93E9_306DF8D7B8E2" start="EAID_9F8A8D4A_B849_4d6d_A8E0_3DCD6425AC0B" end="EAID_AE2103EF_CA72_46f4_AB39_F0CB10FCB246"/>
+					<Aggregation xmi:id="EAID_FFD5FC81_1B19_4514_8DDC_468E5B15CF0A" start="EAID_B9ACC948_168B_4a62_BC49_8A106624CD6A" end="EAID_AE2103EF_CA72_46f4_AB39_F0CB10FCB246"/>
+				</links>
+			</element>
+			<element xmi:idref="EAID_9FC132DF_89F7_4a30_B482_11270D360E77" xmi:type="uml:Part" name="balancingStrategy" scope="public">
+				<model package="EAPK_00B672CB_3B23_4f2a_A655_55143BCEC75B" owner="EAID_AE2103EF_CA72_46f4_AB39_F0CB10FCB246" tpos="0" ea_localid="34" ea_eleType="element"/>
+				<properties isSpecification="false" sType="Part" nType="0" scope="public" stereotype="StrategyInstance"/>
+				<project author="author" version="1.0" phase="1.0" created="2026-10-29 17:20:53" modified="2026-10-29 17:20:53" complexity="1" status="Proposed"/>
+				<code gentype="Java"/>
+				<style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;"/>
+				<tags>
+					<tag xmi:id="EAID_80EFD905_6466_dc64_AC2C_1B4B4F66446D" name="customPayload" value="{&quot;message&quot;:&quot;HelloWorld&quot;}#NOTES#Default: {&quot;message&quot;:&quot;HelloWorld&quot;}&#xA;" modelElement="EAID_9FC132DF_89F7_4a30_B482_11270D360E77"/>
+					<tag xmi:id="EAID_349E2CBA_6BDB_7e6b_8084_832588FBD863" name="customTopic" modelElement="EAID_9FC132DF_89F7_4a30_B482_11270D360E77"/>
+					<tag xmi:id="EAID_1BDF3871_6852_9768_B1A9_8C3FC967BF52" name="feedbackPayLoadType" value="custom#NOTES#Values: strategyResult,custom&#xA;Default: custom&#xA;" modelElement="EAID_9FC132DF_89F7_4a30_B482_11270D360E77"/>
+					<tag xmi:id="EAID_F8817C26_9BC7_ac9b_8D3A_8B52393F31BB" name="feedBackTopicType" value="NONE#NOTES#Values: EXTERNAL,INTERNAL,NONE&#xA;Default: NONE&#xA;" modelElement="EAID_9FC132DF_89F7_4a30_B482_11270D360E77"/>
+				</tags>
+				<xrefs value="$XREFPROP=$XID={C8A12462-34E1-4744-8459-EA5FEEA4EA60}$XID;$NAM=Stereotypes$NAM;$TYP=element property$TYP;$VIS=Public$VIS;$PAR=0$PAR;$DES=@STEREO;Name=StrategyInstance;FQName=DigitalTwinProfile::StrategyInstance;@ENDSTEREO;$DES;$CLT={9FC132DF-89F7-4a30-B482-11270D360E77}$CLT;$SUP=&lt;none&gt;$SUP;$ENDXREF;$XREFPROP=$XID={3B55A98E-28AA-4c6e-8862-0EB4BAC14C3D}$XID;$NAM=CustomProperties$NAM;$TYP=element property$TYP;$VIS=Public$VIS;$PAR=0$PAR;$DES=@PROP=@NAME=_connectorRef@ENDNAME;@TYPE=string@ENDTYPE;@VALU=&lt;SOURCE&gt;@ENDVALU;@PRMT=@ENDPRMT;@ENDPROP;@PROP=@NAME=isReference@ENDNAME;@TYPE=boolean@ENDTYPE;@VALU=-1@ENDVALU;@PRMT=@ENDPRMT;@ENDPROP;$DES;$CLT={9FC132DF-89F7-4a30-B482-11270D360E77}$CLT;$SUP={FFD5FC81-1B19-4514-8DDC-468E5B15CF0A}$SUP;$ENDXREF;"/>
+				<extendedProperties tagged="0" package_name="Package1" propertyType="{B9ACC948-168B-4a62-BC49-8A106624CD6A}"/>
+				<links>
+					<Connector xmi:id="EAID_C19956F6_F02F_447f_860D_8FEFE7D62648" start="EAID_0D6A8A1D_B264_4bb0_A6A5_B94B77DD9A71" end="EAID_9FC132DF_89F7_4a30_B482_11270D360E77"/>
+				</links>
+			</element>
+			<element xmi:idref="EAID_B7629CD0_1A09_4dd3_87A4_83C3A42640EF" xmi:type="uml:Part" name="charger3" scope="public">
+				<model package="EAPK_00B672CB_3B23_4f2a_A655_55143BCEC75B" owner="EAID_AE2103EF_CA72_46f4_AB39_F0CB10FCB246" tpos="0" ea_localid="32" ea_eleType="element"/>
+				<properties isSpecification="false" sType="Part" nType="0" scope="public" stereotype="ComponentInstance"/>
+				<project author="author" version="1.0" phase="1.0" created="2026-10-29 17:20:53" modified="2026-10-29 17:20:53" complexity="1" status="Proposed"/>
+				<code gentype="Java"/>
+				<style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;"/>
+				<tags/>
+				<xrefs value="$XREFPROP=$XID={16D2B521-9310-4061-A5D4-732CC9B55A39}$XID;$NAM=Stereotypes$NAM;$TYP=element property$TYP;$VIS=Public$VIS;$PAR=0$PAR;$DES=@STEREO;Name=ComponentInstance;FQName=DigitalTwinProfile::ComponentInstance;@ENDSTEREO;$DES;$CLT={B7629CD0-1A09-4dd3-87A4-83C3A42640EF}$CLT;$SUP=&lt;none&gt;$SUP;$ENDXREF;$XREFPROP=$XID={848F395D-C290-42cb-94D4-9D740B57A27D}$XID;$NAM=CustomProperties$NAM;$TYP=element property$TYP;$VIS=Public$VIS;$PAR=0$PAR;$DES=@PROP=@NAME=_connectorRef@ENDNAME;@TYPE=string@ENDTYPE;@VALU=&lt;SOURCE&gt;@ENDVALU;@PRMT=@ENDPRMT;@ENDPROP;@PROP=@NAME=isReference@ENDNAME;@TYPE=boolean@ENDTYPE;@VALU=-1@ENDVALU;@PRMT=@ENDPRMT;@ENDPROP;$DES;$CLT={B7629CD0-1A09-4dd3-87A4-83C3A42640EF}$CLT;$SUP={3B228C7D-FA91-4e91-9FA5-07845967834B}$SUP;$ENDXREF;"/>
+				<extendedProperties tagged="0" package_name="Package1" propertyType="{FAA01437-2376-43d8-A916-8FB35F7DCF42}"/>
+				<links>
+					<Connector xmi:id="EAID_C79CE8AB_2992_4845_A3D6_DA46DB6B51D3" start="EAID_DB0DC810_9D9C_4c31_80E4_0BB63419F326" end="EAID_B7629CD0_1A09_4dd3_87A4_83C3A42640EF"/>
+					<Connector xmi:id="EAID_FB961E05_FB36_401d_8E25_91EB51F0439C" start="EAID_DB0DC810_9D9C_4c31_80E4_0BB63419F326" end="EAID_B7629CD0_1A09_4dd3_87A4_83C3A42640EF"/>
+				</links>
+			</element>
+			<element xmi:idref="EAID_18DD6EF5_90B9_4ee0_A9A0_62DDEA0D3716" xmi:type="uml:Part" name="charging1" scope="public">
+				<model package="EAPK_00B672CB_3B23_4f2a_A655_55143BCEC75B" owner="EAID_AE2103EF_CA72_46f4_AB39_F0CB10FCB246" tpos="0" ea_localid="30" ea_eleType="element"/>
+				<properties isSpecification="false" sType="Part" nType="0" scope="public" stereotype="ComponentInstance"/>
+				<project author="author" version="1.0" phase="1.0" created="2026-10-29 17:20:53" modified="2026-10-29 17:20:53" complexity="1" status="Proposed"/>
+				<code gentype="Java"/>
+				<style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;"/>
+				<tags/>
+				<xrefs value="$XREFPROP=$XID={7F6F7A52-E155-472d-93EB-7A98EB405531}$XID;$NAM=Stereotypes$NAM;$TYP=element property$TYP;$VIS=Public$VIS;$PAR=0$PAR;$DES=@STEREO;Name=ComponentInstance;FQName=DigitalTwinProfile::ComponentInstance;@ENDSTEREO;$DES;$CLT={18DD6EF5-90B9-4ee0-A9A0-62DDEA0D3716}$CLT;$SUP=&lt;none&gt;$SUP;$ENDXREF;$XREFPROP=$XID={BC2156B9-7762-416b-89B4-B09F5454DDAE}$XID;$NAM=CustomProperties$NAM;$TYP=element property$TYP;$VIS=Public$VIS;$PAR=0$PAR;$DES=@PROP=@NAME=_connectorRef@ENDNAME;@TYPE=string@ENDTYPE;@VALU=&lt;SOURCE&gt;@ENDVALU;@PRMT=@ENDPRMT;@ENDPROP;@PROP=@NAME=isReference@ENDNAME;@TYPE=boolean@ENDTYPE;@VALU=-1@ENDVALU;@PRMT=@ENDPRMT;@ENDPROP;$DES;$CLT={18DD6EF5-90B9-4ee0-A9A0-62DDEA0D3716}$CLT;$SUP={33091470-72C1-4b87-9B4D-C49E60D3B098}$SUP;$ENDXREF;"/>
+				<extendedProperties tagged="0" package_name="Package1" propertyType="{FAA01437-2376-43d8-A916-8FB35F7DCF42}"/>
+				<links>
+					<Connector xmi:id="EAID_708D1124_407E_41a0_9A0E_7AA890BD0F84" start="EAID_AC74694A_0C21_4461_9681_B97D38A0A3CF" end="EAID_18DD6EF5_90B9_4ee0_A9A0_62DDEA0D3716"/>
+					<Connector xmi:id="EAID_F453E34B_105B_48dc_99A7_202555737D2A" start="EAID_AC74694A_0C21_4461_9681_B97D38A0A3CF" end="EAID_18DD6EF5_90B9_4ee0_A9A0_62DDEA0D3716"/>
+				</links>
+			</element>
+			<element xmi:idref="EAID_A4B3FA3E_F466_42a2_9A7F_51E52CB2B0CD" xmi:type="uml:Part" name="charging2" scope="public">
+				<model package="EAPK_00B672CB_3B23_4f2a_A655_55143BCEC75B" owner="EAID_AE2103EF_CA72_46f4_AB39_F0CB10FCB246" tpos="0" ea_localid="31" ea_eleType="element"/>
+				<properties isSpecification="false" sType="Part" nType="0" scope="public" stereotype="ComponentInstance"/>
+				<project author="author" version="1.0" phase="1.0" created="2026-10-29 17:20:53" modified="2026-10-29 17:20:53" complexity="1" status="Proposed"/>
+				<code gentype="Java"/>
+				<style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;"/>
+				<tags/>
+				<xrefs value="$XREFPROP=$XID={AD8F99C1-1A68-4e86-AFA5-A4AECB677711}$XID;$NAM=Stereotypes$NAM;$TYP=element property$TYP;$VIS=Public$VIS;$PAR=0$PAR;$DES=@STEREO;Name=ComponentInstance;FQName=DigitalTwinProfile::ComponentInstance;@ENDSTEREO;$DES;$CLT={A4B3FA3E-F466-42a2-9A7F-51E52CB2B0CD}$CLT;$SUP=&lt;none&gt;$SUP;$ENDXREF;$XREFPROP=$XID={5B03E7CD-F146-46ae-BF35-E5F944A8DB70}$XID;$NAM=CustomProperties$NAM;$TYP=element property$TYP;$VIS=Public$VIS;$PAR=0$PAR;$DES=@PROP=@NAME=_connectorRef@ENDNAME;@TYPE=string@ENDTYPE;@VALU=&lt;SOURCE&gt;@ENDVALU;@PRMT=@ENDPRMT;@ENDPROP;@PROP=@NAME=isReference@ENDNAME;@TYPE=boolean@ENDTYPE;@VALU=-1@ENDVALU;@PRMT=@ENDPRMT;@ENDPROP;$DES;$CLT={A4B3FA3E-F466-42a2-9A7F-51E52CB2B0CD}$CLT;$SUP={E521314F-04BA-4a8b-B337-731914C307B4}$SUP;$ENDXREF;"/>
+				<extendedProperties tagged="0" package_name="Package1" propertyType="{FAA01437-2376-43d8-A916-8FB35F7DCF42}"/>
+				<links>
+					<Connector xmi:id="EAID_A6724696_7EF9_4258_8873_2F4E12F5F411" start="EAID_F715EBAE_43B0_4dd7_95CF_8BB5D87C2CB0" end="EAID_A4B3FA3E_F466_42a2_9A7F_51E52CB2B0CD"/>
+					<Connector xmi:id="EAID_AA4D3AED_DC86_40c4_9EC0_BA4C4B271433" start="EAID_F715EBAE_43B0_4dd7_95CF_8BB5D87C2CB0" end="EAID_A4B3FA3E_F466_42a2_9A7F_51E52CB2B0CD"/>
+				</links>
+			</element>
+			<element xmi:idref="EAID_0855643B_10A2_44bd_83FD_BDA347A48876" xmi:type="uml:Part" name="db_Hot" scope="public">
+				<model package="EAPK_00B672CB_3B23_4f2a_A655_55143BCEC75B" owner="EAID_AE2103EF_CA72_46f4_AB39_F0CB10FCB246" tpos="0" ea_localid="27" ea_eleType="element"/>
+				<properties isSpecification="false" sType="Part" nType="0" scope="public" stereotype="DataBaseInstance"/>
+				<project author="author" version="1.0" phase="1.0" created="2026-10-29 17:19:48" modified="2026-10-29 17:38:56" complexity="1" status="Proposed"/>
+				<code gentype="Java"/>
+				<style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;"/>
+				<tags>
+					<tag xmi:id="EAID_4ECC9269_AA4C_cfaa_8525_AEF9941664E3" name="dataBaseTier" value="HOT#NOTES#Values: HOT,COLD&#xA;Default: HOT&#xA;" modelElement="EAID_0855643B_10A2_44bd_83FD_BDA347A48876"/>
+					<tag xmi:id="EAID_D79AEADB_47FE_1047_8206_D426DFA1A328" name="retentionPeriod" value="30#NOTES#Default: 30&#xA;" modelElement="EAID_0855643B_10A2_44bd_83FD_BDA347A48876"/>
+				</tags>
+				<xrefs value="$XREFPROP=$XID={E4E856E2-B728-4272-AC96-AC5355F6EB2F}$XID;$NAM=Stereotypes$NAM;$TYP=element property$TYP;$VIS=Public$VIS;$PAR=0$PAR;$DES=@STEREO;Name=DataBaseInstance;FQName=DigitalTwinProfile::DataBaseInstance;@ENDSTEREO;$DES;$CLT={0855643B-10A2-44bd-83FD-BDA347A48876}$CLT;$SUP=&lt;none&gt;$SUP;$ENDXREF;$XREFPROP=$XID={F1B742F8-51E4-40f2-BC97-3EC79D94994B}$XID;$NAM=CustomProperties$NAM;$TYP=element property$TYP;$VIS=Public$VIS;$PAR=0$PAR;$DES=@PROP=@NAME=_connectorRef@ENDNAME;@TYPE=string@ENDTYPE;@VALU=&lt;SOURCE&gt;@ENDVALU;@PRMT=@ENDPRMT;@ENDPROP;@PROP=@NAME=isReference@ENDNAME;@TYPE=boolean@ENDTYPE;@VALU=-1@ENDVALU;@PRMT=@ENDPRMT;@ENDPROP;$DES;$CLT={0855643B-10A2-44bd-83FD-BDA347A48876}$CLT;$SUP={E4303131-F2CF-467d-A9D6-976109B06F52}$SUP;$ENDXREF;"/>
+				<extendedProperties tagged="0" package_name="Package1" propertyType="{6D3FE69C-54EE-4491-8FE0-190179268164}"/>
+			</element>
+			<element xmi:idref="EAID_C678D65D_7DB6_4c81_BE1D_4F2F9558616F" xmi:type="uml:Part" name="grid" scope="public">
+				<model package="EAPK_00B672CB_3B23_4f2a_A655_55143BCEC75B" owner="EAID_AE2103EF_CA72_46f4_AB39_F0CB10FCB246" tpos="0" ea_localid="28" ea_eleType="element"/>
+				<properties isSpecification="false" sType="Part" nType="0" scope="public" stereotype="ComponentInstance"/>
+				<project author="author" version="1.0" phase="1.0" created="2026-10-29 17:20:53" modified="2026-10-29 17:20:53" complexity="1" status="Proposed"/>
+				<code gentype="Java"/>
+				<style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;"/>
+				<tags/>
+				<xrefs value="$XREFPROP=$XID={B220D085-3700-4594-8298-A39CAA1D5410}$XID;$NAM=Stereotypes$NAM;$TYP=element property$TYP;$VIS=Public$VIS;$PAR=0$PAR;$DES=@STEREO;Name=ComponentInstance;FQName=DigitalTwinProfile::ComponentInstance;@ENDSTEREO;$DES;$CLT={C678D65D-7DB6-4c81-BE1D-4F2F9558616F}$CLT;$SUP=&lt;none&gt;$SUP;$ENDXREF;$XREFPROP=$XID={157D2672-F27E-4000-A3AA-B0F9747115D2}$XID;$NAM=CustomProperties$NAM;$TYP=element property$TYP;$VIS=Public$VIS;$PAR=0$PAR;$DES=@PROP=@NAME=_connectorRef@ENDNAME;@TYPE=string@ENDTYPE;@VALU=&lt;SOURCE&gt;@ENDVALU;@PRMT=@ENDPRMT;@ENDPROP;@PROP=@NAME=isReference@ENDNAME;@TYPE=boolean@ENDTYPE;@VALU=-1@ENDVALU;@PRMT=@ENDPRMT;@ENDPROP;$DES;$CLT={C678D65D-7DB6-4c81-BE1D-4F2F9558616F}$CLT;$SUP={72243D57-8E71-4d7f-B033-32D604A9D469}$SUP;$ENDXREF;"/>
+				<extendedProperties tagged="0" package_name="Package1" propertyType="{1807061B-EEA6-4d94-99EE-4C15EDF7CFC9}"/>
+			</element>
+			<element xmi:idref="EAID_0D6A8A1D_B264_4bb0_A6A5_B94B77DD9A71" xmi:type="uml:Part" name="meter" scope="public">
+				<model package="EAPK_00B672CB_3B23_4f2a_A655_55143BCEC75B" owner="EAID_AE2103EF_CA72_46f4_AB39_F0CB10FCB246" tpos="0" ea_localid="36" ea_eleType="element"/>
+				<properties isSpecification="false" sType="Part" nType="0" scope="public" stereotype="DeviceInstance"/>
+				<project author="author" version="1.0" phase="1.0" created="2026-10-29 17:24:40" modified="2026-10-29 17:25:16" complexity="1" status="Proposed"/>
+				<code gentype="Java"/>
+				<style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;"/>
+				<tags/>
+				<xrefs value="$XREFPROP=$XID={B4DCA9D7-848A-4008-9258-0382A590BAA8}$XID;$NAM=Stereotypes$NAM;$TYP=element property$TYP;$VIS=Public$VIS;$PAR=0$PAR;$DES=@STEREO;Name=DeviceInstance;FQName=DigitalTwinProfile::DeviceInstance;@ENDSTEREO;$DES;$CLT={0D6A8A1D-B264-4bb0-A6A5-B94B77DD9A71}$CLT;$SUP=&lt;none&gt;$SUP;$ENDXREF;$XREFPROP=$XID={26D50B28-CCE8-4d83-8C2C-FB57AE4C95F5}$XID;$NAM=CustomProperties$NAM;$TYP=element property$TYP;$VIS=Public$VIS;$PAR=0$PAR;$DES=@PROP=@NAME=_connectorRef@ENDNAME;@TYPE=string@ENDTYPE;@VALU=&lt;SOURCE&gt;@ENDVALU;@PRMT=@ENDPRMT;@ENDPROP;@PROP=@NAME=isReference@ENDNAME;@TYPE=boolean@ENDTYPE;@VALU=-1@ENDVALU;@PRMT=@ENDPRMT;@ENDPROP;$DES;$CLT={0D6A8A1D-B264-4bb0-A6A5-B94B77DD9A71}$CLT;$SUP={659A15CB-7BF8-426e-994F-ED623D1249A5}$SUP;$ENDXREF;"/>
+				<extendedProperties tagged="0" package_name="Package1" propertyType="{62E819FD-7296-4217-9FCC-44A268353EE4}"/>
+				<links>
+					<Connector xmi:id="EAID_C19956F6_F02F_447f_860D_8FEFE7D62648" start="EAID_0D6A8A1D_B264_4bb0_A6A5_B94B77DD9A71" end="EAID_9FC132DF_89F7_4a30_B482_11270D360E77"/>
+					<Connector xmi:id="EAID_D3E25FAE_19C4_47f3_97F5_C68D81BAA59D" start="EAID_0D6A8A1D_B264_4bb0_A6A5_B94B77DD9A71" end="EAID_6E9DAFE6_6C64_4a9c_A189_DA56C1695A35"/>
+				</links>
+			</element>
+			<element xmi:idref="EAID_6E9DAFE6_6C64_4a9c_A189_DA56C1695A35" xmi:type="uml:Part" name="pv" scope="public">
+				<model package="EAPK_00B672CB_3B23_4f2a_A655_55143BCEC75B" owner="EAID_AE2103EF_CA72_46f4_AB39_F0CB10FCB246" tpos="0" ea_localid="29" ea_eleType="element"/>
+				<properties isSpecification="false" sType="Part" nType="0" scope="public" stereotype="ComponentInstance"/>
+				<project author="author" version="1.0" phase="1.0" created="2026-10-29 17:20:53" modified="2026-10-29 17:20:53" complexity="1" status="Proposed"/>
+				<code gentype="Java"/>
+				<style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;"/>
+				<tags/>
+				<xrefs value="$XREFPROP=$XID={1EE11A2E-3139-43be-B41D-878141F11931}$XID;$NAM=Stereotypes$NAM;$TYP=element property$TYP;$VIS=Public$VIS;$PAR=0$PAR;$DES=@STEREO;Name=ComponentInstance;FQName=DigitalTwinProfile::ComponentInstance;@ENDSTEREO;$DES;$CLT={6E9DAFE6-6C64-4a9c-A189-DA56C1695A35}$CLT;$SUP=&lt;none&gt;$SUP;$ENDXREF;$XREFPROP=$XID={3B145629-0F40-4671-AF30-9165A93F1D09}$XID;$NAM=CustomProperties$NAM;$TYP=element property$TYP;$VIS=Public$VIS;$PAR=0$PAR;$DES=@PROP=@NAME=_connectorRef@ENDNAME;@TYPE=string@ENDTYPE;@VALU=&lt;SOURCE&gt;@ENDVALU;@PRMT=@ENDPRMT;@ENDPROP;@PROP=@NAME=isReference@ENDNAME;@TYPE=boolean@ENDTYPE;@VALU=-1@ENDVALU;@PRMT=@ENDPRMT;@ENDPROP;$DES;$CLT={6E9DAFE6-6C64-4a9c-A189-DA56C1695A35}$CLT;$SUP={AD67FDB5-4FB8-4fb5-B185-CB9293257763}$SUP;$ENDXREF;"/>
+				<extendedProperties tagged="0" package_name="Package1" propertyType="{050A7281-3A88-44bc-B261-1DEF4F16DF13}"/>
+				<links>
+					<Connector xmi:id="EAID_D3E25FAE_19C4_47f3_97F5_C68D81BAA59D" start="EAID_0D6A8A1D_B264_4bb0_A6A5_B94B77DD9A71" end="EAID_6E9DAFE6_6C64_4a9c_A189_DA56C1695A35"/>
+				</links>
+			</element>
+			<element xmi:idref="EAID_AC74694A_0C21_4461_9681_B97D38A0A3CF" xmi:type="uml:Part" name="sensor1" scope="public">
+				<model package="EAPK_00B672CB_3B23_4f2a_A655_55143BCEC75B" owner="EAID_AE2103EF_CA72_46f4_AB39_F0CB10FCB246" tpos="0" ea_localid="33" ea_eleType="element"/>
+				<properties isSpecification="false" sType="Part" nType="0" scope="public" stereotype="DeviceInstance"/>
+				<project author="author" version="1.0" phase="1.0" created="2026-10-29 17:20:53" modified="2026-10-29 17:27:47" complexity="1" status="Proposed"/>
+				<code gentype="Java"/>
+				<style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;"/>
+				<tags/>
+				<xrefs value="$XREFPROP=$XID={BED29D0A-705E-40b5-9C8B-CED1360CE49A}$XID;$NAM=Stereotypes$NAM;$TYP=element property$TYP;$VIS=Public$VIS;$PAR=0$PAR;$DES=@STEREO;Name=DeviceInstance;FQName=DigitalTwinProfile::DeviceInstance;@ENDSTEREO;$DES;$CLT={AC74694A-0C21-4461-9681-B97D38A0A3CF}$CLT;$SUP=&lt;none&gt;$SUP;$ENDXREF;$XREFPROP=$XID={F5A48281-316E-4d8b-9F01-A84795649E9E}$XID;$NAM=CustomProperties$NAM;$TYP=element property$TYP;$VIS=Public$VIS;$PAR=0$PAR;$DES=@PROP=@NAME=_connectorRef@ENDNAME;@TYPE=string@ENDTYPE;@VALU=&lt;SOURCE&gt;@ENDVALU;@PRMT=@ENDPRMT;@ENDPROP;@PROP=@NAME=isReference@ENDNAME;@TYPE=boolean@ENDTYPE;@VALU=-1@ENDVALU;@PRMT=@ENDPRMT;@ENDPROP;$DES;$CLT={AC74694A-0C21-4461-9681-B97D38A0A3CF}$CLT;$SUP={F795D357-4006-45b1-93E9-306DF8D7B8E2}$SUP;$ENDXREF;"/>
+				<extendedProperties tagged="0" package_name="Package1" propertyType="{9F8A8D4A-B849-4d6d-A8E0-3DCD6425AC0B}"/>
+				<links>
+					<Connector xmi:id="EAID_708D1124_407E_41a0_9A0E_7AA890BD0F84" start="EAID_AC74694A_0C21_4461_9681_B97D38A0A3CF" end="EAID_18DD6EF5_90B9_4ee0_A9A0_62DDEA0D3716"/>
+					<Connector xmi:id="EAID_F453E34B_105B_48dc_99A7_202555737D2A" start="EAID_AC74694A_0C21_4461_9681_B97D38A0A3CF" end="EAID_18DD6EF5_90B9_4ee0_A9A0_62DDEA0D3716"/>
+				</links>
+			</element>
+			<element xmi:idref="EAID_F715EBAE_43B0_4dd7_95CF_8BB5D87C2CB0" xmi:type="uml:Part" name="sensor2" scope="public">
+				<model package="EAPK_00B672CB_3B23_4f2a_A655_55143BCEC75B" owner="EAID_AE2103EF_CA72_46f4_AB39_F0CB10FCB246" tpos="0" ea_localid="37" ea_eleType="element"/>
+				<properties isSpecification="false" sType="Part" nType="0" scope="public" stereotype="DeviceInstance"/>
+				<project author="author" version="1.0" phase="1.0" created="2026-10-29 17:26:52" modified="2026-10-29 17:27:01" complexity="1" status="Proposed"/>
+				<code gentype="Java"/>
+				<style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;"/>
+				<tags/>
+				<xrefs value="$XREFPROP=$XID={E0CEDC85-A123-408d-9937-4CF26896F13D}$XID;$NAM=Stereotypes$NAM;$TYP=element property$TYP;$VIS=Public$VIS;$PAR=0$PAR;$DES=@STEREO;Name=DeviceInstance;FQName=DigitalTwinProfile::DeviceInstance;@ENDSTEREO;$DES;$CLT={F715EBAE-43B0-4dd7-95CF-8BB5D87C2CB0}$CLT;$SUP=&lt;none&gt;$SUP;$ENDXREF;$XREFPROP=$XID={6E5AA0C1-A7E9-4f02-B2B8-F1DF0BEC632C}$XID;$NAM=CustomProperties$NAM;$TYP=element property$TYP;$VIS=Public$VIS;$PAR=0$PAR;$DES=@PROP=@NAME=_connectorRef@ENDNAME;@TYPE=string@ENDTYPE;@VALU=&lt;SOURCE&gt;@ENDVALU;@PRMT=@ENDPRMT;@ENDPROP;@PROP=@NAME=isReference@ENDNAME;@TYPE=boolean@ENDTYPE;@VALU=-1@ENDVALU;@PRMT=@ENDPRMT;@ENDPROP;$DES;$CLT={F715EBAE-43B0-4dd7-95CF-8BB5D87C2CB0}$CLT;$SUP={EAF861C6-54BA-414a-8188-60B3635EF4DB}$SUP;$ENDXREF;"/>
+				<extendedProperties tagged="0" package_name="Package1" propertyType="{9F8A8D4A-B849-4d6d-A8E0-3DCD6425AC0B}"/>
+				<links>
+					<Connector xmi:id="EAID_A6724696_7EF9_4258_8873_2F4E12F5F411" start="EAID_F715EBAE_43B0_4dd7_95CF_8BB5D87C2CB0" end="EAID_A4B3FA3E_F466_42a2_9A7F_51E52CB2B0CD"/>
+					<Connector xmi:id="EAID_AA4D3AED_DC86_40c4_9EC0_BA4C4B271433" start="EAID_F715EBAE_43B0_4dd7_95CF_8BB5D87C2CB0" end="EAID_A4B3FA3E_F466_42a2_9A7F_51E52CB2B0CD"/>
+				</links>
+			</element>
+			<element xmi:idref="EAID_DB0DC810_9D9C_4c31_80E4_0BB63419F326" xmi:type="uml:Part" name="sensor3" scope="public">
+				<model package="EAPK_00B672CB_3B23_4f2a_A655_55143BCEC75B" owner="EAID_AE2103EF_CA72_46f4_AB39_F0CB10FCB246" tpos="0" ea_localid="38" ea_eleType="element"/>
+				<properties isSpecification="false" sType="Part" nType="0" scope="public" stereotype="DeviceInstance"/>
+				<project author="author" version="1.0" phase="1.0" created="2026-10-29 17:28:05" modified="2026-10-29 17:28:26" complexity="1" status="Proposed"/>
+				<code gentype="Java"/>
+				<style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;"/>
+				<tags/>
+				<xrefs value="$XREFPROP=$XID={7102252E-7CD9-45b0-9594-879F3C11382B}$XID;$NAM=Stereotypes$NAM;$TYP=element property$TYP;$VIS=Public$VIS;$PAR=0$PAR;$DES=@STEREO;Name=DeviceInstance;FQName=DigitalTwinProfile::DeviceInstance;@ENDSTEREO;$DES;$CLT={DB0DC810-9D9C-4c31-80E4-0BB63419F326}$CLT;$SUP=&lt;none&gt;$SUP;$ENDXREF;$XREFPROP=$XID={5D4AC2FE-AA7A-4422-9F63-72CB0DACDCA6}$XID;$NAM=CustomProperties$NAM;$TYP=element property$TYP;$VIS=Public$VIS;$PAR=0$PAR;$DES=@PROP=@NAME=_connectorRef@ENDNAME;@TYPE=string@ENDTYPE;@VALU=&lt;SOURCE&gt;@ENDVALU;@PRMT=@ENDPRMT;@ENDPROP;@PROP=@NAME=isReference@ENDNAME;@TYPE=boolean@ENDTYPE;@VALU=-1@ENDVALU;@PRMT=@ENDPRMT;@ENDPROP;$DES;$CLT={DB0DC810-9D9C-4c31-80E4-0BB63419F326}$CLT;$SUP={AB02BE21-7828-43b0-956C-2D7CFEC35923}$SUP;$ENDXREF;"/>
+				<extendedProperties tagged="0" package_name="Package1" propertyType="{9F8A8D4A-B849-4d6d-A8E0-3DCD6425AC0B}"/>
+				<links>
+					<Connector xmi:id="EAID_C79CE8AB_2992_4845_A3D6_DA46DB6B51D3" start="EAID_DB0DC810_9D9C_4c31_80E4_0BB63419F326" end="EAID_B7629CD0_1A09_4dd3_87A4_83C3A42640EF"/>
+					<Connector xmi:id="EAID_FB961E05_FB36_401d_8E25_91EB51F0439C" start="EAID_DB0DC810_9D9C_4c31_80E4_0BB63419F326" end="EAID_B7629CD0_1A09_4dd3_87A4_83C3A42640EF"/>
+				</links>
+			</element>
+			<element xmi:idref="EAID_6D3FE69C_54EE_4491_8FE0_190179268164" xmi:type="uml:Class" name="DataBase" scope="public">
+				<model package="EAPK_00B672CB_3B23_4f2a_A655_55143BCEC75B" tpos="0" ea_localid="16" ea_eleType="element"/>
+				<properties isSpecification="false" sType="Class" nType="0" scope="public" stereotype="DataBase" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"/>
+				<project author="author" version="1.0" phase="1.0" created="2026-10-29 16:58:15" modified="2026-10-29 16:58:53" complexity="1" status="Proposed"/>
+				<code product_name="Java" gentype="Java"/>
+				<style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;"/>
+				<tags>
+					<tag xmi:id="EAID_501B1315_B5D3_0eb5_8187_1523295084F5" name="isEncapsulated" value="#NOTES#Values: true,false&#xA;" modelElement="EAID_6D3FE69C_54EE_4491_8FE0_190179268164"/>
+				</tags>
+				<xrefs value="$XREFPROP=$XID={E2E5C125-96DC-4da7-ADAC-45ECCDF2780C}$XID;$NAM=Stereotypes$NAM;$TYP=element property$TYP;$VIS=Public$VIS;$PAR=0$PAR;$DES=@STEREO;Name=DataBase;FQName=DigitalTwinProfile::DataBase;@ENDSTEREO;$DES;$CLT={6D3FE69C-54EE-4491-8FE0-190179268164}$CLT;$SUP=&lt;none&gt;$SUP;$ENDXREF;"/>
+				<extendedProperties tagged="0" package_name="Package1"/>
+				<links>
+					<Aggregation xmi:id="EAID_E4303131_F2CF_467d_A9D6_976109B06F52" start="EAID_6D3FE69C_54EE_4491_8FE0_190179268164" end="EAID_AE2103EF_CA72_46f4_AB39_F0CB10FCB246"/>
+				</links>
+			</element>
+			<element xmi:idref="EAID_1807061B_EEA6_4d94_99EE_4C15EDF7CFC9" xmi:type="uml:Class" name="Grid" scope="public">
+				<model package="EAPK_00B672CB_3B23_4f2a_A655_55143BCEC75B" tpos="0" ea_localid="5" ea_eleType="element"/>
+				<properties isSpecification="false" sType="Class" nType="0" scope="public" stereotype="Component" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"/>
+				<project author="author" version="1.0" phase="1.0" created="2026-10-29 16:46:06" modified="2026-10-29 16:46:23" complexity="1" status="Proposed"/>
+				<code gentype="Java"/>
+				<style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;"/>
+				<tags>
+					<tag xmi:id="EAID_501B1315_B5D3_0eb5_97E6_7B9DF559E7D4" name="isEncapsulated" value="#NOTES#Values: true,false&#xA;" modelElement="EAID_1807061B_EEA6_4d94_99EE_4C15EDF7CFC9"/>
+				</tags>
+				<xrefs value="$XREFPROP=$XID={1DF03AAB-F97D-476d-BDEA-59DEDB585C0A}$XID;$NAM=Stereotypes$NAM;$TYP=element property$TYP;$VIS=Public$VIS;$PAR=0$PAR;$DES=@STEREO;Name=Component;FQName=DigitalTwinProfile::Component;@ENDSTEREO;$DES;$CLT={1807061B-EEA6-4d94-99EE-4C15EDF7CFC9}$CLT;$SUP=&lt;none&gt;$SUP;$ENDXREF;"/>
+				<extendedProperties tagged="0" package_name="Package1"/>
+				<links>
+					<Aggregation xmi:id="EAID_72243D57_8E71_4d7f_B033_32D604A9D469" start="EAID_1807061B_EEA6_4d94_99EE_4C15EDF7CFC9" end="EAID_AE2103EF_CA72_46f4_AB39_F0CB10FCB246"/>
+				</links>
+			</element>
+			<element xmi:idref="EAID_62E819FD_7296_4217_9FCC_44A268353EE4" xmi:type="uml:Class" name="PV_Sensor" scope="public">
+				<model package="EAPK_00B672CB_3B23_4f2a_A655_55143BCEC75B" tpos="0" ea_localid="35" ea_eleType="element"/>
+				<properties isSpecification="false" sType="Class" nType="0" scope="public" stereotype="Device" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"/>
+				<project author="author" version="1.0" phase="1.0" created="2026-10-29 17:24:40" modified="2026-10-29 17:24:47" complexity="1" status="Proposed"/>
+				<code gentype="Java"/>
+				<style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;"/>
+				<tags>
+					<tag xmi:id="EAID_501B1315_B5D3_0eb5_A1FF_1166384F2F6B" name="isEncapsulated" value="#NOTES#Values: true,false&#xA;" modelElement="EAID_62E819FD_7296_4217_9FCC_44A268353EE4"/>
+				</tags>
+				<xrefs value="$XREFPROP=$XID={9026415D-AEB4-4cdd-9D58-FC24E6DA4C52}$XID;$NAM=Stereotypes$NAM;$TYP=element property$TYP;$VIS=Public$VIS;$PAR=0$PAR;$DES=@STEREO;Name=Device;FQName=DigitalTwinProfile::Device;@ENDSTEREO;$DES;$CLT={62E819FD-7296-4217-9FCC-44A268353EE4}$CLT;$SUP=&lt;none&gt;$SUP;$ENDXREF;"/>
+				<extendedProperties tagged="0" package_name="Package1"/>
+				<links>
+					<Aggregation xmi:id="EAID_659A15CB_7BF8_426e_994F_ED623D1249A5" start="EAID_62E819FD_7296_4217_9FCC_44A268353EE4" end="EAID_AE2103EF_CA72_46f4_AB39_F0CB10FCB246"/>
+				</links>
+			</element>
+			<element xmi:idref="EAID_050A7281_3A88_44bc_B261_1DEF4F16DF13" xmi:type="uml:Class" name="PV_System" scope="public">
+				<model package="EAPK_00B672CB_3B23_4f2a_A655_55143BCEC75B" tpos="0" ea_localid="7" ea_eleType="element"/>
+				<properties isSpecification="false" sType="Class" nType="0" scope="public" stereotype="Component" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"/>
+				<project author="author" version="1.0" phase="1.0" created="2026-10-29 16:48:01" modified="2026-10-29 16:48:28" complexity="1" status="Proposed"/>
+				<code gentype="Java"/>
+				<style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;"/>
+				<tags>
+					<tag xmi:id="EAID_501B1315_B5D3_0eb5_B754_4269803E6B87" name="isEncapsulated" value="#NOTES#Values: true,false&#xA;" modelElement="EAID_050A7281_3A88_44bc_B261_1DEF4F16DF13"/>
+				</tags>
+				<xrefs value="$XREFPROP=$XID={F94DFB2C-7EA7-4c53-9B1F-59A857DE91EC}$XID;$NAM=Stereotypes$NAM;$TYP=element property$TYP;$VIS=Public$VIS;$PAR=0$PAR;$DES=@STEREO;Name=Component;FQName=DigitalTwinProfile::Component;@ENDSTEREO;$DES;$CLT={050A7281-3A88-44bc-B261-1DEF4F16DF13}$CLT;$SUP=&lt;none&gt;$SUP;$ENDXREF;"/>
+				<extendedProperties tagged="0" package_name="Package1"/>
+				<attributes>
+					<attribute xmi:idref="EAID_AF568BF4_EF51_4e16_818D_7DA96CEB54BD" name="power" scope="Private">
+						<initial/>
+						<documentation/>
+						<model ea_localid="3" ea_guid="{AF568BF4-EF51-4e16-818D-7DA96CEB54BD}"/>
+						<properties type="double" collection="false" static="0" duplicates="0" changeability="changeable"/>
+						<coords ordered="0"/>
+						<containment containment="Not Specified" position="0"/>
+						<stereotype stereotype="MeasurementInstance"/>
+						<bounds lower="1" upper="1"/>
+						<options/>
+						<style/>
+						<styleex value="volatile=0;"/>
+						<tags>
+							<tag xmi:id="EAID_8A3B8C5C_0CD0_340c_A336_CEB012343B69" name="dataType" value="DOUBLE" notes="Values: INTEGER,DOUBLE,STRING&#xA;Default: INT&#xA;"/>
+						</tags>
+						<xrefs value="$XREFPROP=$XID={83349CD8-086D-45fb-B624-51C2C32BE86C}$XID;$NAM=Stereotypes$NAM;$TYP=attribute property$TYP;$VIS=Public$VIS;$PAR=0$PAR;$DES=@STEREO;Name=MeasurementInstance;FQName=DigitalTwinProfile::MeasurementInstance;@ENDSTEREO;$DES;$CLT={AF568BF4-EF51-4e16-818D-7DA96CEB54BD}$CLT;$SUP=&lt;none&gt;$SUP;$ENDXREF;"/>
+					</attribute>
+				</attributes>
+				<links>
+					<Aggregation xmi:id="EAID_AD67FDB5_4FB8_4fb5_B185_CB9293257763" start="EAID_050A7281_3A88_44bc_B261_1DEF4F16DF13" end="EAID_AE2103EF_CA72_46f4_AB39_F0CB10FCB246"/>
+				</links>
+			</element>
+		</elements>
+		<connectors>
+			<connector xmi:idref="EAID_FFD5FC81_1B19_4514_8DDC_468E5B15CF0A">
+				<source xmi:idref="EAID_B9ACC948_168B_4a62_BC49_8A106624CD6A">
+					<model ea_localid="19" type="Class" name="BalancingStrategy"/>
+					<role name="balancingStrategy" visibility="Public" targetScope="instance"/>
+					<type aggregation="none" containment="Unspecified"/>
+					<constraints/>
+					<modifiers isOrdered="false" changeable="none" isNavigable="false"/>
+					<style value="Union=0;Derived=0;AllowDuplicates=0;Owned=0;Navigable=Navigable;"/>
+					<documentation/>
+					<xrefs/>
+					<tags/>
+				</source>
+				<target xmi:idref="EAID_AE2103EF_CA72_46f4_AB39_F0CB10FCB246">
+					<model ea_localid="4" type="Class" name="ChargingPointStation"/>
+					<role visibility="Public" targetScope="instance"/>
+					<type aggregation="shared" containment="Unspecified"/>
+					<constraints/>
+					<modifiers isOrdered="false" changeable="none" isNavigable="true"/>
+					<style value="Union=0;Derived=0;AllowDuplicates=0;Owned=0;Navigable=Unspecified;"/>
+					<documentation/>
+					<xrefs/>
+					<tags/>
+				</target>
+				<model ea_localid="10"/>
+				<properties ea_type="Aggregation" subtype="Weak" stereotype="hasStrategy" direction="Source -&gt; Destination"/>
+				<modifiers isRoot="false" isLeaf="false"/>
+				<documentation/>
+				<appearance linemode="3" linecolor="-1" linewidth="0" seqno="0" headStyle="0" lineStyle="0"/>
+				<labels lt="+balancingStrategy" mb="«hasStrategy»"/>
+				<extendedProperties conditional="«hasStrategy»" virtualInheritance="0"/>
+				<style/>
+				<xrefs value="$XREFPROP=$XID={53483DB5-879A-488e-813A-19A9003DD1B3}$XID;$NAM=Stereotypes$NAM;$TYP=connector property$TYP;$VIS=Public$VIS;$PAR=0$PAR;$DES=@STEREO;Name=hasStrategy;FQName=DigitalTwinProfile::hasStrategy;@ENDSTEREO;$DES;$CLT={FFD5FC81-1B19-4514-8DDC-468E5B15CF0A}$CLT;$SUP=&lt;none&gt;$SUP;$ENDXREF;"/>
+				<tags/>
+			</connector>
+			<connector xmi:idref="EAID_33091470_72C1_4b87_9B4D_C49E60D3B098">
+				<source xmi:idref="EAID_FAA01437_2376_43d8_A916_8FB35F7DCF42">
+					<model ea_localid="9" type="Class" name="Charger"/>
+					<role name="charging1" visibility="Public" targetScope="instance"/>
+					<type aggregation="none" containment="Unspecified"/>
+					<constraints/>
+					<modifiers isOrdered="false" changeable="none" isNavigable="false"/>
+					<style value="Union=0;Derived=0;AllowDuplicates=0;Owned=0;Navigable=Navigable;"/>
+					<documentation/>
+					<xrefs/>
+					<tags/>
+				</source>
+				<target xmi:idref="EAID_AE2103EF_CA72_46f4_AB39_F0CB10FCB246">
+					<model ea_localid="4" type="Class" name="ChargingPointStation"/>
+					<role visibility="Public" targetScope="instance"/>
+					<type aggregation="shared" containment="Unspecified"/>
+					<constraints/>
+					<modifiers isOrdered="false" changeable="none" isNavigable="true"/>
+					<style value="Union=0;Derived=0;AllowDuplicates=0;Owned=0;Navigable=Unspecified;"/>
+					<documentation value="&#xA;"/>
+					<xrefs/>
+					<tags/>
+				</target>
+				<model ea_localid="3"/>
+				<properties ea_type="Aggregation" subtype="Weak" stereotype="hasComponent" direction="Source -&gt; Destination"/>
+				<modifiers isRoot="false" isLeaf="false"/>
+				<documentation/>
+				<appearance linemode="3" linecolor="-1" linewidth="0" seqno="0" headStyle="0" lineStyle="0"/>
+				<labels lt="+charging1" mb="«hasComponent»"/>
+				<extendedProperties conditional="«hasComponent»" virtualInheritance="0"/>
+				<style/>
+				<xrefs value="$XREFPROP=$XID={5B4CABB7-629F-4ae1-9CE1-71A64478918B}$XID;$NAM=Stereotypes$NAM;$TYP=connector property$TYP;$VIS=Public$VIS;$PAR=0$PAR;$DES=@STEREO;Name=hasComponent;FQName=DigitalTwinProfile::hasComponent;@ENDSTEREO;$DES;$CLT={33091470-72C1-4b87-9B4D-C49E60D3B098}$CLT;$SUP=&lt;none&gt;$SUP;$ENDXREF;"/>
+				<tags/>
+			</connector>
+			<connector xmi:idref="EAID_3B228C7D_FA91_4e91_9FA5_07845967834B">
+				<source xmi:idref="EAID_FAA01437_2376_43d8_A916_8FB35F7DCF42">
+					<model ea_localid="9" type="Class" name="Charger"/>
+					<role name="charger3" visibility="Public" targetScope="instance"/>
+					<type aggregation="none" containment="Unspecified"/>
+					<constraints/>
+					<modifiers isOrdered="false" changeable="none" isNavigable="false"/>
+					<style value="Union=0;Derived=0;AllowDuplicates=0;Owned=0;Navigable=Navigable;"/>
+					<documentation/>
+					<xrefs/>
+					<tags/>
+				</source>
+				<target xmi:idref="EAID_AE2103EF_CA72_46f4_AB39_F0CB10FCB246">
+					<model ea_localid="4" type="Class" name="ChargingPointStation"/>
+					<role visibility="Public" targetScope="instance"/>
+					<type aggregation="shared" containment="Unspecified"/>
+					<constraints/>
+					<modifiers isOrdered="false" changeable="none" isNavigable="true"/>
+					<style value="Union=0;Derived=0;AllowDuplicates=0;Owned=0;Navigable=Unspecified;"/>
+					<documentation/>
+					<xrefs/>
+					<tags/>
+				</target>
+				<model ea_localid="5"/>
+				<properties ea_type="Aggregation" subtype="Weak" stereotype="hasComponent" direction="Source -&gt; Destination"/>
+				<modifiers isRoot="false" isLeaf="false"/>
+				<documentation/>
+				<appearance linemode="3" linecolor="-1" linewidth="0" seqno="0" headStyle="0" lineStyle="0"/>
+				<labels lt="+charger3" mb="«hasComponent»"/>
+				<extendedProperties conditional="«hasComponent»" virtualInheritance="0"/>
+				<style/>
+				<xrefs value="$XREFPROP=$XID={8D95D0E7-3E0A-4c6f-B82F-D08F90334BE1}$XID;$NAM=Stereotypes$NAM;$TYP=connector property$TYP;$VIS=Public$VIS;$PAR=0$PAR;$DES=@STEREO;Name=hasComponent;FQName=DigitalTwinProfile::hasComponent;@ENDSTEREO;$DES;$CLT={3B228C7D-FA91-4e91-9FA5-07845967834B}$CLT;$SUP=&lt;none&gt;$SUP;$ENDXREF;"/>
+				<tags/>
+			</connector>
+			<connector xmi:idref="EAID_E521314F_04BA_4a8b_B337_731914C307B4">
+				<source xmi:idref="EAID_FAA01437_2376_43d8_A916_8FB35F7DCF42">
+					<model ea_localid="9" type="Class" name="Charger"/>
+					<role name="charging2" visibility="Public" targetScope="instance"/>
+					<type aggregation="none" containment="Unspecified"/>
+					<constraints/>
+					<modifiers isOrdered="false" changeable="none" isNavigable="false"/>
+					<style value="Union=0;Derived=0;AllowDuplicates=0;Owned=0;Navigable=Navigable;"/>
+					<documentation/>
+					<xrefs/>
+					<tags/>
+				</source>
+				<target xmi:idref="EAID_AE2103EF_CA72_46f4_AB39_F0CB10FCB246">
+					<model ea_localid="4" type="Class" name="ChargingPointStation"/>
+					<role visibility="Public" targetScope="instance"/>
+					<type aggregation="shared" containment="Unspecified"/>
+					<constraints/>
+					<modifiers isOrdered="false" changeable="none" isNavigable="true"/>
+					<style value="Union=0;Derived=0;AllowDuplicates=0;Owned=0;Navigable=Unspecified;"/>
+					<documentation/>
+					<xrefs/>
+					<tags/>
+				</target>
+				<model ea_localid="4"/>
+				<properties ea_type="Aggregation" subtype="Weak" stereotype="hasComponent" direction="Source -&gt; Destination"/>
+				<modifiers isRoot="false" isLeaf="false"/>
+				<documentation/>
+				<appearance linemode="3" linecolor="-1" linewidth="0" seqno="0" headStyle="0" lineStyle="0"/>
+				<labels lt="+charging2" mb="«hasComponent»"/>
+				<extendedProperties conditional="«hasComponent»" virtualInheritance="0"/>
+				<style/>
+				<xrefs value="$XREFPROP=$XID={E3230700-05C8-433f-8CEC-4B2C082B89F3}$XID;$NAM=Stereotypes$NAM;$TYP=connector property$TYP;$VIS=Public$VIS;$PAR=0$PAR;$DES=@STEREO;Name=hasComponent;FQName=DigitalTwinProfile::hasComponent;@ENDSTEREO;$DES;$CLT={E521314F-04BA-4a8b-B337-731914C307B4}$CLT;$SUP=&lt;none&gt;$SUP;$ENDXREF;"/>
+				<tags/>
+			</connector>
+			<connector xmi:idref="EAID_AB02BE21_7828_43b0_956C_2D7CFEC35923">
+				<source xmi:idref="EAID_9F8A8D4A_B849_4d6d_A8E0_3DCD6425AC0B">
+					<model ea_localid="13" type="Class" name="ChargerSensor"/>
+					<role name="sensor3" visibility="Public" targetScope="instance"/>
+					<type aggregation="none" containment="Unspecified"/>
+					<constraints/>
+					<modifiers isOrdered="false" changeable="none" isNavigable="false"/>
+					<style value="Union=0;Derived=0;AllowDuplicates=0;Owned=0;Navigable=Navigable;"/>
+					<documentation/>
+					<xrefs/>
+					<tags/>
+				</source>
+				<target xmi:idref="EAID_AE2103EF_CA72_46f4_AB39_F0CB10FCB246">
+					<model ea_localid="4" type="Class" name="ChargingPointStation"/>
+					<role visibility="Public" targetScope="instance"/>
+					<type aggregation="shared" containment="Unspecified"/>
+					<constraints/>
+					<modifiers isOrdered="false" changeable="none" isNavigable="true"/>
+					<style value="Union=0;Derived=0;AllowDuplicates=0;Owned=0;Navigable=Unspecified;"/>
+					<documentation/>
+					<xrefs/>
+					<tags/>
+				</target>
+				<model ea_localid="18"/>
+				<properties ea_type="Aggregation" subtype="Weak" stereotype="hasDevice" direction="Source -&gt; Destination"/>
+				<modifiers isRoot="false" isLeaf="false"/>
+				<documentation/>
+				<appearance linemode="3" linecolor="-1" linewidth="0" seqno="0" headStyle="0" lineStyle="0"/>
+				<labels lt="+sensor3" mb="«hasDevice»"/>
+				<extendedProperties conditional="«hasDevice»" virtualInheritance="0"/>
+				<style/>
+				<xrefs value="$XREFPROP=$XID={B2638BCD-6D99-4360-8908-D1E906EF37FA}$XID;$NAM=Stereotypes$NAM;$TYP=connector property$TYP;$VIS=Public$VIS;$PAR=0$PAR;$DES=@STEREO;Name=hasDevice;FQName=DigitalTwinProfile::hasDevice;@ENDSTEREO;$DES;$CLT={AB02BE21-7828-43b0-956C-2D7CFEC35923}$CLT;$SUP=&lt;none&gt;$SUP;$ENDXREF;"/>
+				<tags/>
+			</connector>
+			<connector xmi:idref="EAID_EAF861C6_54BA_414a_8188_60B3635EF4DB">
+				<source xmi:idref="EAID_9F8A8D4A_B849_4d6d_A8E0_3DCD6425AC0B">
+					<model ea_localid="13" type="Class" name="ChargerSensor"/>
+					<role name="sensor2" visibility="Public" targetScope="instance"/>
+					<type aggregation="none" containment="Unspecified"/>
+					<constraints/>
+					<modifiers isOrdered="false" changeable="none" isNavigable="false"/>
+					<style value="Union=0;Derived=0;AllowDuplicates=0;Owned=0;Navigable=Navigable;"/>
+					<documentation/>
+					<xrefs/>
+					<tags/>
+				</source>
+				<target xmi:idref="EAID_AE2103EF_CA72_46f4_AB39_F0CB10FCB246">
+					<model ea_localid="4" type="Class" name="ChargingPointStation"/>
+					<role visibility="Public" targetScope="instance"/>
+					<type aggregation="shared" containment="Unspecified"/>
+					<constraints/>
+					<modifiers isOrdered="false" changeable="none" isNavigable="true"/>
+					<style value="Union=0;Derived=0;AllowDuplicates=0;Owned=0;Navigable=Unspecified;"/>
+					<documentation/>
+					<xrefs/>
+					<tags/>
+				</target>
+				<model ea_localid="17"/>
+				<properties ea_type="Aggregation" subtype="Weak" stereotype="hasDevice" direction="Source -&gt; Destination"/>
+				<modifiers isRoot="false" isLeaf="false"/>
+				<documentation/>
+				<appearance linemode="3" linecolor="-1" linewidth="0" seqno="0" headStyle="0" lineStyle="0"/>
+				<labels lt="+sensor2" mb="«hasDevice»"/>
+				<extendedProperties conditional="«hasDevice»" virtualInheritance="0"/>
+				<style/>
+				<xrefs value="$XREFPROP=$XID={F78AA1C2-F010-422b-8FC4-5A806020C791}$XID;$NAM=Stereotypes$NAM;$TYP=connector property$TYP;$VIS=Public$VIS;$PAR=0$PAR;$DES=@STEREO;Name=hasDevice;FQName=DigitalTwinProfile::hasDevice;@ENDSTEREO;$DES;$CLT={EAF861C6-54BA-414a-8188-60B3635EF4DB}$CLT;$SUP=&lt;none&gt;$SUP;$ENDXREF;"/>
+				<tags/>
+			</connector>
+			<connector xmi:idref="EAID_F795D357_4006_45b1_93E9_306DF8D7B8E2">
+				<source xmi:idref="EAID_9F8A8D4A_B849_4d6d_A8E0_3DCD6425AC0B">
+					<model ea_localid="13" type="Class" name="ChargerSensor"/>
+					<role name="sensor1" visibility="Public" targetScope="instance"/>
+					<type aggregation="none" containment="Unspecified"/>
+					<constraints/>
+					<modifiers isOrdered="false" changeable="none" isNavigable="false"/>
+					<style value="Union=0;Derived=0;AllowDuplicates=0;Owned=0;Navigable=Navigable;"/>
+					<documentation/>
+					<xrefs/>
+					<tags/>
+				</source>
+				<target xmi:idref="EAID_AE2103EF_CA72_46f4_AB39_F0CB10FCB246">
+					<model ea_localid="4" type="Class" name="ChargingPointStation"/>
+					<role visibility="Public" targetScope="instance"/>
+					<type aggregation="shared" containment="Unspecified"/>
+					<constraints/>
+					<modifiers isOrdered="false" changeable="none" isNavigable="true"/>
+					<style value="Union=0;Derived=0;AllowDuplicates=0;Owned=0;Navigable=Unspecified;"/>
+					<documentation/>
+					<xrefs/>
+					<tags/>
+				</target>
+				<model ea_localid="6"/>
+				<properties ea_type="Aggregation" subtype="Weak" stereotype="hasDevice" direction="Source -&gt; Destination"/>
+				<modifiers isRoot="false" isLeaf="false"/>
+				<documentation/>
+				<appearance linemode="3" linecolor="-1" linewidth="0" seqno="0" headStyle="0" lineStyle="0"/>
+				<labels lt="+sensor1" mb="«hasDevice»"/>
+				<extendedProperties conditional="«hasDevice»"/>
+				<style/>
+				<xrefs value="$XREFPROP=$XID={7BC49EAF-E071-43fd-9168-6B50D8AFD05C}$XID;$NAM=Stereotypes$NAM;$TYP=connector property$TYP;$VIS=Public$VIS;$PAR=0$PAR;$DES=@STEREO;Name=hasDevice;FQName=DigitalTwinProfile::hasDevice;@ENDSTEREO;$DES;$CLT={F795D357-4006-45b1-93E9-306DF8D7B8E2}$CLT;$SUP=&lt;none&gt;$SUP;$ENDXREF;"/>
+				<tags/>
+			</connector>
+			<connector xmi:idref="EAID_659A15CB_7BF8_426e_994F_ED623D1249A5">
+				<source xmi:idref="EAID_62E819FD_7296_4217_9FCC_44A268353EE4">
+					<model ea_localid="35" type="Class" name="PV_Sensor"/>
+					<role name="meter" visibility="Public" targetScope="instance"/>
+					<type aggregation="none" containment="Unspecified"/>
+					<constraints/>
+					<modifiers isOrdered="false" changeable="none" isNavigable="false"/>
+					<style value="Union=0;Derived=0;AllowDuplicates=0;Owned=0;Navigable=Navigable;"/>
+					<documentation/>
+					<xrefs/>
+					<tags/>
+				</source>
+				<target xmi:idref="EAID_AE2103EF_CA72_46f4_AB39_F0CB10FCB246">
+					<model ea_localid="4" type="Class" name="ChargingPointStation"/>
+					<role visibility="Public" targetScope="instance"/>
+					<type aggregation="shared" containment="Unspecified"/>
+					<constraints/>
+					<modifiers isOrdered="false" changeable="none" isNavigable="true"/>
+					<style value="Union=0;Derived=0;AllowDuplicates=0;Owned=0;Navigable=Unspecified;"/>
+					<documentation/>
+					<xrefs/>
+					<tags/>
+				</target>
+				<model ea_localid="16"/>
+				<properties ea_type="Aggregation" subtype="Weak" stereotype="hasDevice" direction="Source -&gt; Destination"/>
+				<modifiers isRoot="false" isLeaf="false"/>
+				<documentation/>
+				<appearance linemode="3" linecolor="-1" linewidth="0" seqno="0" headStyle="0" lineStyle="0"/>
+				<labels lt="+meter" mb="«hasDevice»"/>
+				<extendedProperties conditional="«hasDevice»" virtualInheritance="0"/>
+				<style/>
+				<xrefs value="$XREFPROP=$XID={C3E350C3-4023-4597-BE83-583D9936BB17}$XID;$NAM=Stereotypes$NAM;$TYP=connector property$TYP;$VIS=Public$VIS;$PAR=0$PAR;$DES=@STEREO;Name=hasDevice;FQName=DigitalTwinProfile::hasDevice;@ENDSTEREO;$DES;$CLT={659A15CB-7BF8-426e-994F-ED623D1249A5}$CLT;$SUP=&lt;none&gt;$SUP;$ENDXREF;"/>
+				<tags/>
+			</connector>
+			<connector xmi:idref="EAID_72243D57_8E71_4d7f_B033_32D604A9D469">
+				<source xmi:idref="EAID_1807061B_EEA6_4d94_99EE_4C15EDF7CFC9">
+					<model ea_localid="5" type="Class" name="Grid"/>
+					<role name="grid" visibility="Public" targetScope="instance"/>
+					<type aggregation="none" containment="Unspecified"/>
+					<constraints/>
+					<modifiers isOrdered="false" changeable="none" isNavigable="false"/>
+					<style value="Union=0;Derived=0;AllowDuplicates=0;Owned=0;Navigable=Navigable;"/>
+					<documentation/>
+					<xrefs/>
+					<tags/>
+				</source>
+				<target xmi:idref="EAID_AE2103EF_CA72_46f4_AB39_F0CB10FCB246">
+					<model ea_localid="4" type="Class" name="ChargingPointStation"/>
+					<role visibility="Public" targetScope="instance"/>
+					<type aggregation="shared" containment="Unspecified"/>
+					<constraints/>
+					<modifiers isOrdered="false" changeable="none" isNavigable="true"/>
+					<style value="Union=0;Derived=0;AllowDuplicates=0;Owned=0;Navigable=Unspecified;"/>
+					<documentation/>
+					<xrefs/>
+					<tags/>
+				</target>
+				<model ea_localid="1"/>
+				<properties ea_type="Aggregation" subtype="Weak" stereotype="hasComponent" direction="Source -&gt; Destination"/>
+				<modifiers isRoot="false" isLeaf="false"/>
+				<documentation/>
+				<appearance linemode="3" linecolor="-1" linewidth="0" seqno="0" headStyle="0" lineStyle="0"/>
+				<labels lt="+grid" mb="«hasComponent»"/>
+				<extendedProperties conditional="«hasComponent»" virtualInheritance="0"/>
+				<style/>
+				<xrefs value="$XREFPROP=$XID={7E55575B-1A43-409f-A6F2-8098327011DD}$XID;$NAM=Stereotypes$NAM;$TYP=connector property$TYP;$VIS=Public$VIS;$PAR=0$PAR;$DES=@STEREO;Name=hasComponent;FQName=DigitalTwinProfile::hasComponent;@ENDSTEREO;$DES;$CLT={72243D57-8E71-4d7f-B033-32D604A9D469}$CLT;$SUP=&lt;none&gt;$SUP;$ENDXREF;"/>
+				<tags/>
+			</connector>
+			<connector xmi:idref="EAID_AD67FDB5_4FB8_4fb5_B185_CB9293257763">
+				<source xmi:idref="EAID_050A7281_3A88_44bc_B261_1DEF4F16DF13">
+					<model ea_localid="7" type="Class" name="PV_System"/>
+					<role name="pv" visibility="Public" targetScope="instance"/>
+					<type aggregation="none" containment="Unspecified"/>
+					<constraints/>
+					<modifiers isOrdered="false" changeable="none" isNavigable="false"/>
+					<style value="Union=0;Derived=0;AllowDuplicates=0;Owned=0;Navigable=Navigable;"/>
+					<documentation/>
+					<xrefs/>
+					<tags/>
+				</source>
+				<target xmi:idref="EAID_AE2103EF_CA72_46f4_AB39_F0CB10FCB246">
+					<model ea_localid="4" type="Class" name="ChargingPointStation"/>
+					<role visibility="Public" targetScope="instance"/>
+					<type aggregation="shared" containment="Unspecified"/>
+					<constraints/>
+					<modifiers isOrdered="false" changeable="none" isNavigable="true"/>
+					<style value="Union=0;Derived=0;AllowDuplicates=0;Owned=0;Navigable=Unspecified;"/>
+					<documentation/>
+					<xrefs/>
+					<tags/>
+				</target>
+				<model ea_localid="2"/>
+				<properties ea_type="Aggregation" subtype="Weak" stereotype="hasComponent" direction="Source -&gt; Destination"/>
+				<modifiers isRoot="false" isLeaf="false"/>
+				<documentation/>
+				<appearance linemode="3" linecolor="-1" linewidth="0" seqno="0" headStyle="0" lineStyle="0"/>
+				<labels lt="+pv" mb="«hasComponent»"/>
+				<extendedProperties conditional="«hasComponent»" virtualInheritance="0"/>
+				<style/>
+				<xrefs value="$XREFPROP=$XID={DC3969B1-F9FA-4587-ABD4-C912169E302F}$XID;$NAM=Stereotypes$NAM;$TYP=connector property$TYP;$VIS=Public$VIS;$PAR=0$PAR;$DES=@STEREO;Name=hasComponent;FQName=DigitalTwinProfile::hasComponent;@ENDSTEREO;$DES;$CLT={AD67FDB5-4FB8-4fb5-B185-CB9293257763}$CLT;$SUP=&lt;none&gt;$SUP;$ENDXREF;"/>
+				<tags/>
+			</connector>
+			<connector xmi:idref="EAID_E4303131_F2CF_467d_A9D6_976109B06F52">
+				<source xmi:idref="EAID_6D3FE69C_54EE_4491_8FE0_190179268164">
+					<model ea_localid="16" type="Class" name="DataBase"/>
+					<role name="db_Hot" visibility="Public" targetScope="instance"/>
+					<type aggregation="none" containment="Unspecified"/>
+					<constraints/>
+					<modifiers isOrdered="false" changeable="none" isNavigable="false"/>
+					<style value="Union=0;Derived=0;AllowDuplicates=0;Owned=0;Navigable=Navigable;"/>
+					<documentation/>
+					<xrefs/>
+					<tags/>
+				</source>
+				<target xmi:idref="EAID_AE2103EF_CA72_46f4_AB39_F0CB10FCB246">
+					<model ea_localid="4" type="Class" name="ChargingPointStation"/>
+					<role visibility="Public" targetScope="instance"/>
+					<type aggregation="shared" containment="Unspecified"/>
+					<constraints/>
+					<modifiers isOrdered="false" changeable="none" isNavigable="true"/>
+					<style value="Union=0;Derived=0;AllowDuplicates=0;Owned=0;Navigable=Unspecified;"/>
+					<documentation/>
+					<xrefs/>
+					<tags/>
+				</target>
+				<model ea_localid="15"/>
+				<properties ea_type="Aggregation" stereotype="hasDataBase" direction="Source -&gt; Destination"/>
+				<modifiers isRoot="false" isLeaf="false"/>
+				<documentation/>
+				<appearance linemode="3" linecolor="-1" linewidth="0" seqno="0" headStyle="0" lineStyle="0"/>
+				<labels lt="+db_Hot" mb="«hasDataBase»"/>
+				<extendedProperties conditional="«hasDataBase»" virtualInheritance="0"/>
+				<style/>
+				<xrefs value="$XREFPROP=$XID={865E6DCC-4CBC-4b13-933C-5D6710E8BD43}$XID;$NAM=Stereotypes$NAM;$TYP=connector property$TYP;$VIS=Public$VIS;$PAR=0$PAR;$DES=@STEREO;Name=hasDataBase;FQName=DigitalTwinProfile::hasDataBase;@ENDSTEREO;$DES;$CLT={E4303131-F2CF-467d-A9D6-976109B06F52}$CLT;$SUP=&lt;none&gt;$SUP;$ENDXREF;"/>
+				<tags/>
+			</connector>
+			<connector xmi:idref="EAID_C19956F6_F02F_447f_860D_8FEFE7D62648">
+				<source xmi:idref="EAID_0D6A8A1D_B264_4bb0_A6A5_B94B77DD9A71">
+					<model ea_localid="36" type="Part" name="meter"/>
+					<role visibility="Public" targetScope="instance"/>
+					<type aggregation="none" containment="Unspecified"/>
+					<constraints/>
+					<modifiers isOrdered="false" changeable="none" isNavigable="false"/>
+					<style value="Union=0;Derived=0;AllowDuplicates=0;Owned=0;Navigable=Unspecified;"/>
+					<documentation/>
+					<xrefs/>
+					<tags/>
+				</source>
+				<target xmi:idref="EAID_9FC132DF_89F7_4a30_B482_11270D360E77">
+					<model ea_localid="34" type="Part" name="balancingStrategy"/>
+					<role visibility="Public" targetScope="instance"/>
+					<type aggregation="none" containment="Unspecified"/>
+					<constraints/>
+					<modifiers isOrdered="false" changeable="none" isNavigable="true"/>
+					<style value="Union=0;Derived=0;AllowDuplicates=0;Owned=0;Navigable=Unspecified;"/>
+					<documentation/>
+					<xrefs/>
+					<tags/>
+				</target>
+				<model ea_localid="24"/>
+				<properties ea_type="Connector" stereotype="triggers" direction="Source -&gt; Destination"/>
+				<modifiers isRoot="false" isLeaf="false"/>
+				<documentation/>
+				<appearance linemode="3" linecolor="-1" linewidth="0" seqno="0" headStyle="0" lineStyle="0"/>
+				<labels mb="«triggers»"/>
+				<extendedProperties conditional="«triggers»" virtualInheritance="0"/>
+				<style/>
+				<xrefs value="$XREFPROP=$XID={A2064EAA-A733-48fd-9AEE-BC6F9523B79F}$XID;$NAM=Stereotypes$NAM;$TYP=connector property$TYP;$VIS=Public$VIS;$PAR=0$PAR;$DES=@STEREO;Name=triggers;FQName=DigitalTwinProfile::triggers;@ENDSTEREO;$DES;$CLT={C19956F6-F02F-447f-860D-8FEFE7D62648}$CLT;$SUP=&lt;none&gt;$SUP;$ENDXREF;"/>
+				<tags>
+					<tag xmi:id="EAID_11E4FFEC_8B2C_538b_B24D_CFC4A1ED8C66" name="operator" value="==" notes="Values: &amp;_eq_^&amp;_eq_^,!&amp;_eq_^,&lt;&amp;_eq_^,&lt;,&gt;,&gt;&amp;_eq_^&#xA;"/>
+					<tag xmi:id="EAID_EA9B0D8C_34AC_6a34_85E9_300B74F7C6ED" name="lhsProperty" value="{AF568BF4-EF51-4e16-818D-7DA96CEB54BD}"/>
+					<tag xmi:id="EAID_0AC74D12_7432_9674_BB71_95A47A5A1B71" name="rhsProperty" value="{AF568BF4-EF51-4e16-818D-7DA96CEB54BD}"/>
+				</tags>
+			</connector>
+			<connector xmi:idref="EAID_C79CE8AB_2992_4845_A3D6_DA46DB6B51D3">
+				<source xmi:idref="EAID_DB0DC810_9D9C_4c31_80E4_0BB63419F326">
+					<model ea_localid="38" type="Part" name="sensor3"/>
+					<role visibility="Public" targetScope="instance"/>
+					<type aggregation="none" containment="Unspecified"/>
+					<constraints/>
+					<modifiers isOrdered="false" changeable="none" isNavigable="false"/>
+					<style value="Union=0;Derived=0;AllowDuplicates=0;Owned=0;Navigable=Unspecified;"/>
+					<documentation/>
+					<xrefs/>
+					<tags/>
+				</source>
+				<target xmi:idref="EAID_B7629CD0_1A09_4dd3_87A4_83C3A42640EF">
+					<model ea_localid="32" type="Part" name="charger3"/>
+					<role visibility="Public" targetScope="instance"/>
+					<type aggregation="none" containment="Unspecified"/>
+					<constraints/>
+					<modifiers isOrdered="false" changeable="none" isNavigable="true"/>
+					<style value="Union=0;Derived=0;AllowDuplicates=0;Owned=0;Navigable=Unspecified;"/>
+					<documentation/>
+					<xrefs/>
+					<tags/>
+				</target>
+				<model ea_localid="22"/>
+				<properties ea_type="Connector" stereotype="measures" direction="Source -&gt; Destination"/>
+				<modifiers isRoot="false" isLeaf="false"/>
+				<documentation/>
+				<appearance linemode="3" linecolor="-1" linewidth="0" seqno="0" headStyle="0" lineStyle="0"/>
+				<labels mb="«measures»"/>
+				<extendedProperties conditional="«measures»" virtualInheritance="0"/>
+				<style/>
+				<xrefs value="$XREFPROP=$XID={D7F30AC9-127C-4d53-99AD-BD7968F3DCB5}$XID;$NAM=Stereotypes$NAM;$TYP=connector property$TYP;$VIS=Public$VIS;$PAR=0$PAR;$DES=@STEREO;Name=measures;FQName=DigitalTwinProfile::measures;@ENDSTEREO;$DES;$CLT={C79CE8AB-2992-4845-A3D6-DA46DB6B51D3}$CLT;$SUP=&lt;none&gt;$SUP;$ENDXREF;"/>
+				<tags>
+					<tag xmi:id="EAID_E508E986_9584_ed95_B3D3_FBDC1F650DC2" name="measurement" value="{9753E22E-1AF6-42e8-B627-3D5B574B8B68}"/>
+				</tags>
+			</connector>
+			<connector xmi:idref="EAID_FB961E05_FB36_401d_8E25_91EB51F0439C">
+				<source xmi:idref="EAID_DB0DC810_9D9C_4c31_80E4_0BB63419F326">
+					<model ea_localid="38" type="Part" name="sensor3"/>
+					<role visibility="Public" targetScope="instance"/>
+					<type aggregation="none" containment="Unspecified"/>
+					<constraints/>
+					<modifiers isOrdered="false" changeable="none" isNavigable="false"/>
+					<style value="Union=0;Derived=0;AllowDuplicates=0;Owned=0;Navigable=Unspecified;"/>
+					<documentation/>
+					<xrefs/>
+					<tags/>
+				</source>
+				<target xmi:idref="EAID_B7629CD0_1A09_4dd3_87A4_83C3A42640EF">
+					<model ea_localid="32" type="Part" name="charger3"/>
+					<role visibility="Public" targetScope="instance"/>
+					<type aggregation="none" containment="Unspecified"/>
+					<constraints/>
+					<modifiers isOrdered="false" changeable="none" isNavigable="true"/>
+					<style value="Union=0;Derived=0;AllowDuplicates=0;Owned=0;Navigable=Unspecified;"/>
+					<documentation/>
+					<xrefs/>
+					<tags/>
+				</target>
+				<model ea_localid="27"/>
+				<properties ea_type="Connector" stereotype="measures" direction="Source -&gt; Destination"/>
+				<modifiers isRoot="false" isLeaf="false"/>
+				<documentation/>
+				<appearance linemode="3" linecolor="-1" linewidth="0" seqno="0" headStyle="0" lineStyle="0"/>
+				<labels mb="«measures»"/>
+				<extendedProperties conditional="«measures»" virtualInheritance="0"/>
+				<style/>
+				<xrefs value="$XREFPROP=$XID={DCB8D65F-42AC-4cfa-B092-ABD348534D89}$XID;$NAM=Stereotypes$NAM;$TYP=connector property$TYP;$VIS=Public$VIS;$PAR=0$PAR;$DES=@STEREO;Name=measures;FQName=DigitalTwinProfile::measures;@ENDSTEREO;$DES;$CLT={FB961E05-FB36-401d-8E25-91EB51F0439C}$CLT;$SUP=&lt;none&gt;$SUP;$ENDXREF;"/>
+				<tags>
+					<tag xmi:id="EAID_E508E986_9584_ed95_AED3_2F9E65E252ED" name="measurement" value="{9146D8D2-5006-4116-9668-3F8D482FD5A1}"/>
+				</tags>
+			</connector>
+			<connector xmi:idref="EAID_708D1124_407E_41a0_9A0E_7AA890BD0F84">
+				<source xmi:idref="EAID_AC74694A_0C21_4461_9681_B97D38A0A3CF">
+					<model ea_localid="33" type="Part" name="sensor1"/>
+					<role visibility="Public" targetScope="instance"/>
+					<type aggregation="none" containment="Unspecified"/>
+					<constraints/>
+					<modifiers isOrdered="false" changeable="none" isNavigable="false"/>
+					<style value="Union=0;Derived=0;AllowDuplicates=0;Owned=0;Navigable=Unspecified;"/>
+					<documentation/>
+					<xrefs/>
+					<tags/>
+				</source>
+				<target xmi:idref="EAID_18DD6EF5_90B9_4ee0_A9A0_62DDEA0D3716">
+					<model ea_localid="30" type="Part" name="charging1"/>
+					<role visibility="Public" targetScope="instance"/>
+					<type aggregation="none" containment="Unspecified"/>
+					<constraints/>
+					<modifiers isOrdered="false" changeable="none" isNavigable="true"/>
+					<style value="Union=0;Derived=0;AllowDuplicates=0;Owned=0;Navigable=Unspecified;"/>
+					<documentation/>
+					<xrefs/>
+					<tags/>
+				</target>
+				<model ea_localid="20"/>
+				<properties ea_type="Connector" stereotype="measures" direction="Source -&gt; Destination"/>
+				<modifiers isRoot="false" isLeaf="false"/>
+				<documentation/>
+				<appearance linemode="3" linecolor="-1" linewidth="0" seqno="0" headStyle="0" lineStyle="0"/>
+				<labels mb="«measures»"/>
+				<extendedProperties conditional="«measures»" virtualInheritance="0"/>
+				<style/>
+				<xrefs value="$XREFPROP=$XID={3C478881-F8C0-4fab-8A3F-D1B8C9636EE6}$XID;$NAM=Stereotypes$NAM;$TYP=connector property$TYP;$VIS=Public$VIS;$PAR=0$PAR;$DES=@STEREO;Name=measures;FQName=DigitalTwinProfile::measures;@ENDSTEREO;$DES;$CLT={708D1124-407E-41a0-9A0E-7AA890BD0F84}$CLT;$SUP=&lt;none&gt;$SUP;$ENDXREF;"/>
+				<tags>
+					<tag xmi:id="EAID_E508E986_9584_ed95_9D20_7398245B64B7" name="measurement" value="{9753E22E-1AF6-42e8-B627-3D5B574B8B68}"/>
+				</tags>
+			</connector>
+			<connector xmi:idref="EAID_F453E34B_105B_48dc_99A7_202555737D2A">
+				<source xmi:idref="EAID_AC74694A_0C21_4461_9681_B97D38A0A3CF">
+					<model ea_localid="33" type="Part" name="sensor1"/>
+					<role visibility="Public" targetScope="instance"/>
+					<type aggregation="none" containment="Unspecified"/>
+					<constraints/>
+					<modifiers isOrdered="false" changeable="none" isNavigable="false"/>
+					<style value="Union=0;Derived=0;AllowDuplicates=0;Owned=0;Navigable=Unspecified;"/>
+					<documentation/>
+					<xrefs/>
+					<tags/>
+				</source>
+				<target xmi:idref="EAID_18DD6EF5_90B9_4ee0_A9A0_62DDEA0D3716">
+					<model ea_localid="30" type="Part" name="charging1"/>
+					<role visibility="Public" targetScope="instance"/>
+					<type aggregation="none" containment="Unspecified"/>
+					<constraints/>
+					<modifiers isOrdered="false" changeable="none" isNavigable="true"/>
+					<style value="Union=0;Derived=0;AllowDuplicates=0;Owned=0;Navigable=Unspecified;"/>
+					<documentation/>
+					<xrefs/>
+					<tags/>
+				</target>
+				<model ea_localid="25"/>
+				<properties ea_type="Connector" stereotype="measures" direction="Source -&gt; Destination"/>
+				<modifiers isRoot="false" isLeaf="false"/>
+				<documentation/>
+				<appearance linemode="3" linecolor="-1" linewidth="0" seqno="0" headStyle="0" lineStyle="0"/>
+				<labels mb="«measures»"/>
+				<extendedProperties conditional="«measures»" virtualInheritance="0"/>
+				<style/>
+				<xrefs value="$XREFPROP=$XID={202D225D-D81B-41b6-A751-FAD28C09AF1F}$XID;$NAM=Stereotypes$NAM;$TYP=connector property$TYP;$VIS=Public$VIS;$PAR=0$PAR;$DES=@STEREO;Name=measures;FQName=DigitalTwinProfile::measures;@ENDSTEREO;$DES;$CLT={F453E34B-105B-48dc-99A7-202555737D2A}$CLT;$SUP=&lt;none&gt;$SUP;$ENDXREF;"/>
+				<tags>
+					<tag xmi:id="EAID_E508E986_9584_ed95_AA2C_9445EDD35FE4" name="measurement" value="{9146D8D2-5006-4116-9668-3F8D482FD5A1}"/>
+				</tags>
+			</connector>
+			<connector xmi:idref="EAID_A6724696_7EF9_4258_8873_2F4E12F5F411">
+				<source xmi:idref="EAID_F715EBAE_43B0_4dd7_95CF_8BB5D87C2CB0">
+					<model ea_localid="37" type="Part" name="sensor2"/>
+					<role visibility="Public" targetScope="instance"/>
+					<type aggregation="none" containment="Unspecified"/>
+					<constraints/>
+					<modifiers isOrdered="false" changeable="none" isNavigable="false"/>
+					<style value="Union=0;Derived=0;AllowDuplicates=0;Owned=0;Navigable=Unspecified;"/>
+					<documentation/>
+					<xrefs/>
+					<tags/>
+				</source>
+				<target xmi:idref="EAID_A4B3FA3E_F466_42a2_9A7F_51E52CB2B0CD">
+					<model ea_localid="31" type="Part" name="charging2"/>
+					<role visibility="Public" targetScope="instance"/>
+					<type aggregation="none" containment="Unspecified"/>
+					<constraints/>
+					<modifiers isOrdered="false" changeable="none" isNavigable="true"/>
+					<style value="Union=0;Derived=0;AllowDuplicates=0;Owned=0;Navigable=Unspecified;"/>
+					<documentation/>
+					<xrefs/>
+					<tags/>
+				</target>
+				<model ea_localid="21"/>
+				<properties ea_type="Connector" stereotype="measures" direction="Source -&gt; Destination"/>
+				<modifiers isRoot="false" isLeaf="false"/>
+				<documentation/>
+				<appearance linemode="3" linecolor="-1" linewidth="0" seqno="0" headStyle="0" lineStyle="0"/>
+				<labels mb="«measures»"/>
+				<extendedProperties conditional="«measures»" virtualInheritance="0"/>
+				<style/>
+				<xrefs value="$XREFPROP=$XID={1F4347B0-609C-4ca2-9B0F-5B3738F84A02}$XID;$NAM=Stereotypes$NAM;$TYP=connector property$TYP;$VIS=Public$VIS;$PAR=0$PAR;$DES=@STEREO;Name=measures;FQName=DigitalTwinProfile::measures;@ENDSTEREO;$DES;$CLT={A6724696-7EF9-4258-8873-2F4E12F5F411}$CLT;$SUP=&lt;none&gt;$SUP;$ENDXREF;"/>
+				<tags>
+					<tag xmi:id="EAID_E508E986_9584_ed95_9716_7052B44B6121" name="measurement" value="{9753E22E-1AF6-42e8-B627-3D5B574B8B68}"/>
+				</tags>
+			</connector>
+			<connector xmi:idref="EAID_AA4D3AED_DC86_40c4_9EC0_BA4C4B271433">
+				<source xmi:idref="EAID_F715EBAE_43B0_4dd7_95CF_8BB5D87C2CB0">
+					<model ea_localid="37" type="Part" name="sensor2"/>
+					<role visibility="Public" targetScope="instance"/>
+					<type aggregation="none" containment="Unspecified"/>
+					<constraints/>
+					<modifiers isOrdered="false" changeable="none" isNavigable="false"/>
+					<style value="Union=0;Derived=0;AllowDuplicates=0;Owned=0;Navigable=Unspecified;"/>
+					<documentation/>
+					<xrefs/>
+					<tags/>
+				</source>
+				<target xmi:idref="EAID_A4B3FA3E_F466_42a2_9A7F_51E52CB2B0CD">
+					<model ea_localid="31" type="Part" name="charging2"/>
+					<role visibility="Public" targetScope="instance"/>
+					<type aggregation="none" containment="Unspecified"/>
+					<constraints/>
+					<modifiers isOrdered="false" changeable="none" isNavigable="true"/>
+					<style value="Union=0;Derived=0;AllowDuplicates=0;Owned=0;Navigable=Unspecified;"/>
+					<documentation/>
+					<xrefs/>
+					<tags/>
+				</target>
+				<model ea_localid="26"/>
+				<properties ea_type="Connector" stereotype="measures" direction="Source -&gt; Destination"/>
+				<modifiers isRoot="false" isLeaf="false"/>
+				<documentation/>
+				<appearance linemode="3" linecolor="-1" linewidth="0" seqno="0" headStyle="0" lineStyle="0"/>
+				<labels mb="«measures»"/>
+				<extendedProperties conditional="«measures»" virtualInheritance="0"/>
+				<style/>
+				<xrefs value="$XREFPROP=$XID={F23B24D2-48FA-4dee-9005-53B9F5661604}$XID;$NAM=Stereotypes$NAM;$TYP=connector property$TYP;$VIS=Public$VIS;$PAR=0$PAR;$DES=@STEREO;Name=measures;FQName=DigitalTwinProfile::measures;@ENDSTEREO;$DES;$CLT={AA4D3AED-DC86-40c4-9EC0-BA4C4B271433}$CLT;$SUP=&lt;none&gt;$SUP;$ENDXREF;"/>
+				<tags>
+					<tag xmi:id="EAID_E508E986_9584_ed95_B1F2_778562C5E269" name="measurement" value="{9146D8D2-5006-4116-9668-3F8D482FD5A1}"/>
+				</tags>
+			</connector>
+			<connector xmi:idref="EAID_D3E25FAE_19C4_47f3_97F5_C68D81BAA59D">
+				<source xmi:idref="EAID_0D6A8A1D_B264_4bb0_A6A5_B94B77DD9A71">
+					<model ea_localid="36" type="Part" name="meter"/>
+					<role visibility="Public" targetScope="instance"/>
+					<type aggregation="none" containment="Unspecified"/>
+					<constraints/>
+					<modifiers isOrdered="false" changeable="none" isNavigable="false"/>
+					<style value="Union=0;Derived=0;AllowDuplicates=0;Owned=0;Navigable=Unspecified;"/>
+					<documentation/>
+					<xrefs/>
+					<tags/>
+				</source>
+				<target xmi:idref="EAID_6E9DAFE6_6C64_4a9c_A189_DA56C1695A35">
+					<model ea_localid="29" type="Part" name="pv"/>
+					<role visibility="Public" targetScope="instance"/>
+					<type aggregation="none" containment="Unspecified"/>
+					<constraints/>
+					<modifiers isOrdered="false" changeable="none" isNavigable="true"/>
+					<style value="Union=0;Derived=0;AllowDuplicates=0;Owned=0;Navigable=Unspecified;"/>
+					<documentation/>
+					<xrefs/>
+					<tags/>
+				</target>
+				<model ea_localid="23"/>
+				<properties ea_type="Connector" stereotype="measures" direction="Source -&gt; Destination"/>
+				<modifiers isRoot="false" isLeaf="false"/>
+				<documentation/>
+				<appearance linemode="3" linecolor="-1" linewidth="0" seqno="0" headStyle="0" lineStyle="0"/>
+				<labels mb="«measures»"/>
+				<extendedProperties conditional="«measures»" virtualInheritance="0"/>
+				<style/>
+				<xrefs value="$XREFPROP=$XID={B47C5EFD-B819-4a75-BBB7-A4AE04CD009E}$XID;$NAM=Stereotypes$NAM;$TYP=connector property$TYP;$VIS=Public$VIS;$PAR=0$PAR;$DES=@STEREO;Name=measures;FQName=DigitalTwinProfile::measures;@ENDSTEREO;$DES;$CLT={D3E25FAE-19C4-47f3-97F5-C68D81BAA59D}$CLT;$SUP=&lt;none&gt;$SUP;$ENDXREF;"/>
+				<tags>
+					<tag xmi:id="EAID_E508E986_9584_ed95_B01F_576A7CFF4129" name="measurement" value="{AF568BF4-EF51-4e16-818D-7DA96CEB54BD}"/>
+				</tags>
+			</connector>
+		</connectors>
+		<primitivetypes>
+			<packagedElement xmi:type="uml:Package" xmi:id="EAPrimitiveTypesPackage" name="EA_PrimitiveTypes_Package" visibility="public">
+				<packagedElement xmi:type="uml:Package" xmi:id="EAJavaTypesPackage" name="EA_Java_Types_Package" visibility="public">
+					<packagedElement xmi:type="uml:PrimitiveType" xmi:id="EAJava_double" name="double" visibility="public">
+						<generalization xmi:type="uml:Generalization" xmi:id="EAJava_double_General">
+							<general href="http://schema.omg.org/spec/UML/2.1/uml.xml#UnlimitedNatural"/>
+						</generalization>
+					</packagedElement>
+					<packagedElement xmi:type="uml:PrimitiveType" xmi:id="EAJava_char" name="char" visibility="public">
+						<generalization xmi:type="uml:Generalization" xmi:id="EAJava_char_General">
+							<general href="http://schema.omg.org/spec/UML/2.1/uml.xml#String"/>
+						</generalization>
+					</packagedElement>
+				</packagedElement>
+			</packagedElement>
+		</primitivetypes>
+		<profiles>
+			<uml:Profile xmlns:uml="http://schema.omg.org/spec/UML/2.1/" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmi:version="2.1" xmi:id="EE80778104" nsPrefix="DigitalTwinProfile" name="DigitalTwinProfile" metamodelReference="mmref01">
+				<ownedComment xmi:type="uml:Comment" xmi:id="comment01" annotatedElement="EE80778104">
+					<body>DigitalTwinProfile Version:1.0</body>
+				</ownedComment>
+				<packageImport xmi:id="mmref01">
+					<importedPackage href="http://schema.omg.org/spec/UML/2.1/"/>
+				</packageImport>
+				<packagedElement xmi:type="uml:Stereotype" xmi:id="Twin" name="Twin">
+					<generalization xmi:type="uml:Generalization" xmi:id="Twin__Twin_generalization" general="_Twin"/>
+					<ownedAttribute xmi:type="uml:Property" xmi:id="Twin-grafanaUrl" name="grafanaUrl">
+						<type href="http://schema.omg.org/spec/UML/2.1/String"/>
+					</ownedAttribute>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Stereotype" xmi:id="DataBaseInstance" name="DataBaseInstance">
+					<generalization xmi:type="uml:Generalization" xmi:id="DataBaseInstance__DataBaseInstance_generalization" general="_DataBaseInstance"/>
+					<ownedAttribute xmi:type="uml:Property" xmi:id="DataBaseInstance-dataBaseTier" name="dataBaseTier">
+						<type href="http://schema.omg.org/spec/UML/2.1/String"/>
+					</ownedAttribute>
+					<ownedAttribute xmi:type="uml:Property" xmi:id="DataBaseInstance-retentionPeriod" name="retentionPeriod">
+						<type href="http://schema.omg.org/spec/UML/2.1/String"/>
+					</ownedAttribute>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Stereotype" xmi:id="feedbackTopic" name="feedbackTopic">
+					<ownedAttribute xmi:type="uml:Property" xmi:id="feedbackTopic-base_Connector" name="base_Connector" association="Connector_feedbackTopic">
+						<type href="http://schema.omg.org/spec/UML/2.1/Connector"/>
+					</ownedAttribute>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Extension" xmi:id="Connector_feedbackTopic" name="A_Connector_feedbackTopic" memberEnd="extension_feedbackTopic feedbackTopic-base_Connector">
+					<ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="extension_feedbackTopic" name="extension_feedbackTopic" type="feedbackTopic" isComposite="true" lower="0" upper="1" memberEnd="extension_feedbackTopic feedbackTopic-base_Connector"/>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Stereotype" xmi:id="_Strategy" name="_Strategy" isAbstract="true">
+					<generalization xmi:type="uml:Generalization" xmi:id="_Strategy_SysML1.4::block_generalization" general="SysML1.4::block"/>
+					<ownedAttribute xmi:type="uml:Property" xmi:id="_Strategy-base_Class" name="base_Class" association="Class__Strategy">
+						<type href="http://schema.omg.org/spec/UML/2.1/Class"/>
+					</ownedAttribute>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Extension" xmi:id="Class__Strategy" name="A_Class__Strategy" memberEnd="extension__Strategy _Strategy-base_Class">
+					<ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="extension__Strategy" name="extension__Strategy" type="_Strategy" isComposite="true" lower="0" upper="1" memberEnd="extension__Strategy _Strategy-base_Class"/>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Stereotype" xmi:id="DataBase" name="DataBase">
+					<generalization xmi:type="uml:Generalization" xmi:id="DataBase__DataBase_generalization" general="_DataBase"/>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Stereotype" xmi:id="Component" name="Component">
+					<generalization xmi:type="uml:Generalization" xmi:id="Component__Component_generalization" general="_Component"/>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Stereotype" xmi:id="_Component" name="_Component" isAbstract="true">
+					<generalization xmi:type="uml:Generalization" xmi:id="_Component_SysML1.4::block_generalization" general="SysML1.4::block"/>
+					<ownedAttribute xmi:type="uml:Property" xmi:id="_Component-base_Class" name="base_Class" association="Class__Component">
+						<type href="http://schema.omg.org/spec/UML/2.1/Class"/>
+					</ownedAttribute>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Extension" xmi:id="Class__Component" name="A_Class__Component" memberEnd="extension__Component _Component-base_Class">
+					<ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="extension__Component" name="extension__Component" type="_Component" isComposite="true" lower="0" upper="1" memberEnd="extension__Component _Component-base_Class"/>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Stereotype" xmi:id="hasMeasurement" name="hasMeasurement">
+					<ownedAttribute xmi:type="uml:Property" xmi:id="hasMeasurement-base_Aggregation" name="base_Aggregation" association="Aggregation_hasMeasurement">
+						<type href="http://schema.omg.org/spec/UML/2.1/Aggregation"/>
+					</ownedAttribute>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Extension" xmi:id="Aggregation_hasMeasurement" name="A_Aggregation_hasMeasurement" memberEnd="extension_hasMeasurement hasMeasurement-base_Aggregation">
+					<ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="extension_hasMeasurement" name="extension_hasMeasurement" type="hasMeasurement" isComposite="true" lower="0" upper="1" memberEnd="extension_hasMeasurement hasMeasurement-base_Aggregation"/>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Stereotype" xmi:id="_DataBase" name="_DataBase" isAbstract="true">
+					<generalization xmi:type="uml:Generalization" xmi:id="_DataBase_SysML1.4::block_generalization" general="SysML1.4::block"/>
+					<ownedAttribute xmi:type="uml:Property" xmi:id="_DataBase-base_Class" name="base_Class" association="Class__DataBase">
+						<type href="http://schema.omg.org/spec/UML/2.1/Class"/>
+					</ownedAttribute>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Extension" xmi:id="Class__DataBase" name="A_Class__DataBase" memberEnd="extension__DataBase _DataBase-base_Class">
+					<ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="extension__DataBase" name="extension__DataBase" type="_DataBase" isComposite="true" lower="0" upper="1" memberEnd="extension__DataBase _DataBase-base_Class"/>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Stereotype" xmi:id="DeviceInstance" name="DeviceInstance">
+					<generalization xmi:type="uml:Generalization" xmi:id="DeviceInstance__DeviceInstance_generalization" general="_DeviceInstance"/>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Stereotype" xmi:id="_ComponentInstance" name="_ComponentInstance" isAbstract="true">
+					<ownedAttribute xmi:type="uml:Property" xmi:id="_ComponentInstance-base_Property" name="base_Property" association="Property__ComponentInstance">
+						<type href="http://schema.omg.org/spec/UML/2.1/Property"/>
+					</ownedAttribute>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Extension" xmi:id="Property__ComponentInstance" name="A_Property__ComponentInstance" memberEnd="extension__ComponentInstance _ComponentInstance-base_Property">
+					<ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="extension__ComponentInstance" name="extension__ComponentInstance" type="_ComponentInstance" isComposite="true" lower="0" upper="1" memberEnd="extension__ComponentInstance _ComponentInstance-base_Property"/>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Stereotype" xmi:id="Device" name="Device">
+					<generalization xmi:type="uml:Generalization" xmi:id="Device__Device_generalization" general="_Device"/>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Stereotype" xmi:id="MeasurementInstance" name="MeasurementInstance">
+					<generalization xmi:type="uml:Generalization" xmi:id="MeasurementInstance__MeasurementInstance_generalization" general="_MeasurementInstance"/>
+					<ownedAttribute xmi:type="uml:Property" xmi:id="MeasurementInstance-dataType" name="dataType">
+						<type href="http://schema.omg.org/spec/UML/2.1/String"/>
+					</ownedAttribute>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Stereotype" xmi:id="triggers" name="triggers">
+					<ownedAttribute xmi:type="uml:Property" xmi:id="triggers-base_Connector" name="base_Connector" association="Connector_triggers">
+						<type href="http://schema.omg.org/spec/UML/2.1/Connector"/>
+					</ownedAttribute>
+					<ownedAttribute xmi:type="uml:Property" xmi:id="triggers-rhsProperty" name="rhsProperty">
+						<type href="http://schema.omg.org/spec/UML/2.1/String"/>
+					</ownedAttribute>
+					<ownedAttribute xmi:type="uml:Property" xmi:id="triggers-operator" name="operator">
+						<type href="http://schema.omg.org/spec/UML/2.1/String"/>
+					</ownedAttribute>
+					<ownedAttribute xmi:type="uml:Property" xmi:id="triggers-lhsProperty" name="lhsProperty">
+						<type href="http://schema.omg.org/spec/UML/2.1/String"/>
+					</ownedAttribute>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Extension" xmi:id="Connector_triggers" name="A_Connector_triggers" memberEnd="extension_triggers triggers-base_Connector">
+					<ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="extension_triggers" name="extension_triggers" type="triggers" isComposite="true" lower="0" upper="1" memberEnd="extension_triggers triggers-base_Connector"/>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Stereotype" xmi:id="sendsTo" name="sendsTo">
+					<ownedAttribute xmi:type="uml:Property" xmi:id="sendsTo-base_Connector" name="base_Connector" association="Connector_sendsTo">
+						<type href="http://schema.omg.org/spec/UML/2.1/Connector"/>
+					</ownedAttribute>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Extension" xmi:id="Connector_sendsTo" name="A_Connector_sendsTo" memberEnd="extension_sendsTo sendsTo-base_Connector">
+					<ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="extension_sendsTo" name="extension_sendsTo" type="sendsTo" isComposite="true" lower="0" upper="1" memberEnd="extension_sendsTo sendsTo-base_Connector"/>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Stereotype" xmi:id="_ConstInstance" name="_ConstInstance" isAbstract="true">
+					<generalization xmi:type="uml:Generalization" xmi:id="_ConstInstance__TwinProperty_generalization" general="_TwinProperty"/>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Stereotype" xmi:id="_MeasurementInstance" name="_MeasurementInstance" isAbstract="true">
+					<generalization xmi:type="uml:Generalization" xmi:id="_MeasurementInstance__TwinProperty_generalization" general="_TwinProperty"/>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Stereotype" xmi:id="ComponentInstance" name="ComponentInstance">
+					<generalization xmi:type="uml:Generalization" xmi:id="ComponentInstance__ComponentInstance_generalization" general="_ComponentInstance"/>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Stereotype" xmi:id="_DeviceInstance" name="_DeviceInstance" isAbstract="true">
+					<ownedAttribute xmi:type="uml:Property" xmi:id="_DeviceInstance-base_Property" name="base_Property" association="Property__DeviceInstance">
+						<type href="http://schema.omg.org/spec/UML/2.1/Property"/>
+					</ownedAttribute>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Extension" xmi:id="Property__DeviceInstance" name="A_Property__DeviceInstance" memberEnd="extension__DeviceInstance _DeviceInstance-base_Property">
+					<ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="extension__DeviceInstance" name="extension__DeviceInstance" type="_DeviceInstance" isComposite="true" lower="0" upper="1" memberEnd="extension__DeviceInstance _DeviceInstance-base_Property"/>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Stereotype" xmi:id="Stereotype1" name="Stereotype1"/>
+				<packagedElement xmi:type="uml:Stereotype" xmi:id="StrategyInstance" name="StrategyInstance">
+					<generalization xmi:type="uml:Generalization" xmi:id="StrategyInstance__StrategyInstance_generalization" general="_StrategyInstance"/>
+					<ownedAttribute xmi:type="uml:Property" xmi:id="StrategyInstance-feedBackTopicType" name="feedBackTopicType">
+						<type href="http://schema.omg.org/spec/UML/2.1/String"/>
+					</ownedAttribute>
+					<ownedAttribute xmi:type="uml:Property" xmi:id="StrategyInstance-customPayload" name="customPayload">
+						<type href="http://schema.omg.org/spec/UML/2.1/String"/>
+					</ownedAttribute>
+					<ownedAttribute xmi:type="uml:Property" xmi:id="StrategyInstance-feedbackPayLoadType" name="feedbackPayLoadType">
+						<type href="http://schema.omg.org/spec/UML/2.1/String"/>
+					</ownedAttribute>
+					<ownedAttribute xmi:type="uml:Property" xmi:id="StrategyInstance-customTopic" name="customTopic">
+						<type href="http://schema.omg.org/spec/UML/2.1/String"/>
+					</ownedAttribute>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Stereotype" xmi:id="_StrategyInstance" name="_StrategyInstance" isAbstract="true">
+					<ownedAttribute xmi:type="uml:Property" xmi:id="_StrategyInstance-base_Property" name="base_Property" association="Property__StrategyInstance">
+						<type href="http://schema.omg.org/spec/UML/2.1/Property"/>
+					</ownedAttribute>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Extension" xmi:id="Property__StrategyInstance" name="A_Property__StrategyInstance" memberEnd="extension__StrategyInstance _StrategyInstance-base_Property">
+					<ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="extension__StrategyInstance" name="extension__StrategyInstance" type="_StrategyInstance" isComposite="true" lower="0" upper="1" memberEnd="extension__StrategyInstance _StrategyInstance-base_Property"/>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Stereotype" xmi:id="hasDataBase" name="hasDataBase">
+					<ownedAttribute xmi:type="uml:Property" xmi:id="hasDataBase-base_Aggregation" name="base_Aggregation" association="Aggregation_hasDataBase">
+						<type href="http://schema.omg.org/spec/UML/2.1/Aggregation"/>
+					</ownedAttribute>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Extension" xmi:id="Aggregation_hasDataBase" name="A_Aggregation_hasDataBase" memberEnd="extension_hasDataBase hasDataBase-base_Aggregation">
+					<ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="extension_hasDataBase" name="extension_hasDataBase" type="hasDataBase" isComposite="true" lower="0" upper="1" memberEnd="extension_hasDataBase hasDataBase-base_Aggregation"/>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Stereotype" xmi:id="_Device" name="_Device" isAbstract="true">
+					<generalization xmi:type="uml:Generalization" xmi:id="_Device_SysML1.4::block_generalization" general="SysML1.4::block"/>
+					<ownedAttribute xmi:type="uml:Property" xmi:id="_Device-base_Class" name="base_Class" association="Class__Device">
+						<type href="http://schema.omg.org/spec/UML/2.1/Class"/>
+					</ownedAttribute>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Extension" xmi:id="Class__Device" name="A_Class__Device" memberEnd="extension__Device _Device-base_Class">
+					<ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="extension__Device" name="extension__Device" type="_Device" isComposite="true" lower="0" upper="1" memberEnd="extension__Device _Device-base_Class"/>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Stereotype" xmi:id="_TwinProperty" name="_TwinProperty" isAbstract="true">
+					<ownedAttribute xmi:type="uml:Property" xmi:id="_TwinProperty-base_Attribute" name="base_Attribute" association="Attribute__TwinProperty">
+						<type href="http://schema.omg.org/spec/UML/2.1/Attribute"/>
+					</ownedAttribute>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Extension" xmi:id="Attribute__TwinProperty" name="A_Attribute__TwinProperty" memberEnd="extension__TwinProperty _TwinProperty-base_Attribute">
+					<ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="extension__TwinProperty" name="extension__TwinProperty" type="_TwinProperty" isComposite="true" lower="0" upper="1" memberEnd="extension__TwinProperty _TwinProperty-base_Attribute"/>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Stereotype" xmi:id="hasDevice" name="hasDevice">
+					<ownedAttribute xmi:type="uml:Property" xmi:id="hasDevice-base_Aggregation" name="base_Aggregation" association="Aggregation_hasDevice">
+						<type href="http://schema.omg.org/spec/UML/2.1/Aggregation"/>
+					</ownedAttribute>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Extension" xmi:id="Aggregation_hasDevice" name="A_Aggregation_hasDevice" memberEnd="extension_hasDevice hasDevice-base_Aggregation">
+					<ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="extension_hasDevice" name="extension_hasDevice" type="hasDevice" isComposite="true" lower="0" upper="1" memberEnd="extension_hasDevice hasDevice-base_Aggregation"/>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Stereotype" xmi:id="_Twin" name="_Twin" isAbstract="true">
+					<generalization xmi:type="uml:Generalization" xmi:id="_Twin_SysML1.4::block_generalization" general="SysML1.4::block"/>
+					<ownedAttribute xmi:type="uml:Property" xmi:id="_Twin-base_Class" name="base_Class" association="Class__Twin">
+						<type href="http://schema.omg.org/spec/UML/2.1/Class"/>
+					</ownedAttribute>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Extension" xmi:id="Class__Twin" name="A_Class__Twin" memberEnd="extension__Twin _Twin-base_Class">
+					<ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="extension__Twin" name="extension__Twin" type="_Twin" isComposite="true" lower="0" upper="1" memberEnd="extension__Twin _Twin-base_Class"/>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Stereotype" xmi:id="ConstInstance" name="ConstInstance">
+					<generalization xmi:type="uml:Generalization" xmi:id="ConstInstance__ConstInstance_generalization" general="_ConstInstance"/>
+					<ownedAttribute xmi:type="uml:Property" xmi:id="ConstInstance-dataType" name="dataType">
+						<type href="http://schema.omg.org/spec/UML/2.1/String"/>
+					</ownedAttribute>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Stereotype" xmi:id="_DataBaseInstance" name="_DataBaseInstance" isAbstract="true">
+					<ownedAttribute xmi:type="uml:Property" xmi:id="_DataBaseInstance-base_Property" name="base_Property" association="Property__DataBaseInstance">
+						<type href="http://schema.omg.org/spec/UML/2.1/Property"/>
+					</ownedAttribute>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Extension" xmi:id="Property__DataBaseInstance" name="A_Property__DataBaseInstance" memberEnd="extension__DataBaseInstance _DataBaseInstance-base_Property">
+					<ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="extension__DataBaseInstance" name="extension__DataBaseInstance" type="_DataBaseInstance" isComposite="true" lower="0" upper="1" memberEnd="extension__DataBaseInstance _DataBaseInstance-base_Property"/>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Stereotype" xmi:id="hasComponent" name="hasComponent">
+					<ownedAttribute xmi:type="uml:Property" xmi:id="hasComponent-base_Aggregation" name="base_Aggregation" association="Aggregation_hasComponent">
+						<type href="http://schema.omg.org/spec/UML/2.1/Aggregation"/>
+					</ownedAttribute>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Extension" xmi:id="Aggregation_hasComponent" name="A_Aggregation_hasComponent" memberEnd="extension_hasComponent hasComponent-base_Aggregation">
+					<ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="extension_hasComponent" name="extension_hasComponent" type="hasComponent" isComposite="true" lower="0" upper="1" memberEnd="extension_hasComponent hasComponent-base_Aggregation"/>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Stereotype" xmi:id="measures" name="measures">
+					<ownedAttribute xmi:type="uml:Property" xmi:id="measures-base_Connector" name="base_Connector" association="Connector_measures">
+						<type href="http://schema.omg.org/spec/UML/2.1/Connector"/>
+					</ownedAttribute>
+					<ownedAttribute xmi:type="uml:Property" xmi:id="measures-measurement" name="measurement">
+						<type href="http://schema.omg.org/spec/UML/2.1/String"/>
+					</ownedAttribute>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Extension" xmi:id="Connector_measures" name="A_Connector_measures" memberEnd="extension_measures measures-base_Connector">
+					<ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="extension_measures" name="extension_measures" type="measures" isComposite="true" lower="0" upper="1" memberEnd="extension_measures measures-base_Connector"/>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Stereotype" xmi:id="hasStrategy" name="hasStrategy">
+					<ownedAttribute xmi:type="uml:Property" xmi:id="hasStrategy-base_Aggregation" name="base_Aggregation" association="Aggregation_hasStrategy">
+						<type href="http://schema.omg.org/spec/UML/2.1/Aggregation"/>
+					</ownedAttribute>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Extension" xmi:id="Aggregation_hasStrategy" name="A_Aggregation_hasStrategy" memberEnd="extension_hasStrategy hasStrategy-base_Aggregation">
+					<ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="extension_hasStrategy" name="extension_hasStrategy" type="hasStrategy" isComposite="true" lower="0" upper="1" memberEnd="extension_hasStrategy hasStrategy-base_Aggregation"/>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Stereotype" xmi:id="Strategy" name="Strategy">
+					<generalization xmi:type="uml:Generalization" xmi:id="Strategy__Strategy_generalization" general="_Strategy"/>
+					<ownedAttribute xmi:type="uml:Property" xmi:id="Strategy-type" name="type">
+						<type href="http://schema.omg.org/spec/UML/2.1/String"/>
+					</ownedAttribute>
+					<ownedAttribute xmi:type="uml:Property" xmi:id="Strategy-autoDeploy" name="autoDeploy">
+						<type href="http://schema.omg.org/spec/UML/2.1/String"/>
+					</ownedAttribute>
+					<ownedAttribute xmi:type="uml:Property" xmi:id="Strategy-pathToCode" name="pathToCode">
+						<type href="http://schema.omg.org/spec/UML/2.1/String"/>
+					</ownedAttribute>
+				</packagedElement>
+			</uml:Profile>
+		</profiles>
+		<diagrams>
+			<diagram xmi:id="EAID_916C01CC_7AE6_4ad9_ABD5_B427F965E391">
+				<model package="EAPK_00B672CB_3B23_4f2a_A655_55143BCEC75B" localID="1" owner="EAPK_00B672CB_3B23_4f2a_A655_55143BCEC75B"/>
+				<properties name="Package1" type="Logical"/>
+				<project author="author" version="1.0" created="2026-10-29 16:42:53" modified="2026-10-29 17:47:14"/>
+				<style1 value="ShowPrivate=1;ShowProtected=1;ShowPublic=1;HideRelationships=0;Locked=0;Border=1;HighlightForeign=1;PackageContents=1;SequenceNotes=0;ScalePrintImage=0;PPgs.cx=0;PPgs.cy=0;DocSize.cx=827;DocSize.cy=1169;ShowDetails=0;Orientation=P;Zoom=100;ShowTags=0;OpParams=1;VisibleAttributeDetail=0;ShowOpRetType=1;ShowIcons=1;CollabNums=0;HideProps=0;ShowReqs=0;ShowCons=0;PaperSize=9;HideParents=0;UseAlias=0;HideAtts=0;HideOps=0;HideStereo=0;HideElemStereo=0;ShowTests=0;ShowMaint=0;ConnectorNotation=UML 2.1;ExplicitNavigability=0;ShowShape=1;AllDockable=0;AdvancedElementProps=1;AdvancedFeatureProps=1;AdvancedConnectorProps=1;m_bElementClassifier=1;SPT=1;ShowNotes=0;SuppressBrackets=0;SuppConnectorLabels=0;PrintPageHeadFoot=0;ShowAsList=0;"/>
+				<style2 value="ExcludeRTF=0;DocAll=0;HideQuals=0;AttPkg=1;ShowTests=0;ShowMaint=0;SuppressFOC=1;MatrixActive=0;SwimlanesActive=1;KanbanActive=0;MatrixLineWidth=1;MatrixLineClr=0;MatrixLocked=0;TConnectorNotation=UML 2.1;TExplicitNavigability=0;AdvancedElementProps=1;AdvancedFeatureProps=1;AdvancedConnectorProps=1;m_bElementClassifier=1;SPT=1;MDGDgm=DT_Abstract_Blocks::_Strategy;STBLDgm=;ShowNotes=0;VisibleAttributeDetail=0;ShowOpRetType=1;SuppressBrackets=0;SuppConnectorLabels=0;PrintPageHeadFoot=0;ShowAsList=0;SuppressedCompartments=;Theme=:119;SaveTag=570667EC;"/>
+				<swimlanes value="locked=false;orientation=0;width=0;inbar=false;names=false;color=-1;bold=false;fcol=0;tcol=-1;ofCol=-1;ufCol=-1;hl=1;ufh=0;hh=0;cls=0;bw=0;hli=0;bro=0;SwimlaneFont=lfh:-32,lfw:0,lfi:0,lfu:0,lfs:0,lfface:Calibri,lfe:0,lfo:0,lfchar:1,lfop:0,lfcp:0,lfq:0,lfpf=0,lfWidth=0;"/>
+				<matrixitems value="locked=false;matrixactive=false;swimlanesactive=true;kanbanactive=false;width=1;clrLine=0;"/>
+				<extendedProperties/>
+				<persistentstyle value="DGS=On=0:CNT=8:W=120:H=40:SG=0:SGH=0:AEB=0:;AR=0;DCL=0;orientation=0;width=0;inbar=false;names=false;color=-1;bold=false;fcol=0;tcol=-1;ofCol=-1;ufCol=-1;hl=1;ufh=0;hh=0;cls=0;bw=0;hli=0;bro=0;SwimlaneFont=lfh:-32,lfw:0,lfi:0,lfu:0,lfs:0,lfface:Calibri,lfe:0,lfo:0,lfchar:1,lfop:0,lfcp:0,lfq:0,lfpf=0,lfWidth=0;;orientation=0;width=0;inbar=false;names=false;color=-1;bold=false;fcol=0;tcol=-1;ofCol=-1;ufCol=-1;hl=1;ufh=0;hh=0;cls=0;bw=0;hli=0;bro=0;SwimlaneFont=lfh:-32,lfw:0,lfi:0,lfu:0,lfs:0,lfface:Calibri,lfe:0,lfo:0,lfchar:1,lfop:0,lfcp:0,lfq:0,lfpf=0,lfWidth=0;;orientation=0;width=0;inbar=false;names=false;color=-1;bold=false;fcol=0;tcol=-1;ofCol=-1;ufCol=-1;hl=1;ufh=0;hh=0;cls=0;bw=0;hli=0;bro=0;SwimlaneFont=lfh:-32,lfw:0,lfi:0,lfu:0,lfs:0,lfface:Calibri,lfe:0,lfo:0,lfchar:1,lfop:0,lfcp:0,lfq:0,lfpf=0,lfWidth=0;;orientation=0;width=0;inbar=false;names=false;color=-1;bold=false;fcol=0;tcol=-1;ofCol=-1;ufCol=-1;hl=1;ufh=0;hh=0;cls=0;bw=0;hli=0;bro=0;SwimlaneFont=lfh:-32,lfw:0,lfi:0,lfu:0,lfs:0,lfface:Calibri,lfe:0,lfo:0,lfchar:1,lfop:0,lfcp:0,lfq:0,lfpf=0,lfWidth=0;;orientation=0;width=0;inbar=false;names=false;color=-1;bold=false;fcol=0;tcol=-1;ofCol=-1;ufCol=-1;hl=1;ufh=0;hh=0;cls=0;bw=0;hli=0;bro=0;SwimlaneFont=lfh:-32,lfw:0,lfi:0,lfu:0,lfs:0,lfface:Calibri,lfe:0,lfo:0,lfchar:1,lfop:0,lfcp:0,lfq:0,lfpf=0,lfWidth=0;;orientation=0;width=0;inbar=false;names=false;color=-1;bold=false;fcol=0;tcol=-1;ofCol=-1;ufCol=-1;hl=1;ufh=0;hh=0;cls=0;bw=0;hli=0;bro=0;SwimlaneFont=lfh:-32,lfw:0,lfi:0,lfu:0,lfs:0,lfface:Calibri,lfe:0,lfo:0,lfchar:1,lfop:0,lfcp:0,lfq:0,lfpf=0,lfWidth=0;;orientation=0;width=0;inbar=false;names=false;color=-1;bold=false;fcol=0;tcol=-1;ofCol=-1;ufCol=-1;hl=1;ufh=0;hh=0;cls=0;bw=0;hli=0;bro=0;SwimlaneFont=lfh:-32,lfw:0,lfi:0,lfu:0,lfs:0,lfface:Calibri,lfe:0,lfo:0,lfchar:1,lfop:0,lfcp:0,lfq:0,lfpf=0,lfWidth=0;;orientation=0;width=0;inbar=false;names=false;color=-1;bold=false;fcol=0;tcol=-1;ofCol=-1;ufCol=-1;hl=1;ufh=0;hh=0;cls=0;bw=0;hli=0;bro=0;SwimlaneFont=lfh:-32,lfw:0,lfi:0,lfu:0,lfs:0,lfface:Calibri,lfe:0,lfo:0,lfchar:1,lfop:0,lfcp:0,lfq:0,lfpf=0,lfWidth=0;;orientation=0;width=0;inbar=false;names=false;color=-1;bold=false;fcol=0;tcol=-1;ofCol=-1;ufCol=-1;hl=1;ufh=0;hh=0;cls=0;bw=0;hli=0;bro=0;SwimlaneFont=lfh:-32,lfw:0,lfi:0,lfu:0,lfs:0,lfface:Calibri,lfe:0,lfo:0,lfchar:1,lfop:0,lfcp:0,lfq:0,lfpf=0,lfWidth=0;;orientation=0;width=0;inbar=false;names=false;color=-1;bold=false;fcol=0;tcol=-1;ofCol=-1;ufCol=-1;hl=1;ufh=0;hh=0;cls=0;bw=0;hli=0;bro=0;SwimlaneFont=lfh:-32,lfw:0,lfi:0,lfu:0,lfs:0,lfface:Calibri,lfe:0,lfo:0,lfchar:1,lfop:0,lfcp:0,lfq:0,lfpf=0,lfWidth=0;;orientation=0;width=0;inbar=false;names=false;color=-1;bold=false;fcol=0;tcol=-1;ofCol=-1;ufCol=-1;hl=1;ufh=0;hh=0;cls=0;bw=0;hli=0;bro=0;SwimlaneFont=lfh:-32,lfw:0,lfi:0,lfu:0,lfs:0,lfface:Calibri,lfe:0,lfo:0,lfchar:1,lfop:0,lfcp:0,lfq:0,lfpf=0,lfWidth=0;;orientation=0;width=0;inbar=false;names=false;color=-1;bold=false;fcol=0;tcol=-1;ofCol=-1;ufCol=-1;hl=1;ufh=0;hh=0;cls=0;bw=0;hli=0;bro=0;SwimlaneFont=lfh:-32,lfw:0,lfi:0,lfu:0,lfs:0,lfface:Calibri,lfe:0,lfo:0,lfchar:1,lfop:0,lfcp:0,lfq:0,lfpf=0,lfWidth=0;;orientation=0;width=0;inbar=false;names=false;color=-1;bold=false;fcol=0;tcol=-1;ofCol=-1;ufCol=-1;hl=1;ufh=0;hh=0;cls=0;bw=0;hli=0;bro=0;SwimlaneFont=lfh:-32,lfw:0,lfi:0,lfu:0,lfs:0,lfface:Calibri,lfe:0,lfo:0,lfchar:1,lfop:0,lfcp:0,lfq:0,lfpf=0,lfWidth=0;;orientation=0;width=0;inbar=false;names=false;color=-1;bold=false;fcol=0;tcol=-1;ofCol=-1;ufCol=-1;hl=1;ufh=0;hh=0;cls=0;bw=0;hli=0;bro=0;SwimlaneFont=lfh:-32,lfw:0,lfi:0,lfu:0,lfs:0,lfface:Calibri,lfe:0,lfo:0,lfchar:1,lfop:0,lfcp:0,lfq:0,lfpf=0,lfWidth=0;;orientation=0;width=0;inbar=false;names=false;color=-1;bold=false;fcol=0;tcol=-1;ofCol=-1;ufCol=-1;hl=1;ufh=0;hh=0;cls=0;bw=0;hli=0;bro=0;SwimlaneFont=lfh:-32,lfw:0,lfi:0,lfu:0,lfs:0,lfface:Calibri,lfe:0,lfo:0,lfchar:1,lfop:0,lfcp:0,lfq:0,lfpf=0,lfWidth=0;;orientation=0;width=0;inbar=false;names=false;color=-1;bold=false;fcol=0;tcol=-1;ofCol=-1;ufCol=-1;hl=1;ufh=0;hh=0;cls=0;bw=0;hli=0;bro=0;SwimlaneFont=lfh:-32,lfw:0,lfi:0,lfu:0,lfs:0,lfface:Calibri,lfe:0,lfo:0,lfchar:1,lfop:0,lfcp:0,lfq:0,lfpf=0,lfWidth=0;;orientation=0;width=0;inbar=false;names=false;color=-1;bold=false;fcol=0;tcol=-1;ofCol=-1;ufCol=-1;hl=1;ufh=0;hh=0;cls=0;bw=0;hli=0;bro=0;SwimlaneFont=lfh:-32,lfw:0,lfi:0,lfu:0,lfs:0,lfface:Calibri,lfe:0,lfo:0,lfchar:1,lfop:0,lfcp:0,lfq:0,lfpf=0,lfWidth=0;;orientation=0;width=0;inbar=false;names=false;color=-1;bold=false;fcol=0;tcol=-1;ofCol=-1;ufCol=-1;hl=1;ufh=0;hh=0;cls=0;bw=0;hli=0;bro=0;SwimlaneFont=lfh:-32,lfw:0,lfi:0,lfu:0,lfs:0,lfface:Calibri,lfe:0,lfo:0,lfchar:1,lfop:0,lfcp:0,lfq:0,lfpf=0,lfWidth=0;;orientation=0;width=0;inbar=false;names=false;color=-1;bold=false;fcol=0;tcol=-1;ofCol=-1;ufCol=-1;hl=1;ufh=0;hh=0;cls=0;bw=0;hli=0;bro=0;SwimlaneFont=lfh:-32,lfw:0,lfi:0,lfu:0,lfs:0,lfface:Calibri,lfe:0,lfo:0,lfchar:1,lfop:0,lfcp:0,lfq:0,lfpf=0,lfWidth=0;;orientation=0;width=0;inbar=false;names=false;color=-1;bold=false;fcol=0;tcol=-1;ofCol=-1;ufCol=-1;hl=1;ufh=0;hh=0;cls=0;bw=0;hli=0;bro=0;SwimlaneFont=lfh:-32,lfw:0,lfi:0,lfu:0,lfs:0,lfface:Calibri,lfe:0,lfo:0,lfchar:1,lfop:0,lfcp:0,lfq:0,lfpf=0,lfWidth=0;;orientation=0;width=0;inbar=false;names=false;color=-1;bold=false;fcol=0;tcol=-1;ofCol=-1;ufCol=-1;hl=1;ufh=0;hh=0;cls=0;bw=0;hli=0;bro=0;SwimlaneFont=lfh:-32,lfw:0,lfi:0,lfu:0,lfs:0,lfface:Calibri,lfe:0,lfo:0,lfchar:1,lfop:0,lfcp:0,lfq:0,lfpf=0,lfWidth=0;;orientation=0;width=0;inbar=false;names=false;color=-1;bold=false;fcol=0;tcol=-1;ofCol=-1;ufCol=-1;hl=1;ufh=0;hh=0;cls=0;bw=0;hli=0;bro=0;SwimlaneFont=lfh:-32,lfw:0,lfi:0,lfu:0,lfs:0,lfface:Calibri,lfe:0,lfo:0,lfchar:1,lfop:0,lfcp:0,lfq:0,lfpf=0,lfWidth=0;;orientation=0;width=0;inbar=false;names=false;color=-1;bold=false;fcol=0;tcol=-1;ofCol=-1;ufCol=-1;hl=1;ufh=0;hh=0;cls=0;bw=0;hli=0;bro=0;SwimlaneFont=lfh:-32,lfw:0,lfi:0,lfu:0,lfs:0,lfface:Calibri,lfe:0,lfo:0,lfchar:1,lfop:0,lfcp:0,lfq:0,lfpf=0,lfWidth=0;;orientation=0;width=0;inbar=false;names=false;color=-1;bold=false;fcol=0;tcol=-1;ofCol=-1;ufCol=-1;hl=1;ufh=0;hh=0;cls=0;bw=0;hli=0;bro=0;SwimlaneFont=lfh:-32,lfw:0,lfi:0,lfu:0,lfs:0,lfface:Calibri,lfe:0,lfo:0,lfchar:1,lfop:0,lfcp:0,lfq:0,lfpf=0,lfWidth=0;;orientation=0;width=0;inbar=false;names=false;color=-1;bold=false;fcol=0;tcol=-1;ofCol=-1;ufCol=-1;hl=1;ufh=0;hh=0;cls=0;bw=0;hli=0;bro=0;SwimlaneFont=lfh:-32,lfw:0,lfi:0,lfu:0,lfs:0,lfface:Calibri,lfe:0,lfo:0,lfchar:1,lfop:0,lfcp:0,lfq:0,lfpf=0,lfWidth=0;;orientation=0;width=0;inbar=false;names=false;color=-1;bold=false;fcol=0;tcol=-1;ofCol=-1;ufCol=-1;hl=1;ufh=0;hh=0;cls=0;bw=0;hli=0;bro=0;SwimlaneFont=lfh:-32,lfw:0,lfi:0,lfu:0,lfs:0,lfface:Calibri,lfe:0,lfo:0,lfchar:1,lfop:0,lfcp:0,lfq:0,lfpf=0,lfWidth=0;;orientation=0;width=0;inbar=false;names=false;color=-1;bold=false;fcol=0;tcol=-1;ofCol=-1;ufCol=-1;hl=1;ufh=0;hh=0;cls=0;bw=0;hli=0;bro=0;SwimlaneFont=lfh:-32,lfw:0,lfi:0,lfu:0,lfs:0,lfface:Calibri,lfe:0,lfo:0,lfchar:1,lfop:0,lfcp:0,lfq:0,lfpf=0,lfWidth=0;;orientation=0;width=0;inbar=false;names=false;color=-1;bold=false;fcol=0;tcol=-1;ofCol=-1;ufCol=-1;hl=1;ufh=0;hh=0;cls=0;bw=0;hli=0;bro=0;SwimlaneFont=lfh:-32,lfw:0,lfi:0,lfu:0,lfs:0,lfface:Calibri,lfe:0,lfo:0,lfchar:1,lfop:0,lfcp:0,lfq:0,lfpf=0,lfWidth=0;;orientation=0;width=0;inbar=false;names=false;color=-1;bold=false;fcol=0;tcol=-1;ofCol=-1;ufCol=-1;hl=1;ufh=0;hh=0;cls=0;bw=0;hli=0;bro=0;SwimlaneFont=lfh:-32,lfw:0,lfi:0,lfu:0,lfs:0,lfface:Calibri,lfe:0,lfo:0,lfchar:1,lfop:0,lfcp:0,lfq:0,lfpf=0,lfWidth=0;;Swimlanes=locked=false;orientation=0;width=0;inbar=false;names=false;color=-1;bold=false;fcol=0;tcol=-1;ofCol=-1;ufCol=-1;hl=1;ufh=0;hh=0;cls=0;bw=0;hli=0;bro=0;SwimlaneFont=lfh:-32,lfw:0,lfi:0,lfu:0,lfs:0,lfface:Calibri,lfe:0,lfo:0,lfchar:1,lfop:0,lfcp:0,lfq:0,lfpf=0,lfWidth=0;;"/>
+				<xrefs/>
+				<elements>
+					<element geometry="Left=405;Top=282;Right=495;Bottom=352;" subject="EAID_62E819FD_7296_4217_9FCC_44A268353EE4" seqno="1" style="DUID=D78A7E76;HideIcon=0;"/>
+					<element geometry="Left=351;Top=24;Right=441;Bottom=94;" subject="EAID_B9ACC948_168B_4a62_BC49_8A106624CD6A" seqno="2" style="DUID=D824DF99;HideIcon=0;"/>
+					<element geometry="Left=123;Top=30;Right=213;Bottom=100;" subject="EAID_6D3FE69C_54EE_4491_8FE0_190179268164" seqno="3" style="DUID=6DA32E3F;HideIcon=0;"/>
+					<element geometry="Left=277;Top=329;Right=367;Bottom=399;" subject="EAID_9F8A8D4A_B849_4d6d_A8E0_3DCD6425AC0B" seqno="4" style="DUID=487E4BB5;HideIcon=0;"/>
+					<element geometry="Left=18;Top=249;Right=128;Bottom=338;" subject="EAID_FAA01437_2376_43d8_A916_8FB35F7DCF42" seqno="5" style="DUID=A3CE40E6;HideIcon=0;"/>
+					<element geometry="Left=423;Top=176;Right=513;Bottom=252;" subject="EAID_050A7281_3A88_44bc_B261_1DEF4F16DF13" seqno="6" style="DUID=F39E25D9;HideIcon=0;"/>
+					<element geometry="Left=312;Top=127;Right=402;Bottom=197;" subject="EAID_1807061B_EEA6_4d94_99EE_4C15EDF7CFC9" seqno="7" style="DUID=263FAA4A;HideIcon=0;"/>
+					<element geometry="Left=131;Top=127;Right=221;Bottom=197;" subject="EAID_AE2103EF_CA72_46f4_AB39_F0CB10FCB246" seqno="8" style="DUID=E2AFF7BC;HideIcon=0;"/>
+					<element geometry="SX=14;SY=-35;EX=0;EY=0;EDGE=4;$LLB=;LLT=CX=21:CY=14:OX=0:OY=0:HDN=0:BLD=0:ITA=0:UND=0:CLR=-1:ALN=0:DIR=0:ROT=0;LMT=;LMB=CX=71:CY=14:OX=0:OY=0:HDN=0:BLD=0:ITA=0:UND=0:CLR=-1:ALN=1:DIR=0:ROT=0;LRT=;LRB=;IRHS=;ILHS=;Path=271:-197$271:-162$;" subject="EAID_72243D57_8E71_4d7f_B033_32D604A9D469" style="Mode=3;EOID=E2AFF7BC;SOID=263FAA4A;Color=-1;LWidth=0;TREE=H;Hidden=0;"/>
+					<element geometry="SX=1;SY=-34;EX=0;EY=0;EDGE=4;$LLB=;LLT=CX=16:CY=14:OX=0:OY=0:HDN=0:BLD=0:ITA=0:UND=0:CLR=-1:ALN=0:DIR=0:ROT=0;LMT=;LMB=CX=71:CY=14:OX=0:OY=0:HDN=0:BLD=0:ITA=0:UND=0:CLR=-1:ALN=1:DIR=0:ROT=0;LRT=;LRB=;IRHS=;ILHS=;Path=271:-247$271:-162$;" subject="EAID_AD67FDB5_4FB8_4fb5_B185_CB9293257763" style="Mode=3;EOID=E2AFF7BC;SOID=F39E25D9;Color=-1;LWidth=0;TREE=H;Hidden=0;"/>
+					<element geometry="SX=1;SY=27;EX=0;EY=0;EDGE=1;$LLB=;LLT=CX=45:CY=14:OX=9:OY=-1:HDN=0:BLD=0:ITA=0:UND=0:CLR=-1:ALN=0:DIR=0:ROT=0;LMT=;LMB=CX=71:CY=14:OX=4:OY=-76:HDN=0:BLD=0:ITA=0:UND=0:CLR=-1:ALN=1:DIR=0:ROT=0;LRT=;LRB=;IRHS=;ILHS=;Path=81:-249$81:-162$;" subject="EAID_33091470_72C1_4b87_9B4D_C49E60D3B098" style="Mode=3;EOID=E2AFF7BC;SOID=A3CE40E6;Color=-1;LWidth=0;TREE=H;Hidden=0;"/>
+					<element geometry="SX=8;SY=-1;EX=0;EY=0;EDGE=1;$LLB=;LLT=CX=45:CY=14:OX=17:OY=-13:HDN=0:BLD=0:ITA=0:UND=0:CLR=-1:ALN=0:DIR=0:ROT=0;LMT=;LMB=CX=71:CY=14:OX=9:OY=-77:HDN=0:BLD=0:ITA=0:UND=0:CLR=-1:ALN=1:DIR=0:ROT=0;LRT=;LRB=;IRHS=;ILHS=;Path=81:-249$81:-162$;" subject="EAID_E521314F_04BA_4a8b_B337_731914C307B4" style="Mode=3;EOID=E2AFF7BC;SOID=A3CE40E6;Color=-1;LWidth=0;TREE=H;Hidden=0;"/>
+					<element geometry="SX=9;SY=-29;EX=0;EY=0;EDGE=1;$LLB=;LLT=CX=41:CY=14:OX=-31:OY=-24:HDN=0:BLD=0:ITA=0:UND=0:CLR=-1:ALN=0:DIR=0:ROT=0;LMT=;LMB=CX=71:CY=14:OX=9:OY=-106:HDN=0:BLD=0:ITA=0:UND=0:CLR=-1:ALN=1:DIR=0:ROT=0;LRT=;LRB=;IRHS=;ILHS=;Path=81:-322$81:-162$;" subject="EAID_3B228C7D_FA91_4e91_9FA5_07845967834B" style="Mode=2;EOID=E2AFF7BC;SOID=A3CE40E6;Color=-1;LWidth=0;Hidden=0;"/>
+					<element geometry="SX=0;SY=0;EX=0;EY=0;EDGE=4;$LLB=;LLT=CX=37:CY=14:OX=-12:OY=11:HDN=0:BLD=0:ITA=0:UND=0:CLR=-1:ALN=0:DIR=0:ROT=0;LMT=;LMB=CX=52:CY=14:OX=-37:OY=-46:HDN=0:BLD=0:ITA=0:UND=0:CLR=-1:ALN=1:DIR=0:ROT=0;LRT=;LRB=;IRHS=;ILHS=;Path=271:-356$271:-162$;" subject="EAID_F795D357_4006_45b1_93E9_306DF8D7B8E2" style="Mode=3;EOID=E2AFF7BC;SOID=487E4BB5;Color=-1;LWidth=0;TREE=H;Hidden=0;"/>
+					<element geometry="SX=-40;SY=-28;EX=-18;EY=-28;EDGE=4;$LLB=;LLT=CX=37:CY=14:OX=-11:OY=-2:HDN=0:BLD=0:ITA=0:UND=0:CLR=-1:ALN=1:DIR=0:ROT=0;LMT=;LMB=CX=52:CY=14:OX=0:OY=0:HDN=0:BLD=0:ITA=0:UND=0:CLR=-1:ALN=1:DIR=0:ROT=0;LRT=;LRB=;IRHS=;ILHS=;Path=233:-238$182:-238$;" subject="EAID_EAF861C6_54BA_414a_8188_60B3635EF4DB" style="Mode=2;EOID=E2AFF7BC;SOID=487E4BB5;Color=-1;LWidth=0;Hidden=0;"/>
+					<element geometry="SX=0;SY=0;EX=0;EY=0;EDGE=4;$LLB=;LLT=CX=37:CY=14:OX=-12:OY=36:HDN=0:BLD=0:ITA=0:UND=0:CLR=-1:ALN=1:DIR=0:ROT=0;LMT=;LMB=CX=52:CY=14:OX=-2:OY=-58:HDN=0:BLD=0:ITA=0:UND=0:CLR=-1:ALN=1:DIR=0:ROT=0;LRT=;LRB=;IRHS=;ILHS=;Path=271:-356$271:-162$;" subject="EAID_AB02BE21_7828_43b0_956C_2D7CFEC35923" style="Mode=3;EOID=E2AFF7BC;SOID=487E4BB5;Color=-1;LWidth=0;TREE=H;Hidden=0;"/>
+					<element geometry="SX=1;SY=0;EX=0;EY=0;EDGE=4;$LLB=;LLT=CX=78:CY=14:OX=0:OY=0:HDN=0:BLD=0:ITA=0:UND=0:CLR=-1:ALN=0:DIR=0:ROT=0;LMT=;LMB=CX=59:CY=14:OX=0:OY=0:HDN=0:BLD=0:ITA=0:UND=0:CLR=-1:ALN=1:DIR=0:ROT=0;LRT=;LRB=;IRHS=;ILHS=;Path=271:-59$271:-162$;" subject="EAID_FFD5FC81_1B19_4514_8DDC_468E5B15CF0A" style="Mode=2;EOID=E2AFF7BC;SOID=D824DF99;Color=-1;LWidth=0;Hidden=0;"/>
+					<element geometry="SX=1;SY=24;EX=0;EY=0;EDGE=4;$LLB=;LLT=CX=30:CY=14:OX=0:OY=0:HDN=0:BLD=0:ITA=0:UND=0:CLR=-1:ALN=1:DIR=0:ROT=0;LMT=;LMB=CX=52:CY=14:OX=0:OY=0:HDN=0:BLD=0:ITA=0:UND=0:CLR=-1:ALN=1:DIR=0:ROT=0;LRT=;LRB=;IRHS=;ILHS=;Path=271:-292$271:-162$;" subject="EAID_659A15CB_7BF8_426e_994F_ED623D1249A5" style="Mode=3;EOID=E2AFF7BC;SOID=D78A7E76;Color=-1;LWidth=0;TREE=H;Hidden=0;"/>
+					<element geometry="SX=-44;SY=-35;EX=7;EY=9;EDGE=3;$LLB=;LLT=CX=35:CY=14:OX=1:OY=0:HDN=0:BLD=0:ITA=0:UND=0:CLR=-1:ALN=1:DIR=0:ROT=0;LMT=;LMB=CX=63:CY=14:OX=54:OY=-7:HDN=0:BLD=0:ITA=0:UND=0:CLR=-1:ALN=1:DIR=0:ROT=0;LRT=;LRB=;IRHS=;ILHS=;Path=;" subject="EAID_E4303131_F2CF_467d_A9D6_976109B06F52" style="Mode=3;EOID=E2AFF7BC;SOID=6DA32E3F;Color=-1;LWidth=0;Hidden=0;"/>
+				</elements>
+			</diagram>
+			<diagram xmi:id="EAID_F0C89E6D_271D_4b07_B420_00B3F54CC08C">
+				<model package="EAPK_00B672CB_3B23_4f2a_A655_55143BCEC75B" localID="3" owner="EAPK_00B672CB_3B23_4f2a_A655_55143BCEC75B" parent="EAID_AE2103EF_CA72_46f4_AB39_F0CB10FCB246"/>
+				<properties name="ChargingPointStation" type="CompositeStructure"/>
+				<project author="author" version="1.0" created="2026-10-29 17:20:49" modified="2026-10-29 17:52:26"/>
+				<style1 value="ShowPrivate=1;ShowProtected=1;ShowPublic=1;HideRelationships=0;Locked=0;Border=1;HighlightForeign=1;PackageContents=1;SequenceNotes=0;ScalePrintImage=0;PPgs.cx=0;PPgs.cy=0;DocSize.cx=827;DocSize.cy=1169;ShowDetails=0;Orientation=P;Zoom=100;ShowTags=0;OpParams=1;VisibleAttributeDetail=0;ShowOpRetType=1;ShowIcons=1;CollabNums=0;HideProps=0;ShowReqs=0;ShowCons=0;PaperSize=9;HideParents=0;UseAlias=0;HideAtts=0;HideOps=0;HideStereo=0;HideElemStereo=0;ShowTests=0;ShowMaint=0;ConnectorNotation=UML 2.1;ExplicitNavigability=0;ShowShape=1;AllDockable=0;AdvancedElementProps=1;AdvancedFeatureProps=1;AdvancedConnectorProps=1;m_bElementClassifier=1;SPT=1;ShowNotes=0;SuppressBrackets=0;SuppConnectorLabels=0;PrintPageHeadFoot=0;ShowAsList=0;"/>
+				<style2 value="ExcludeRTF=0;DocAll=0;HideQuals=0;AttPkg=1;ShowTests=0;ShowMaint=0;SuppressFOC=1;MatrixActive=0;SwimlanesActive=1;KanbanActive=0;MatrixLineWidth=1;MatrixLineClr=0;MatrixLocked=0;TConnectorNotation=UML 2.1;TExplicitNavigability=0;AdvancedElementProps=1;AdvancedFeatureProps=1;AdvancedConnectorProps=1;m_bElementClassifier=1;SPT=1;MDGDgm=SysML1.4::InternalBlock;STBLDgm=;ShowNotes=0;VisibleAttributeDetail=0;ShowOpRetType=1;SuppressBrackets=0;SuppConnectorLabels=0;PrintPageHeadFoot=0;ShowAsList=0;SuppressedCompartments=;SF=1;Theme=:119;SaveTag=49847C3C;"/>
+				<swimlanes value="locked=false;orientation=0;width=0;inbar=false;names=false;color=-1;bold=false;fcol=0;tcol=-1;ofCol=-1;ufCol=-1;hl=1;ufh=0;hh=0;cls=0;bw=0;hli=0;bro=0;SwimlaneFont=lfh:-32,lfw:0,lfi:0,lfu:0,lfs:0,lfface:Calibri,lfe:0,lfo:0,lfchar:1,lfop:0,lfcp:0,lfq:0,lfpf=0,lfWidth=0;"/>
+				<matrixitems value="locked=false;matrixactive=false;swimlanesactive=true;kanbanactive=false;width=1;clrLine=0;"/>
+				<extendedProperties/>
+				<persistentstyle value="DGS=On=0:CNT=8:W=120:H=40:SG=0:SGH=0:AEB=0:;AR=0;DCL=0;orientation=0;width=0;inbar=false;names=false;color=-1;bold=false;fcol=0;tcol=-1;ofCol=-1;ufCol=-1;hl=1;ufh=0;hh=0;cls=0;bw=0;hli=0;bro=0;SwimlaneFont=lfh:-32,lfw:0,lfi:0,lfu:0,lfs:0,lfface:Calibri,lfe:0,lfo:0,lfchar:1,lfop:0,lfcp:0,lfq:0,lfpf=0,lfWidth=0;;orientation=0;width=0;inbar=false;names=false;color=-1;bold=false;fcol=0;tcol=-1;ofCol=-1;ufCol=-1;hl=1;ufh=0;hh=0;cls=0;bw=0;hli=0;bro=0;SwimlaneFont=lfh:-32,lfw:0,lfi:0,lfu:0,lfs:0,lfface:Calibri,lfe:0,lfo:0,lfchar:1,lfop:0,lfcp:0,lfq:0,lfpf=0,lfWidth=0;;orientation=0;width=0;inbar=false;names=false;color=-1;bold=false;fcol=0;tcol=-1;ofCol=-1;ufCol=-1;hl=1;ufh=0;hh=0;cls=0;bw=0;hli=0;bro=0;SwimlaneFont=lfh:-32,lfw:0,lfi:0,lfu:0,lfs:0,lfface:Calibri,lfe:0,lfo:0,lfchar:1,lfop:0,lfcp:0,lfq:0,lfpf=0,lfWidth=0;;orientation=0;width=0;inbar=false;names=false;color=-1;bold=false;fcol=0;tcol=-1;ofCol=-1;ufCol=-1;hl=1;ufh=0;hh=0;cls=0;bw=0;hli=0;bro=0;SwimlaneFont=lfh:-32,lfw:0,lfi:0,lfu:0,lfs:0,lfface:Calibri,lfe:0,lfo:0,lfchar:1,lfop:0,lfcp:0,lfq:0,lfpf=0,lfWidth=0;;orientation=0;width=0;inbar=false;names=false;color=-1;bold=false;fcol=0;tcol=-1;ofCol=-1;ufCol=-1;hl=1;ufh=0;hh=0;cls=0;bw=0;hli=0;bro=0;SwimlaneFont=lfh:-32,lfw:0,lfi:0,lfu:0,lfs:0,lfface:Calibri,lfe:0,lfo:0,lfchar:1,lfop:0,lfcp:0,lfq:0,lfpf=0,lfWidth=0;;orientation=0;width=0;inbar=false;names=false;color=-1;bold=false;fcol=0;tcol=-1;ofCol=-1;ufCol=-1;hl=1;ufh=0;hh=0;cls=0;bw=0;hli=0;bro=0;SwimlaneFont=lfh:-32,lfw:0,lfi:0,lfu:0,lfs:0,lfface:Calibri,lfe:0,lfo:0,lfchar:1,lfop:0,lfcp:0,lfq:0,lfpf=0,lfWidth=0;;orientation=0;width=0;inbar=false;names=false;color=-1;bold=false;fcol=0;tcol=-1;ofCol=-1;ufCol=-1;hl=1;ufh=0;hh=0;cls=0;bw=0;hli=0;bro=0;SwimlaneFont=lfh:-32,lfw:0,lfi:0,lfu:0,lfs:0,lfface:Calibri,lfe:0,lfo:0,lfchar:1,lfop:0,lfcp:0,lfq:0,lfpf=0,lfWidth=0;;orientation=0;width=0;inbar=false;names=false;color=-1;bold=false;fcol=0;tcol=-1;ofCol=-1;ufCol=-1;hl=1;ufh=0;hh=0;cls=0;bw=0;hli=0;bro=0;SwimlaneFont=lfh:-32,lfw:0,lfi:0,lfu:0,lfs:0,lfface:Calibri,lfe:0,lfo:0,lfchar:1,lfop:0,lfcp:0,lfq:0,lfpf=0,lfWidth=0;;orientation=0;width=0;inbar=false;names=false;color=-1;bold=false;fcol=0;tcol=-1;ofCol=-1;ufCol=-1;hl=1;ufh=0;hh=0;cls=0;bw=0;hli=0;bro=0;SwimlaneFont=lfh:-32,lfw:0,lfi:0,lfu:0,lfs:0,lfface:Calibri,lfe:0,lfo:0,lfchar:1,lfop:0,lfcp:0,lfq:0,lfpf=0,lfWidth=0;;orientation=0;width=0;inbar=false;names=false;color=-1;bold=false;fcol=0;tcol=-1;ofCol=-1;ufCol=-1;hl=1;ufh=0;hh=0;cls=0;bw=0;hli=0;bro=0;SwimlaneFont=lfh:-32,lfw:0,lfi:0,lfu:0,lfs:0,lfface:Calibri,lfe:0,lfo:0,lfchar:1,lfop:0,lfcp:0,lfq:0,lfpf=0,lfWidth=0;;orientation=0;width=0;inbar=false;names=false;color=-1;bold=false;fcol=0;tcol=-1;ofCol=-1;ufCol=-1;hl=1;ufh=0;hh=0;cls=0;bw=0;hli=0;bro=0;SwimlaneFont=lfh:-32,lfw:0,lfi:0,lfu:0,lfs:0,lfface:Calibri,lfe:0,lfo:0,lfchar:1,lfop:0,lfcp:0,lfq:0,lfpf=0,lfWidth=0;;orientation=0;width=0;inbar=false;names=false;color=-1;bold=false;fcol=0;tcol=-1;ofCol=-1;ufCol=-1;hl=1;ufh=0;hh=0;cls=0;bw=0;hli=0;bro=0;SwimlaneFont=lfh:-32,lfw:0,lfi:0,lfu:0,lfs:0,lfface:Calibri,lfe:0,lfo:0,lfchar:1,lfop:0,lfcp:0,lfq:0,lfpf=0,lfWidth=0;;Swimlanes=locked=false;orientation=0;width=0;inbar=false;names=false;color=-1;bold=false;fcol=0;tcol=-1;ofCol=-1;ufCol=-1;hl=1;ufh=0;hh=0;cls=0;bw=0;hli=0;bro=0;SwimlaneFont=lfh:-32,lfw:0,lfi:0,lfu:0,lfs:0,lfface:Calibri,lfe:0,lfo:0,lfchar:1,lfop:0,lfcp:0,lfq:0,lfpf=0,lfWidth=0;;"/>
+				<xrefs/>
+				<elements>
+					<element geometry="Left=455;Top=308;Right=525;Bottom=375;" subject="EAID_DB0DC810_9D9C_4c31_80E4_0BB63419F326" seqno="1" style="DUID=E8C2DD41;NSL=0;"/>
+					<element geometry="Left=357;Top=304;Right=427;Bottom=371;" subject="EAID_F715EBAE_43B0_4dd7_95CF_8BB5D87C2CB0" seqno="2" style="DUID=F2A34A55;NSL=0;"/>
+					<element geometry="Left=81;Top=294;Right=151;Bottom=361;" subject="EAID_0D6A8A1D_B264_4bb0_A6A5_B94B77DD9A71" seqno="3" style="DUID=5420AA58;NSL=0;"/>
+					<element geometry="Left=190;Top=421;Right=268;Bottom=488;" subject="EAID_9FC132DF_89F7_4a30_B482_11270D360E77" seqno="4" style="DUID=6480C62F;NSL=0;"/>
+					<element geometry="Left=268;Top=298;Right=338;Bottom=365;" subject="EAID_AC74694A_0C21_4461_9681_B97D38A0A3CF" seqno="5" style="DUID=42CF3846;NSL=0;"/>
+					<element geometry="Left=455;Top=195;Right=525;Bottom=262;" subject="EAID_B7629CD0_1A09_4dd3_87A4_83C3A42640EF" seqno="6" style="DUID=FDF8B4A9;NSL=0;"/>
+					<element geometry="Left=357;Top=188;Right=427;Bottom=255;" subject="EAID_A4B3FA3E_F466_42a2_9A7F_51E52CB2B0CD" seqno="7" style="DUID=861BAB48;NSL=0;"/>
+					<element geometry="Left=263;Top=188;Right=333;Bottom=255;" subject="EAID_18DD6EF5_90B9_4ee0_A9A0_62DDEA0D3716" seqno="8" style="DUID=C5EEAD4C;NSL=0;"/>
+					<element geometry="Left=81;Top=192;Right=151;Bottom=246;" subject="EAID_6E9DAFE6_6C64_4a9c_A189_DA56C1695A35" seqno="9" style="DUID=11E4EEFE;NSL=0;"/>
+					<element geometry="Left=174;Top=294;Right=244;Bottom=348;" subject="EAID_C678D65D_7DB6_4c81_BE1D_4F2F9558616F" seqno="10" style="DUID=24D89FC3;NSL=0;"/>
+					<element geometry="Left=20;Top=20;Right=562;Bottom=525;" subject="EAID_AE2103EF_CA72_46f4_AB39_F0CB10FCB246" seqno="11" style="DUID=B1FEA348;NSL=1;"/>
+					<element geometry="SX=11;SY=-3;EX=10;EY=-3;EDGE=1;$LLB=;LLT=;LMT=;LMB=CX=50:CY=14:OX=0:OY=0:HDN=0:BLD=0:ITA=0:UND=0:CLR=-1:ALN=1:DIR=0:ROT=0;LRT=;LRB=;IRHS=;ILHS=;Path=;" subject="EAID_708D1124_407E_41a0_9A0E_7AA890BD0F84" style="Mode=3;EOID=C5EEAD4C;SOID=42CF3846;Color=-1;LWidth=0;TREE=OS;Hidden=0;"/>
+					<element geometry="SX=10;SY=-3;EX=10;EY=-3;EDGE=1;$LLB=;LLT=;LMT=;LMB=CX=50:CY=14:OX=0:OY=0:HDN=0:BLD=0:ITA=0:UND=0:CLR=-1:ALN=1:DIR=0:ROT=0;LRT=;LRB=;IRHS=;ILHS=;Path=;" subject="EAID_F453E34B_105B_48dc_99A7_202555737D2A" style="Mode=3;EOID=C5EEAD4C;SOID=42CF3846;Color=-1;LWidth=0;TREE=OS;Hidden=0;"/>
+					<element geometry="SX=0;SY=0;EX=0;EY=0;EDGE=1;$LLB=;LLT=;LMT=;LMB=CX=50:CY=14:OX=0:OY=0:HDN=0:BLD=0:ITA=0:UND=0:CLR=-1:ALN=1:DIR=0:ROT=0;LRT=;LRB=;IRHS=;ILHS=;Path=;" subject="EAID_D3E25FAE_19C4_47f3_97F5_C68D81BAA59D" style="Mode=3;EOID=11E4EEFE;SOID=5420AA58;Color=-1;LWidth=0;TREE=OS;Hidden=0;"/>
+					<element geometry="SX=-19;SY=0;EX=-33;EY=0;EDGE=3;$LLB=;LLT=;LMT=;LMB=CX=41:CY=14:OX=0:OY=0:HDN=0:BLD=0:ITA=0:UND=0:CLR=-1:ALN=1:DIR=0:ROT=0;LRT=;LRB=;IRHS=;ILHS=;Path=97:-383$196:-383$;" subject="EAID_C19956F6_F02F_447f_860D_8FEFE7D62648" style="Mode=3;EOID=6480C62F;SOID=5420AA58;Color=-1;LWidth=0;TREE=OS;Hidden=0;"/>
+					<element geometry="SX=0;SY=0;EX=0;EY=0;EDGE=1;$LLB=;LLT=;LMT=;LMB=CX=50:CY=14:OX=0:OY=0:HDN=0:BLD=0:ITA=0:UND=0:CLR=-1:ALN=1:DIR=0:ROT=0;LRT=;LRB=;IRHS=;ILHS=;Path=;" subject="EAID_A6724696_7EF9_4258_8873_2F4E12F5F411" style="Mode=3;EOID=861BAB48;SOID=F2A34A55;Color=-1;LWidth=0;TREE=OS;Hidden=0;"/>
+					<element geometry="SX=0;SY=0;EX=0;EY=0;EDGE=1;$LLB=;LLT=;LMT=;LMB=CX=50:CY=14:OX=0:OY=0:HDN=0:BLD=0:ITA=0:UND=0:CLR=-1:ALN=1:DIR=0:ROT=0;LRT=;LRB=;IRHS=;ILHS=;Path=;" subject="EAID_AA4D3AED_DC86_40c4_9EC0_BA4C4B271433" style="Mode=3;EOID=861BAB48;SOID=F2A34A55;Color=-1;LWidth=0;TREE=OS;Hidden=0;"/>
+					<element geometry="SX=0;SY=0;EX=0;EY=0;EDGE=1;$LLB=;LLT=;LMT=;LMB=CX=50:CY=14:OX=0:OY=0:HDN=0:BLD=0:ITA=0:UND=0:CLR=-1:ALN=1:DIR=0:ROT=0;LRT=;LRB=;IRHS=;ILHS=;Path=;" subject="EAID_C79CE8AB_2992_4845_A3D6_DA46DB6B51D3" style="Mode=3;EOID=FDF8B4A9;SOID=E8C2DD41;Color=-1;LWidth=0;TREE=OS;Hidden=0;"/>
+					<element geometry="SX=0;SY=0;EX=0;EY=0;EDGE=1;$LLB=;LLT=;LMT=;LMB=CX=50:CY=14:OX=0:OY=0:HDN=0:BLD=0:ITA=0:UND=0:CLR=-1:ALN=1:DIR=0:ROT=0;LRT=;LRB=;IRHS=;ILHS=;Path=;" subject="EAID_FB961E05_FB36_401d_8E25_91EB51F0439C" style="Mode=3;EOID=FDF8B4A9;SOID=E8C2DD41;Color=-1;LWidth=0;TREE=OS;Hidden=0;"/>
+				</elements>
+			</diagram>
+		</diagrams>
+	</xmi:Extension>
+</xmi:XMI>
