@@ -1,9 +1,9 @@
 {
   "twin": "MGridICSA",
-  "account": "717556240325",
+  "account": "123456789012",
   "region": "eu-west-1",
   "created": "2026-10-27T12:54:14.227028+00:00",
-  "prowler_report": "security-audit-output\\prowler-output-717556240325-20261027142759.ocsf.json",
+  "prowler_report": "security-audit-output\\prowler-output-123456789012-20261027142759.ocsf.json",
   "findings": [
     {
       "source": "prowler",
