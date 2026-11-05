@@ -11,3 +11,6 @@ __pycache__/
 src/venv/
 .env
 security-audit-output/
+
+.agents/
+skills-lock.json
