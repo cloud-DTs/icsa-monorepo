@@ -20,7 +20,7 @@ import sys
 
 PATHS = {"mqtt-twinmaker": "Visualization", "mqtt": "Reaction"}          # evaluation -> path
 TWINS = {"MGridICSA": ("Charging point station", "red", -0.18),          # twin_name -> label, colour, offset
-         "CheckWatt": ("Virtual power plant", "blue", 0.18)}
+         "VPP": ("Virtual power plant", "blue", 0.18)}
 PATH_ORDER = ["Visualization", "Reaction"]
 
 

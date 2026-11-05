@@ -21,7 +21,7 @@ The script is read-only. Credentials come from the standard AWS environment.
 
 Usage:
   uv run python scripts/resource_inventory.py
-  uv run python scripts/resource_inventory.py --twin MGridICSA --twin CheckWatt
+  uv run python scripts/resource_inventory.py --twin MGridICSA --twin VPP
 """
 import argparse
 import collections

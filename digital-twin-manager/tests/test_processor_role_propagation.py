@@ -39,14 +39,14 @@ def aws(monkeypatch):
   client.create_function.return_value = {"FunctionArn": "created-function"}
   sleep = Mock()
   package = Mock(return_value=b"planned-zip")
-  monkeypatch.setattr(globals, "config", {"digital_twin_name": "CheckWatt"})
+  monkeypatch.setattr(globals, "config", {"digital_twin_name": "VPP"})
   monkeypatch.setattr(globals, "aws_iam_client", iam)
   monkeypatch.setattr(globals, "aws_lambda_client", client)
   monkeypatch.setattr(globals, "aws_sts_client", StubStsClient())
   monkeypatch.setattr("time.sleep", sleep)
   monkeypatch.setattr("util.compile_reproducible_lambda_function", package)
   definition = lambda_function.LambdaDefinition(
-    "CheckWatt-sensor-processor", "CheckWatt-sensor-processor", "unused", "processor",
+    "VPP-sensor-processor", "VPP-sensor-processor", "unused", "processor",
   )
   return SimpleNamespace(iam=iam, client=client, sleep=sleep, package=package, definition=definition)
 
@@ -60,7 +60,7 @@ def test_ready_processor_role_does_not_add_an_unconditional_delay(aws):
   assert aws.iam.create_role.call_count == 1
   assert aws.iam.attach_role_policy.call_count == 2
   assert aws.client.create_function.call_count == 1
-  assert aws.client.create_function.call_args.kwargs["Role"].endswith("/CheckWatt-sensor-processor")
+  assert aws.client.create_function.call_args.kwargs["Role"].endswith("/VPP-sensor-processor")
 
 
 def test_bulk_ready_processors_have_no_accumulated_sleep(aws, capsys):

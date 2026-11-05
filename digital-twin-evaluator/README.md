@@ -75,7 +75,7 @@ The client reads credentials from the SDK provider chain. It does not read devic
 private keys from deployment snapshots or create AWS resources.
 
 MQTT processing evaluation requires an applied action with a working feedback
-route. The sibling pipeline supplies a CheckWatt `mqttProbe` mock for that path.
+route. The sibling pipeline supplies a VPP `mqttProbe` mock for that path.
 The `mqtt-twinmaker` evaluation below reads through TwinMaker and does not need
 an action or MQTT feedback topic.
 
@@ -124,11 +124,11 @@ Connection setup and AWS client initialization are outside sample timing.
 An interrupted MQTT connection prevents subsequent publishes in the run.
 
 ```powershell
-python -m digital_twin_evaluation plan mqtt-twinmaker --deployment ../cloud-dtc-docker/pipeline/digital-twin-manager/deployments/CheckWatt --config examples/CheckWatt.mqtt-twinmaker.json
-python -m digital_twin_evaluation run mqtt-twinmaker --deployment ../cloud-dtc-docker/pipeline/digital-twin-manager/deployments/CheckWatt --config examples/CheckWatt.mqtt-twinmaker.json --output results
+python -m digital_twin_evaluation plan mqtt-twinmaker --deployment ../cloud-dtc-docker/pipeline/digital-twin-manager/deployments/VPP --config examples/VPP.mqtt-twinmaker.json
+python -m digital_twin_evaluation run mqtt-twinmaker --deployment ../cloud-dtc-docker/pipeline/digital-twin-manager/deployments/VPP --config examples/VPP.mqtt-twinmaker.json --output results
 ```
 
-Examples are provided for `Household0001.BESS.activePowerKW` in CheckWatt and
+Examples are provided for `Household0001.BESS.activePowerKW` in VPP and
 `MicroGrid.charger1.p13.power` in MGridICSA. The first version supports one target
 and `concurrency: 1`. Use one writer for the selected property. Existing business
 rules can still execute after ingestion; the measurement does not wait for them.
@@ -248,13 +248,13 @@ The supplied MGridICSA example measures seven telemetry devices: battery
 These property names do not match the deployed `power` conditions. The controller
 has no telemetry properties, and generated constant components are excluded.
 
-`examples/CheckWatt.roundtrip.json` covers the saved 100-household CheckWatt
+`examples/VPP.roundtrip.json` covers the saved 100-household VPP
 deployment: Grid telemetry and the Sensor and BESS of every household. It uses
 storage mode, 5 measured cycles per device, no warmup cycles, and concurrency 10.
 The 201 devices produce 1005 measured messages in total. Inspect its offline plan:
 
 ```powershell
-python -m digital_twin_evaluation plan roundtrip --deployment ../cloud-dtc-docker/pipeline/digital-twin-manager/deployments/CheckWatt --config examples/CheckWatt.roundtrip.json
+python -m digital_twin_evaluation plan roundtrip --deployment ../cloud-dtc-docker/pipeline/digital-twin-manager/deployments/VPP --config examples/VPP.roundtrip.json
 ```
 
 For multiple devices, set `parameters.targets` to a non-empty list. Each entry

@@ -1,39 +1,39 @@
 twin,region,layer,resource_type,count
-CheckWatt,eu-west-1,L1 Data Acquisition,IAM inline policies,0
-CheckWatt,eu-west-1,L1 Data Acquisition,IAM managed-policy attachments,2
-CheckWatt,eu-west-1,L1 Data Acquisition,IAM roles,1
-CheckWatt,eu-west-1,L1 Data Acquisition,IoT certificate-to-thing attachments,201
-CheckWatt,eu-west-1,L1 Data Acquisition,IoT certificates,201
-CheckWatt,eu-west-1,L1 Data Acquisition,IoT policies,1
-CheckWatt,eu-west-1,L1 Data Acquisition,IoT policy-to-certificate attachments,201
-CheckWatt,eu-west-1,L1 Data Acquisition,IoT things,201
-CheckWatt,eu-west-1,L1 Data Acquisition,IoT topic rules,1
-CheckWatt,eu-west-1,L1 Data Acquisition,Lambda functions,1
-CheckWatt,eu-west-1,L1 Data Acquisition,Lambda invoke permissions,1
-CheckWatt,eu-west-1,L2 Data Storage,DynamoDB tables,1
-CheckWatt,eu-west-1,L2 Data Storage,EventBridge rules,2
-CheckWatt,eu-west-1,L2 Data Storage,EventBridge targets,2
-CheckWatt,eu-west-1,L2 Data Storage,IAM inline policies,3
-CheckWatt,eu-west-1,L2 Data Storage,IAM managed-policy attachments,3
-CheckWatt,eu-west-1,L2 Data Storage,IAM roles,3
-CheckWatt,eu-west-1,L2 Data Storage,Lambda functions,3
-CheckWatt,eu-west-1,L2 Data Storage,Lambda invoke permissions,3
-CheckWatt,eu-west-1,L2 Data Storage,S3 buckets,2
-CheckWatt,eu-west-1,L3 Data Processing,IAM inline policies,3
-CheckWatt,eu-west-1,L3 Data Processing,IAM managed-policy attachments,408
-CheckWatt,eu-west-1,L3 Data Processing,IAM roles,206
-CheckWatt,eu-west-1,L3 Data Processing,Lambda functions,205
-CheckWatt,eu-west-1,L3 Data Processing,Step Functions state machines,1
-CheckWatt,eu-west-1,L4 Twin Management,IAM inline policies,1
-CheckWatt,eu-west-1,L4 Twin Management,IAM managed-policy attachments,0
-CheckWatt,eu-west-1,L4 Twin Management,IAM roles,1
-CheckWatt,eu-west-1,L4 Twin Management,S3 CORS configurations,1
-CheckWatt,eu-west-1,L4 Twin Management,S3 bucket policies,1
-CheckWatt,eu-west-1,L4 Twin Management,S3 buckets,1
-CheckWatt,eu-west-1,L4 Twin Management,TwinMaker component types,3
-CheckWatt,eu-west-1,L4 Twin Management,TwinMaker components,201
-CheckWatt,eu-west-1,L4 Twin Management,TwinMaker entities,102
-CheckWatt,eu-west-1,L4 Twin Management,TwinMaker workspaces,1
+VPP,eu-west-1,L1 Data Acquisition,IAM inline policies,0
+VPP,eu-west-1,L1 Data Acquisition,IAM managed-policy attachments,2
+VPP,eu-west-1,L1 Data Acquisition,IAM roles,1
+VPP,eu-west-1,L1 Data Acquisition,IoT certificate-to-thing attachments,201
+VPP,eu-west-1,L1 Data Acquisition,IoT certificates,201
+VPP,eu-west-1,L1 Data Acquisition,IoT policies,1
+VPP,eu-west-1,L1 Data Acquisition,IoT policy-to-certificate attachments,201
+VPP,eu-west-1,L1 Data Acquisition,IoT things,201
+VPP,eu-west-1,L1 Data Acquisition,IoT topic rules,1
+VPP,eu-west-1,L1 Data Acquisition,Lambda functions,1
+VPP,eu-west-1,L1 Data Acquisition,Lambda invoke permissions,1
+VPP,eu-west-1,L2 Data Storage,DynamoDB tables,1
+VPP,eu-west-1,L2 Data Storage,EventBridge rules,2
+VPP,eu-west-1,L2 Data Storage,EventBridge targets,2
+VPP,eu-west-1,L2 Data Storage,IAM inline policies,3
+VPP,eu-west-1,L2 Data Storage,IAM managed-policy attachments,3
+VPP,eu-west-1,L2 Data Storage,IAM roles,3
+VPP,eu-west-1,L2 Data Storage,Lambda functions,3
+VPP,eu-west-1,L2 Data Storage,Lambda invoke permissions,3
+VPP,eu-west-1,L2 Data Storage,S3 buckets,2
+VPP,eu-west-1,L3 Data Processing,IAM inline policies,3
+VPP,eu-west-1,L3 Data Processing,IAM managed-policy attachments,408
+VPP,eu-west-1,L3 Data Processing,IAM roles,206
+VPP,eu-west-1,L3 Data Processing,Lambda functions,205
+VPP,eu-west-1,L3 Data Processing,Step Functions state machines,1
+VPP,eu-west-1,L4 Twin Management,IAM inline policies,1
+VPP,eu-west-1,L4 Twin Management,IAM managed-policy attachments,0
+VPP,eu-west-1,L4 Twin Management,IAM roles,1
+VPP,eu-west-1,L4 Twin Management,S3 CORS configurations,1
+VPP,eu-west-1,L4 Twin Management,S3 bucket policies,1
+VPP,eu-west-1,L4 Twin Management,S3 buckets,1
+VPP,eu-west-1,L4 Twin Management,TwinMaker component types,3
+VPP,eu-west-1,L4 Twin Management,TwinMaker components,201
+VPP,eu-west-1,L4 Twin Management,TwinMaker entities,102
+VPP,eu-west-1,L4 Twin Management,TwinMaker workspaces,1
 MGridICSA,eu-west-1,L1 Data Acquisition,IAM inline policies,0
 MGridICSA,eu-west-1,L1 Data Acquisition,IAM managed-policy attachments,2
 MGridICSA,eu-west-1,L1 Data Acquisition,IAM roles,1

@@ -47,9 +47,9 @@ deployment engine supplies the ingestion and feedback resources around the
 | Paper material                              | Artifact to inspect                                                                                                                                                                                                   |
 | ------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | CS1: charging point station                 | [MGridICSA.sysml](cloud-dtc-docker/pipeline/digital-twin-profile-sysml-v2/input/MGridICSA.sysml)                                                                                                                      |
-| CS2: virtual power plant                    | [CheckWattMicrogrid.sysml](cloud-dtc-docker/pipeline/digital-twin-profile-sysml-v2/input/CheckWattMicrogrid.sysml), with 100 households; [generator and scale settings](cloud-dtc-docker/docs/checkwatt-microgrid.md) |
-| Reaction path, Section V-C / Figure 4       | [CS1 MQTT results](evaluator-artifacts/MGridICSA-mqtt-roundtrip.zip), [CS2 MQTT results](evaluator-artifacts/CheckWatt-mqtt-roundtrip.zip)                                                                            |
-| Visualization path, Section V-C / Figure 4  | [CS1 TwinMaker results](evaluator-artifacts/MGridICSA-mqtt-twinmaker.zip), [CS2 TwinMaker results](evaluator-artifacts/CheckWatt-mqtt-twinmaker.zip)                                                                  |
+| CS2: virtual power plant                    | [VPPMicrogrid.sysml](cloud-dtc-docker/pipeline/digital-twin-profile-sysml-v2/input/VPPMicrogrid.sysml), with 100 households; [generator and scale settings](cloud-dtc-docker/docs/vpp-microgrid.md) |
+| Reaction path, Section V-C / Figure 4       | [CS1 MQTT results](evaluator-artifacts/MGridICSA-mqtt-roundtrip.zip), [CS2 MQTT results](evaluator-artifacts/VPP-mqtt-roundtrip.zip)                                                                            |
+| Visualization path, Section V-C / Figure 4  | [CS1 TwinMaker results](evaluator-artifacts/MGridICSA-mqtt-twinmaker.zip), [CS2 TwinMaker results](evaluator-artifacts/VPP-mqtt-twinmaker.zip)                                                                  |
 | Security assessment, Section V-C / Figure 5 | [Stored findings](evaluator-artifacts/MGridICSA-SecurityEval.json), [audit script and instructions](digital-twin-manager/docs/security-audit.md)                                                                      |
 
 Each measurement ZIP contains `measurements.csv` and `summary.json`. The summary
@@ -120,8 +120,8 @@ evaluate mqtt MGridICSA
 evaluate mqtt-twinmaker MGridICSA
 ```
 
-For CS2, use `CheckWattMicrogrid.sysml` and twin name
-`CheckWatt`. Results go to `cloud-dtc-docker/pipeline/digital-twin-evaluation/output/`.
+For CS2, use `VPPMicrogrid.sysml` and twin name
+`VPP`. Results go to `cloud-dtc-docker/pipeline/digital-twin-evaluation/output/`.
 The [evaluation guide](cloud-dtc-docker/docs/digital-twin-evaluation.md) describes
 offline experiment planning, configuration and reports. After testing, use
 `destroy digital-twin-manager MGridICSA` or the corresponding CS2 command to
@@ -131,7 +131,7 @@ remove the deployed twin.
 
 The two case studies use mock actions:
 [CS1 energy management](cloud-dtc-docker/demo-code/microgrid/energy-management/lambda_function.py)
-and the [CS2 MQTT probe](cloud-dtc-docker/demo-code/checkwatt/mqtt-probe/lambda_function.py).
+and the [CS2 MQTT probe](cloud-dtc-docker/demo-code/vpp/mqtt-probe/lambda_function.py).
 They return input values to exercise the infrastructure. These measurements
 do not evaluate industrial control algorithms or physical actuation. AWS is
 the implemented cloud realization.

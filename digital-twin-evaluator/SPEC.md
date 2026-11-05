@@ -20,7 +20,7 @@ Handle SDK errors, connection loss and late reads explicitly.
 Bound SDK calls and polling; a synchronous in-flight read may overrun the cycle
 deadline but must not become a successful sample after that deadline.
 
-Provide offline plans and separate CheckWatt/MGridICSA pipeline examples. This
+Provide offline plans and separate VPP/MGridICSA pipeline examples. This
 metric reports observed TwinMaker API availability; it does not claim Grafana
 datasource or panel-render latency. Provisioning and AWS benchmark traffic remain
 outside the implementation change.
@@ -45,7 +45,7 @@ Plan without AWS clients. Discover the endpoint read-only at run startup when
 it is not set explicitly. Use signed WSS and existing AWS credential inputs.
 
 For feedback with no echoed input value, this method cannot prove correlation.
-A different deployed contract is then needed. CheckWatt has no supplied return
+A different deployed contract is then needed. VPP has no supplied return
 chain. The MGridICSA Balance handler is a mock; receiving its result confirms
 that processing path, not execution by a physical actuator.
 
