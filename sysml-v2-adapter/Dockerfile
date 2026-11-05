@@ -11,18 +11,24 @@ RUN curl -fsSL -o /tmp/kernel.conda \
 
 
 FROM maven:3.9-eclipse-temurin-21 AS build
-WORKDIR /src
+WORKDIR /build
 COPY --from=kernel /jupyter-sysml-kernel.jar /tmp/jupyter-sysml-kernel.jar
 RUN mvn -q -B install:install-file -Dfile=/tmp/jupyter-sysml-kernel.jar \
       -DgroupId=org.omg.sysml -DartifactId=jupyter-sysml-kernel -Dversion=0.55.0 \
       -Dpackaging=jar -DgeneratePom=true
-COPY exporter/ .
 
-RUN mvn -q -B package -DskipTests
+# The two SysML v2 libraries are built from source (see lib/)
+COPY lib/sysml-library-mapper lib/sysml-library-mapper
+RUN mvn -q -B -f lib/sysml-library-mapper/pom.xml install -Dmaven.test.skip=true
+COPY lib/sysml-digital-twin-profile lib/sysml-digital-twin-profile
+RUN mvn -q -B -f lib/sysml-digital-twin-profile/pom.xml install -Dmaven.test.skip=true
+
+COPY exporter exporter
+RUN mvn -q -B -f exporter/pom.xml package -DskipTests
 
 
 FROM eclipse-temurin:21-jre
-COPY --from=build /src/target/exporter-1.0-SNAPSHOT.jar /opt/exporter.jar
+COPY --from=build /build/exporter/target/exporter-1.0-SNAPSHOT.jar /opt/exporter.jar
 
 VOLUME ["/pipeline/input", "/pipeline/output", "/pipeline/code"]
 

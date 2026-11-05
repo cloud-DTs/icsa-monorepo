@@ -29,7 +29,7 @@ python main.py ./Test.sysml
 python main.py ./models/MGrid.sysml ./models/shared/ -o ./deploy
 ```
 
-On the first run `main.py` builds the exporter in `exporter/` with Maven. The two SysML libraries it needs (`sysml-digital-twin-profile` 1.1.1 and `sysml-library-mapper` 1.1.0) are kept in `exporter/libs/`, so no access token is required. Maven downloads the other dependencies once; later runs only start the exporter.
+The two SysML libraries it needs, `sysml-digital-twin-profile` and `sysml-library-mapper`, are part of this artifact in `lib/`. The Docker build compiles them from source. Outside Docker, build them first (see their READMEs) and install the SysML kernel jar. Maven downloads the other dependencies once; later runs only start the exporter.
 
 # Output
 
