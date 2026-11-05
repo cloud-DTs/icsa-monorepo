@@ -13,3 +13,4 @@ __pycache__/
 ~/.pulumi/**
 /Pulumi.dev.yaml
 /input/config_credentials.json
+.idea/

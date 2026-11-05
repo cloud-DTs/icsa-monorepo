@@ -5,7 +5,7 @@
 This report counts the AWS resources, persistent configuration artifacts, and
 initial-value publish operations automated by the Digital Twin Manager. The
 inventory is based on the implementation in `src/deployers/aws` and uses the
-five-layer architecture from `EDT_25__CloudDT_engineering.pdf`:
+five-layer architecture of the digital twin:
 
 1. Data Acquisition
 2. Data Storage
