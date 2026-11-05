@@ -1,6 +1,8 @@
 # AWS Permissions
 
-This document describes the IAM permissions required by `digital-twin-manager` when it runs against AWS using the credentials from `config_credentials.json`.
+This document describes the IAM permissions required by `digital-twin-manager` when it runs against AWS. It takes its credentials from the environment variables `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY` and `AWS_REGION`, or from `config_credentials.json`.
+
+Ready-to-use policy files for the deployer, the evaluator and the read-only analysis scripts, with the steps to create the access key, are in [`reproduce/aws`](../../reproduce/aws/README.md).
 
 The permission set is derived from:
 
@@ -465,7 +467,7 @@ arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
 arn:aws:iam::aws:policy/service-role/AWSLambdaRole
 ```
 
-`AWSLambdaBasicExecutionRole` (CloudWatch Logs) is attached to every runtime role. `AWSLambdaRole` (`lambda:InvokeFunction` on all functions) is attached only to the Dispatcher, LambdaChain, and per-device Processor roles, which invoke a downstream Lambda whose exact name isn't fixed at role-creation time. No runtime role uses an AWS-managed `*FullAccess`/`*ReadOnlyAccess`/`*DataAccess` policy — each role that needs DynamoDB, S3, IoT TwinMaker, Lambda, or Step Functions access gets a scoped inline policy instead (see below). This replaced an earlier version of this document/implementation where several roles held `AmazonDynamoDBFullAccess_v2`, `AWSLambda_ReadOnlyAccess`, `AWSStepFunctionsFullAccess`, `AWSIoTDataAccess`, and `AmazonS3FullAccess` — a source-level audit (see the ICSA evaluation, `EVALUATION.md` in the bundle root) found these granted far more than the corresponding Lambda's own source code ever calls.
+`AWSLambdaBasicExecutionRole` (CloudWatch Logs) is attached to every runtime role. `AWSLambdaRole` (`lambda:InvokeFunction` on all functions) is attached only to the Dispatcher, LambdaChain, and per-device Processor roles, which invoke a downstream Lambda whose exact name isn't fixed at role-creation time. No runtime role uses an AWS-managed `*FullAccess`/`*ReadOnlyAccess`/`*DataAccess` policy — each role that needs DynamoDB, S3, IoT TwinMaker, Lambda, or Step Functions access gets a scoped inline policy instead (see below). This replaced an earlier version of this document/implementation where several roles held `AmazonDynamoDBFullAccess_v2`, `AWSLambda_ReadOnlyAccess`, `AWSStepFunctionsFullAccess`, `AWSIoTDataAccess`, and `AmazonS3FullAccess` — a source-level audit found these granted far more than the corresponding Lambda's own source code ever calls.
 
 ### Inline Runtime Policies (Scoped)
 
@@ -493,7 +495,15 @@ Two statements are intentionally broader than "this twin's own resources" and ar
 
 Adding devices or changing MQTT feedback topics reuses the existing policy. `plan` and `apply` migrate legacy device policy attachments to the shared policy while preserving certificates and local keys. Removing one device preserves the shared policy; a full twin destroy removes it after the device identities.
 
-The policy document grants `iot:*` on `Resource: "*"`. These permissions apply across the AWS account and allow access to all MQTT client IDs and topics.
+The policy document is built by `policy_document()` in `src/deployers/aws/iot/policy_document.py`. It is the same for every device of the twin, because it uses the policy variable `${iot:Connection.Thing.ThingName}`, and it grants only:
+
+| Action | Resource | Purpose |
+|---|---|---|
+| `iot:Connect` | `client/${iot:Connection.Thing.ThingName}` | a device connects with its own Thing name as client id |
+| `iot:Publish` | the twin's ingest topic `<digitalTwinName>/iot-data` | telemetry |
+| `iot:Subscribe`, `iot:Receive` | the MQTT feedback topics of `config_events.json` (the device's own Thing name for feedback by `iotDeviceId`) | commands and feedback, only when MQTT feedback is configured |
+
+Every statement has the conditions `iot:Connection.Thing.IsAttached` is `true` and `iot:Connection.Thing.ThingName` matches `<digitalTwinName>-*`. Feedback topics must be literal topics without wildcards or policy variables, and the document must stay below the IoT limit of 2,048 characters. A policy that still holds the earlier wildcard document (`iot:*` on `*`) is replaced through a new policy version by `plan` and `apply`.
 
 ### Trust Policies
 
