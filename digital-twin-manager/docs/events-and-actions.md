@@ -34,7 +34,6 @@ Core L2 reads federation routing entries from AWS Systems Manager Parameter Stor
 - **Reader:** The Event-checker has read-only access to the twin's registry path.
 - **Writer:** An external federation component owns registry population; the manager does not deploy a registration Lambda or Function URL.
 - **Format:** Each SSM value is JSON with a `targets` array. Every target contains an `address` identifying a Step Function state machine ARN.
-- **Federation input:** After `deploy` or `apply`, the manager writes `<digitalTwinName>_federation_input.json` with the SSM prefix, available strategies, Hot-reader ARN, and TwinMaker workspace ID.
 - **Fallback:** If no registry entry exists, the Event-checker uses the local action/feedback flow from `config_events.json`.
 
 ## Key Distinctions

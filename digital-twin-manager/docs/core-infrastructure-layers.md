@@ -29,7 +29,6 @@ The TwinMaker hierarchy deployer is a separate post-IoT deployment phase, not a 
   - The Event-checker evaluates conditions from `config_events.json`.
   - Step Functions and Feedback Lambdas handle event actions and return MQTT feedback.
   - The Event-checker reads optional federation targets from AWS Systems Manager Parameter Store under `/<digitalTwinName>/event-registry/` and starts the registered Step Functions.
-  - After `deploy` or `apply`, the manager exports the twin's federation metadata, including the SSM prefix and available strategies, to `<digitalTwinName>_federation_input.json`.
 
 The manager does not deploy an API for writing registry entries. Registry population is owned by the external federation component.
 

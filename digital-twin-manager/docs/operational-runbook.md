@@ -20,11 +20,8 @@ Before running `deploy`, ensure these files are correctly configured:
 
 ## Event Registry / FunctionRegistry Operations
 
-After `deploy` or `apply`, the manager generates `<digitalTwinName>_federation_input.json`. It contains the SSM registry prefix and the strategies that an external federation component can connect.
+The Event-checker only reads registry entries at `/<digitalTwinName>/event-registry/{eventName}`; it does not deploy a registration endpoint. For operational checks:
 
-The manager only reads registry entries at `/<digitalTwinName>/event-registry/{eventName}`; it does not deploy a registration endpoint. For operational checks:
-
-- Confirm that the generated federation input contains the expected `ssm_registry_prefix` and strategies.
 - Verify that the external federation component wrote JSON values with a `targets` array.
 - Verify that every target `address` is a Step Function ARN accessible to the Event-checker execution role.
 - If an entry is absent or invalid, the Event-checker falls back to the local action configured in `config_events.json`.

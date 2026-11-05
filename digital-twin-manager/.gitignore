@@ -2,8 +2,6 @@ config*.json
 iot_devices_auth/
 .digital-twin-manager-state/
 dependency/artifact/
-*_federation_input.json
-!examples/*_federation_input.json
 
 __pycache__/
 *.py[cod]
