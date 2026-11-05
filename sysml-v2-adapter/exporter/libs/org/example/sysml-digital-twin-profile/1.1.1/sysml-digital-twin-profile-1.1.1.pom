@@ -29,21 +29,7 @@
         <maven.surefire.plugin.version>3.5.4</maven.surefire.plugin.version>
     </properties>
 
-    <repositories>
-        <repository>
-            <id>cloud-dts</id>
-            <name>GitHub Packages</name>
-            <url>https://maven.pkg.github.com/cloud-DTs/Sysmlv2ModelParser</url>
-        </repository>
-    </repositories>
 
-    <distributionManagement>
-        <repository>
-            <id>cloud-dts</id>
-            <name>GitHub Packages</name>
-            <url>https://maven.pkg.github.com/cloud-DTs/DigitalTwinProfileSysmlv2JavaLibrary</url>
-        </repository>
-    </distributionManagement>
 
     <dependencies>
         <dependency>

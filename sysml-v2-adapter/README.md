@@ -2,7 +2,7 @@
 
 Converts SysML v2 digital twin models into the JSON configuration of the deployer.
 
-The models are read and validated by the [DigitalTwinProfileSysmlv2JavaLibrary](https://github.com/cloud-DTs/DigitalTwinProfileSysmlv2JavaLibrary). How to model twins, entities, components, attributes, conditions and strategy actions is described in the README of that repository.
+The models are read and validated by the DigitalTwinProfileSysmlv2JavaLibrary. How to model twins, entities, components, attributes, conditions and strategy actions is described in the README of that repository.
 
 # Requirements
 

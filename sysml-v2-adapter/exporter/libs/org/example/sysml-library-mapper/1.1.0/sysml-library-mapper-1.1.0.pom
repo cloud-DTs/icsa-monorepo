@@ -30,21 +30,7 @@
         <maven.antrun.plugin.version>3.1.0</maven.antrun.plugin.version>
     </properties>
 
-    <repositories>
-        <repository>
-            <id>cloud-dts</id>
-            <name>GitHub Packages</name>
-            <url>https://maven.pkg.github.com/cloud-DTs/Sysmlv2ModelParser</url>
-        </repository>
-    </repositories>
 
-    <distributionManagement>
-        <repository>
-            <id>cloud-dts</id>
-            <name>GitHub Packages</name>
-            <url>https://maven.pkg.github.com/cloud-DTs/Sysmlv2ModelParser</url>
-        </repository>
-    </distributionManagement>
 
     <dependencies>
 

@@ -151,7 +151,7 @@ Generated files are written to `PIPELINE_OUTPUT_HOST_DIR/<lowercase-TWIN_NAME>/`
 ---
 
 ## References
-[1] digital-twin-manager: https://github.com/cloud-DTs/digital-twin-manager/tree/main  
+[1] digital-twin-manager: [`../digital-twin-manager`](../digital-twin-manager)  
 [2] Enterprise Architect by Sparx Systems: https://sparxsystems.com/
 
 
