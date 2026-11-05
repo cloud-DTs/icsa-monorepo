@@ -1,0 +1,46 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "IotEndpointLookup",
+      "Effect": "Allow",
+      "Action": "iot:DescribeEndpoint",
+      "Resource": "*"
+    },
+    {
+      "Sid": "MqttConnect",
+      "Effect": "Allow",
+      "Action": "iot:Connect",
+      "Resource": "arn:aws:iot:*:*:client/dt-eval-*"
+    },
+    {
+      "Sid": "MqttPublish",
+      "Effect": "Allow",
+      "Action": "iot:Publish",
+      "Resource": "arn:aws:iot:*:*:topic/*"
+    },
+    {
+      "Sid": "MqttFeedbackSubscribe",
+      "Effect": "Allow",
+      "Action": "iot:Subscribe",
+      "Resource": "arn:aws:iot:*:*:topicfilter/*"
+    },
+    {
+      "Sid": "MqttFeedbackReceive",
+      "Effect": "Allow",
+      "Action": "iot:Receive",
+      "Resource": "arn:aws:iot:*:*:topic/*"
+    },
+    {
+      "Sid": "TwinMakerHistory",
+      "Effect": "Allow",
+      "Action": [
+        "iottwinmaker:GetPropertyValueHistory",
+        "iottwinmaker:GetWorkspace",
+        "iottwinmaker:GetEntity",
+        "iottwinmaker:GetComponentType"
+      ],
+      "Resource": "*"
+    }
+  ]
+}

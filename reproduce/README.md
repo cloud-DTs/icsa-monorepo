@@ -33,9 +33,11 @@ licensed software is needed.
 ## Requirements
 
 - Docker with Compose and Linux containers.
-- AWS credentials and a region. The deployer creates and removes resources in
-  your account, and the evaluator publishes MQTT messages to the deployed twin.
-  Permissions are listed in the [AWS permissions](../digital-twin-manager/docs/aws-permissions.md).
+- An AWS account for the experiments, preferably a separate sandbox account, and
+  an access key with a region. The deployer creates and removes resources in the
+  account, and the evaluator publishes MQTT messages to the deployed twin. The
+  [AWS guide](aws/README.md) has the IAM policies and the steps to create the key.
+  The permissions are explained in [AWS permissions](../digital-twin-manager/docs/aws-permissions.md).
   Deploying costs money: CS1 creates 213 resources and CS2 creates 1,968.
 
 ## Setup

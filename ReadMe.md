@@ -75,8 +75,9 @@ confidentiality, as stated in Section V-A.
 The [`reproduce`](reproduce/README.md) folder runs the three tools in order with
 Docker Compose: the SysML v2 parser, the deployer and the evaluator. It needs
 Docker and AWS credentials, and no licensed software. Deploying creates real
-resources in your AWS account and costs money. See the
-[AWS permissions](digital-twin-manager/docs/aws-permissions.md) for the required access.
+resources in your AWS account and costs money. The [AWS guide](reproduce/aws/README.md)
+has the IAM policies for the tools and the steps to create the access key, and
+[AWS permissions](digital-twin-manager/docs/aws-permissions.md) explains every permission.
 
 ```bash
 cd reproduce

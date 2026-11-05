@@ -1,0 +1,252 @@
+{
+  "group": "dt",
+  "note": "Inline policies of this IAM group, as a reference. The account id is replaced by a placeholder.",
+  "inline_policies": [
+    {
+      "name": "dt-manager",
+      "document": {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Sid": "SetupLayerResourceGroups",
+            "Effect": "Allow",
+            "Action": [
+              "resource-groups:CreateGroup",
+              "resource-groups:DeleteGroup",
+              "resource-groups:GetGroup",
+              "iottwinmaker:CreateWorkspace",
+              "iottwinmaker:ListWorkspaces",
+              "iottwinmaker:DeleteWorkspace"
+            ],
+            "Resource": "*"
+          },
+          {
+            "Sid": "SetupLayerIAMTagging",
+            "Effect": "Allow",
+            "Action": [
+              "iam:TagRole"
+            ],
+            "Resource": "arn:aws:iam::*:role/*"
+          },
+          {
+            "Sid": "Layer0GlueIAMRoles",
+            "Effect": "Allow",
+            "Action": [
+              "iam:CreateRole",
+              "iam:DeleteRole",
+              "iam:GetRole",
+              "iam:AttachRolePolicy",
+              "iam:DetachRolePolicy",
+              "iam:ListAttachedRolePolicies",
+              "iam:ListRolePolicies",
+              "iam:DeleteRolePolicy",
+              "iam:PutRolePolicy",
+              "iam:ListInstanceProfilesForRole",
+              "iam:UpdateAssumeRolePolicy"
+            ],
+            "Resource": "arn:aws:iam::*:role/*"
+          },
+          {
+            "Sid": "Layer0GlueIAMInstanceProfiles",
+            "Effect": "Allow",
+            "Action": [
+              "iam:RemoveRoleFromInstanceProfile"
+            ],
+            "Resource": "arn:aws:iam::*:instance-profile/*"
+          },
+          {
+            "Sid": "Layer0GlueLambda",
+            "Effect": "Allow",
+            "Action": [
+              "lambda:CreateFunction",
+              "lambda:DeleteFunction",
+              "lambda:GetFunction",
+              "lambda:AddPermission",
+              "lambda:RemovePermission",
+              "lambda:CreateFunctionUrlConfig",
+              "lambda:DeleteFunctionUrlConfig",
+              "lambda:GetFunction*",
+              "lambda:UpdateFunctionConfiguration",
+              "lambda:ListFunctions",
+              "lambda:DeleteFunction",
+              "lambda:GetPolicy",
+              "lambda:ListFunctionUrlConfigs",
+              "lambda:ListVersionsByFunction"
+            ],
+            "Resource": "arn:aws:lambda:eu-west-1:123456789012:*"
+          },
+          {
+            "Sid": "Layer1STS",
+            "Effect": "Allow",
+            "Action": [
+              "sts:GetCallerIdentity"
+            ],
+            "Resource": "*"
+          },
+          {
+            "Sid": "IoTRulesEuWest1",
+            "Effect": "Allow",
+            "Action": [
+              "iot:CreateTopicRule",
+              "iot:DeleteTopicRule",
+              "iot:GetTopicRule"
+            ],
+            "Resource": "arn:aws:iot:eu-west-1:123456789012:rule/*"
+          },
+          {
+            "Sid": "ListIoTRules",
+            "Effect": "Allow",
+            "Action": [
+              "iot:ListTopicRules",
+              "iot:CreateKeysAndCertificate"
+            ],
+            "Resource": "*"
+          },
+          {
+            "Sid": "Layer3DynamoDB",
+            "Effect": "Allow",
+            "Action": [
+              "dynamodb:CreateTable",
+              "dynamodb:DeleteTable",
+              "dynamodb:CreateBackup",
+              "dynamodb:DescribeBackup",
+              "dynamodb:DescribeTable",
+              "dynamodb:ListTables"
+            ],
+            "Resource": "arn:aws:dynamodb:eu-west-1:123456789012:table/*"
+          },
+          {
+            "Sid": "S3CreateBucketsEuWest1",
+            "Effect": "Allow",
+            "Action": [
+              "s3:CreateBucket"
+            ],
+            "Resource": "arn:aws:s3:::*",
+            "Condition": {
+              "StringEquals": {
+                "s3:locationconstraint": "eu-west-1"
+              }
+            }
+          },
+          {
+            "Sid": "S3BucketLevel",
+            "Effect": "Allow",
+            "Action": [
+              "s3:DeleteBucket",
+              "s3:PutBucketCors",
+              "s3:GetBucketCors",
+              "s3:DeleteBucketCors",
+              "s3:ListBucket",
+              "s3:PutEncryptionConfiguration",
+              "s3:ListBucketVersions"
+            ],
+            "Resource": "arn:aws:s3:::*"
+          },
+          {
+            "Sid": "S3ObjectLevel",
+            "Effect": "Allow",
+            "Action": [
+              "s3:DeleteObject",
+              "s3:ListObjectVersions"
+            ],
+            "Resource": "arn:aws:s3:::*/*"
+          },
+          {
+            "Sid": "Layer3EventBridge",
+            "Effect": "Allow",
+            "Action": [
+              "events:PutRule",
+              "events:DeleteRule",
+              "events:DescribeRule",
+              "events:PutTargets",
+              "events:RemoveTargets",
+              "events:ListTargetsByRule",
+              "events:ListRules"
+            ],
+            "Resource": "*"
+          },
+          {
+            "Sid": "Layer4IoTTwinMaker",
+            "Effect": "Allow",
+            "Action": [
+              "iottwinmaker:ListEntities",
+              "iottwinmaker:DeleteEntity",
+              "iottwinmaker:ListScenes",
+              "iottwinmaker:DeleteScene",
+              "iottwinmaker:ListComponentTypes",
+              "iottwinmaker:DeleteComponentType",
+              "iottwinmaker:CreateComponentType",
+              "iottwinmaker:GetComponentType",
+              "iottwinmaker:UpdateEntity",
+              "iottwinmaker:GetEntity",
+              "iottwinmaker:CreateEntity",
+              "iottwinmaker:GetWorkspace"
+            ],
+            "Resource": "arn:aws:iottwinmaker:eu-west-1:123456789012:*"
+          },
+          {
+            "Sid": "Layer5Grafana",
+            "Effect": "Allow",
+            "Action": [
+              "grafana:CreateWorkspace",
+              "grafana:DeleteWorkspace",
+              "grafana:DescribeWorkspace",
+              "grafana:ListWorkspaces",
+              "grafana:TagResource",
+              "grafana:UntagResource",
+              "grafana:ListTagsForResource"
+            ],
+            "Resource": "arn:aws:grafana:eu-west-1:123456789012:*"
+          },
+          {
+            "Sid": "CredentialChecker",
+            "Effect": "Allow",
+            "Action": [
+              "iam:ListUserPolicies",
+              "iam:GetUserPolicy",
+              "iam:ListAttachedUserPolicies",
+              "iam:GetPolicy",
+              "iam:GetPolicyVersion",
+              "iam:ListGroupsForUser",
+              "iam:ListGroupPolicies",
+              "iam:GetGroupPolicy",
+              "iam:ListAttachedGroupPolicies",
+              "iam:ListRolePolicies",
+              "iam:GetRolePolicy",
+              "iam:ListAttachedRolePolicies"
+            ],
+            "Resource": "*"
+          },
+          {
+            "Sid": "AllowPassRoleToLambda",
+            "Effect": "Allow",
+            "Action": "iam:PassRole",
+            "Resource": [
+              "arn:aws:iam::123456789012:role/*"
+            ],
+            "Condition": {
+              "ForAnyValue:StringEquals": {
+                "iam:PassedToService": [
+                  "lambda.amazonaws.com",
+                  "states.amazonaws.com",
+                  "iottwinmaker.amazonaws.com",
+                  "grafana.amazonaws.com"
+                ]
+              }
+            }
+          },
+          {
+            "Sid": "AllowDescribeRegisteredRegions",
+            "Effect": "Allow",
+            "Action": [
+              "sso:DescribeRegisteredRegions",
+              "sso:CreateManagedApplicationInstance",
+              "sso:DeleteManagedApplicationInstance"
+            ],
+            "Resource": "*"
+          }
+        ]
+      }
+    }
+  ]
+}
