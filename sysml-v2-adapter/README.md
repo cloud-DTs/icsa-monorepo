@@ -1,5 +1,7 @@
 # DigitalTwinSysmlv2CM
 
+> **Note:** Ignore the run instructions in this README. Use the tool through the [`reproduce`](../reproduce/README.md) setup, which builds it and runs it together with the evaluator.
+
 Converts SysML v2 digital twin models into the JSON configuration of the deployer.
 
 The models are read and validated by the DigitalTwinProfileSysmlv2JavaLibrary. How to model twins, entities, components, attributes, conditions and strategy actions is described in the README of that repository.

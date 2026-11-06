@@ -1,5 +1,7 @@
 # Documentation
 
+> **Note:** Ignore the run instructions in this README for deploying a twin. This parser is not part of the Docker setup in [`reproduce`](../reproduce/README.md). Its container usage below converts the example in [`example/`](example/model.xml), and the output can be deployed with the deployer.
+
 ## Prerequisites
 
 ### Technologies

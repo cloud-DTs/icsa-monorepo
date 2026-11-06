@@ -1,7 +1,8 @@
 # Digital twin evaluation
 
 A batch service for repeatable evaluations of deployed digital twins. Run it as
-a Python CLI or a Docker job. The first evaluation type is `roundtrip`.
+a Python CLI or a Docker job. The evaluations of the paper are `mqtt` (reaction path) and
+`mqtt-twinmaker` (visualization path). An earlier type, `roundtrip`, is still registered but not used.
 
 ## MQTT processing roundtrip
 
@@ -183,14 +184,14 @@ Requires Python 3.12 or later.
 python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -e ".[test]"
 .\.venv\Scripts\python.exe -m digital_twin_evaluation list
-.\.venv\Scripts\python.exe -m digital_twin_evaluation plan roundtrip --deployment ../reproduce/work/MGridICSA/output --config examples/MGridICSA.roundtrip.json
+.\.venv\Scripts\python.exe -m digital_twin_evaluation plan mqtt --deployment ../reproduce/work/MGridICSA/output --config examples/MGridICSA.mqtt.json
 ```
 
 `plan` validates input and resolves the experiment without creating AWS clients.
 `run` sends measurement telemetry to the selected deployed device:
 
 ```powershell
-.\.venv\Scripts\python.exe -m digital_twin_evaluation run roundtrip --deployment ../reproduce/work/MGridICSA/output --config examples/MGridICSA.roundtrip.json --output results
+.\.venv\Scripts\python.exe -m digital_twin_evaluation run mqtt --deployment ../reproduce/work/MGridICSA/output --config examples/MGridICSA.mqtt.json --output results
 ```
 
 The installed entry point is `digital-twin-evaluation` with the same arguments.
@@ -206,87 +207,11 @@ The [`reproduce`](../reproduce/README.md) folder provides the Compose service,
 mounts and credentials environment. From that folder:
 
 ```text
-docker compose run --rm evaluate plan roundtrip --deployment /evaluation/deployment --config /evaluation/configs/MGridICSA.roundtrip.json
-docker compose run --rm evaluate run roundtrip --deployment /evaluation/deployment --config /evaluation/configs/MGridICSA.roundtrip.json --output /evaluation/results
+docker compose run --rm evaluate plan mqtt --deployment /evaluation/deployment --config /evaluation/configs/MGridICSA.mqtt.json
+docker compose run --rm evaluate run mqtt --deployment /evaluation/deployment --config /evaluation/configs/MGridICSA.mqtt.json --output /evaluation/results
 ```
 
 The service runs only when requested. Deploy does not start an evaluation.
-
-## Roundtrip settings
-
-See `examples/MGridICSA.roundtrip.json`. The versioned envelope contains
-`schema_version`, `evaluation`, and implementation-specific `parameters`.
-
-| Parameter | Meaning |
-| --- | --- |
-| `mode` | `storage` (default) or `ingestion` |
-| `target` | Full logical component path from the applied hierarchy |
-| `property` | Deployed telemetry property to write and read |
-| `value` | A value compatible with the deployed property type |
-| `targets` | List of `{target, property, value}` objects instead of a single target/property/value |
-| `samples` | Number of measured cycles per target; default 100 |
-| `warmup` | Number of excluded warmup cycles per target; default 10 |
-| `concurrency` | Maximum simultaneous roundtrip cycles across all targets; default 1 |
-| `timeout_seconds` | Monotonic deadline for each entire cycle; default 10 |
-| `poll_interval_seconds` | Delay after an unsuccessful read; default 0.05 |
-| `request_timeout_seconds` | Individual SDK read timeout; default 10 |
-
-Storage invokes the persister synchronously, then the existing hot-reader.
-Ingestion uses the IoT Data HTTPS Publish API with QoS 1, then reads through the
-same hot-reader. It therefore includes the deployed dispatcher, processor, and
-persister path. Both modes can trigger the twin's configured business rules.
-The supplied MGridICSA example measures seven telemetry devices: battery
-`totalCapacity`, PV `output`, and `consumption` on each of the five chargers.
-These property names do not match the deployed `power` conditions. The controller
-has no telemetry properties, and generated constant components are excluded.
-
-`examples/VPP.roundtrip.json` covers the saved 100-household VPP
-deployment: Grid telemetry and the Sensor and BESS of every household. It uses
-storage mode, 5 measured cycles per device, no warmup cycles, and concurrency 10.
-The 201 devices produce 1005 measured messages in total. Inspect its offline plan:
-
-```powershell
-python -m digital_twin_evaluation plan roundtrip --deployment ../reproduce/work/VPP/output --config examples/VPP.roundtrip.json
-```
-
-For multiple devices, set `parameters.targets` to a non-empty list. Each entry
-must contain exactly `target`, `property`, and `value`; each device may appear
-once. Put shared mode, sample counts, warmup counts, and timeouts alongside the
-list. All targets are validated before AWS clients are created. With
-`concurrency: 1`, devices run sequentially in the configured order. They share
-one backend client. A failed
-device remains in the report and does not skip the remaining devices. The
-single-target format remains supported.
-
-The client starts its monotonic timer before sending and stops only after a
-decoded response matches both the sent timestamp and value. Each cycle gets a
-distinct UTC millisecond timestamp per device within the run.
-Use one evaluation process per target and record background traffic when comparing
-runs. Reading uses the exact timestamp range and does not scan the whole history.
-
-Set `parameters.concurrency` above 1 to send messages in parallel. The supplied
-example uses 20: at most 20 complete write/read cycles are active across all
-devices together. Both storage and ingestion use their existing per-message
-paths. Each worker sends one message and polls for that message's exact timestamp
-and typed value. Increasing concurrency increases offered load.
-
-Parallel runs complete all warmup cycles before measured cycles begin. Targets
-are scheduled in turn, and pending work is limited to the worker count rather
-than queuing the entire run. A scheduler assigns distinct millisecond timestamps
-before submission, even when messages use the same device and value. Raw CSV
-rows are ordered by submission sequence; completion order can differ.
-
-AWS clients are constructed before sample timing, including sequential ingestion
-with no warmup. In parallel runs, clients are ready before workers start. Their
-connection pool is sized for the worker count. This follows the official
-[Boto3 client threading guidance](https://docs.aws.amazon.com/boto3/latest/guide/clients.html#multithreading-or-multiprocessing-with-clients)
-and [Botocore connection-pool configuration](https://docs.aws.amazon.com/botocore/latest/reference/config.html).
-
-The service preserves the deployed reader's consistency behavior. A stale or
-missing result is polled until visible or until the deadline. An in-flight SDK
-request may finish after the cycle deadline and is then counted as a timeout.
-SDK retries are disabled so retries cannot silently change the measurement.
-The service does not infer cold starts or alter provisioned concurrency.
 
 ## Results
 
@@ -297,23 +222,12 @@ Results are written to `results/<twin>/<run-id>/`:
 - `measurements.csv`: every warmup and measured cycle, its timestamp/value,
   status, polling attempts, and durations in milliseconds.
 
-For multiple devices, `summary.targets` contains separate counts and percentiles
-for each device, and the top-level summary also contains totals across all
-devices. CSV rows identify the logical `target`, `property`, and `device_id`.
-The seven-device example produces 700 measured cycles and 70 warmup cycles.
-
 `write_ms` is the send/invoke duration. `read_ms` sums reader requests and excludes
 polling sleeps. `roundtrip_ms` includes the full cycle, including polling waits.
 Percentiles use nearest rank and only successful measured samples. Failed samples
 and warmup failures remain visible in counts and raw CSV. Warmup failure alone
 does not fail a run whose measured samples all succeeded. Small sample counts
 make tail percentiles less representative; the count is always reported.
-
-For parallel runs, `duration_ms` covers warmup and measurement execution.
-`measured_duration_ms` covers the measured phase, including scheduling and queue
-wait. `successful_samples_per_second` divides successful measured cycles by
-that phase's duration. Each sample's `roundtrip_ms` starts inside its worker
-immediately before sending and excludes time waiting for a worker slot.
 
 Exit codes: 0 for success or an offline plan, 1 for measured sample failures,
 and 2 for invalid configuration or startup failure.
@@ -334,7 +248,7 @@ uv run --no-project --with boto3 python scripts/resource_inventory.py --twin <tw
 4. Return the common `RunResult` model from `run()`.
 5. Register the implementation in `evaluations.EVALUATIONS`.
 
-The CLI and report writer do not depend on roundtrip internals. Each implementation
+The CLI and report writer do not depend on the internals of an evaluation. Each implementation
 owns its parameter validation and execution dependencies. The manager adapter is
 the boundary for deployment formats; another state version or provider should
 have an explicit adapter rather than a silent fallback.

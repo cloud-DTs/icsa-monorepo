@@ -1,5 +1,7 @@
 # Digital Twin Manager
 
+> **Note:** Ignore the run instructions in this README. Use the tool through the [`reproduce`](../reproduce/README.md) setup, which builds it and runs it together with the evaluator.
+
 The deployer provisions the AWS resources of a digital twin (paper Section IV, contribution C2). It reads the configuration files that the parsers write and creates the resources that the roles of the twin require.
 
 ## How it works
