@@ -1,6 +1,6 @@
 [
     {
-        "condition": "mzd2dGWWdntbBdeCzpUZ8v.p13.consumption > mzd2dGWWdntbBdeCzpUZ8v.sieVerchargeconst_component.maxConsumption",
+        "condition": "mzd2dGWWdntbBdeCzpUZ8v.p13.consumption > mzd2dGWWdntbBdeCzpUZ8v.chargerconst_component.maxConsumption",
         "action": {
             "type": "lambda",
             "functionName": "alertAction",

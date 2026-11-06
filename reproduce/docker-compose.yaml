@@ -1,0 +1,56 @@
+# Reproduction of the case studies: parse the model, stage the configuration,
+# deploy the twin, measure it. Every service runs once and exits.
+# All state is kept in ./work (ignored by Git).
+services:
+  # SysML v2 parser: model -> the four deployer configuration files
+  parse:
+    platform: ${DOCKER_DEFAULT_PLATFORM:-linux/amd64}
+    build:
+      context: ../sysml-v2-adapter
+    volumes:
+      - ./models:/pipeline/input:ro
+      - ./work/parse:/pipeline/output
+      - ./code:/pipeline/code:ro
+
+  # Copies the files of one twin from the parser output to the deployer input
+  stage:
+    image: python:3.13-slim
+    volumes:
+      - ./stage.py:/stage/stage.py:ro
+      - ../digital-twin-manager/config_providers.json.example:/stage/config_providers.json.example:ro
+      - ./work:/work
+    entrypoint: ["python", "/stage/stage.py"]
+
+  # Deployer: deploy, plan, apply, info and destroy the twin on AWS
+  deployer:
+    platform: ${DOCKER_DEFAULT_PLATFORM:-linux/amd64}
+    build:
+      context: ../digital-twin-manager
+    stdin_open: true
+    tty: true
+    environment:
+      AWS_ACCESS_KEY_ID: "${AWS_ACCESS_KEY_ID:-}"
+      AWS_SECRET_ACCESS_KEY: "${AWS_SECRET_ACCESS_KEY:-}"
+      AWS_REGION: "${AWS_REGION:-us-east-1}"
+      AWS_DEFAULT_REGION: "${AWS_REGION:-us-east-1}"
+      DEPLOY_MANAGED_GRAFANA: "${DEPLOY_MANAGED_GRAFANA:-false}"
+    volumes:
+      - ./work/${TWIN:?Set TWIN in .env}/input:/pipeline/input:ro
+      - ./work/${TWIN}/output:/pipeline/output
+      - ./code:/pipeline/code:ro
+
+  # Evaluator: latency of the reaction and visualization paths of a deployed twin
+  evaluate:
+    platform: ${DOCKER_DEFAULT_PLATFORM:-linux/amd64}
+    build:
+      context: ../digital-twin-evaluator
+    environment:
+      AWS_ACCESS_KEY_ID: "${AWS_ACCESS_KEY_ID:-}"
+      AWS_SECRET_ACCESS_KEY: "${AWS_SECRET_ACCESS_KEY:-}"
+      AWS_SESSION_TOKEN: "${AWS_SESSION_TOKEN:-}"
+      AWS_REGION: "${AWS_REGION:-us-east-1}"
+      AWS_DEFAULT_REGION: "${AWS_REGION:-us-east-1}"
+    volumes:
+      - ./work/${TWIN:?Set TWIN in .env}/output:/evaluation/deployment:ro
+      - ./evaluation:/evaluation/configs:ro
+      - ./work/results:/evaluation/results

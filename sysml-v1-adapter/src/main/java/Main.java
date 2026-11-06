@@ -2,6 +2,7 @@ import SourceService.Mapper;
 import SourceService.XMIParser;
 import SourceService.XMIContext;
 import TargetService.ConfigDTO;
+import TargetService.DeployerCleaner;
 import TargetService.DeployerMapper;
 import TargetService.DeployerModelDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -75,6 +76,8 @@ public class Main {
                         deployerModelDTO.getConfigIotDevice());
                 writeJsonFile(objectMapper, entityDir.resolve("config_events.json").toString(),
                         deployerModelDTO.getConfigEvent());
+
+                DeployerCleaner.clean(entityDir, objectMapper);
             }
 
         } catch (Exception e) {

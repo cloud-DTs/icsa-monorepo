@@ -8,7 +8,6 @@ import deployers.aws.event_actions.all
 import deployers.aws.init_values.all
 import deployers.aws.all
 import deployment_state
-import generate_federation
 import sanity_checker
 import validation
 from dependency_graph.dependency_analyzer import analyze_plan_dependencies
@@ -162,7 +161,6 @@ def main():
         deployers.aws.all.AllDeployer().deploy()
         deployment_state.save_last_applied_config_state()
         print(f"State configs saved to: {deployment_state.state_config_dir_path()}")
-        generate_federation.generate_federation_input()
 
       elif command == "destroy":
         deployers.aws.init_values.all.AllDeployer().destroy()
@@ -205,7 +203,6 @@ def main():
         deployers.aws.all.AllDeployer().apply(plan)
         deployment_state.save_last_applied_config_state()
         print(f"State configs saved to: {deployment_state.state_config_dir_path()}")
-        generate_federation.generate_federation_input()
 
       elif command == "init-state":
         sanity_checker.check()

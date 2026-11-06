@@ -29,7 +29,7 @@
             {
                 "id": "mzd2dGWWdntbBdeCzpUZ8v",
                 "type": "entity",
-                "name": "sieVercharge",
+                "name": "charger",
                 "children": [
                     {
                         "iotDeviceId": "LcE4QQRx8bR5ZVBgghXbC6",
@@ -39,14 +39,14 @@
                     {
                         "iotDeviceId": "mzd2dGWWdntbBdeCzpUZ8vconst_component",
                         "type": "component",
-                        "name": "sieVerchargeconst_component"
+                        "name": "chargerconst_component"
                     }
                 ]
             },
             {
                 "id": "Bas34LaGXRk4CgFNDw8YWe",
                 "type": "entity",
-                "name": "kebaP30",
+                "name": "charger2",
                 "children": [
                     {
                         "iotDeviceId": "GCqPxSwMJcQFp9BHV4FDtZ",
@@ -56,7 +56,7 @@
                     {
                         "iotDeviceId": "Bas34LaGXRk4CgFNDw8YWeconst_component",
                         "type": "component",
-                        "name": "kebaP30const_component"
+                        "name": "charger2const_component"
                     }
                 ]
             },

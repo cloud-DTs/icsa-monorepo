@@ -1,21 +1,25 @@
 # Documentation
 
+> **Note:** Ignore the run instructions in this README for deploying a twin. This parser is not part of the Docker setup in [`reproduce`](../reproduce/README.md). Its container usage below converts the example in [`example/`](example/model.xml), and the output can be deployed with the deployer.
+
+Since the SysML v1 adapter is not used in the main reproduce setup, here is a short summary of the repo and how to convert a SysML v1 model to the configuration files for the deployer.
+The SysML v1 parser reads an Enterprise Architect XMI export and writes the configuration of the deployer. It contains:
+
+- the [prerequisites](#prerequisites) and the [input requirements](#input-requirements),
+- [the DigitalTwinProfile](#the-digitaltwinprofile), with its block definition diagram ([BDD](#block-definition-diagram-bdd)) and instance diagram ([IBD](#internal-block-diagram-ibd)),
+- the [functionality](#functionality-of-the-tool), that is how elements are mapped and identified,
+- the [container usage](#container-usage) and an [example model](#example) with its own BDD and IBD, which show how a twin looks in the profile and generates the deployer's config files.
+
 ## Prerequisites
 
 ### Technologies
 - **Java 25**
-- **XMI 2.1 file** containing a **SysML v1 model** exported from *Enterprise Architect*² and annotated with the **DigitalTwinProfile**.  
+- **XMI 2.1 file** containing a **SysML v1 model** exported from *Enterprise Architect* and annotated with the **DigitalTwinProfile**.  
   This file serves as the input for the program.
-
-## Architecture
-
-The purpose of this tool is to parse a SysML model annotated with the **DigitalTwinProfile** and convert it into a structure that serves as input for the **digital-twin-manager**¹, which deploys digital twins to AWS.
-
-<img src="./documentationContent/DigitalTwins.png" alt="Architecture Diagram">
 
 ### Input Requirements
 - **Twin name** (maximum length: 10 characters)
-- **XMI 2.1 model file** from *Enterprise Architect*², annotated with the **DigitalTwinProfile**
+- **XMI 2.1 model file** from *Enterprise Architect*, annotated with the **DigitalTwinProfile**
 
 ---
 
@@ -148,10 +152,14 @@ docker compose run --rm --build digital-twin-profile-sysml-v1
 
 Generated files are written to `PIPELINE_OUTPUT_HOST_DIR/<lowercase-TWIN_NAME>/`. The input and strategy-code mounts are read-only.
 
----
+After writing the files, the parser removes the identifiers of the Enterprise Architect elements (`hot_storage_id`, `hot_storage_definition_id`, `cold_storage_id`, `cold_storage_definition_id` in `config.json` and `definitionId` in `config_hierarchy.json`), because the deployer rejects unknown keys. This is done by `TargetService/DeployerCleaner` and is a research prototype.
 
-## References
-[1] digital-twin-manager: https://github.com/cloud-DTs/digital-twin-manager/tree/main  
-[2] Enterprise Architect by Sparx Systems: https://sparxsystems.com/
+### Example
 
+A small public model is in [`example/model.xml`](example/model.xml). Convert it with `MODEL_FILE=model.xml`, the code mount `../reproduce/code`, and the strategy path `/pipeline/code/microgrid/energy-management` that the model already contains.
 
+The example describes a charging point station. The block definition diagram shows its structure, and the instance diagram shows the deployed instances with the `measures` and `triggers` connectors.
+
+![Block definition diagram of the example](example/BDD.png)
+
+![Instance diagram of the example](example/IBD.png)

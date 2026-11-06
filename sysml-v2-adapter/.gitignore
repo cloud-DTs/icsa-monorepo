@@ -3,3 +3,5 @@ venv/
 src/export.json
 __pycache__/
 *.pyc
+output/
+.idea/

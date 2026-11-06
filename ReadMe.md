@@ -1,148 +1,112 @@
 # TWINFRA: artifact guide
 
-This monorepo implements **TWINFRA: Architectural Decomposition and Automated Deployment of Digital Twins in Cloud**. It connects an annotated system model
-to the software architecture and AWS resources of a digital twin. The code retains the names `cloud-dtc` and `digital-twin-manager`.
+This monorepo implements **TWINFRA**, which takes an annotated SysML v1 or v2 model to the software architecture and
+AWS resources of a digital twin, deploys the twin, and measures it. It consists of two parsers, a deployer and an
+evaluator. A Docker Compose setup runs them end to end, from the model of a case study to its measurements, and
+needs no licensed software. The same tools deployed both industrial case studies of the paper, twins of 213 and
+1,968 resources, without changes between them. Regression suites cover the deployer, the evaluator and the
+case-study generator, and every AWS permission the tools need is documented.
+
+| Folder | What it does                                                                                                                                                | In the paper                   |
+| --- |-------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------|
+| [`sysml-v2-adapter`](sysml-v2-adapter/README.md) | SysML v2 parser: reads an annotated model and writes the configuration for the deployer. Its `lib/` holds the libraries that define the roles.              | C1, Section III-C              |
+| [`sysml-v1-adapter`](sysml-v1-adapter/README.md) | SysML v1 parser: the same for Enterprise Architect XMI exports                                                                                              | C1, Section III-B |
+| [`digital-twin-manager`](digital-twin-manager/README.md) | Deployer: provisions the resources of a twin on AWS | C2, Section IV (Figure 3) |
+| [`digital-twin-evaluator`](digital-twin-evaluator/README.md) | Measures the latency of the reaction and visualization paths of a deployed twin, and counts the deployed resources | Sections V-C and V-D (Figures 4 and 6) |
+| [`evaluator-artifacts`](evaluator-artifacts/) | Stored measurements, security findings and resource counts, and the scripts for the figures                                                                 | Sections V-C and V-D (Figures 4 to 6)   |
+| [`reproduce`](reproduce/README.md) | Docker Compose setup, the models of both case studies and the mock actions                                                                                  | Section V (CS1, CS2)           |
 
 ## From paper concepts to code
 
-**C1: role-based twin decomposition** (Section III, Figure 2). Engineers assign roles to model elements. The [SysML v1 adapter](sysml-v1-adapter/README.md) reads an Enterprise Architect XMI export. The [SysML v2 adapter](sysml-v2-adapter/README.md) reads textual models. Both produce the same four JSON configuration files.
+**C1: role-based twin decomposition** (Section III, Figure 2). Engineers assign roles to the elements of a SysML model. The [SysML v2 parser](sysml-v2-adapter/README.md) reads textual models, and the [SysML v1 parser](sysml-v1-adapter/README.md) reads an Enterprise Architect XMI export. Both turn the annotated model into configuration files for the deployer. Those files are generated and are only an intermediate step: the model is the input to inspect.
 
-| Paper role       | Configuration produced by the adapters                       | AWS realization in the deployment engine                                                                                                      |
-| ---------------- | ------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------- |
-| Twin             | `config.json`: digital twin name and storage retention       | [Core resources](digital-twin-manager/src/deployers/aws/core/): workspace, message intake, storage, rule evaluation and feedback              |
-| Entity           | `config_hierarchy.json`: nested assets                       | [Hierarchy deployer](digital-twin-manager/src/deployers/aws/hierarchy/): TwinMaker entities and containment                                   |
-| Component        | `config_iot_devices.json` and hierarchy device bindings      | [Device deployers](digital-twin-manager/src/deployers/aws/iot/): IoT Things, certificates, processing functions and TwinMaker Component Types |
-| MeasureAttribute | Device properties and their data types                       | Processing, storage and TwinMaker property reads                                                                                              |
-| ConstAttribute   | Properties with `initValue` on generated constant components | [Initial-value deployer](digital-twin-manager/src/deployers/aws/init_values/): initial twin state                                             |
-| Condition        | `config_events.json`: comparison and operands                | Event Checker evaluates the latest values                                                                                                     |
-| StrategyAction   | `config_events.json`: code, inputs and feedback target       | [Action deployers](digital-twin-manager/src/deployers/aws/event_actions/): Lambda execution; Event Feedback delivers the result               |
+| Paper role       | Annotation in a SysML v2 model                                                       | AWS realization in the deployer                                                                                                               |
+| ---------------- | ------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| Twin             | `#Twin def`, with `hotDatabaseRetentionDays` and `coldDatabaseRetentionDays`         | [Core resources](digital-twin-manager/src/deployers/aws/core/): workspace, message intake, storage, rule evaluation and feedback              |
+| Entity           | `#Entity def` and `#entity`: nested assets                                           | [Hierarchy deployer](digital-twin-manager/src/deployers/aws/hierarchy/): TwinMaker entities and containment                                   |
+| Component        | `#Component def` and `#component`: a connected device                               | [Device deployers](digital-twin-manager/src/deployers/aws/iot/): IoT Things, certificates, processing functions and TwinMaker Component Types |
+| MeasureAttribute | `#measureAttribute`: a measured value with its data type                             | Processing, storage and TwinMaker property reads                                                                                              |
+| ConstAttribute   | `#constAttribute`: a constant value, optionally with a default                       | [Initial-value deployer](digital-twin-manager/src/deployers/aws/init_values/): initial twin state                                             |
+| Condition        | `#condition` with `leftOperand`, `operator` and `rightOperand`                       | Event Checker evaluates the latest values                                                                                                     |
+| StrategyAction   | `#strategyAction`: code, `inputParameters` and the feedback target `componentTopic`  | [Action deployers](digital-twin-manager/src/deployers/aws/event_actions/): Lambda execution; Event Feedback delivers the result               |
+
 
 The v1 profile uses legacy names: `Component` means the paper's Entity,
 `Device` means Component, and `Strategy` means StrategyAction. Its `triggers`
 connector encodes a Condition. The v2 models use the paper's role names directly.
-The v2 exporter can reuse a TwinMaker Component Type across usages with the
+The v2 parser can reuse a TwinMaker Component Type across usages with the
 same definition and measurement schema. Each usage keeps its own device ID.
 
-**C2: role-based twin allocation** (Section IV, Figure 3). The
-[Python/Boto3 deployment engine](digital-twin-manager/src/deployers/aws/all.py)
-reads these files and provisions the resources. Its
-[core layers](digital-twin-manager/src/deployers/aws/core/all.py) encode the
-provisioning order. The [dependency graph](digital-twin-manager/src/dependency_graph/)
-represents resource dependencies for deployment plans.
+**Examples.** The SysML v2 model of CS1 is [MGridICSA.sysml](reproduce/models/MGridICSA.sysml), and
+[reproduce/README.md](reproduce/README.md) deploys it. How the roles are written in a model is described in
+[Modeling the roles](sysml-v2-adapter/README.md) of the v2 parser.
+The SysML v1 parser is not part of the automated pipeline. Details about SysML v1 models, with an example, are in its
+[README](sysml-v1-adapter/README.md). The industrial CS1 v1 model is withheld for confidentiality, as stated in Section V-A.
 
-Figure 3 in the paper applies to the SysML v2 realization.
-
-For a concrete trace, open [MGridICSA.sysml](cloud-dtc-docker/pipeline/digital-twin-profile-sysml-v2/input/MGridICSA.sysml).
-`MicroGrid.charger1.p13.power` is a measured value. `charger1Changed` compares it
-with a threshold. The [Event Checker](digital-twin-manager/lambda_functions/core/event-checker/lambda_function.py)
-reads the values and supplies them to `balance1`. The action's feedback targets
-`MicroGrid.battery.controller`. The
-[v2 exporter](sysml-v2-adapter/exporter/src/main/java/org/example/TwinExporter.java)
-turns these references into device, hierarchy and event configuration. The
-deployment engine supplies the ingestion and feedback resources around the
-[action code](cloud-dtc-docker/demo-code/microgrid/energy-management/lambda_function.py).
+**C2: role-based twin allocation** (Section IV, Figure 3). The deployer in
+[`digital-twin-manager`](digital-twin-manager/README.md) reads these configuration files and provisions the
+resources. [From roles to resources](digital-twin-manager/docs/roles-to-resources.md) lists the AWS resources of
+each architectural element in Figure 3 and the formula for their number. [How it works](digital-twin-manager/README.md#how-it-works)
+explains the steps and traces the CS1 model through the deployed twin. How the deployer orders the provisioning and
+derives the dependencies is described in [provisioning order and dependencies](digital-twin-manager/docs/provisioning-order.md).
 
 ## Case studies and evidence
 
-| Paper material                              | Artifact to inspect                                                                                                                                                                                                   |
-| ------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| CS1: charging point station                 | [MGridICSA.sysml](cloud-dtc-docker/pipeline/digital-twin-profile-sysml-v2/input/MGridICSA.sysml)                                                                                                                      |
-| CS2: virtual power plant                    | [CheckWattMicrogrid.sysml](cloud-dtc-docker/pipeline/digital-twin-profile-sysml-v2/input/CheckWattMicrogrid.sysml), with 100 households; [generator and scale settings](cloud-dtc-docker/docs/checkwatt-microgrid.md) |
-| Reaction path, Section V-C / Figure 4       | [CS1 MQTT results](evaluator-artifacts/MGridICSA-mqtt-roundtrip.zip), [CS2 MQTT results](evaluator-artifacts/CheckWatt-mqtt-roundtrip.zip)                                                                            |
-| Visualization path, Section V-C / Figure 4  | [CS1 TwinMaker results](evaluator-artifacts/MGridICSA-mqtt-twinmaker.zip), [CS2 TwinMaker results](evaluator-artifacts/CheckWatt-mqtt-twinmaker.zip)                                                                  |
-| Security assessment, Section V-C / Figure 5 | [Stored findings](evaluator-artifacts/MGridICSA-SecurityEval.json), [audit script and instructions](digital-twin-manager/docs/security-audit.md)                                                                      |
+| Paper material                              | Artifact to inspect                                                                                                                                                                                              |
+| ------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| CS1: charging point station                 | [MGridICSA.sysml](reproduce/models/MGridICSA.sysml)                                                                                                                                                              |
+| CS2: virtual power plant                    | [VPPMicrogrid.sysml](reproduce/models/VPPMicrogrid.sysml), with 100 households; [generator and scale settings](reproduce/docs/vpp-microgrid.md)                                                                  |
+| Reaction path, Section V-C / Figure 4       | [CS1 MQTT results](evaluator-artifacts/MGridICSA-mqtt-roundtrip.zip), [CS2 MQTT results](evaluator-artifacts/VPP-mqtt-roundtrip.zip)                                                                             |
+| Visualization path, Section V-C / Figure 4  | [CS1 TwinMaker results](evaluator-artifacts/MGridICSA-mqtt-twinmaker.zip), [CS2 TwinMaker results](evaluator-artifacts/VPP-mqtt-twinmaker.zip)                                                                   |
+| Figure 4 plots                              | [e2e_pgf.py](evaluator-artifacts/scripts/e2e_pgf.py) turns the `measurements.csv` files into the box plots                                                                                                       |
+| Security assessment, Section V-C / Figure 5 | [Stored findings](evaluator-artifacts/MGridICSA-SecurityEval.json), [audit script and instructions](digital-twin-manager/docs/security-audit.md), [Figure 5 script](evaluator-artifacts/scripts/security_pgf.py) |
+| Deployed resources, Section V-D / Figure 6  | [Counts per twin](evaluator-artifacts/resource-inventory/), produced by [resource_inventory.py](digital-twin-evaluator/scripts/resource_inventory.py)                                                              |
 
-Each measurement ZIP contains `measurements.csv` and `summary.json`. The summary
-records the experiment parameters, applied-state fingerprint, sample counts,
-failures and latency statistics.
+Each measurement ZIP contains `measurements.csv` and `summary.json`. The twin names and
+the AWS account ID in the stored files are replaced.
 
-The [evaluation service](digital-twin-evaluator/README.md) resolves targets from saved
-**applied deployment state**.
+## Reproduce the case studies
 
-The public [SysML v1 example](cloud-dtc-docker/pipeline/enterprise-architect/projects/DemoProject.qea)
-supports inspection of the profile. The industrial CS1 v1 model is withheld for
-confidentiality, as stated in Section V-A.
+The [`reproduce`](reproduce/README.md) folder runs the three tools in order with
+Docker Compose: the SysML v2 parser, the deployer and the evaluator. It needs
+Docker and AWS credentials, and no licensed software. The tools are research
+software with regression suites (see [Implementation scope](#implementation-scope)).
+A deployment creates IAM roles and other resources in the AWS account, and `destroy`
+removes them again, so we recommend a separate AWS account for the reproduction.
+Deploying costs money. The [AWS guide](reproduce/aws/README.md)
+has the IAM policies for the tools and the steps to create the access key, and
+[AWS permissions](digital-twin-manager/docs/aws-permissions.md) explains every permission.
 
-## Run a local model conversion
-
-Use Docker with Compose and Linux containers. Configuration is stored in
-`cloud-dtc-docker/.env`, next to `docker-compose.yaml`. From the monorepo root,
-open the pipeline directory. Copy the template only if `.env` does not exist:
-
-```powershell
-cd cloud-dtc-docker
-if (-not (Test-Path .env)) { Copy-Item .env.example .env }
+```bash
+cd reproduce
+cp .env.example .env     # add your AWS credentials
+docker compose build
+# convert the model: two steps, whose generated files stay in work/
+docker compose run --rm parse /pipeline/output/MGridICSA /pipeline/input/MGridICSA.sysml
+docker compose run --rm stage MGridICSA
+docker compose run --rm deployer      # type: deploy, then exit
+docker compose run --rm evaluate run mqtt --deployment /evaluation/deployment --config /evaluation/configs/MGridICSA.mqtt.json --output /evaluation/results
+docker compose run --rm deployer      # type: destroy, then exit
 ```
 
-Set these values in `.env`:
-
-```dotenv
-GH_TOKEN=YOUR_GITHUB_TOKEN
-DOCKER_DEFAULT_PLATFORM=linux/amd64
-PIPELINE_CODE_HOST_DIR=./demo-code
-DTP_V2_INPUT_HOST_DIR=./pipeline/digital-twin-profile-sysml-v2/input
-```
-
-The token needs access to the SysML v2 library in GitHub Packages. Compose reads
-the variables through [`--env-file`](https://docs.docker.com/compose/how-tos/environment-variables/variable-interpolation/#substitute-with---env-file)
-and supplies `GH_TOKEN` as the `gh_token` build secret.
-
-## Deploy and measure
-
-Follow the [pipeline setup and command guide](cloud-dtc-docker/README.md).
-The orchestrator requires Python 3.13 or later and `uv`. It starts the
-[Enterprise Architect container](enterprise-architect/README.md), including for
-SysML v2 runs. Supply an authorized MSI at
-`enterprise-architect/installer/EnterpriseArchitect.msi` and a valid license.
-The path is relative to the monorepo root. For deployment, set AWS credentials
-and region in `.env`; see the [AWS permissions](digital-twin-manager/docs/aws-permissions.md).
-The Compose services build from the local projects.
-
-Run from `cloud-dtc-docker`:
-
-```powershell
-uv sync --locked
-uv run python run_pipeline.py
-```
-
-In the running orchestrator, convert CS1:
-
-```text
-continue sysml-v2 MGridICSA.sysml
-```
-
-At `Continue after sysml-v2 with digital-twin-manager [deploy/plan/apply/N]?`,
-enter `n` to inspect the staged configuration first. Then deploy and measure:
-
-```text
-continue digital-twin-manager MGridICSA
-evaluate mqtt MGridICSA
-evaluate mqtt-twinmaker MGridICSA
-```
-
-For CS2, use `CheckWattMicrogrid.sysml` and twin name
-`CheckWatt`. Results go to `cloud-dtc-docker/pipeline/digital-twin-evaluation/output/`.
-The [evaluation guide](cloud-dtc-docker/docs/digital-twin-evaluation.md) describes
-offline experiment planning, configuration and reports. After testing, use
-`destroy digital-twin-manager MGridICSA` or the corresponding CS2 command to
-remove the deployed twin.
+The visualization path and CS2 (`VPPMicrogrid.sysml`, twin `VPP`) are described in
+[reproduce/README.md](reproduce/README.md).
 
 ## Implementation scope
 
-The two case studies use mock actions:
-[CS1 energy management](cloud-dtc-docker/demo-code/microgrid/energy-management/lambda_function.py)
-and the [CS2 MQTT probe](cloud-dtc-docker/demo-code/checkwatt/mqtt-probe/lambda_function.py).
-They return input values to exercise the infrastructure. These measurements
-do not evaluate industrial control algorithms or physical actuation. AWS is
-the implemented cloud realization.
+The paper measures the effects of the software architecture that TWINFRA generates, separately from the
+domain-specific application. A StrategyAction computes a domain-specific problem, which can take any form.
+Both case studies therefore deploy placeholder logic, identity functions that return their input, in place of
+the control strategies: [CS1 energy management](reproduce/code/microgrid/energy-management/lambda_function.py)
+and the [CS2 MQTT probe](reproduce/code/vpp/mqtt-probe/lambda_function.py) (Section V-A). The function body does
+not affect the architecture of the twin, so the measured times are the share of the architecture, and any twin
+adds the run time of its own logic (Section V-C). The measurements do not evaluate industrial control algorithms
+or physical actuation. AWS is the implemented cloud realization.
 
-Regression suites cover [input staging and orchestration](cloud-dtc-docker/tests/),
-[validation, deployment planning and policies](digital-twin-manager/tests/), and
+Regression suites cover [the VPP generator and its mock action](reproduce/tests/),
+[validation and policies](digital-twin-manager/tests/), and
 [measurement and report behavior](digital-twin-evaluator/tests/).
 
-Additional capabilities include [deployment updates](digital-twin-manager/README.md)
-through `plan` and `apply`, and [federation](fed-sysml/README.md) through generated
-Terraform for already deployed twins. The [device simulator](digital-twin-simulator/README.md)
-logs telemetry by default (`SIMULATOR_MOCK_AWS=true`). Its AWS mode publishes
-through the IoT Data HTTPS API. The paper's case-study measurements concern
-individual twins and use the separate evaluation service.
+## Acknowledgements
+
+The authors used Anthropic Claude (Claude Code with Claude Sonnet 5.5) to assist with preparing this artifact: building the reproduction setup in [`reproduce`](reproduce/README.md), restructuring and cleaning the repository, writing and revising the documentation, deriving and checking the resource counts, and running the offline tests and the test deployments. The authors reviewed the AI-assisted changes and take responsibility for the artifact.

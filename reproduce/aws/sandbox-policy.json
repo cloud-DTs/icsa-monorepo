@@ -1,0 +1,36 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "WholeServices",
+      "Effect": "Allow",
+      "Action": [
+        "iam:*",
+        "lambda:*",
+        "s3:*",
+        "iot:*",
+        "events:*",
+        "dynamodb:*",
+        "states:*",
+        "iottwinmaker:*",
+        "grafana:*"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "GrafanaDependencies",
+      "Effect": "Allow",
+      "Action": [
+        "sso:CreateManagedApplicationInstance",
+        "sso:DeleteManagedApplicationInstance",
+        "sso:DescribeRegisteredRegions",
+        "sso:GetSharedSsoConfiguration",
+        "organizations:DescribeOrganization",
+        "ec2:DescribeSecurityGroups",
+        "ec2:DescribeSubnets",
+        "ec2:GetManagedPrefixListEntries"
+      ],
+      "Resource": "*"
+    }
+  ]
+}

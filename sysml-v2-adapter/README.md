@@ -1,8 +1,40 @@
 # DigitalTwinSysmlv2CM
 
-Converts SysML v2 digital twin models into the JSON configuration of the deployer.
+> **Note:** Ignore the run instructions in this README. Use the tool through the [`reproduce`](../reproduce/README.md) setup, which builds it and runs it together with the evaluator.
 
-The models are read and validated by the [DigitalTwinProfileSysmlv2JavaLibrary](https://github.com/cloud-DTs/DigitalTwinProfileSysmlv2JavaLibrary). How to model twins, entities, components, attributes, conditions and strategy actions is described in the README of that repository.
+Reads SysML v2 digital twin models and prepares them for the deployer.
+
+The models are read and validated by the libraries in [`lib/`](lib/). How to write a model in detail, with the keywords, the mapped elements and the validation rules, is described in the README of the role library, [`sysml-digital-twin-profile`](lib/sysml-digital-twin-profile/README.md). Its role definitions are in [`DigitalTwinLibrary.sysml`](lib/sysml-digital-twin-profile/DTLibrary/DigitalTwinLibrary.sysml). The second library, [`sysml-library-mapper`](lib/sysml-library-mapper/README.md), reads and checks the SysML.
+
+# Modeling the roles
+
+A definition uses the capitalized keyword, a usage the lowercase one, for example `#Entity def Charger` and `#entity charger1 : Charger`. Values are set with `:>>`.
+
+| Role | Keywords | Slots | In the deployed twin |
+| --- | --- | --- | --- |
+| Twin | `#Twin def` | `hotDatabaseRetentionDays`, `coldDatabaseRetentionDays` (days, default 30); contains entities and conditions | the twin: its workspace and the hot and cold storage with their retention |
+| Entity | `#Entity def`, `#entity` | nested entities, components, const attributes | an entity in TwinMaker |
+| Component | `#Component def`, `#component` | measure attributes | a connected device with its message processing, and a TwinMaker component |
+| MeasureAttribute | `#measureAttribute` | `dataType`: `STRING` (default), `DOUBLE`, `INTEGER` or a `VECTOR_*` type | a measured property of the device |
+| ConstAttribute | `#constAttribute` | `dataType`, `value` (a string literal) | a constant of the entity, set as initial value |
+| Condition | `#condition` | `leftOperand`, `operator`, `rightOperand`; contains strategy actions | a condition that the Event Checker evaluates |
+| StrategyAction | `#strategyAction` | `name`, `pathToCode`, `external`, `strategyType` (`LAMBDA`); optional `inputParameters`, `outputParameters`, `customPayload`, `feedbackTopicType` (`EXTERN`, `INTERN` or `NOFEEDBACK`, default `NOFEEDBACK`), `componentTopic`, `externalTopic` | an action function and its feedback |
+
+The operands, the parameters and `componentTopic` are references to attributes and components of the twin. The deployer accepts the operators `GREATER_THAN`, `LESS_THAN` and `EQUAL`. The library also defines `GREATER_EQUAL`, `LESS_EQUAL` and `NOT_EQUAL`, which the deployer rejects. A condition and its action in [`MGridICSA.sysml`](../reproduce/models/MGridICSA.sysml), shortened:
+
+```sysml
+#condition charger1Changed : ChargerChanged {
+    :>> leftOperand = MicroGrid.charger1.p13.power;
+    :>> operator = ComparisonOperator::GREATER_THAN;
+    :>> rightOperand = MicroGrid.chargingThreshold;
+    balance1 :>> balance {
+        charger1Power :>> inputParameters = MicroGrid.charger1.p13.power;
+        :>> componentTopic = MicroGrid.battery.controller;
+    }
+}
+```
+
+The Event Checker evaluates the condition when a stored message contains the property of one of its operands. If the condition holds, the action receives the input parameters, and its result is sent as feedback to the topic of the component. The rules that a model must satisfy are listed in [Validation](lib/sysml-digital-twin-profile/README.md#validation) of the role library.
 
 # Requirements
 
@@ -29,50 +61,11 @@ python main.py ./Test.sysml
 python main.py ./models/MGrid.sysml ./models/shared/ -o ./deploy
 ```
 
-On the first run `main.py` builds the exporter in `exporter/` with Maven. Maven downloads the library and its dependencies once; later runs only start the exporter.
+The two SysML libraries it needs, `sysml-digital-twin-profile` and `sysml-library-mapper`, are part of this artifact in `lib/`. The Docker build compiles them from source. Outside Docker, build them first (see their READMEs) and install the SysML kernel jar. Maven downloads the other dependencies once; later runs only start the exporter.
 
-# Output
+# Twin names
 
-Every twin (`#Twin def`) gets its own folder, named after the id of the twin. `twins.json` lists all twins of the run:
-
-```
-output/
-├── twins.json
-├── Ci2d6P5WvYTHNNrfqgTZH7/
-│   ├── config.json
-│   ├── config_hierarchy.json
-│   ├── config_events.json
-│   └── config_iot_devices.json
-└── ...
-```
-
-```json
-[
-    {
-        "name": "MGrid",
-        "id": "Ci2d6P5WvYTHNNrfqgTZH7",
-        "folder": "Ci2d6P5WvYTHNNrfqgTZH7"
-    }
-]
-```
-
-Read `twins.json` to find the folder of a twin; twins with the same name in different packages get different folders.
-
-| File | Content |
-|---|---|
-| `config.json` | twin name and storage retention |
-| `config_hierarchy.json` | entities with their components |
-| `config_iot_devices.json` | one device per component with its measure attributes; the const attributes of an entity form the device `<entityId>const_component` |
-| `config_events.json` | one event per strategy action of a condition, with the condition as `<entityId>.<component>.<attribute> <operator> ...` |
-
-
-Values that are not written in the model are filled in by the exporter:
-
-* storage retention: 30 days,
-* feedback topic type: `NOFEEDBACK`,
-* data type of an attribute: `STRING`.
-
-Twins whose name is longer than 10 characters are skipped with a warning, because the deployer does not accept them.
+A twin name has at most 10 characters. Twins with a longer name are skipped with a warning, because the deployer does not accept them.
 
 # Ids
 
