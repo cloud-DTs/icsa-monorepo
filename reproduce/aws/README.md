@@ -7,10 +7,7 @@ twin and reads it back. Both use one access key in `reproduce/.env`.
 ## Quick start
 
 Use a **separate sandbox AWS account**. The deployer creates IAM roles and
-attaches policies to them, so it needs wide permissions, and you should not run it
-in a production-use account.
-Also note that this is a research prototype, and the deployer may create and remove resources in your account.
-Use at your own risk.
+attaches policies to them, so it needs wide permissions.
 
 [`sandbox-policy.json`](sandbox-policy.json) allows whole services: `iam:*`,
 `lambda:*`, `s3:*`, `iot:*`, `events:*`, `dynamodb:*`, `states:*`,

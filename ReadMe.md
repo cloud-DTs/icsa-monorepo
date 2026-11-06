@@ -68,8 +68,11 @@ The [evaluation service](digital-twin-evaluator/README.md) resolves targets from
 
 The [`reproduce`](reproduce/README.md) folder runs the three tools in order with
 Docker Compose: the SysML v2 parser, the deployer and the evaluator. It needs
-Docker and AWS credentials, and no licensed software. Deploying creates real
-resources in your AWS account and costs money. The [AWS guide](reproduce/aws/README.md)
+Docker and AWS credentials, and no licensed software. The tools are research
+software with regression suites (see [Implementation scope](#implementation-scope)).
+A deployment creates IAM roles and other resources in the AWS account, and `destroy`
+removes them again, so we recommend a separate AWS account for the reproduction.
+Deploying costs money. The [AWS guide](reproduce/aws/README.md)
 has the IAM policies for the tools and the steps to create the access key, and
 [AWS permissions](digital-twin-manager/docs/aws-permissions.md) explains every permission.
 

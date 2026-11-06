@@ -7,8 +7,6 @@ Two kinds of permissions are involved:
 
 The reproduction offers two policies for this principal, both for a separate sandbox account. [`sandbox-policy.json`](../../reproduce/aws/sandbox-policy.json) allows whole services (for example `iam:*` and `s3:*`), which is the simplest to set up. [`deployer-policy.json`](../../reproduce/aws/deployer-policy.json) lists only the 104 actions that the code calls. Both apply to all resources (`Resource: "*"`), so neither limits the deployer to one twin. A policy that restricts the resources to the name prefix of a twin is not provided (but could be if necessary).
 
-The deployer is a research prototype. It creates and removes IAM roles, functions, buckets and other resources with these permissions. Use it only in a separate sandbox account, review the policy before you attach it, and use it at your own risk.
-
 ## The deployment principal
 
 | Service | Used for | Actions |
