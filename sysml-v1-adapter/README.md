@@ -2,6 +2,13 @@
 
 > **Note:** Ignore the run instructions in this README for deploying a twin. This parser is not part of the Docker setup in [`reproduce`](../reproduce/README.md). Its container usage below converts the example in [`example/`](example/model.xml), and the output can be deployed with the deployer.
 
+This README describes the SysML v1 parser, which reads an Enterprise Architect XMI export and writes the configuration of the deployer. It contains:
+
+- the [prerequisites](#prerequisites) and the [input requirements](#input-requirements),
+- [the DigitalTwinProfile](#the-digitaltwinprofile), with its block definition diagram ([BDD](#block-definition-diagram-bdd)) and instance diagram ([IBD](#internal-block-diagram-ibd)),
+- the [functionality](#functionality-of-the-tool), that is how elements are mapped and identified,
+- the [container usage](#container-usage) and an [example model](#example) with its own BDD and IBD, which show how a twin looks in the profile.
+
 ## Prerequisites
 
 ### Technologies
@@ -10,8 +17,6 @@
   This file serves as the input for the program.
 
 ## Architecture
-
-The purpose of this tool is to parse a SysML model annotated with the **DigitalTwinProfile** and convert it into a structure that serves as input for the **digital-twin-manager**, which deploys digital twins to AWS.
 
 <img src="./documentationContent/DigitalTwins.png" alt="Architecture Diagram">
 
@@ -151,6 +156,8 @@ docker compose run --rm --build digital-twin-profile-sysml-v1
 Generated files are written to `PIPELINE_OUTPUT_HOST_DIR/<lowercase-TWIN_NAME>/`. The input and strategy-code mounts are read-only.
 
 After writing the files, the parser removes the identifiers of the Enterprise Architect elements (`hot_storage_id`, `hot_storage_definition_id`, `cold_storage_id`, `cold_storage_definition_id` in `config.json` and `definitionId` in `config_hierarchy.json`), because the deployer rejects unknown keys. This is done by `TargetService/DeployerCleaner` and is a research prototype.
+
+### Example
 
 A small public model is in [`example/model.xml`](example/model.xml). Convert it with `MODEL_FILE=model.xml`, the code mount `../reproduce/code`, and the strategy path `/pipeline/code/microgrid/energy-management` that the model already contains.
 
