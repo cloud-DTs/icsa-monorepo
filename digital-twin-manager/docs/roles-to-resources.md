@@ -23,29 +23,29 @@ Abbreviations as in Fig. 3: IAM = roles, role policy attachments and inline poli
 
 | Element | Resources | Source |
 | --- | --- | --- |
-| Component Identity | IoT 4: Thing, certificate, attachment of the certificate to the Thing, attachment of the shared policy to the certificate | `iot/iot_thing.py` |
-| Component Message Handling | IAM 3: role with `AWSLambdaBasicExecutionRole` and `AWSLambdaRole`; L 1: the processor function | `iot/processor_*.py` |
-| Component Representation | T: a component type, shared by all Components with the same type, with one time-series property per MeasureAttribute; T 1: the component in the workspace | `iot/twinmaker_component_type.py`, `hierarchy/` |
+| Component Identity | IoT 4: Thing (the device), certificate (its credential), attachment of the certificate to the Thing, attachment of the shared policy to the certificate | `iot/iot_thing.py` |
+| Component Message Handling | IAM 3: role with `AWSLambdaBasicExecutionRole` (logs) and `AWSLambdaRole` (invoke the persister); L 1: processor function (processes the messages of this device and hands them to the persister) | `iot/processor_*.py` |
+| Component Representation | T: component type (the properties of the device, one time series per MeasureAttribute, read through the Hot Reader), shared by all Components of the same type; T 1: component (the device in the workspace) | `iot/twinmaker_component_type.py`, `hierarchy/` |
 
 ### Per Entity and per StrategyAction
 
 | Element | Resources | Source |
 | --- | --- | --- |
-| Entity Representation | T 1: the entity in the workspace | `hierarchy/twinmaker_hierarchy.py` |
-| StrategyAction Execution | IAM 2: role with `AWSLambdaBasicExecutionRole`; L 1: the action function | `event_actions/lambda_actions.py` |
+| Entity Representation | T 1: entity (the Entity in the workspace) | `hierarchy/twinmaker_hierarchy.py` |
+| StrategyAction Execution | IAM 2: role with `AWSLambdaBasicExecutionRole` (logs); L 1: action function (runs the code of the StrategyAction) | `event_actions/lambda_actions.py` |
 
 ### Per Twin
 
 | Element | Resources | Configuration | Source |
 | --- | --- | --- | --- |
-| Component Policy | IoT 1 | One policy for all devices; the variable `${iot:Connection.Thing.ThingName}` limits each certificate to its own Thing | `iot/iot_policy.py` |
-| Message Intake | IAM 3, L 2, IoT 1: dispatcher role, function and invoke permission, and the IoT rule | The rule selects `<twin>/iot-data`; the dispatcher invokes `<twin>-<device>-processor` | `core/dispatcher_*.py` |
-| Storage | IAM 3, L 1, DB 1, S3 2: persister role and function, the hot table, the cold and archive buckets | Hot table keyed by device and message id, on-demand billing, point-in-time recovery; the persister invokes the Event Checker | `core/persister_*.py`, `core/hot_dynamodb_table.py`, `core/cold_s3_bucket.py`, `core/archive_s3_bucket.py` |
-| Storage Tier Management | IAM 6, L 4, E 4: two movers with role, function and invoke permission, two schedule rules with one target each | Hot to cold daily at 12:00 UTC after `hotDatabaseRetentionDays`; cold to archive daily at 18:00 UTC after `coldDatabaseRetentionDays` | `core/hot_cold_mover_*.py`, `core/cold_archive_mover_*.py` |
-| Condition Evaluation | IAM 3, L 1: Event Checker role and function | One rule per Condition in its configuration; it reads values from the workspace and starts the state machine | `core/event_checker_*.py` |
-| Feedback Delivery | IAM 5 (6 with MQTT feedback), L 1, Sf 1: feedback role and function, state machine and its role | The `lambda-chain` runs the action and then the feedback; the feedback role gets an inline policy that allows `iot:Publish` on the configured topics | `core/event_feedback_*.py`, `core/lambda_chain_*.py` |
-| Twin Workspace | IAM 5, S3 3, T 1, L 2: TwinMaker role, bucket with CORS and bucket policy, the workspace, Hot Reader role and function with its invoke permission | The Hot Reader implements the data reader of every component type and reads the hot table | `core/twinmaker_*.py`, `core/hot_reader_*.py` |
-| Visualization | IAM 2, G 1 | Optional, only if `DEPLOY_MANAGED_GRAFANA` is `true`; the role reads the workspace and its bucket | `core/grafana_*.py` |
+| Component Policy | IoT 1: policy (what a device may connect, publish and subscribe to) | One policy for all devices; the variable `${iot:Connection.Thing.ThingName}` limits each certificate to its own Thing | `iot/iot_policy.py` |
+| Message Intake | IAM 3: role with logs and invoke policies; L 2: dispatcher function (routes a message to the processor of its device), invoke permission (lets the IoT rule call it); IoT 1: topic rule (forwards the messages of the ingest topic) | The rule selects `<twin>/iot-data`; the dispatcher invokes `<twin>-<device>-processor` | `core/dispatcher_*.py` |
+| Storage | IAM 3: persister role, logs policy, inline policy (write the table, invoke the Event Checker); L 1: persister function (stores a message and invokes the Event Checker); DB 1: hot table (recent values); S3 2: cold bucket (older values), archive bucket (oldest values) | Hot table keyed by device and message id, on-demand billing, point-in-time recovery | `core/persister_*.py`, `core/hot_dynamodb_table.py`, `core/cold_s3_bucket.py`, `core/archive_s3_bucket.py` |
+| Storage Tier Management | IAM 6: role, logs policy and inline policy for each mover; L 4: hot-to-cold mover and cold-to-archive mover, each with an invoke permission for EventBridge; E 4: schedule rule (when the mover runs) and target (the mover) for each | Hot to cold daily at 12:00 UTC after `hotDatabaseRetentionDays`; cold to archive daily at 18:00 UTC after `coldDatabaseRetentionDays` | `core/hot_cold_mover_*.py`, `core/cold_archive_mover_*.py` |
+| Condition Evaluation | IAM 3: Event Checker role, logs policy, inline policy (read the workspace, invoke action functions, start the state machine); L 1: Event Checker function (evaluates the Conditions on a new value) | One rule per Condition in its configuration | `core/event_checker_*.py` |
+| Feedback Delivery | IAM 5 (6 with MQTT feedback): feedback role and logs policy, the inline policy for `iot:Publish` (only with MQTT feedback), state machine role with logs and invoke policies; L 1: feedback function (publishes the result to the topic of the target Component); Sf 1: `lambda-chain` state machine (runs the action, then the feedback) | The topics come from the feedback of the StrategyActions | `core/event_feedback_*.py`, `core/lambda_chain_*.py` |
+| Twin Workspace | IAM 5: TwinMaker role and inline policy (use the workspace bucket, invoke the Hot Reader), Hot Reader role, logs policy and inline policy (query the table, read the workspace); S3 3: workspace bucket, its CORS configuration, bucket policy (denies requests without TLS); T 1: workspace; L 2: Hot Reader function (reads values for TwinMaker from the hot table), invoke permission for TwinMaker | The Hot Reader is the data reader of every component type | `core/twinmaker_*.py`, `core/hot_reader_*.py` |
+| Visualization | IAM 2: Grafana role and inline policy (read the workspace and its bucket); G 1: Grafana workspace (the dashboards) | Optional, only if `DEPLOY_MANAGED_GRAFANA` is `true` | `core/grafana_*.py` |
 
 ## The two paths
 
