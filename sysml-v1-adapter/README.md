@@ -6,18 +6,18 @@
 
 ### Technologies
 - **Java 25**
-- **XMI 2.1 file** containing a **SysML v1 model** exported from *Enterprise Architect*² and annotated with the **DigitalTwinProfile**.  
+- **XMI 2.1 file** containing a **SysML v1 model** exported from *Enterprise Architect* and annotated with the **DigitalTwinProfile**.  
   This file serves as the input for the program.
 
 ## Architecture
 
-The purpose of this tool is to parse a SysML model annotated with the **DigitalTwinProfile** and convert it into a structure that serves as input for the **digital-twin-manager**¹, which deploys digital twins to AWS.
+The purpose of this tool is to parse a SysML model annotated with the **DigitalTwinProfile** and convert it into a structure that serves as input for the **digital-twin-manager**, which deploys digital twins to AWS.
 
 <img src="./documentationContent/DigitalTwins.png" alt="Architecture Diagram">
 
 ### Input Requirements
 - **Twin name** (maximum length: 10 characters)
-- **XMI 2.1 model file** from *Enterprise Architect*², annotated with the **DigitalTwinProfile**
+- **XMI 2.1 model file** from *Enterprise Architect*, annotated with the **DigitalTwinProfile**
 
 ---
 
@@ -153,11 +153,3 @@ Generated files are written to `PIPELINE_OUTPUT_HOST_DIR/<lowercase-TWIN_NAME>/`
 After writing the files, the parser removes the identifiers of the Enterprise Architect elements (`hot_storage_id`, `hot_storage_definition_id`, `cold_storage_id`, `cold_storage_definition_id` in `config.json` and `definitionId` in `config_hierarchy.json`), because the deployer rejects unknown keys. This is done by `TargetService/DeployerCleaner` and is a research prototype.
 
 A small public model is in [`example/model.xml`](example/model.xml). Convert it with `MODEL_FILE=model.xml`, the code mount `../reproduce/code`, and the strategy path `/pipeline/code/microgrid/energy-management` that the model already contains.
-
----
-
-## References
-[1] digital-twin-manager: [`../digital-twin-manager`](../digital-twin-manager)  
-[2] Enterprise Architect by Sparx Systems: https://sparxsystems.com/
-
-
