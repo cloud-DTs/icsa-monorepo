@@ -2,12 +2,13 @@
 
 > **Note:** Ignore the run instructions in this README for deploying a twin. This parser is not part of the Docker setup in [`reproduce`](../reproduce/README.md). Its container usage below converts the example in [`example/`](example/model.xml), and the output can be deployed with the deployer.
 
-This README describes the SysML v1 parser, which reads an Enterprise Architect XMI export and writes the configuration of the deployer. It contains:
+Since the SysML v1 adapter is not used in the main reproduce setup, here is a short summary of the repo and how to convert a SysML v1 model to the configuration files for the deployer.
+The SysML v1 parser reads an Enterprise Architect XMI export and writes the configuration of the deployer. It contains:
 
 - the [prerequisites](#prerequisites) and the [input requirements](#input-requirements),
 - [the DigitalTwinProfile](#the-digitaltwinprofile), with its block definition diagram ([BDD](#block-definition-diagram-bdd)) and instance diagram ([IBD](#internal-block-diagram-ibd)),
 - the [functionality](#functionality-of-the-tool), that is how elements are mapped and identified,
-- the [container usage](#container-usage) and an [example model](#example) with its own BDD and IBD, which show how a twin looks in the profile.
+- the [container usage](#container-usage) and an [example model](#example) with its own BDD and IBD, which show how a twin looks in the profile and generates the deployer files.
 
 ## Prerequisites
 
@@ -15,10 +16,6 @@ This README describes the SysML v1 parser, which reads an Enterprise Architect X
 - **Java 25**
 - **XMI 2.1 file** containing a **SysML v1 model** exported from *Enterprise Architect* and annotated with the **DigitalTwinProfile**.  
   This file serves as the input for the program.
-
-## Architecture
-
-<img src="./documentationContent/DigitalTwins.png" alt="Architecture Diagram">
 
 ### Input Requirements
 - **Twin name** (maximum length: 10 characters)
