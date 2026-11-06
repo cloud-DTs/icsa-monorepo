@@ -141,8 +141,7 @@ evaluate control algorithms.
 
 ## About the evaluator
 
-- It reads the deployer's saved state in `work/<twin>/output/.digital-twin-manager-state/`.
-  A twin is evaluated only after a completed `deploy`. Otherwise the evaluator
+- A twin is evaluated only after a completed `deploy`. Otherwise the evaluator
   fails instead of guessing.
 - `run` publishes a fresh random value per cycle,
   with 10 warmup and 100 measured cycles by default, and one writer.
