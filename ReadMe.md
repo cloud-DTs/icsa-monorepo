@@ -1,16 +1,19 @@
 # TWINFRA: artifact guide
 
-This monorepo implements **TWINFRA: Role-based Decomposition and Allocation of Digital Twins to the Cloud**. Its three tools,
-the parsers, the deployer and the evaluator, grew over time into one suite that takes an annotated system model to
-the software architecture and AWS resources of a digital twin, and measures the deployed twin. It consists of these parts:
+This monorepo implements **TWINFRA: Role-based Decomposition and Allocation of Digital Twins to the Cloud**. TWINFRA takes an annotated SysML v1 or v2 model to the software architecture and
+AWS resources of a digital twin, deploys the twin, and measures it. It consists of two parsers, a deployer and an
+evaluator. A Docker Compose setup runs them end to end, from the model of a case study to its measurements, and
+needs no licensed software. The same tools deployed both industrial case studies of the paper, twins of 213 and
+1,968 resources, without changes between them. Regression suites cover the deployer, the evaluator and the
+case-study generator, and every AWS permission the tools need is documented.
 
 | Folder | What it does                                                                                                                                                | In the paper                   |
 | --- |-------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------|
 | [`sysml-v2-adapter`](sysml-v2-adapter/README.md) | SysML v2 parser: reads an annotated model and writes the configuration for the deployer. Its `lib/` holds the libraries that define the roles.              | C1, Section III-C              |
 | [`sysml-v1-adapter`](sysml-v1-adapter/README.md) | SysML v1 parser: the same for Enterprise Architect XMI exports                                                                                              | C1, Section III-B |
 | [`digital-twin-manager`](digital-twin-manager/README.md) | Deployer: provisions the resources of a twin on AWS | C2, Section IV (Figure 3) |
-| [`digital-twin-evaluator`](digital-twin-evaluator/README.md) | Measures the latency of the reaction and visualization paths of a deployed twin, and counts the deployed resources | Section V-C (Figures 4 and 6) |
-| [`evaluator-artifacts`](evaluator-artifacts/) | Stored measurements, security findings and resource counts, and the scripts for the figures                                                                 | Section V-C (Figures 4 to 6)   |
+| [`digital-twin-evaluator`](digital-twin-evaluator/README.md) | Measures the latency of the reaction and visualization paths of a deployed twin, and counts the deployed resources | Sections V-C and V-D (Figures 4 and 6) |
+| [`evaluator-artifacts`](evaluator-artifacts/) | Stored measurements, security findings and resource counts, and the scripts for the figures                                                                 | Sections V-C and V-D (Figures 4 to 6)   |
 | [`reproduce`](reproduce/README.md) | Docker Compose setup, the models of both case studies and the mock actions                                                                                  | Section V (CS1, CS2)           |
 
 ## From paper concepts to code
@@ -57,13 +60,12 @@ derives the dependencies is described in [provisioning order and dependencies](d
 | Visualization path, Section V-C / Figure 4  | [CS1 TwinMaker results](evaluator-artifacts/MGridICSA-mqtt-twinmaker.zip), [CS2 TwinMaker results](evaluator-artifacts/VPP-mqtt-twinmaker.zip)                                                                   |
 | Figure 4 plots                              | [e2e_pgf.py](evaluator-artifacts/scripts/e2e_pgf.py) turns the `measurements.csv` files into the box plots                                                                                                       |
 | Security assessment, Section V-C / Figure 5 | [Stored findings](evaluator-artifacts/MGridICSA-SecurityEval.json), [audit script and instructions](digital-twin-manager/docs/security-audit.md), [Figure 5 script](evaluator-artifacts/scripts/security_pgf.py) |
-| Deployed resources, Section V-C / Figure 6  | [Counts per twin](evaluator-artifacts/resource-inventory/), produced by [resource_inventory.py](digital-twin-evaluator/scripts/resource_inventory.py)                                                              |
+| Deployed resources, Section V-D / Figure 6  | [Counts per twin](evaluator-artifacts/resource-inventory/), produced by [resource_inventory.py](digital-twin-evaluator/scripts/resource_inventory.py)                                                              |
 
 Each measurement ZIP contains `measurements.csv` and `summary.json`. The twin names and
 the AWS account ID in the stored files are replaced.
 
-The [evaluation service](digital-twin-evaluator/README.md) resolves targets from saved
-**applied deployment state**.
+The [evaluation service](digital-twin-evaluator/README.md) finds its targets in the state that `deploy` saves.
 
 ## Reproduce the case studies
 
