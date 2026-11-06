@@ -153,3 +153,9 @@ Generated files are written to `PIPELINE_OUTPUT_HOST_DIR/<lowercase-TWIN_NAME>/`
 After writing the files, the parser removes the identifiers of the Enterprise Architect elements (`hot_storage_id`, `hot_storage_definition_id`, `cold_storage_id`, `cold_storage_definition_id` in `config.json` and `definitionId` in `config_hierarchy.json`), because the deployer rejects unknown keys. This is done by `TargetService/DeployerCleaner` and is a research prototype.
 
 A small public model is in [`example/model.xml`](example/model.xml). Convert it with `MODEL_FILE=model.xml`, the code mount `../reproduce/code`, and the strategy path `/pipeline/code/microgrid/energy-management` that the model already contains.
+
+The example describes a charging point station. The block definition diagram shows its structure, and the instance diagram shows the deployed instances with the `measures` and `triggers` connectors.
+
+![Block definition diagram of the example](example/BDD.png)
+
+![Instance diagram of the example](example/IBD.png)

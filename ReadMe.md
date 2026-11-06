@@ -36,12 +36,7 @@ same definition and measurement schema. Each usage keeps its own device ID.
 **Examples.** The SysML v2 model of CS1 is [MGridICSA.sysml](reproduce/models/MGridICSA.sysml), and
 [reproduce/README.md](reproduce/README.md) deploys it. More detail is in the READMEs of the
 [v2 parser](sysml-v2-adapter/README.md) and of its [role library](sysml-v2-adapter/lib/sysml-digital-twin-profile/README.md).
-The SysML v1 parser comes with a small example, [model.xml](sysml-v1-adapter/example/model.xml), shown here as a
-block definition diagram and an instance diagram. The industrial CS1 v1 model is withheld for
-confidentiality, as stated in Section V-A.
-
-![Block definition diagram of the v1 example](BDD.png)
-![Instance diagram of the v1 example](IBD.png)
+The industrial CS1 v1 model is withheld for confidentiality, as stated in Section V-A.
 
 **C2: role-based twin allocation** (Section IV, Figure 3). The deployer in
 [`digital-twin-manager`](digital-twin-manager/README.md) reads these files and provisions the
