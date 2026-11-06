@@ -65,8 +65,6 @@ derives the dependencies is described in [provisioning order and dependencies](d
 Each measurement ZIP contains `measurements.csv` and `summary.json`. The twin names and
 the AWS account ID in the stored files are replaced.
 
-The [evaluation service](digital-twin-evaluator/README.md) finds its targets in the state that `deploy` saves.
-
 ## Reproduce the case studies
 
 The [`reproduce`](reproduce/README.md) folder runs the three tools in order with
