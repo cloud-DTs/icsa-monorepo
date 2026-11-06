@@ -165,10 +165,10 @@ The reader follows the official
 
 ## Input
 
-The primary input is the digital-twin-manager **applied state**. Pass a saved
+The input is what the deployer saves after a completed `deploy`. Pass the
 deployment directory, its output directory, or `.digital-twin-manager-state`
 directly. The adapter supports state version 1 and its AWS resource naming
-contract. It reads the applied metadata and the three deployment configuration
+contract. It reads the deployment metadata and the three deployment configuration
 files needed to resolve entities, components, device IDs, and property types.
 
 The adapter never falls back to pending staging input. SysML is not an execution
@@ -217,7 +217,7 @@ The service runs only when requested. Deploy does not start an evaluation.
 
 Results are written to `results/<twin>/<run-id>/`:
 
-- `summary.json`: schema version, effective plan, applied state fingerprint,
+- `summary.json`: schema version, effective plan, deployment fingerprint,
   Python/SDK versions, counts, errors, and p50/p95/p99/min/max.
 - `measurements.csv`: every warmup and measured cycle, its timestamp/value,
   status, polling attempts, and durations in milliseconds.
