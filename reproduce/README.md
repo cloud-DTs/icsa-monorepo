@@ -128,7 +128,7 @@ evaluate control algorithms.
 - It reads the deployer's saved state in `work/<twin>/output/.digital-twin-manager-state/`.
   A twin is evaluated only after a completed `deploy`. Otherwise the evaluator
   fails instead of guessing.
-- Planning (`plan`) is offline. `run` publishes a fresh random value per cycle,
+- `run` publishes a fresh random value per cycle,
   with 10 warmup and 100 measured cycles by default, and one writer.
 - Its credentials need `iot:Connect`, `iot:Publish`, `iot:Subscribe`,
   `iot:Receive` and `iot:DescribeEndpoint`. The visualization path also needs the
