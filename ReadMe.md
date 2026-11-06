@@ -1,7 +1,17 @@
 # TWINFRA: artifact guide
 
 This monorepo implements **TWINFRA: Role-based Decomposition and Allocation of Digital Twins to the Cloud**. It connects an annotated system model
-to the software architecture and AWS resources of a digital twin. The folder `digital-twin-manager` holds the deployer.
+to the software architecture and AWS resources of a digital twin. It consists of these parts:
+
+| Folder | What it does | In the paper |
+| --- | --- | --- |
+| [`sysml-v2-adapter`](sysml-v2-adapter/README.md) | SysML v2 parser: reads an annotated model and writes the configuration for the deployer. Its `lib/` holds the libraries that define the roles. | C1, Section III; Section IV-C |
+| [`sysml-v1-adapter`](sysml-v1-adapter/README.md) | SysML v1 parser: the same for Enterprise Architect XMI exports | C1, Section III; Section IV-C |
+| [`digital-twin-manager`](digital-twin-manager/README.md) | Deployer: provisions the resources of a twin on AWS. Also the security audit and the resource count scripts. | C2, Section IV (Figure 3) |
+| [`digital-twin-evaluator`](digital-twin-evaluator/README.md) | Measures the latency of the reaction and visualization paths of a deployed twin | Section V-C (Figure 4) |
+| [`evaluator-artifacts`](evaluator-artifacts/) | Stored measurements, security findings and resource counts, and the scripts for the figures | Section V-C (Figures 4 to 6) |
+| [`reproduce`](reproduce/README.md) | Docker Compose setup, the models of both case studies and the mock actions | Section V (CS1, CS2) |
+| [`digital-twin-simulator`](digital-twin-simulator/README.md) | Simulates device telemetry for a twin | not used in the evaluation |
 
 ## From paper concepts to code
 
@@ -17,20 +27,27 @@ to the software architecture and AWS resources of a digital twin. The folder `di
 | Condition        | `#condition` with `leftOperand`, `operator` and `rightOperand`                       | Event Checker evaluates the latest values                                                                                                     |
 | StrategyAction   | `#strategyAction`: code, `inputParameters` and the feedback target `componentTopic`  | [Action deployers](digital-twin-manager/src/deployers/aws/event_actions/): Lambda execution; Event Feedback delivers the result               |
 
+
 The v1 profile uses legacy names: `Component` means the paper's Entity,
 `Device` means Component, and `Strategy` means StrategyAction. Its `triggers`
 connector encodes a Condition. The v2 models use the paper's role names directly.
 The v2 parser can reuse a TwinMaker Component Type across usages with the
 same definition and measurement schema. Each usage keeps its own device ID.
 
+**Examples.** The SysML v2 model of CS1 is [MGridICSA.sysml](reproduce/models/MGridICSA.sysml), and
+[reproduce/README.md](reproduce/README.md) deploys it. More detail is in the READMEs of the
+[v2 parser](sysml-v2-adapter/README.md) and of its [role library](sysml-v2-adapter/lib/sysml-digital-twin-profile/README.md).
+The SysML v1 parser comes with a small example, [model.xml](sysml-v1-adapter/example/model.xml), shown here as a
+block definition diagram and an instance diagram. The industrial CS1 v1 model is withheld for
+confidentiality, as stated in Section V-A.
+
+![Block definition diagram of the v1 example](BDD.png)
+![Instance diagram of the v1 example](IBD.png)
+
 **C2: role-based twin allocation** (Section IV, Figure 3). The
 [Python/Boto3 deployer](digital-twin-manager/src/deployers/aws/all.py)
-reads these files and provisions the resources. Its
-[core layers](digital-twin-manager/src/deployers/aws/core/all.py) encode the
-provisioning order. The [dependency graph](digital-twin-manager/src/dependency_graph/)
-represents resource dependencies for deployment plans.
-
-Figure 3 in the paper applies to the SysML v2 realization.
+reads these files and provisions the resources. The provisioning order and the
+dependency graph are described in [role-based allocation](digital-twin-manager/docs/role-based-allocation.md).
 
 For a concrete trace, open [MGridICSA.sysml](reproduce/models/MGridICSA.sysml).
 `MicroGrid.charger1.p13.power` is a measured value. `charger1Changed` compares it
@@ -54,21 +71,12 @@ deployer supplies the ingestion and feedback resources around the
 | Security assessment, Section V-C / Figure 5 | [Stored findings](evaluator-artifacts/MGridICSA-SecurityEval.json), [audit script and instructions](digital-twin-manager/docs/security-audit.md), [Figure 5 script](evaluator-artifacts/scripts/security_pgf.py) |
 | Deployed resources, Section V-C / Figure 6  | [Counts per twin](evaluator-artifacts/resource-inventory/), produced by [resource_inventory.py](digital-twin-manager/scripts/resource_inventory.py)                                                              |
 
-Each measurement ZIP contains `measurements.csv` and `summary.json`. The summary
-records the experiment parameters, applied-state fingerprint, sample counts,
-failures and latency statistics. `VPP-roundtrip.zip` and `MGridICSA-roundtrip.zip`
-are earlier runs of the storage roundtrip evaluation, which the paper does not use.
-
-The measurements were recorded on twins deployed under other names. The virtual
-power plant twin appears as `VPP` throughout this artifact, so the fingerprints in
-the summaries refer to the original deployment. The AWS account ID in the stored
-results is replaced by a placeholder.
+Each measurement ZIP contains `measurements.csv` and `summary.json`. The results were
+recorded on twins deployed under other names. The twin names and the AWS account ID in
+the stored files are replaced, so the fingerprints in the summaries refer to the original deployment.
 
 The [evaluation service](digital-twin-evaluator/README.md) resolves targets from saved
 **applied deployment state**.
-
-The SysML v1 parser is included. The industrial CS1 v1 model is withheld for
-confidentiality, as stated in Section V-A.
 
 ## Reproduce the case studies
 
@@ -91,8 +99,8 @@ docker compose run --rm evaluate run mqtt --deployment /evaluation/deployment --
 docker compose run --rm deployer      # type: destroy, then exit
 ```
 
-The README of that folder lists the commands for the visualization path and for
-CS2, which uses `VPPMicrogrid.sysml` and the twin name `VPP`.
+The visualization path and CS2 (`VPPMicrogrid.sysml`, twin `VPP`) are described in
+[reproduce/README.md](reproduce/README.md).
 
 ## Implementation scope
 
