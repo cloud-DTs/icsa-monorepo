@@ -5,7 +5,7 @@ Two kinds of permissions are involved:
 - **The deployment principal** is the IAM user whose access key the deployer reads from `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY` and `AWS_REGION`. It creates, checks and removes the resources of a twin. The ready-made policy is [`reproduce/aws/deployer-policy.json`](../../reproduce/aws/deployer-policy.json), and the [AWS guide](../../reproduce/aws/README.md) explains how to create the key.
 - **The runtime roles** are created by the deployer for the Lambda functions, the state machine, TwinMaker and Grafana. Each gets a policy scoped to the resources of its own twin. They carry the security claims of the paper and are described [below](#runtime-roles).
 
-The deployment policy uses `Resource: "*"`, because the names of the resources are derived from the twin name at run time. In a production account, narrow it to the prefix of the twin.
+The reproduction offers two policies for this principal, both for a separate sandbox account. [`sandbox-policy.json`](../../reproduce/aws/sandbox-policy.json) allows whole services (for example `iam:*` and `s3:*`), which is the simplest to set up. [`deployer-policy.json`](../../reproduce/aws/deployer-policy.json) lists only the 104 actions that the code calls. Both apply to all resources (`Resource: "*"`), so neither limits the deployer to one twin. A policy that restricts the resources to the name prefix of a twin is not provided.
 
 ## The deployment principal
 
@@ -22,7 +22,7 @@ The deployment policy uses `Resource: "*"`, because the names of the resources a
 | Step Functions | The `lambda-chain` state machine | create, describe, delete |
 | Grafana | The optional workspace, see below | workspace management, `TagResource` |
 
-The complete action list is in the policy file. It contains 104 actions.
+The complete action list is in [`deployer-policy.json`](../../reproduce/aws/deployer-policy.json).
 
 Grafana is deployed only if `DEPLOY_MANAGED_GRAFANA` is `true`. The workspace uses AWS SSO authentication, so the account needs IAM Identity Center. AWS then also requires the service-linked role, `sso` actions for the managed application, `organizations:DescribeOrganization` and a few EC2 describe actions, which are part of the policy.
 
