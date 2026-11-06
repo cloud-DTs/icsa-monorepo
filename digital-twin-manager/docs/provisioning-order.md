@@ -4,7 +4,7 @@ This page details paper Section IV-B; [from roles to resources](roles-to-resourc
 
 ## Deployment order
 
-[`deployers/aws/all.py`](../src/deployers/aws/all.py) runs five groups in this order: `core`, `iot`, `hierarchy`, `event_actions` and `init_values`. `destroy` runs them in reverse. The sequence is fixed in the code. It follows the dependencies below: each `create_after` edge of the templates points from a resource to one that an earlier or the same layer creates (checked for all 81 edges). The `core` group has the layers of [Core Infrastructure Layers](core-infrastructure-layers.md): L1 (dispatcher), L2 (processing, persistence, events), L3 (hot, cold and archive storage), L4 (TwinMaker) and L5 (Grafana). The `iot` group creates the per-device resources, `hierarchy` the TwinMaker entities and components, `event_actions` the Lambda functions of the actions, and `init_values` publishes the initial values.
+[`deployers/aws/all.py`](../src/deployers/aws/all.py) runs five groups in this order: `core`, `iot`, `hierarchy`, `event_actions` and `init_values`. `destroy` runs them in reverse. The `core` group has the layers of [Core Infrastructure Layers](core-infrastructure-layers.md): L1 (dispatcher), L2 (processing, persistence, events), L3 (hot, cold and archive storage), L4 (TwinMaker) and L5 (Grafana). The `iot` group creates the per-device resources, `hierarchy` the TwinMaker entities and components, `event_actions` the Lambda functions of the actions, and `init_values` publishes the initial values.
 
 ## Dependency templates
 
@@ -19,6 +19,6 @@ This page details paper Section IV-B; [from roles to resources](roles-to-resourc
 
 ## Runtime graph
 
-[`build_runtime_graph`](../src/dependency_graph/runtime_graph_builder.py) expands the templates with the configuration. Shared templates give one node. The `iot:l1` and `iot:l2` templates give one node per IoT device, the `iot:l4` templates one per distinct component type, the hierarchy templates one per entity or component, the action templates one per action and the initial-value templates one per device with an initial value. Each node gets its logical and physical name. The graph states which resources a resource needs, when it is created and while the twin runs, and which must stay while another needs them. The creation order itself is the sequence above.
+[`build_runtime_graph`](../src/dependency_graph/runtime_graph_builder.py) expands the templates with the configuration. Shared templates give one node. The `iot:l1` and `iot:l2` templates give one node per IoT device, the `iot:l4` templates one per distinct component type, the hierarchy templates one per entity or component, the action templates one per action and the initial-value templates one per device with an initial value. Each node gets its logical and physical name.
 
 The number of resources that this produces for a twin is counted by [`resource_inventory.py`](../../digital-twin-evaluator/scripts/resource_inventory.py), which also states the formula.
