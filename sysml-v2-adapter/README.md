@@ -4,7 +4,7 @@
 
 Reads SysML v2 digital twin models and prepares them for the deployer.
 
-The models are read and validated by the libraries in [`lib/`](lib/): [`sysml-digital-twin-profile`](lib/sysml-digital-twin-profile/README.md) defines the roles, and [`sysml-library-mapper`](lib/sysml-library-mapper/README.md) reads and checks the SysML. The role definitions are in [`DigitalTwinLibrary.sysml`](lib/sysml-digital-twin-profile/DTLibrary/DigitalTwinLibrary.sysml).
+The models are read and validated by the libraries in [`lib/`](lib/). How to write a model in detail, with the keywords, the mapped elements and the validation rules, is described in the README of the role library, [`sysml-digital-twin-profile`](lib/sysml-digital-twin-profile/README.md). Its role definitions are in [`DigitalTwinLibrary.sysml`](lib/sysml-digital-twin-profile/DTLibrary/DigitalTwinLibrary.sysml). The second library, [`sysml-library-mapper`](lib/sysml-library-mapper/README.md), reads and checks the SysML.
 
 # Modeling the roles
 
