@@ -165,16 +165,11 @@ The reader follows the official
 
 ## Input
 
-The input is what the deployer saves after a completed `deploy`. Pass the
-deployment directory, its output directory, or `.digital-twin-manager-state`
-directly. The adapter supports state version 1 and its AWS resource naming
-contract. It reads the deployment metadata and the three deployment configuration
-files needed to resolve entities, components, device IDs, and property types.
+The evaluator measures the deployed twin. It takes the output directory of `deploy` (`--deployment`) and resolves the deployed resources.
 
-The adapter never falls back to pending staging input. SysML is not an execution
-input: it does not contain the final device IDs or prove what was deployed.
-Credentials use the AWS SDK credential chain; credential files in the deployment
-are not read. Evaluation settings are separate from deployment settings.
+The credentials are the ones in the `.env` file. Make sure they have the
+[necessary permissions](../reproduce/aws/README.md). Evaluation settings are separate from
+deployment settings.
 
 ## Local use
 
