@@ -41,7 +41,7 @@ industrial CS1 model in v1 is confidential, and the
   [AWS guide](aws/README.md) has the IAM policies and the steps to create the key.
   The permissions are explained in [AWS permissions](../digital-twin-manager/docs/aws-permissions.md).
   Deploying costs money: CS1 creates 213 resources and CS2 creates 1,968.
-- The region is `eu-west-1` unless `AWS_REGION` in `.env` says otherwise.
+- The region is `us-east-1` unless `AWS_REGION` in `.env` says otherwise.
 - CS1 deploys an Amazon Managed Grafana workspace, which needs AWS IAM Identity
   Center in the account. Without it, set `DEPLOY_MANAGED_GRAFANA=false` in `.env`.
   CS1 then has 210 resources, because Grafana accounts for 3 of the 213.

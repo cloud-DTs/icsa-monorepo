@@ -31,8 +31,8 @@ services:
     environment:
       AWS_ACCESS_KEY_ID: "${AWS_ACCESS_KEY_ID:-}"
       AWS_SECRET_ACCESS_KEY: "${AWS_SECRET_ACCESS_KEY:-}"
-      AWS_REGION: "${AWS_REGION:-eu-west-1}"
-      AWS_DEFAULT_REGION: "${AWS_REGION:-eu-west-1}"
+      AWS_REGION: "${AWS_REGION:-us-east-1}"
+      AWS_DEFAULT_REGION: "${AWS_REGION:-us-east-1}"
       DEPLOY_MANAGED_GRAFANA: "${DEPLOY_MANAGED_GRAFANA:-false}"
     volumes:
       - ./work/${TWIN:?Set TWIN in .env}/input:/pipeline/input:ro
@@ -48,8 +48,8 @@ services:
       AWS_ACCESS_KEY_ID: "${AWS_ACCESS_KEY_ID:-}"
       AWS_SECRET_ACCESS_KEY: "${AWS_SECRET_ACCESS_KEY:-}"
       AWS_SESSION_TOKEN: "${AWS_SESSION_TOKEN:-}"
-      AWS_REGION: "${AWS_REGION:-eu-west-1}"
-      AWS_DEFAULT_REGION: "${AWS_REGION:-eu-west-1}"
+      AWS_REGION: "${AWS_REGION:-us-east-1}"
+      AWS_DEFAULT_REGION: "${AWS_REGION:-us-east-1}"
     volumes:
       - ./work/${TWIN:?Set TWIN in .env}/output:/evaluation/deployment:ro
       - ./evaluation:/evaluation/configs:ro

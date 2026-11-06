@@ -36,7 +36,7 @@ not work with session tokens.
 
 ## Account prerequisites
 
-- **Region.** The measurements used `eu-west-1`. Another region needs AWS IoT
+- **Region.** The default is `us-east-1`; the measurements of the paper used `eu-west-1`. Any other region needs AWS IoT
   TwinMaker and Amazon Managed Grafana to be available there.
 - **Managed Grafana (CS1).** The CS1 twin deploys an Amazon Managed Grafana
   workspace with the `AWS_SSO` authentication provider, so AWS IAM Identity Center
