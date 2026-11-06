@@ -1,6 +1,6 @@
 # Provisioning order and dependencies
 
-This page details paper Section IV-B. The deployer reads the configuration of a twin and provisions its resources in an order that satisfies their dependencies.
+This page details paper Section IV-B; [from roles to resources](roles-to-resources.md) covers Section IV-A, the resources themselves. The deployer reads the configuration of a twin and provisions its resources in an order that satisfies their dependencies.
 
 ## Deployment order
 

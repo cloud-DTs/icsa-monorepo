@@ -41,9 +41,10 @@ The SysML v1 parser is not part of the automated pipeline. Details about SysML v
 
 **C2: role-based twin allocation** (Section IV, Figure 3). The deployer in
 [`digital-twin-manager`](digital-twin-manager/README.md) reads these configuration files and provisions the
-resources. [How it works](digital-twin-manager/README.md#how-it-works) explains the steps and traces
-the CS1 model through the deployed twin. How the deployer orders the provisioning and derives the dependencies is
-described in [provisioning order and dependencies](digital-twin-manager/docs/provisioning-order.md).
+resources. [From roles to resources](digital-twin-manager/docs/roles-to-resources.md) lists the AWS resources of
+each architectural element in Figure 3 and the formula for their number. [How it works](digital-twin-manager/README.md#how-it-works)
+explains the steps and traces the CS1 model through the deployed twin. How the deployer orders the provisioning and
+derives the dependencies is described in [provisioning order and dependencies](digital-twin-manager/docs/provisioning-order.md).
 
 ## Case studies and evidence
 
