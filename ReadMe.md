@@ -103,3 +103,7 @@ Regression suites cover [the VPP generator and its mock action](reproduce/tests/
 [measurement and report behavior](digital-twin-evaluator/tests/).
 
 An additional capability is [deployment updates](digital-twin-manager/README.md#commands) through `plan` and `apply`.
+
+## Acknowledgements
+
+The authors used Anthropic Claude (Claude Code with Claude Sonnet 5.5) to assist with preparing this artifact: building the reproduction setup in [`reproduce`](reproduce/README.md), restructuring and cleaning the repository, writing and revising the documentation, deriving and checking the resource counts, and running the offline tests and the test deployments. The authors reviewed the AI-assisted changes and take responsibility for the artifact.
