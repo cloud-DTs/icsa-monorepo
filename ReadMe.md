@@ -1,7 +1,8 @@
 # TWINFRA: artifact guide
 
-This monorepo implements **TWINFRA: Role-based Decomposition and Allocation of Digital Twins to the Cloud**. It connects an annotated system model
-to the software architecture and AWS resources of a digital twin. It consists of these parts:
+This monorepo implements **TWINFRA: Role-based Decomposition and Allocation of Digital Twins to the Cloud**. Its three tools,
+the parsers, the deployer and the evaluator, grew over time into one suite that takes an annotated system model to
+the software architecture and AWS resources of a digital twin, and measures the deployed twin. It consists of these parts:
 
 | Folder | What it does                                                                                                                                                | In the paper                   |
 | --- |-------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------|
