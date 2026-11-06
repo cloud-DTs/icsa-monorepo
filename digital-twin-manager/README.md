@@ -22,8 +22,6 @@ In [`MGridICSA.sysml`](../reproduce/models/MGridICSA.sysml), `MicroGrid.charger1
 | `deploy` | Creates all resources of the twin |
 | `destroy` | Removes them |
 | `info` | Lists the resources that exist |
-| `plan`, `apply` | Update an existing deployment. `plan` compares the configuration and the Lambda code with AWS and saves the actions, `apply` runs the saved plan. |
-| `init-state` | Records an existing deployment as the starting point for `plan` |
 
 The [`reproduce`](../reproduce/README.md) folder runs the deployer in Docker.
 

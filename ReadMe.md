@@ -99,10 +99,8 @@ adds the run time of its own logic (Section V-C). The measurements do not evalua
 or physical actuation. AWS is the implemented cloud realization.
 
 Regression suites cover [the VPP generator and its mock action](reproduce/tests/),
-[validation, deployment planning and policies](digital-twin-manager/tests/), and
+[validation and policies](digital-twin-manager/tests/), and
 [measurement and report behavior](digital-twin-evaluator/tests/).
-
-An additional capability is [deployment updates](digital-twin-manager/README.md#commands) through `plan` and `apply`.
 
 ## Acknowledgements
 
