@@ -89,12 +89,14 @@ The visualization path and CS2 (`VPPMicrogrid.sysml`, twin `VPP`) are described 
 
 ## Implementation scope
 
-The two case studies use mock actions:
-[CS1 energy management](reproduce/code/microgrid/energy-management/lambda_function.py)
-and the [CS2 MQTT probe](reproduce/code/vpp/mqtt-probe/lambda_function.py).
-They return input values to exercise the infrastructure. These measurements
-do not evaluate industrial control algorithms or physical actuation. AWS is
-the implemented cloud realization.
+The paper measures the effects of the software architecture that TWINFRA generates, separately from the
+domain-specific application. A StrategyAction computes a domain-specific problem, which can take any form.
+Both case studies therefore deploy placeholder logic, identity functions that return their input, in place of
+the control strategies: [CS1 energy management](reproduce/code/microgrid/energy-management/lambda_function.py)
+and the [CS2 MQTT probe](reproduce/code/vpp/mqtt-probe/lambda_function.py) (Section V-A). The function body does
+not affect the architecture of the twin, so the measured times are the share of the architecture, and any twin
+adds the run time of its own logic (Section V-C). The measurements do not evaluate industrial control algorithms
+or physical actuation. AWS is the implemented cloud realization.
 
 Regression suites cover [the VPP generator and its mock action](reproduce/tests/),
 [validation, deployment planning and policies](digital-twin-manager/tests/), and
