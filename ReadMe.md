@@ -3,15 +3,14 @@
 This monorepo implements **TWINFRA: Role-based Decomposition and Allocation of Digital Twins to the Cloud**. It connects an annotated system model
 to the software architecture and AWS resources of a digital twin. It consists of these parts:
 
-| Folder | What it does | In the paper |
-| --- | --- | --- |
-| [`sysml-v2-adapter`](sysml-v2-adapter/README.md) | SysML v2 parser: reads an annotated model and writes the configuration for the deployer. Its `lib/` holds the libraries that define the roles. | C1, Section III; Section IV-C |
-| [`sysml-v1-adapter`](sysml-v1-adapter/README.md) | SysML v1 parser: the same for Enterprise Architect XMI exports | C1, Section III; Section IV-C |
-| [`digital-twin-manager`](digital-twin-manager/README.md) | Deployer: provisions the resources of a twin on AWS. Also the security audit and the resource count scripts. | C2, Section IV (Figure 3) |
-| [`digital-twin-evaluator`](digital-twin-evaluator/README.md) | Measures the latency of the reaction and visualization paths of a deployed twin | Section V-C (Figure 4) |
-| [`evaluator-artifacts`](evaluator-artifacts/) | Stored measurements, security findings and resource counts, and the scripts for the figures | Section V-C (Figures 4 to 6) |
-| [`reproduce`](reproduce/README.md) | Docker Compose setup, the models of both case studies and the mock actions | Section V (CS1, CS2) |
-| [`digital-twin-simulator`](digital-twin-simulator/README.md) | Simulates device telemetry for a twin | not used in the evaluation |
+| Folder | What it does                                                                                                                                                | In the paper                   |
+| --- |-------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------|
+| [`sysml-v2-adapter`](sysml-v2-adapter/README.md) | SysML v2 parser: reads an annotated model and writes the configuration for the deployer. Its `lib/` holds the libraries that define the roles.              | C1, Section III-C              |
+| [`sysml-v1-adapter`](sysml-v1-adapter/README.md) | SysML v1 parser: the same for Enterprise Architect XMI exports                                                                                              | C1, Section III-B |
+| [`digital-twin-manager`](digital-twin-manager/README.md) | Deployer: provisions the resources of a twin on AWS | C2, Section IV (Figure 3) |
+| [`digital-twin-evaluator`](digital-twin-evaluator/README.md) | Measures the latency of the reaction and visualization paths of a deployed twin, and counts the deployed resources | Section V-C (Figures 4 and 6) |
+| [`evaluator-artifacts`](evaluator-artifacts/) | Stored measurements, security findings and resource counts, and the scripts for the figures                                                                 | Section V-C (Figures 4 to 6)   |
+| [`reproduce`](reproduce/README.md) | Docker Compose setup, the models of both case studies and the mock actions                                                                                  | Section V (CS1, CS2)           |
 
 ## From paper concepts to code
 
@@ -44,20 +43,11 @@ confidentiality, as stated in Section V-A.
 ![Block definition diagram of the v1 example](BDD.png)
 ![Instance diagram of the v1 example](IBD.png)
 
-**C2: role-based twin allocation** (Section IV, Figure 3). The
-[Python/Boto3 deployer](digital-twin-manager/src/deployers/aws/all.py)
-reads these files and provisions the resources. The provisioning order and the
-dependency graph are described in [role-based allocation](digital-twin-manager/docs/role-based-allocation.md).
-
-For a concrete trace, open [MGridICSA.sysml](reproduce/models/MGridICSA.sysml).
-`MicroGrid.charger1.p13.power` is a measured value. `charger1Changed` compares it
-with a threshold. The [Event Checker](digital-twin-manager/lambda_functions/core/event-checker/lambda_function.py)
-reads the values and supplies them to `balance1`. The action's feedback targets
-`MicroGrid.battery.controller`. The
-[v2 parser](sysml-v2-adapter/exporter/src/main/java/org/example/TwinExporter.java)
-turns these references into the configuration for the deployer. The
-deployer supplies the ingestion and feedback resources around the
-[action code](reproduce/code/microgrid/energy-management/lambda_function.py).
+**C2: role-based twin allocation** (Section IV, Figure 3). The deployer in
+[`digital-twin-manager`](digital-twin-manager/README.md) reads these files and provisions the
+resources. [How it works](digital-twin-manager/README.md#how-it-works) explains the steps and traces
+the CS1 model through the deployed twin. The provisioning order and the dependency graph are
+described in [role-based allocation](digital-twin-manager/docs/role-based-allocation.md).
 
 ## Case studies and evidence
 
@@ -69,11 +59,10 @@ deployer supplies the ingestion and feedback resources around the
 | Visualization path, Section V-C / Figure 4  | [CS1 TwinMaker results](evaluator-artifacts/MGridICSA-mqtt-twinmaker.zip), [CS2 TwinMaker results](evaluator-artifacts/VPP-mqtt-twinmaker.zip)                                                                   |
 | Figure 4 plots                              | [e2e_pgf.py](evaluator-artifacts/scripts/e2e_pgf.py) turns the `measurements.csv` files into the box plots                                                                                                       |
 | Security assessment, Section V-C / Figure 5 | [Stored findings](evaluator-artifacts/MGridICSA-SecurityEval.json), [audit script and instructions](digital-twin-manager/docs/security-audit.md), [Figure 5 script](evaluator-artifacts/scripts/security_pgf.py) |
-| Deployed resources, Section V-C / Figure 6  | [Counts per twin](evaluator-artifacts/resource-inventory/), produced by [resource_inventory.py](digital-twin-manager/scripts/resource_inventory.py)                                                              |
+| Deployed resources, Section V-C / Figure 6  | [Counts per twin](evaluator-artifacts/resource-inventory/), produced by [resource_inventory.py](digital-twin-evaluator/scripts/resource_inventory.py)                                                              |
 
-Each measurement ZIP contains `measurements.csv` and `summary.json`. The results were
-recorded on twins deployed under other names. The twin names and the AWS account ID in
-the stored files are replaced, so the fingerprints in the summaries refer to the original deployment.
+Each measurement ZIP contains `measurements.csv` and `summary.json`. The twin names and
+the AWS account ID in the stored files are replaced.
 
 The [evaluation service](digital-twin-evaluator/README.md) resolves targets from saved
 **applied deployment state**.
@@ -115,8 +104,4 @@ Regression suites cover [the VPP generator and its mock action](reproduce/tests/
 [validation, deployment planning and policies](digital-twin-manager/tests/), and
 [measurement and report behavior](digital-twin-evaluator/tests/).
 
-An additional capability is [deployment updates](digital-twin-manager/README.md)
-through `plan` and `apply`. The [device simulator](digital-twin-simulator/README.md)
-logs telemetry by default (`SIMULATOR_MOCK_AWS=true`). Its AWS mode publishes
-through the IoT Data HTTPS API. The paper's case-study measurements concern
-individual twins and use the separate evaluation service.
+An additional capability is [deployment updates](digital-twin-manager/README.md#commands) through `plan` and `apply`.

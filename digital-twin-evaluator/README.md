@@ -318,6 +318,14 @@ immediately before sending and excludes time waiting for a worker slot.
 Exit codes: 0 for success or an offline plan, 1 for measured sample failures,
 and 2 for invalid configuration or startup failure.
 
+## Resource count
+
+`scripts/resource_inventory.py` counts the resources that exist for a twin and compares them with the allocation formula (paper Figure 6). It reads the account and changes nothing:
+
+```text
+uv run --no-project --with boto3 python scripts/resource_inventory.py --twin <twin name> --regions <region>
+```
+
 ## Add another evaluation
 
 1. Add a module under `digital_twin_evaluation/evaluations/`.

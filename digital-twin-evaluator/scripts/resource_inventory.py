@@ -25,8 +25,8 @@ for initial values are not resources and are not counted.
 The script is read-only. Credentials come from the standard AWS environment.
 
 Usage:
-  uv run python scripts/resource_inventory.py
-  uv run python scripts/resource_inventory.py --twin MGridICSA --twin VPP
+  uv run --no-project --with boto3 python scripts/resource_inventory.py
+  uv run --no-project --with boto3 python scripts/resource_inventory.py --twin MGridICSA --twin VPP
 """
 import argparse
 import collections

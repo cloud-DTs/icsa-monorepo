@@ -61,7 +61,7 @@ The quick start is deliberately broad. To check or narrow it, use these files:
 
 ## Optional: resource count and security audit
 
-The resource count (`digital-twin-manager/scripts/resource_inventory.py`) and the
+The resource count (`digital-twin-evaluator/scripts/resource_inventory.py`) and the
 security audit (`digital-twin-manager/scripts/security_audit.py`) only read. Use a
 separate read-only user, so the deployer key is not needed:
 

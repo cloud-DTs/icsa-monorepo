@@ -21,4 +21,4 @@ This page details paper Section IV-B. The deployer reads the four configuration 
 
 [`build_runtime_graph`](../src/dependency_graph/runtime_graph_builder.py) expands the templates with the configuration. Shared templates give one node. The `iot:l1` and `iot:l2` templates give one node per IoT device, the `iot:l4` templates one per distinct component type, the hierarchy templates one per entity or component, the action templates one per action and the initial-value templates one per device with an initial value. Each node gets its logical and physical name. `plan` uses this graph ([`analyze_plan_dependencies`](../src/dependency_graph/dependency_analyzer.py)) to mark planned changes that other resources depend on as blocked.
 
-The number of resources that this produces for a twin is counted by [`scripts/resource_inventory.py`](../scripts/resource_inventory.py), which also states the formula.
+The number of resources that this produces for a twin is counted by [`resource_inventory.py`](../../digital-twin-evaluator/scripts/resource_inventory.py), which also states the formula.

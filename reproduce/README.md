@@ -102,7 +102,7 @@ evaluate control algorithms.
 
 - **Resources.** After a deployment, count what exists in AWS and compare it with
   the allocation formula:
-  `uv run python digital-twin-manager/scripts/resource_inventory.py --twin MGridICSA`
+  `uv run --no-project --with boto3 python digital-twin-evaluator/scripts/resource_inventory.py --twin MGridICSA`
   (needs `uv` and AWS credentials with read access). The paper's numbers are 213
   for CS1 and 1,968 for CS2.
 - **Latency.** `evaluator-artifacts/scripts/e2e_pgf.py` turns the
