@@ -28,7 +28,9 @@ the configuration files that the **deployer**
 deployer provisions the resources on AWS, and the **evaluator**
 ([`digital-twin-evaluator`](../digital-twin-evaluator/README.md)) measures the
 latency of the deployed twin. Every Compose service runs once and exits. No
-licensed software is needed.
+licensed software is needed. The SysML v1 parser is not part of this flow: the
+industrial CS1 model in v1 is confidential, and the
+[v1 README](../sysml-v1-adapter/README.md) describes the parser on a public example.
 
 ## Requirements
 
@@ -39,6 +41,10 @@ licensed software is needed.
   [AWS guide](aws/README.md) has the IAM policies and the steps to create the key.
   The permissions are explained in [AWS permissions](../digital-twin-manager/docs/aws-permissions.md).
   Deploying costs money: CS1 creates 213 resources and CS2 creates 1,968.
+- The region is `eu-west-1` unless `AWS_REGION` in `.env` says otherwise.
+- CS1 deploys an Amazon Managed Grafana workspace, which needs AWS IAM Identity
+  Center in the account. Without it, set `DEPLOY_MANAGED_GRAFANA=false` in `.env`.
+  CS1 then has 210 resources, because Grafana accounts for 3 of the 213.
 
 ## Setup
 
@@ -84,11 +90,21 @@ format of [`evaluator-artifacts`](../evaluator-artifacts/).
 ## Run CS2
 
 In `.env`, set `TWIN=VPP` and `DEPLOY_MANAGED_GRAFANA=false`. Then repeat the
-five steps with `VPPMicrogrid.sysml`, `VPP` and the configurations
+four steps with `VPPMicrogrid.sysml`, `VPP` and the configurations
 `VPP.mqtt.json` and `VPP.mqtt-twinmaker.json`:
 
 ```bash
 docker compose run --rm parse /pipeline/output/VPP /pipeline/input/VPPMicrogrid.sysml
+docker compose run --rm stage VPP
+```
+
+To try CS2 at a small scale first, generate a model with two households. It has
+the same twin name `VPP`, so the configurations above apply, and it creates 106
+resources instead of 1,968:
+
+```bash
+python scripts/generate_vpp_microgrid.py --households 2 --output models/VPPSmall.sysml
+docker compose run --rm parse /pipeline/output/VPP /pipeline/input/VPPSmall.sysml
 docker compose run --rm stage VPP
 ```
 
