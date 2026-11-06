@@ -40,7 +40,7 @@ Core L2 reads federation routing entries from AWS Systems Manager Parameter Stor
 
 | Lambda Type        | Purpose                                          | Triggered By                    |
 | :----------------- | :----------------------------------------------- | :------------------------------ |
-| **Processor**      | Normalizes raw device data.                      | Dispatcher Lambda.              |
+| **Processor**      | Processes the raw data of one device.            | Dispatcher Lambda.              |
 | **Persister**      | Writes to DynamoDB and starts event checking.    | Processor Lambda.               |
 | **Event-checker**  | Evaluates rules in `config_events.json`.         | Persister Lambda.               |
 | **Action**         | Performs business logic when conditions are met. | Event-checker or Step Function. |

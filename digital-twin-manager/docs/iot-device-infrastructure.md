@@ -57,7 +57,7 @@ If a full destroy reports a conflict, repeat `destroy` after the delay.
 ### IoT L2: Device-Specific Processing
 
 - Creates a unique Processor Lambda and IAM Role for each configured device.
-- Unlike the shared Dispatcher Lambda (which only routes messages), the Processor Lambda handles device-specific tasks like normalizing payloads, converting units, and validating values.
+- The job of the Processor Lambda is the device-specific processing of a message, for example normalizing the payload, converting units or validating values. The shared Dispatcher Lambda only routes messages.
 - The deployer uses custom code for the processor if it exists, or automatically falls back to a default generic processor.
 - After processing, this Lambda passes the data to the shared Persister Lambda.
 
