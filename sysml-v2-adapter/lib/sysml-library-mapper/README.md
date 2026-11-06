@@ -1,5 +1,7 @@
 # SysmlModelParser
 
+> **Note:** The [`reproduce`](../../../reproduce/README.md) setup builds this project automatically, as part of the SysML v2 parser. You do not need to build it yourself. The build instructions below are for reference.
+
 SysmlModelParser reads SysML v2 models and turns them into Java objects. You decide with annotations which Java class is built for which SysML element. The parser finds these classes on its own by scanning the classpath at startup.
 
 Principle: only elements that have a class are mapped. Elements without a matching class are left out of the result.

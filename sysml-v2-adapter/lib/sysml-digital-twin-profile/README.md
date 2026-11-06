@@ -1,5 +1,7 @@
 # DT Library Mapper
 
+> **Note:** The [`reproduce`](../../../reproduce/README.md) setup builds this project automatically, as part of the SysML v2 parser. You do not need to build it yourself. The build instructions below are for reference.
+
 Maps SysML v2 models written against the `DigitalTwinLibrary` to Java objects. It is built on SysmlModelParser (`sysml-library-mapper`), which reads and validates the models; this project adds the library, the mapping classes and the rules of the Digital Twin profile.
 
 
@@ -46,14 +48,6 @@ Create the parser once and call `parse` for every model; each call replaces the 
 * `IllegalStateException` when SysML reports an error or a warning (for example a value whose type does not fit),
 * `IllegalArgumentException` or `IllegalStateException` when the model breaks a rule of the profile (see Validation).
 
-# Library
-
-`DTLibrary/DigitalTwinLibrary.sysml` defines the profile, `DTLibrary/MetaLibrary.sysml` the metadata keywords. Compared with the library of the old Python converter:
-
-* all `default` values are removed; a value has to be written in the model,
-* `outputParameters` is typed `LibDTAttributes`, like `inputParameters`,
-* the enums specialize the new `abstract attribute def TwinEnum`,
-* list slots carry `[0..*]` on their redefinitions, optional slots `[0..1]`.
 
 # Modeling
 
