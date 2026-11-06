@@ -1,6 +1,6 @@
 # TWINFRA: artifact guide
 
-This monorepo implements **TWINFRA: Role-based Decomposition and Allocation of Digital Twins to the Cloud**. TWINFRA takes an annotated SysML v1 or v2 model to the software architecture and
+This monorepo implements **TWINFRA**, which takes an annotated SysML v1 or v2 model to the software architecture and
 AWS resources of a digital twin, deploys the twin, and measures it. It consists of two parsers, a deployer and an
 evaluator. A Docker Compose setup runs them end to end, from the model of a case study to its measurements, and
 needs no licensed software. The same tools deployed both industrial case studies of the paper, twins of 213 and
