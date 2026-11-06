@@ -8,7 +8,7 @@ The SysML v1 parser reads an Enterprise Architect XMI export and writes the conf
 - the [prerequisites](#prerequisites) and the [input requirements](#input-requirements),
 - [the DigitalTwinProfile](#the-digitaltwinprofile), with its block definition diagram ([BDD](#block-definition-diagram-bdd)) and instance diagram ([IBD](#internal-block-diagram-ibd)),
 - the [functionality](#functionality-of-the-tool), that is how elements are mapped and identified,
-- the [container usage](#container-usage) and an [example model](#example) with its own BDD and IBD, which show how a twin looks in the profile and generates the deployer files.
+- the [container usage](#container-usage) and an [example model](#example) with its own BDD and IBD, which show how a twin looks in the profile and generates the deployer's config files.
 
 ## Prerequisites
 
