@@ -4,7 +4,37 @@
 
 Converts SysML v2 digital twin models into the JSON configuration of the deployer.
 
-The models are read and validated by the DigitalTwinProfileSysmlv2JavaLibrary. How to model twins, entities, components, attributes, conditions and strategy actions is described in the README of that repository.
+The models are read and validated by the libraries in [`lib/`](lib/): [`sysml-digital-twin-profile`](lib/sysml-digital-twin-profile/README.md) defines the roles, and [`sysml-library-mapper`](lib/sysml-library-mapper/README.md) reads and checks the SysML. The role definitions are in [`DigitalTwinLibrary.sysml`](lib/sysml-digital-twin-profile/DTLibrary/DigitalTwinLibrary.sysml).
+
+# Modeling the roles
+
+A definition uses the capitalized keyword, a usage the lowercase one, for example `#Entity def Charger` and `#entity charger1 : Charger`. Values are set with `:>>`.
+
+| Role | Keywords | Slots | Becomes |
+| --- | --- | --- | --- |
+| Twin | `#Twin def` | `hotDatabaseRetentionDays`, `coldDatabaseRetentionDays` (days, default 30); contains entities and conditions | `config.json` |
+| Entity | `#Entity def`, `#entity` | nested entities, components, const attributes | an entity in `config_hierarchy.json` |
+| Component | `#Component def`, `#component` | measure attributes | a component, and a device in `config_iot_devices.json` |
+| MeasureAttribute | `#measureAttribute` | `dataType`: `STRING` (default), `DOUBLE`, `INTEGER` or a `VECTOR_*` type | a property of the device |
+| ConstAttribute | `#constAttribute` | `dataType`, `value` (a string literal) | a property of the entity's constant device |
+| Condition | `#condition` | `leftOperand`, `operator`, `rightOperand`; contains strategy actions | an event in `config_events.json` |
+| StrategyAction | `#strategyAction` | `name`, `pathToCode`, `external`, `strategyType` (`LAMBDA`); optional `inputParameters`, `outputParameters`, `customPayload`, `feedbackTopicType` (`EXTERN`, `INTERN` or `NOFEEDBACK`, default `NOFEEDBACK`), `componentTopic`, `externalTopic` | the action of the event |
+
+The operands, the parameters and `componentTopic` are references to attributes and components of the twin. The deployer accepts the operators `GREATER_THAN`, `LESS_THAN` and `EQUAL`. The library also defines `GREATER_EQUAL`, `LESS_EQUAL` and `NOT_EQUAL`, which the deployer rejects. A condition and its action in [`MGridICSA.sysml`](../reproduce/models/MGridICSA.sysml), shortened:
+
+```sysml
+#condition charger1Changed : ChargerChanged {
+    :>> leftOperand = MicroGrid.charger1.p13.power;
+    :>> operator = ComparisonOperator::GREATER_THAN;
+    :>> rightOperand = MicroGrid.chargingThreshold;
+    balance1 :>> balance {
+        charger1Power :>> inputParameters = MicroGrid.charger1.p13.power;
+        :>> componentTopic = MicroGrid.battery.controller;
+    }
+}
+```
+
+The Event Checker evaluates the condition when a stored message contains the property of one of its operands. If the condition holds, the action receives the input parameters, and its result is sent as feedback to the topic of the component. The rules that a model must satisfy are listed in [Validation](lib/sysml-digital-twin-profile/README.md#validation) of the role library.
 
 # Requirements
 

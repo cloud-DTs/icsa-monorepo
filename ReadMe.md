@@ -34,12 +34,13 @@ The v2 parser can reuse a TwinMaker Component Type across usages with the
 same definition and measurement schema. Each usage keeps its own device ID.
 
 **Examples.** The SysML v2 model of CS1 is [MGridICSA.sysml](reproduce/models/MGridICSA.sysml), and
-[reproduce/README.md](reproduce/README.md) deploys it. More detail is in the READMEs of the
-[v2 parser](sysml-v2-adapter/README.md) and of its [role library](sysml-v2-adapter/lib/sysml-digital-twin-profile/README.md).
-The industrial CS1 v1 model is withheld for confidentiality, as stated in Section V-A.
+[reproduce/README.md](reproduce/README.md) deploys it. How the roles are written in a model is described in
+[Modeling the roles](sysml-v2-adapter/README.md#modeling-the-roles) of the v2 parser.
+The SysML v1 parser is not part of the automated pipeline. Details about SysML v1 models, with an example, are in its
+[README](sysml-v1-adapter/README.md). The industrial CS1 v1 model is withheld for confidentiality, as stated in Section V-A.
 
 **C2: role-based twin allocation** (Section IV, Figure 3). The deployer in
-[`digital-twin-manager`](digital-twin-manager/README.md) reads these files and provisions the
+[`digital-twin-manager`](digital-twin-manager/README.md) reads these configuration files and provisions the
 resources. [How it works](digital-twin-manager/README.md#how-it-works) explains the steps and traces
 the CS1 model through the deployed twin. The provisioning order and the dependency graph are
 described in [role-based allocation](digital-twin-manager/docs/role-based-allocation.md).
